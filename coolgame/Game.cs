@@ -38,6 +38,9 @@ namespace coolgame
             ground = new Ground(Content);
             baseBuilding = new Base(Content, ground.Top);
             steve = new Enemy1(Content);
+
+            steve.X = 800;
+            steve.Y = 460;
         }
 
         protected override void UnloadContent()
@@ -52,6 +55,7 @@ namespace coolgame
 
             baseBuilding.Update(gameTime);
             steve.Update(gameTime);
+            steve.X -= 1;
            
             base.Update(gameTime);
         }

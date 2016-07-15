@@ -30,7 +30,7 @@ namespace coolgame
             set
             {
                 destinationRectangle.X = value;
-                healthBar.X = value + Width / 2;
+                healthBar.X = value - Width / 2;
             }
         }
 
@@ -86,8 +86,6 @@ namespace coolgame
             sourceRectangle = new Rectangle();
             totalFrames = 0;
             healthBar = new HealthBar(content);
-            healthBar.X = X + Width / 2;
-            healthBar.Y = Y - 20;
         }
 
         public virtual void Update(GameTime gameTime)
