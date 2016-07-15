@@ -15,6 +15,8 @@ namespace coolgame
         Ground ground;
         Base baseBuilding;
 
+        Enemy1 steve;
+
         public Game()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -35,6 +37,7 @@ namespace coolgame
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
             baseBuilding = new Base(Content, ground.Top);
+            steve = new Enemy1(Content);
         }
 
         protected override void UnloadContent()
@@ -48,6 +51,7 @@ namespace coolgame
                 Exit();
 
             baseBuilding.Update(gameTime);
+            steve.Update(gameTime);
            
             base.Update(gameTime);
         }
@@ -62,6 +66,7 @@ namespace coolgame
             ground.Draw(spriteBatch);
 
             baseBuilding.Draw(spriteBatch);
+            steve.Draw(spriteBatch);
 
             spriteBatch.End();
 
