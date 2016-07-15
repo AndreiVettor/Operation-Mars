@@ -10,9 +10,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace coolgame
 {
-    public class Entity
+    public abstract class Entity
     {
-        private Texture2D texture;
+        protected Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         private int totalFrames;
@@ -36,11 +36,25 @@ namespace coolgame
         public int Width
         {
             get { return destinationRectangle.Width; }
+            protected set
+            {
+                if (value > 0)
+                {
+                    destinationRectangle.Width = value;
+                    sourceRectangle.Width = value;
+                    totalFrames = texture.Width / value;
+                }
+            }
         }
 
         public int Height
         {
             get { return destinationRectangle.Height; }
+            protected set
+            {
+                destinationRectangle.Height = value;
+                sourceRectangle.Height = value;
+            }
         }
 
         public bool EnableAnimation
@@ -55,30 +69,39 @@ namespace coolgame
             set { animationSpeed = value; }
         }
 
-        public Entity(Texture2D texture, int width, int height)
+        public Entity()
         {
-            this.texture = texture;
-            destinationRectangle = new Rectangle(0, 0, width, height);
-            sourceRectangle = new Rectangle(0, 0, width, height);
-            totalFrames = texture.Width / width;
+            destinationRectangle = new Rectangle();
+            sourceRectangle = new Rectangle();
+            totalFrames = 0;
         }
 
         public void Update(GameTime gameTime)
         {
-            frameUpdateTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (frameUpdateTime >= 1 / animationSpeed)
+            if (EnableAnimation && animationSpeed > 0)
             {
-                frameUpdateTime = 0;
+                frameUpdateTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (frameUpdateTime >= 1 / animationSpeed)
+                {
+                    frameUpdateTime = 0;
 
-                currentFrame++;
-                if (currentFrame == totalFrames)
-                    currentFrame = 0;
+                    currentFrame++;
+                    if (currentFrame == totalFrames)
+                        currentFrame = 0;
 
-                sourceRectangle.X = currentFrame * Width;
+                    sourceRectangle.X = currentFrame * Width;
+                }
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        protected void SetTexture(ContentManager content, string assetName)
+        {
+            texture = content.Load<Texture2D>(assetName);
+            if (Width > 0)
+                totalFrames = texture.Width / Width;
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
         }

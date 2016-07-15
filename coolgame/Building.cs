@@ -16,9 +16,17 @@ namespace coolgame
         protected int health;
         private HealthBar healthBar;
 
-        public Building(ContentManager content, int width, int height) : base(null, width, height)
+        public Building(ContentManager content) : base()
         {
             healthBar = new HealthBar(content);
+            healthBar.X = X + Width / 2;
+            healthBar.Y = Y - 20;
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            healthBar.Draw(spriteBatch);
         }
     }
 }
