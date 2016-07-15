@@ -15,6 +15,14 @@ namespace coolgame
         Texture2D texture;
         Vector2 position;
 
+        public int Top
+        {
+            get
+            {
+                return (int)position.Y;
+            }
+        }
+
         public Ground(ContentManager content)
         {
             texture = content.Load<Texture2D>("ground");
