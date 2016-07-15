@@ -12,8 +12,8 @@ namespace coolgame
 {
     public abstract class Building : Entity
     {
-        protected int maxHealth;
-        protected int health;
+        private int maxHealth;
+        private int health;
         private HealthBar healthBar;
 
         public Building(ContentManager content) : base()
@@ -43,7 +43,25 @@ namespace coolgame
             }
         }
 
-        
+        public int MaxHealth
+        {
+            get { return maxHealth; }
+            set
+            {
+                maxHealth = value;
+                healthBar.Value = (float)health / maxHealth;
+            }
+        }
+
+        public int Health
+        {
+            get { return health; }
+            set
+            {
+                health = value;
+                healthBar.Value = (float)health / maxHealth;
+            }
+        }
 
         public override void Draw(SpriteBatch spriteBatch)
         {

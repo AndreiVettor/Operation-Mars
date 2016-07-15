@@ -18,12 +18,14 @@ namespace coolgame
             Width = texture.Width;
             Height = texture.Height;
             Y = groundLevel - Height;
+            MaxHealth = 400;
+            Health = 400;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            health -= 
+            Health--;
         }
     }
 }
