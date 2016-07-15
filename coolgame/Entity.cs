@@ -13,8 +13,6 @@ namespace coolgame
     public class Entity
     {
         private Texture2D texture;
-        private int width;
-        private int height;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         private int totalFrames;
@@ -60,8 +58,6 @@ namespace coolgame
         public Entity(Texture2D texture, int width, int height)
         {
             this.texture = texture;
-            this.width = width;
-            this.height = height;
             destinationRectangle = new Rectangle(0, 0, width, height);
             sourceRectangle = new Rectangle(0, 0, width, height);
             totalFrames = texture.Width / width;
@@ -78,7 +74,7 @@ namespace coolgame
                 if (currentFrame == totalFrames)
                     currentFrame = 0;
 
-                sourceRectangle.X = currentFrame * width;
+                sourceRectangle.X = currentFrame * Width;
             }
         }
 
