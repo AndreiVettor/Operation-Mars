@@ -31,7 +31,7 @@ namespace coolgame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             bgImage = Content.Load<Texture2D>("background");
-            ground = new Ground(Content, 50);
+            ground = new Ground(Content);
         }
 
         protected override void UnloadContent()

@@ -15,6 +15,12 @@ namespace coolgame
         Texture2D texture;
         Vector2 position;
 
+        public Ground(ContentManager content)
+        {
+            texture = content.Load<Texture2D>("ground");
+            position = new Vector2(0, Game.GAME_HEIGHT - texture.Height);
+        }
+
         public Ground(ContentManager content, int height)
         {
             texture = content.Load<Texture2D>("ground");
