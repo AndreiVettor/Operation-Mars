@@ -21,13 +21,13 @@ namespace coolgame
         private bool enableAnimation;
         private float animationSpeed = .025f;
 
-        public int X
+        public virtual int X
         {
             get { return destinationRectangle.X; }
             set { destinationRectangle.X = value; }
         }
 
-        public int Y
+        public virtual int Y
         {
             get { return destinationRectangle.Y; }
             set { destinationRectangle.Y = value; }
@@ -76,7 +76,7 @@ namespace coolgame
             totalFrames = 0;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             if (EnableAnimation && animationSpeed > 0)
             {

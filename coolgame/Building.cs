@@ -23,6 +23,28 @@ namespace coolgame
             healthBar.Y = Y - 20;
         }
 
+        public override int X
+        {
+            get { return base.X; }
+            set
+            {
+                base.X = value;
+                healthBar.X = value + Width / 2;
+            }
+        }
+
+        public override int Y
+        {
+            get { return base.Y; }
+            set
+            {
+                base.Y = value;
+                healthBar.Y = Y - 20;
+            }
+        }
+
+        
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);

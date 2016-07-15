@@ -19,5 +19,11 @@ namespace coolgame
             Height = texture.Height;
             Y = groundLevel - Height;
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            health -= 
+        }
     }
 }

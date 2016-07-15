@@ -24,6 +24,7 @@ namespace coolgame
             {
                 val = value;
                 rectangle.Width = (int)(100 * val);
+                rectangle.Height = 10;
                 color = new Color(Math.Min(255, 500 * (1 - val)), Math.Min(255, 500 * val), 0);
             }
         }
