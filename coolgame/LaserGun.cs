@@ -10,31 +10,27 @@ using Microsoft.Xna.Framework.Content;
 
 namespace coolgame
 {
-    public class Tower : Entity
+    public class LaserGun : Entity
     {
-        private LaserGun laserGun;
-
-        public Tower(ContentManager content, int groundLevel) : base(content)
+        public LaserGun(ContentManager content, int x, int y) : base(content)
         {
-            SetTexture(content, "tower");
+            SetTexture(content, "laser");
             Width = texture.Width;
             Height = texture.Height;
-            X = Game.GAME_WIDTH / 2 - Width / 2;
-            Y = groundLevel - Height;
-            EnableHealthBar = true;
-            laserGun = new LaserGun(content, X + 10, Y + 10);
+            X = x;
+            Y = y;
         }
 
         public override void Update(GameTime gameTime)
         {
+            
+
             base.Update(gameTime);
-            laserGun.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            laserGun.Draw(spriteBatch);
         }
     }
 }
