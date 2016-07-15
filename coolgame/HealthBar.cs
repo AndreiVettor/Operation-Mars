@@ -16,6 +16,23 @@ namespace coolgame
         private Rectangle rectangle;
         private Color color;
         private float val;
+        private int maxWidth;
+
+        public int Width
+        {
+            get { return maxWidth; }
+            set
+            {
+                maxWidth = value;
+                rectangle.Width = (int)(value * val);
+            }
+        }
+
+        public int Height
+        {
+            get { return rectangle.Height; }
+            set { rectangle.Height = value; }
+        }
 
         public float Value
         {
@@ -23,8 +40,7 @@ namespace coolgame
             set
             {
                 val = value;
-                rectangle.Width = (int)(100 * val);
-                rectangle.Height = 10;
+                rectangle.Width = (int)(maxWidth * val);
                 color = new Color(Math.Min(255, (int)(500 * (1 - val))), Math.Min(255, (int)(500 * val)), 0);
             }
         }
@@ -45,6 +61,8 @@ namespace coolgame
         {
             texture = content.Load<Texture2D>("hpbar");
             rectangle = new Rectangle();
+            Width = 50;
+            Height = 5;
             Value = 1.0f;
         }
 
