@@ -12,8 +12,8 @@ namespace coolgame
 {
     public class Ground
     {
-        Texture2D texture;
-        Vector2 position;
+        private Texture2D texture;
+        private Vector2 position;
 
         public int Top
         {
