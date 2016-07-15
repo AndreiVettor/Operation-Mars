@@ -12,8 +12,22 @@ namespace coolgame
 {
     public class Ground
     {
-        Texture2D texture;
-        Vector2 position;
+        private Texture2D texture;
+        private Vector2 position;
+
+        public int Top
+        {
+            get
+            {
+                return (int)position.Y;
+            }
+        }
+
+        public Ground(ContentManager content)
+        {
+            texture = content.Load<Texture2D>("ground");
+            position = new Vector2(0, Game.GAME_HEIGHT - texture.Height);
+        }
 
         public Ground(ContentManager content, int height)
         {
