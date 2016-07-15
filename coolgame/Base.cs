@@ -17,6 +17,7 @@ namespace coolgame
             SetTexture(content, "base");
             Width = texture.Width;
             Height = texture.Height;
+            X = Game.GAME_WIDTH / 2 - Width / 2;
             Y = groundLevel - Height;
             EnableHealthBar = true;
             healthBar.MaxHealth = healthBar.Health = 1000;
