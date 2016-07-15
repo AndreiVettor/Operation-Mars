@@ -6,15 +6,19 @@ namespace coolgame
 {
     public class Game : Microsoft.Xna.Framework.Game
     {
+        public const int GAME_WIDTH = 800;
+        public const int GAME_HEIGHT = 600;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D bgImage;
+        Ground ground;
 
         public Game()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = GAME_WIDTH;
+            graphics.PreferredBackBufferHeight = GAME_HEIGHT;
             Content.RootDirectory = "Content";
         }
 
@@ -27,6 +31,7 @@ namespace coolgame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             bgImage = Content.Load<Texture2D>("background");
+            ground = new Ground(Content, 50);
         }
 
         protected override void UnloadContent()
@@ -48,6 +53,7 @@ namespace coolgame
 
             spriteBatch.Begin();
             spriteBatch.Draw(bgImage, Vector2.Zero, Color.White);
+            ground.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
