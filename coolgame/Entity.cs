@@ -21,7 +21,7 @@ namespace coolgame
         private int currentFrame;
         private float frameUpdateTime;
         private bool enableAnimation;
-        private float animationSpeed = .1f;
+        private float animationSpeed = .025f;
 
         public int X
         {
@@ -33,6 +33,16 @@ namespace coolgame
         {
             get { return destinationRectangle.Y; }
             set { destinationRectangle.Y = value; }
+        }
+
+        public int Width
+        {
+            get { return destinationRectangle.Width; }
+        }
+
+        public int Height
+        {
+            get { return destinationRectangle.Height; }
         }
 
         public bool EnableAnimation
@@ -68,7 +78,7 @@ namespace coolgame
                 if (currentFrame == totalFrames)
                     currentFrame = 0;
 
-                sourceRectangle.Width = currentFrame * width;
+                sourceRectangle.X = currentFrame * width;
             }
         }
 
