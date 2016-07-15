@@ -14,6 +14,7 @@ namespace coolgame
         Texture2D bgImage;
         Ground ground;
         Base baseBuilding;
+        Tower towerBuilding;
 
         Enemy1 steve;
 
@@ -37,6 +38,7 @@ namespace coolgame
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
             baseBuilding = new Base(Content, ground.Top);
+            towerBuilding = new Tower(Content, ground.Top);
             steve = new Enemy1(Content);
 
             steve.X = 800;
@@ -54,6 +56,7 @@ namespace coolgame
                 Exit();
 
             baseBuilding.Update(gameTime);
+            towerBuilding.Update(gameTime);
             steve.Update(gameTime);
             steve.X -= 1;
            
@@ -69,6 +72,7 @@ namespace coolgame
             spriteBatch.Draw(bgImage, Vector2.Zero, Color.White);
             ground.Draw(spriteBatch);
 
+            towerBuilding.Draw(spriteBatch);
             baseBuilding.Draw(spriteBatch);
             steve.Draw(spriteBatch);
 
