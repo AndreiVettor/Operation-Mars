@@ -20,17 +20,28 @@ namespace coolgame
         private float frameUpdateTime;
         private bool enableAnimation;
         private float animationSpeed = .025f;
+        private int maxHealth;
+        private int health;
+        private HealthBar healthBar;
 
-        public virtual int X
+        public int X
         {
             get { return destinationRectangle.X; }
-            set { destinationRectangle.X = value; }
+            set
+            {
+                destinationRectangle.X = value;
+                healthBar.X = value + Width / 2;
+            }
         }
 
-        public virtual int Y
+        public int Y
         {
             get { return destinationRectangle.Y; }
-            set { destinationRectangle.Y = value; }
+            set
+            {
+                destinationRectangle.Y = value;
+                healthBar.Y = Y - 20;
+            }
         }
 
         public int Width
@@ -69,11 +80,14 @@ namespace coolgame
             set { animationSpeed = value; }
         }
 
-        public Entity()
+        public Entity(ContentManager content)
         {
             destinationRectangle = new Rectangle();
             sourceRectangle = new Rectangle();
             totalFrames = 0;
+            healthBar = new HealthBar(content);
+            healthBar.X = X + Width / 2;
+            healthBar.Y = Y - 20;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -94,6 +108,26 @@ namespace coolgame
             }
         }
 
+        public int MaxHealth
+        {
+            get { return maxHealth; }
+            set
+            {
+                maxHealth = value;
+                healthBar.Value = (float)health / maxHealth;
+            }
+        }
+
+        public int Health
+        {
+            get { return health; }
+            set
+            {
+                health = value;
+                healthBar.Value = (float)health / maxHealth;
+            }
+        }
+
         protected void SetTexture(ContentManager content, string assetName)
         {
             texture = content.Load<Texture2D>(assetName);
@@ -104,6 +138,7 @@ namespace coolgame
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            healthBar.Draw(spriteBatch);
         }
     }
 }

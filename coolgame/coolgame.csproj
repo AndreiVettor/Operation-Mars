@@ -38,7 +38,6 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Building.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />

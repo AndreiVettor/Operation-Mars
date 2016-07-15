@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace coolgame
 {
-    public class Base : Building
+    public class Base : Entity
     {
         public Base(ContentManager content, int groundLevel) : base(content)
         {
