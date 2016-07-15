@@ -8,6 +8,7 @@ namespace coolgame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D bgImage;
 
         public Game()
         {
@@ -25,6 +26,7 @@ namespace coolgame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            bgImage = Content.Load<Texture2D>("background");
         }
 
         protected override void UnloadContent()
@@ -43,6 +45,10 @@ namespace coolgame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(bgImage, Vector2.Zero, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
