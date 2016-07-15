@@ -20,12 +20,14 @@ namespace coolgame
             Y = groundLevel - Height;
             EnableHealthBar = true;
             healthBar.MaxHealth = healthBar.Health = 1000;
+            healthBar.Width = 100;
+            healthBar.Height = 10;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            healthBar.Health--;
+            healthBar.Health -= 2;
         }
     }
 }

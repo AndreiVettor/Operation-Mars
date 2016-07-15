@@ -14,6 +14,7 @@ namespace coolgame
             Width = 58;
             Height = 80;
             EnableAnimation = true;
+            EnableHealthBar = true;
         }
 
         

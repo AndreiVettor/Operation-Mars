@@ -18,6 +18,7 @@ namespace coolgame
         private int maxHealth;
         private int health;
         private int maxWidth;
+        private int centerX;
 
         public int Width
         {
@@ -26,6 +27,7 @@ namespace coolgame
             {
                 maxWidth = value;
                 UpdateAppearance();
+                UpdatePosition();
             }
         }
 
@@ -42,6 +44,7 @@ namespace coolgame
             {
                 maxHealth = value;
                 UpdateAppearance();
+                UpdatePosition();
             }
         }
 
@@ -52,13 +55,18 @@ namespace coolgame
             {
                 health = value;
                 UpdateAppearance();
+                UpdatePosition();
             }
         }
 
         public int X
         {
-            get { return rectangle.X; }
-            set { rectangle.X = value; }
+            get { return centerX; }
+            set
+            {
+                centerX = value;
+                UpdatePosition();
+            }
         }
 
         public int Y
@@ -81,6 +89,11 @@ namespace coolgame
             float value = (float)health / maxHealth;
             rectangle.Width = (int)(maxWidth * value);
             color = new Color(Math.Min(255, (int)(500 * (1 - value))), Math.Min(255, (int)(500 * value)), 0);
+        }
+
+        private void UpdatePosition()
+        {
+            rectangle.X = centerX - rectangle.Width / 2;
         }
 
         public void Draw(SpriteBatch spriteBatch)

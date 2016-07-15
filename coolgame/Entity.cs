@@ -29,7 +29,7 @@ namespace coolgame
             set
             {
                 destinationRectangle.X = value;
-                healthBar.X = value - Width / 2;
+                healthBar.X = value + Width / 2;
             }
         }
 
@@ -46,13 +46,14 @@ namespace coolgame
         public int Width
         {
             get { return destinationRectangle.Width; }
-            protected set
+            set
             {
                 if (value > 0)
                 {
                     destinationRectangle.Width = value;
                     sourceRectangle.Width = value;
                     totalFrames = texture.Width / value;
+                    healthBar.X = X + value / 2;
                 }
             }
         }
@@ -60,7 +61,7 @@ namespace coolgame
         public int Height
         {
             get { return destinationRectangle.Height; }
-            protected set
+            set
             {
                 destinationRectangle.Height = value;
                 sourceRectangle.Height = value;
@@ -91,6 +92,7 @@ namespace coolgame
             sourceRectangle = new Rectangle();
             totalFrames = 0;
             healthBar = new HealthBar(content);
+            X = Y = 0;
         }
 
         public virtual void Update(GameTime gameTime)
