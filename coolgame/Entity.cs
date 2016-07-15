@@ -20,9 +20,8 @@ namespace coolgame
         private float frameUpdateTime;
         private bool enableAnimation;
         private float animationSpeed = .025f;
-        private int maxHealth;
-        private int health;
-        private HealthBar healthBar;
+        protected HealthBar healthBar;
+        private bool enableHealthBar;
 
         public int X
         {
@@ -80,6 +79,12 @@ namespace coolgame
             set { animationSpeed = value; }
         }
 
+        public bool EnableHealthBar
+        {
+            get { return enableHealthBar; }
+            set { enableHealthBar = value; }
+        }
+
         public Entity(ContentManager content)
         {
             destinationRectangle = new Rectangle();
@@ -106,26 +111,6 @@ namespace coolgame
             }
         }
 
-        public int MaxHealth
-        {
-            get { return maxHealth; }
-            set
-            {
-                maxHealth = value;
-                healthBar.Value = (float)health / maxHealth;
-            }
-        }
-
-        public int Health
-        {
-            get { return health; }
-            set
-            {
-                health = value;
-                healthBar.Value = (float)health / maxHealth;
-            }
-        }
-
         protected void SetTexture(ContentManager content, string assetName)
         {
             texture = content.Load<Texture2D>(assetName);
@@ -136,7 +121,9 @@ namespace coolgame
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
-            healthBar.Draw(spriteBatch);
+
+            if (enableHealthBar)
+                healthBar.Draw(spriteBatch);
         }
     }
 }

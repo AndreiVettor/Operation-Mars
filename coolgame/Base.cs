@@ -18,14 +18,14 @@ namespace coolgame
             Width = texture.Width;
             Height = texture.Height;
             Y = groundLevel - Height;
-            MaxHealth = 400;
-            Health = 400;
+            EnableHealthBar = true;
+            healthBar.MaxHealth = healthBar.Health = 1000;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            Health--;
+            healthBar.Health--;
         }
     }
 }

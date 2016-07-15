@@ -15,7 +15,8 @@ namespace coolgame
         private Texture2D texture;
         private Rectangle rectangle;
         private Color color;
-        private float val;
+        private int maxHealth;
+        private int health;
         private int maxWidth;
 
         public int Width
@@ -24,7 +25,7 @@ namespace coolgame
             set
             {
                 maxWidth = value;
-                rectangle.Width = (int)(value * val);
+                UpdateAppearance();
             }
         }
 
@@ -34,14 +35,23 @@ namespace coolgame
             set { rectangle.Height = value; }
         }
 
-        public float Value
+        public int MaxHealth
         {
-            get { return val; }
+            get { return maxHealth; }
             set
             {
-                val = value;
-                rectangle.Width = (int)(maxWidth * val);
-                color = new Color(Math.Min(255, (int)(500 * (1 - val))), Math.Min(255, (int)(500 * val)), 0);
+                maxHealth = value;
+                UpdateAppearance();
+            }
+        }
+
+        public int Health
+        {
+            get { return health; }
+            set
+            {
+                health = value;
+                UpdateAppearance();
             }
         }
 
@@ -63,7 +73,14 @@ namespace coolgame
             rectangle = new Rectangle();
             Width = 50;
             Height = 5;
-            Value = 1.0f;
+            MaxHealth = Health = 100;
+        }
+
+        private void UpdateAppearance()
+        {
+            float value = (float)health / maxHealth;
+            rectangle.Width = (int)(maxWidth * value);
+            color = new Color(Math.Min(255, (int)(500 * (1 - value))), Math.Min(255, (int)(500 * value)), 0);
         }
 
         public void Draw(SpriteBatch spriteBatch)
