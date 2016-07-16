@@ -22,7 +22,7 @@ namespace coolgame
             X = Game.GAME_WIDTH / 2 - Width / 2;
             Y = groundLevel - Height;
             EnableHealthBar = true;
-            laserGun = new LaserGun(content, X + 10, Y + 10);
+            laserGun = new LaserGun(content, (int)X + 10, (int)Y + 10);
         }
 
         public override void Update(GameTime gameTime, InputManager input)

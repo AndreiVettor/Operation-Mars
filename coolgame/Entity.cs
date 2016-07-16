@@ -15,6 +15,8 @@ namespace coolgame
         protected Texture2D texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
+        private Vector2 position;
+        private Vector2 origin;
         private int totalFrames;
         private int currentFrame;
         private float frameUpdateTime;
@@ -25,23 +27,25 @@ namespace coolgame
         private bool enableHealthBar;
         private bool autoHideHealthBar = true;
 
-        public int X
+        public float X
         {
-            get { return destinationRectangle.X; }
+            get { return (int)position.X; }
             set
             {
-                destinationRectangle.X = value;
-                healthBar.X = value + Width / 2;
+                position.X = value;
+                destinationRectangle.X = (int)value + (int)origin.X;
+                healthBar.X = (int)value + Width / 2;
             }
         }
 
-        public int Y
+        public float Y
         {
-            get { return destinationRectangle.Y; }
+            get { return position.Y; }
             set
             {
-                destinationRectangle.Y = value;
-                healthBar.Y = Y - 20;
+                position.Y = value;
+                destinationRectangle.Y = (int)value + (int)origin.Y;
+                healthBar.Y = (int)value - 20;
             }
         }
 
@@ -55,7 +59,8 @@ namespace coolgame
                     destinationRectangle.Width = value;
                     sourceRectangle.Width = value;
                     totalFrames = texture.Width / value;
-                    healthBar.X = X + value / 2;
+                    healthBar.X = (int)X + value / 2;
+                    origin.X = value / 2;
                 }
             }
         }
@@ -67,6 +72,7 @@ namespace coolgame
             {
                 destinationRectangle.Height = value;
                 sourceRectangle.Height = value;
+                origin.Y = value / 2;
             }
         }
 
@@ -130,7 +136,7 @@ namespace coolgame
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, rotation, Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, rotation, origin, SpriteEffects.None, 0);
 
             if (enableHealthBar)
                 healthBar.Draw(spriteBatch);
