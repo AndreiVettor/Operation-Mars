@@ -30,11 +30,10 @@ namespace coolgame
         {
             Rotation = (float)Math.Atan2(input.MouseY - Y - Height / 2, input.MouseX - X - Width / 2);
 
-            if (input.LeftClick)
+            if (input.MouseLeft == ButtonState.Pressed)
             {
                 projectiles.Add(new LaserProjectile(content, X + Width / 2, Y + Height / 2, Rotation));
-            }
-                
+            }  
 
             foreach (LaserProjectile p in projectiles)
                 p.Update(gameTime, input);

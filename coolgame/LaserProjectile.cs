@@ -14,7 +14,7 @@ namespace coolgame
     {
         private float speed = 50f;
 
-        public LaserProjectile(ContentManager content, float x, float y, float direction) : base(content)
+        public LaserProjectile(ContentManager content, double x, double y, float direction) : base(content)
         {
             SetTexture(content, "redlaser");
             Width = texture.Width;

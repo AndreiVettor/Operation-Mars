@@ -12,10 +12,11 @@ namespace coolgame
 {
     public abstract class Entity
     {
+        private double x;
+        private double y;
         protected Texture2D texture;
         private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private Vector2 position;
+        private Vector2 drawPosition;
         private Vector2 origin;
         private int totalFrames;
         private int currentFrame;
@@ -27,36 +28,35 @@ namespace coolgame
         private bool enableHealthBar;
         private bool autoHideHealthBar = true;
 
-        public float X
+        public double X
         {
-            get { return (int)position.X; }
+            get { return x; }
             set
             {
-                position.X = value;
-                destinationRectangle.X = (int)value + (int)origin.X;
+                x = value;
+                drawPosition.X = (float)value + origin.X;
                 healthBar.X = (int)value + Width / 2;
             }
         }
 
-        public float Y
+        public double Y
         {
-            get { return position.Y; }
+            get { return y; }
             set
             {
-                position.Y = value;
-                destinationRectangle.Y = (int)value + (int)origin.Y;
+                y = value;
+                drawPosition.Y = (float)value + origin.Y;
                 healthBar.Y = (int)value - 20;
             }
         }
 
         public int Width
         {
-            get { return destinationRectangle.Width; }
+            get { return sourceRectangle.Width; }
             set
             {
                 if (value > 0)
                 {
-                    destinationRectangle.Width = value;
                     sourceRectangle.Width = value;
                     totalFrames = texture.Width / value;
                     healthBar.X = (int)X + value / 2;
@@ -67,10 +67,9 @@ namespace coolgame
 
         public int Height
         {
-            get { return destinationRectangle.Height; }
+            get { return sourceRectangle.Height; }
             set
             {
-                destinationRectangle.Height = value;
                 sourceRectangle.Height = value;
                 origin.Y = value / 2;
             }
@@ -102,7 +101,6 @@ namespace coolgame
 
         public Entity(ContentManager content)
         {
-            destinationRectangle = new Rectangle();
             sourceRectangle = new Rectangle();
             totalFrames = 0;
             healthBar = new HealthBar(content);
@@ -136,7 +134,7 @@ namespace coolgame
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, rotation, origin, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, new Vector2(1f, 1f), Color.White, SpriteEffects.None, 0);
 
             if (enableHealthBar)
                 healthBar.Draw(spriteBatch);
