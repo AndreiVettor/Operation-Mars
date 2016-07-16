@@ -134,7 +134,7 @@ namespace coolgame
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, new Vector2(1f, 1f), Color.White, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, Vector2.One, Color.White, SpriteEffects.None, 0);
 
             if (enableHealthBar)
                 healthBar.Draw(spriteBatch);
