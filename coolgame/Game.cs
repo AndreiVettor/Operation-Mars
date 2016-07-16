@@ -11,6 +11,7 @@ namespace coolgame
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        InputManager input;
         Texture2D bgImage;
         Ground ground;
         Base baseBuilding;
@@ -25,6 +26,7 @@ namespace coolgame
             graphics.PreferredBackBufferHeight = GAME_HEIGHT;
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
+            input = new InputManager();
         }
 
         protected override void Initialize()
@@ -52,12 +54,14 @@ namespace coolgame
 
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            input.Update();
+
+            if (input.KeyDown(Keys.Escape))
                 Exit();
 
-            baseBuilding.Update(gameTime);
-            towerBuilding.Update(gameTime);
-            steve.Update(gameTime);
+            baseBuilding.Update(gameTime, input);
+            towerBuilding.Update(gameTime, input);
+            steve.Update(gameTime, input);
             steve.X -= 1;
            
             base.Update(gameTime);

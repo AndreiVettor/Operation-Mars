@@ -21,11 +21,11 @@ namespace coolgame
             Y = y;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, InputManager input)
         {
-            
+            Rotation = (float)Math.Atan2(input.MouseY - Y, input.MouseX - X);
 
-            base.Update(gameTime);
+            base.Update(gameTime, input);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

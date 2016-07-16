@@ -18,6 +18,7 @@ namespace coolgame
         private int totalFrames;
         private int currentFrame;
         private float frameUpdateTime;
+        private float rotation;
         private bool enableAnimation;
         private float animationSpeed = .025f;
         protected HealthBar healthBar;
@@ -87,6 +88,12 @@ namespace coolgame
             set { enableHealthBar = value; }
         }
 
+        public float Rotation
+        {
+            get { return rotation; }
+            set { rotation = value; }
+        }
+
         public Entity(ContentManager content)
         {
             destinationRectangle = new Rectangle();
@@ -123,7 +130,7 @@ namespace coolgame
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, rotation, Vector2.Zero, SpriteEffects.None, 0);
 
             if (enableHealthBar)
                 healthBar.Draw(spriteBatch);

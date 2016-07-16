@@ -25,10 +25,10 @@ namespace coolgame
             laserGun = new LaserGun(content, X + 10, Y + 10);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, InputManager input)
         {
-            base.Update(gameTime);
-            laserGun.Update(gameTime);
+            base.Update(gameTime, input);
+            laserGun.Update(gameTime, input);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

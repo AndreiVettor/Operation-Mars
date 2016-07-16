@@ -25,9 +25,9 @@ namespace coolgame
             healthBar.Height = 10;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, InputManager input)
         {
-            base.Update(gameTime);
+            base.Update(gameTime, input);
             healthBar.Health -= 2;
         }
     }
