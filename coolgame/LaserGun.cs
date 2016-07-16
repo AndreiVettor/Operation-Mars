@@ -14,6 +14,7 @@ namespace coolgame
     {
         private List<LaserProjectile> projectiles;
         private ContentManager content;
+        private float cooldownTime;
 
         public LaserGun(ContentManager content, int x, int y) : base(content)
         {
@@ -30,8 +31,10 @@ namespace coolgame
         {
             Rotation = (float)Math.Atan2(input.MouseY - Y - Height / 2, input.MouseX - X - Width / 2);
 
-            if (input.MouseLeft == ButtonState.Pressed)
+            cooldownTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (input.MouseLeft == ButtonState.Pressed && cooldownTime > 100f)
             {
+                cooldownTime = 0;
                 projectiles.Add(new LaserProjectile(content, X + Width / 2, Y + Height / 2, Rotation));
             }  
 
