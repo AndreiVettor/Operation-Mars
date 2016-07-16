@@ -22,6 +22,7 @@ namespace coolgame
         private float animationSpeed = .025f;
         protected HealthBar healthBar;
         private bool enableHealthBar;
+        private bool autoHideHealthBar = true;
 
         public int X
         {
@@ -95,7 +96,7 @@ namespace coolgame
             X = Y = 0;
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, InputManager input)
         {
             if (EnableAnimation && animationSpeed > 0)
             {
