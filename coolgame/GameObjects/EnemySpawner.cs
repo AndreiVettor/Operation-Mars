@@ -49,7 +49,7 @@ namespace coolgame
             tempEnemy.X = position.X;
             tempEnemy.Y = position.Y;
             GameManager.AddEntity(tempEnemy);
-            CollisionDetector.AddEnemy(tempEnemy);
+            CollisionManager.AddEnemy(tempEnemy);
             Debug.Log("Steve spawned");
         }       
     }

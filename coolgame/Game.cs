@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace coolgame
 {
@@ -16,6 +17,7 @@ namespace coolgame
         Ground ground;
         Base baseBuilding;
         Tower towerBuilding;
+        
 
         float deltaTime;
 
@@ -50,6 +52,7 @@ namespace coolgame
             towerBuilding = new Tower(Content, ground.Top);
 
             EnemyFactory.LoadContent(Content);
+            SoundManager.AddClip(Content.Load<SoundEffect>("machine_gun"), "laser");
 
             enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, 460), 1500);
         }
@@ -66,7 +69,7 @@ namespace coolgame
             Debug.Update(deltaTime);
             input.Update();
             GameManager.UpdateEntities(deltaTime, input);
-            CollisionDetector.Update();
+            CollisionManager.Update();
 
             if (input.KeyDown(Keys.Escape))
                 Exit();
@@ -74,6 +77,7 @@ namespace coolgame
             if (input.KeyPress(Keys.D))
             {
                 Debug.Log("Testing very long strings");
+                
             }
 
             if (input.KeyPress(Keys.F))

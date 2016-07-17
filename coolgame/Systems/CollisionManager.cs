@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace coolgame
 {
-    public static class CollisionDetector
+    public static class CollisionManager
     {
         private static List<Entity> enemies = new List<Entity>();
         private static List<Entity> buildings = new List<Entity>();

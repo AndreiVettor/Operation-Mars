@@ -151,3 +151,9 @@
 /processorParam:TextureFormat=Color
 /build:tile.png
 
+#begin machine_gun.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:machine_gun.wav
+
