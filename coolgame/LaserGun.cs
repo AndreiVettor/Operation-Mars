@@ -36,10 +36,14 @@ namespace coolgame
             {
                 cooldownTime = 0;
                 projectiles.Add(new LaserProjectile(content, X + Width / 2, Y + Height / 2, Rotation));
-            }  
+            }
 
-            foreach (LaserProjectile p in projectiles)
-                p.Update(gameTime, input);
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+            {
+                projectiles[i].Update(gameTime, input);
+                if (!projectiles[i].Alive)
+                    projectiles.RemoveAt(i);
+            }
 
             base.Update(gameTime, input);
         }

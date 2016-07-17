@@ -27,6 +27,7 @@ namespace coolgame
         protected HealthBar healthBar;
         private bool enableHealthBar;
         private bool autoHideHealthBar = true;
+        private bool alive = true;
 
         public double X
         {
@@ -98,6 +99,12 @@ namespace coolgame
             get { return rotation; }
             set { rotation = value; }
         }
+        
+        public bool Alive
+        {
+            get { return alive; }
+            set { alive = value; }
+        }
 
         public Entity(ContentManager content)
         {
@@ -109,18 +116,21 @@ namespace coolgame
 
         public virtual void Update(GameTime gameTime, InputManager input)
         {
-            if (EnableAnimation && animationSpeed > 0)
+            if (alive)
             {
-                frameUpdateTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (frameUpdateTime >= 1 / animationSpeed)
+                if (EnableAnimation && animationSpeed > 0)
                 {
-                    frameUpdateTime = 0;
+                    frameUpdateTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                    if (frameUpdateTime >= 1 / animationSpeed)
+                    {
+                        frameUpdateTime = 0;
 
-                    currentFrame++;
-                    if (currentFrame == totalFrames)
-                        currentFrame = 0;
+                        currentFrame++;
+                        if (currentFrame == totalFrames)
+                            currentFrame = 0;
 
-                    sourceRectangle.X = currentFrame * Width;
+                        sourceRectangle.X = currentFrame * Width;
+                    }
                 }
             }
         }
@@ -134,10 +144,20 @@ namespace coolgame
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, Vector2.One, Color.White, SpriteEffects.None, 0);
+            if (alive)
+            {
+                spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, Vector2.One, Color.White, SpriteEffects.None, 0);
 
-            if (enableHealthBar)
-                healthBar.Draw(spriteBatch);
+                if (enableHealthBar)
+                    healthBar.Draw(spriteBatch);
+            }
+        }
+
+        public void Damage(int hitpoints)
+        {
+            healthBar.Health -= hitpoints;
+            if (healthBar.Health < 0)
+                Alive = false;
         }
     }
 }

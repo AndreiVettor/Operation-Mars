@@ -29,6 +29,9 @@ namespace coolgame
             X += (float)(Math.Cos(Rotation) * speed);
             Y += (float)(Math.Sin(Rotation) * speed);
 
+            if (X + Width < 0 || Y + Height < 0 || X > Game.GAME_WIDTH || Y > Game.GAME_HEIGHT)
+                Alive = false;
+
             base.Update(gameTime, input);
         }
     }
