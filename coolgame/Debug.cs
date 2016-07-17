@@ -11,6 +11,8 @@ namespace coolgame
 {
     static class Debug
     {
+        const string VERSION = "Alpha 0.1. Do not distribute.";
+
         private static float frameCount = 0;
         private static float timer = 0;
         private static float fps = 0;
@@ -61,8 +63,11 @@ namespace coolgame
         public static void Draw(SpriteBatch spriteBatch)
         {
             frameCount++;
-            spriteBatch.DrawString(font, "FPS: " + fps.ToString(), new Vector2(10, 10), Color.Black);
-            spriteBatch.DrawString(font, "FPS: " + fps.ToString(), new Vector2(9, 11), Color.White);
+            spriteBatch.DrawString(font, "FPS: " + fps.ToString(), new Vector2(10, 40), Color.Black);
+            spriteBatch.DrawString(font, "FPS: " + fps.ToString(), new Vector2(9, 41), Color.White);
+
+            spriteBatch.DrawString(font, VERSION, new Vector2(10, 10), Color.Black);
+            spriteBatch.DrawString(font, VERSION, new Vector2(9, 11), Color.White);
 
             for (int i = 0; i < messages.Count; i++) 
             {
