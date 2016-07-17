@@ -175,7 +175,7 @@ namespace coolgame
         public void Damage(int hitpoints)
         {
             healthBar.Health -= hitpoints;
-            if (healthBar.Health < 0)
+            if (healthBar.Health <= 0)
                 Alive = false;
         }
     }

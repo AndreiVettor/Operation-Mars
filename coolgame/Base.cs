@@ -28,7 +28,6 @@ namespace coolgame
         public override void Update(GameTime gameTime, InputManager input, CollisionDetector collisionDetector)
         {
             base.Update(gameTime, input, collisionDetector);
-            healthBar.Health -= 2;
         }
     }
 }

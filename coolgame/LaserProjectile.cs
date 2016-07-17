@@ -12,11 +12,11 @@ namespace coolgame
 {
     public class LaserProjectile : Entity
     {
-        private float speed = 3f;
+        private float speed = .3f;
 
         public LaserProjectile(ContentManager content, double x, double y, float direction) : base(content)
         {
-            SetTexture(content, "redlaser");
+            SetTexture(content, "testlaser");
             Width = texture.Width;
             Height = texture.Height;
             X = x - Width / 2;
@@ -37,7 +37,7 @@ namespace coolgame
 
         public void Hit(Entity target)
         {
-            target.Damage(5);
+            target.Damage(20);
             Alive = false;
         }
     }
