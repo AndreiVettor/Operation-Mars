@@ -15,7 +15,13 @@ namespace coolgame
         private double x;
         private double y;
         protected Texture2D texture;
+
         private Rectangle collisionBox;
+        public Rectangle CollisionBox
+        {
+            get { return collisionBox; }
+        }
+
         private Rectangle sourceRectangle;
         private Vector2 drawPosition;
         private Vector2 origin;

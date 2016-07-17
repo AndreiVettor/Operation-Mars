@@ -51,7 +51,7 @@ namespace coolgame
 
             EnemyFactory.LoadContent(Content);
 
-            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, 460), 500);
+            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, 460), 1500);
         }
 
         protected override void UnloadContent()
@@ -78,7 +78,11 @@ namespace coolgame
             }
 
             if (input.KeyPress(Keys.F))
-                Debug.Log("TestF");
+                Debug.ToggleFPS();
+            if (input.KeyPress(Keys.M))
+                Debug.ToggleMessages();
+            if (input.KeyPress(Keys.R))
+                Debug.ToggleRectangles();
 
             baseBuilding.Update(deltaTime, input);
             towerBuilding.Update(deltaTime, input);

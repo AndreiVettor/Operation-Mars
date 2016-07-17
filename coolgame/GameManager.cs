@@ -12,6 +12,11 @@ namespace coolgame
     {
         private static List<Entity> entities = new List<Entity>();
 
+        public static List<Entity> GetEntityList()
+        {
+            return entities;
+        }
+
         public static void AddEntity(Entity entity)
         {
             entities.Add(entity);

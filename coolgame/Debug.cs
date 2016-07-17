@@ -22,9 +22,32 @@ namespace coolgame
         private static float messageLifespan = 1500;
         private static float messageTimer = 0;
 
+        public static bool debugMessages = true;
+        public static bool debugFPS = true;
+        public static bool debugRectangles = false;
+
+        private static Texture2D debugTexture;
+        private static Rectangle debugRectangle;
+
         public static void LoadContent(ContentManager Content)
         {
             font = Content.Load<SpriteFont>("SpriteFont");
+            debugTexture = Content.Load<Texture2D>("tile");
+        }
+
+        public static void ToggleFPS()
+        {
+            debugFPS = !debugFPS;
+        }
+
+        public static void ToggleMessages()
+        {
+            debugMessages = !debugMessages;
+        }
+
+        public static void ToggleRectangles()
+        {
+            debugRectangles = !debugRectangles;
         }
 
         public static void Log(string message)
@@ -63,16 +86,35 @@ namespace coolgame
         public static void Draw(SpriteBatch spriteBatch)
         {
             frameCount++;
-            spriteBatch.DrawString(font, "FPS: " + fps.ToString(), new Vector2(10, 40), Color.Black);
-            spriteBatch.DrawString(font, "FPS: " + fps.ToString(), new Vector2(9, 41), Color.White);
+            if (debugFPS)
+            {
+                spriteBatch.DrawString(font, "FPS: " + fps.ToString(), new Vector2(10, 40), Color.Black);
+                spriteBatch.DrawString(font, "FPS: " + fps.ToString(), new Vector2(9, 41), Color.White);
+            }
 
             spriteBatch.DrawString(font, VERSION, new Vector2(10, 10), Color.Black);
             spriteBatch.DrawString(font, VERSION, new Vector2(9, 11), Color.White);
 
-            for (int i = 0; i < messages.Count; i++) 
+            if (debugMessages)
             {
-                spriteBatch.DrawString(font, messages[i], new Vector2(10, Game.GAME_HEIGHT - 30 - i * 30), Color.Black);
-                spriteBatch.DrawString(font, messages[i], new Vector2(9, Game.GAME_HEIGHT - 31 - i * 30), Color.White);
+                for (int i = 0; i < messages.Count; i++)
+                {
+                    spriteBatch.DrawString(font, messages[i], new Vector2(10, Game.GAME_HEIGHT - 30 - i * 30), Color.Black);
+                    spriteBatch.DrawString(font, messages[i], new Vector2(9, Game.GAME_HEIGHT - 31 - i * 30), Color.White);
+                }
+            }
+
+            if(debugRectangles)
+            {
+                List<Entity> entities = GameManager.GetEntityList();
+                foreach (Entity e in entities)
+                {
+                    debugRectangle = new Rectangle((int)e.X, (int)e.Y, e.Width, e.Height);
+                    spriteBatch.Draw(debugTexture, debugRectangle, new Color(Color.Green, 0.5f));
+
+                    debugRectangle = e.CollisionBox;
+                    spriteBatch.Draw(debugTexture, debugRectangle, new Color(Color.Blue, 0.5f));
+                }
             }
         }
     }
