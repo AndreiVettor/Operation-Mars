@@ -16,6 +16,15 @@ namespace coolgame
         private static List<Entity> buildings = new List<Entity>();
         private static List<LaserProjectile> projectiles = new List<LaserProjectile>();
 
+        public static List<Entity> GetEntityList()
+        {
+            List<Entity> newList = new List<Entity>();
+            newList.AddRange(enemies);
+            newList.AddRange(buildings);
+            newList.AddRange(projectiles);
+            return newList;
+        }
+
         public static void AddEnemy(Entity e)
         {
             enemies.Add(e);
