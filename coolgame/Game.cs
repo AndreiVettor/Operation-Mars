@@ -27,7 +27,7 @@ namespace coolgame
             graphics.PreferredBackBufferWidth = GAME_WIDTH;
             graphics.PreferredBackBufferHeight = GAME_HEIGHT;
 
-            IsFixedTimeStep = false;
+            IsFixedTimeStep = true;
             graphics.SynchronizeWithVerticalRetrace = false;
 
             IsMouseVisible = true;
