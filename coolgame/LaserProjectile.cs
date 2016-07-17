@@ -16,7 +16,7 @@ namespace coolgame
 
         public LaserProjectile(ContentManager content, double x, double y, float direction) : base(content)
         {
-            SetTexture(content, "testlaser");
+            SetTexture(content, "redlaser");
             Width = texture.Width;
             Height = texture.Height;
             X = x - Width / 2;
