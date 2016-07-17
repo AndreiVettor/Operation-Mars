@@ -72,6 +72,11 @@ namespace coolgame
             if (input.KeyDown(Keys.Escape))
                 Exit();
 
+            if (input.KeyPress(Keys.D))
+                Debug.Log("TestD");
+            if (input.KeyPress(Keys.F))
+                Debug.Log("TestF");
+
             baseBuilding.Update(gameTime, input, collisionDetector);
             towerBuilding.Update(gameTime, input, collisionDetector);
             steve.Update(gameTime, input, collisionDetector);
@@ -87,16 +92,14 @@ namespace coolgame
 
             spriteBatch.Begin();
 
-
             spriteBatch.Draw(bgImage, Vector2.Zero, Color.White);
-            Debug.Draw(spriteBatch);
-
 
             towerBuilding.Draw(spriteBatch);
             baseBuilding.Draw(spriteBatch);
             steve.Draw(spriteBatch);
             ground.Draw(spriteBatch);
 
+            Debug.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

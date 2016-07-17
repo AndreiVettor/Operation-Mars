@@ -39,6 +39,7 @@ namespace coolgame
         {
             target.Damage(20);
             Alive = false;
+            Debug.Log("Hit");
         }
     }
 }
