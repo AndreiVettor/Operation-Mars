@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace coolgame
 {
-    class Enemy1 : Entity
+    class Enemy1 : Enemy
     {
         public Enemy1(ContentManager Content) :base(Content) {
             SetTexture(Content, "enemy2");

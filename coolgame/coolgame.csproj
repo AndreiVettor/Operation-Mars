@@ -41,7 +41,10 @@
     <Compile Include="Base.cs" />
     <Compile Include="CollisionDetector.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Enemy1.cs" />
+    <Compile Include="EnemyFactory.cs" />
+    <Compile Include="EnemySpawner.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Ground.cs" />

@@ -65,6 +65,7 @@ namespace coolgame
         protected override void Update(GameTime gameTime)
         {
             deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
             Debug.Update(deltaTime);
             input.Update();
             collisionDetector.Update();
