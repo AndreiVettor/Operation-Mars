@@ -51,7 +51,7 @@ namespace coolgame
 
             EnemyFactory.LoadContent(Content);
 
-            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, 400), 1500);
+            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, 460), 1500);
         }
 
         protected override void UnloadContent()
@@ -73,8 +73,7 @@ namespace coolgame
 
             if (input.KeyPress(Keys.D))
             {
-                Debug.Log("Spawned enemy");
-                enemySpawner1.SpawnEnemy("Steve");
+                Debug.Log("Testing very long strings");
             }
 
             if (input.KeyPress(Keys.F))

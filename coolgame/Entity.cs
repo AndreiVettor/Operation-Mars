@@ -44,7 +44,7 @@ namespace coolgame
                 x = value;
                 drawPosition.X = (float)value + origin.X;
                 healthBar.X = (int)value + Width / 2;
-                collisionBox.X = (int)value + (int)origin.X;
+                collisionBox.X = (int)value;
             }
         }
 
@@ -56,7 +56,7 @@ namespace coolgame
                 y = value;
                 drawPosition.Y = (float)value + origin.Y;
                 healthBar.Y = (int)value - 20;
-                collisionBox.Y = (int)value + (int)origin.Y;
+                collisionBox.Y = (int)value;
             }
         }
 
