@@ -133,13 +133,13 @@ namespace coolgame
             return false;
         }
 
-        public virtual void Update(GameTime gameTime, InputManager input, CollisionDetector collisionDetector)
+        public virtual void Update(float deltaTime, InputManager input)
         {
             if (alive)
             {
                 if (EnableAnimation && animationSpeed > 0)
                 {
-                    frameUpdateTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                    frameUpdateTime += deltaTime;
                     if (frameUpdateTime >= 1 / animationSpeed)
                     {
                         frameUpdateTime = 0;

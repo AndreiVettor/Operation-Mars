@@ -24,15 +24,15 @@ namespace coolgame
             Rotation = direction;
         }
 
-        public override void Update(GameTime gameTime, InputManager input, CollisionDetector collisionDetector)
+        public override void Update(float deltaTime, InputManager input)
         {
-            X += (float)(Math.Cos(Rotation) * speed * gameTime.ElapsedGameTime.TotalMilliseconds);
-            Y += (float)(Math.Sin(Rotation) * speed * gameTime.ElapsedGameTime.TotalMilliseconds);
+            X += (float)(Math.Cos(Rotation) * speed * deltaTime);
+            Y += (float)(Math.Sin(Rotation) * speed * deltaTime);
 
             if (X + Width < 0 || Y + Height < 0 || X > Game.GAME_WIDTH || Y > Game.GAME_HEIGHT)
                 Alive = false;
 
-            base.Update(gameTime, input, collisionDetector);
+            base.Update(deltaTime, input);
         }
 
         public void Hit(Entity target)

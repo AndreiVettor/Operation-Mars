@@ -27,26 +27,26 @@ namespace coolgame
             this.content = content;
         }
 
-        public override void Update(GameTime gameTime, InputManager input, CollisionDetector collisionDetector)
+        public override void Update(float deltaTime, InputManager input)
         {
             Rotation = (float)Math.Atan2(input.MouseY - Y - Height / 2, input.MouseX - X - Width / 2);
 
-            cooldownTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            cooldownTime += deltaTime;
             if (input.MouseLeft == ButtonState.Pressed && cooldownTime > 100f)
             {
                 cooldownTime = 0;
                 projectiles.Add(new LaserProjectile(content, X + Width / 2, Y + Height / 2, Rotation));
-                collisionDetector.AddProjectile(projectiles[projectiles.Count - 1]);
+                CollisionDetector.AddProjectile(projectiles[projectiles.Count - 1]);
             }
 
             for (int i = projectiles.Count - 1; i >= 0; i--)
             {
-                projectiles[i].Update(gameTime, input, collisionDetector);
+                projectiles[i].Update(deltaTime, input);
                 if (!projectiles[i].Alive)
                     projectiles.RemoveAt(i);
             }
 
-            base.Update(gameTime, input, collisionDetector);
+            base.Update(deltaTime, input);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

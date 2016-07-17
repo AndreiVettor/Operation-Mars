@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace coolgame
             EnableHealthBar = true;
         }
 
+        public override void Update(float deltaTime, InputManager input)
+        {
+            base.Update(deltaTime, input);
+            X -= 0.1f * deltaTime;
+        }
         
     }
 }

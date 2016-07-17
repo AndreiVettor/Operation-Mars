@@ -12,7 +12,6 @@ namespace coolgame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         InputManager input;
-        CollisionDetector collisionDetector;
         Texture2D bgImage;
         Ground ground;
         Base baseBuilding;
@@ -20,7 +19,7 @@ namespace coolgame
 
         float deltaTime;
 
-        Enemy1 steve;
+        EnemySpawner enemySpawner1;
 
         public Game()
         {
@@ -47,14 +46,14 @@ namespace coolgame
             Debug.LoadContent(Content);
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
-            collisionDetector = new CollisionDetector(ground);
             baseBuilding = new Base(Content, ground.Top);
             towerBuilding = new Tower(Content, ground.Top);
-            steve = new Enemy1(Content);
-            collisionDetector.AddEnemy(steve);
 
-            steve.X = 800;
-            steve.Y = 460;
+            EnemyFactory.LoadContent(Content);
+
+            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH - 50, 460));
+
+
         }
 
         protected override void UnloadContent()
@@ -68,20 +67,22 @@ namespace coolgame
 
             Debug.Update(deltaTime);
             input.Update();
-            collisionDetector.Update();
+            GameManager.UpdateEntities(deltaTime, input);
 
             if (input.KeyDown(Keys.Escape))
                 Exit();
 
             if (input.KeyPress(Keys.D))
-                Debug.Log("TestD");
+            {
+                Debug.Log("Spawned enemy");
+                enemySpawner1.SpawnEnemy("Steve");
+            }
+
             if (input.KeyPress(Keys.F))
                 Debug.Log("TestF");
 
-            baseBuilding.Update(gameTime, input, collisionDetector);
-            towerBuilding.Update(gameTime, input, collisionDetector);
-            steve.Update(gameTime, input, collisionDetector);
-            steve.X -= 0.1f * deltaTime;
+            baseBuilding.Update(deltaTime, input);
+            towerBuilding.Update(deltaTime, input);
            
             base.Update(gameTime);
         }
@@ -97,8 +98,8 @@ namespace coolgame
 
             towerBuilding.Draw(spriteBatch);
             baseBuilding.Draw(spriteBatch);
-            steve.Draw(spriteBatch);
             ground.Draw(spriteBatch);
+            GameManager.DrawEntities(spriteBatch);
 
             Debug.Draw(spriteBatch);
             spriteBatch.End();

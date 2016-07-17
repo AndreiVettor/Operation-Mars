@@ -9,7 +9,7 @@ namespace coolgame
 {
     public static class EnemyFactory
     {
-        private static Enemy[] enemies;
+        private static Enemy[] enemies = new Enemy[1];
 
 
         public static void LoadContent(ContentManager Content)

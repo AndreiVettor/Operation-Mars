@@ -10,52 +10,43 @@ using Microsoft.Xna.Framework.Content;
 
 namespace coolgame
 {
-    public class CollisionDetector
+    public static class CollisionDetector
     {
-        private List<Entity> enemies;
-        private List<Entity> buildings;
-        private List<LaserProjectile> projectiles;
-        private Ground ground;
+        private static List<Entity> enemies = new List<Entity>();
+        private static List<Entity> buildings = new List<Entity>();
+        private static List<LaserProjectile> projectiles = new List<LaserProjectile>();
 
-        public CollisionDetector(Ground ground)
-        {
-            enemies = new List<Entity>();
-            buildings = new List<Entity>();
-            projectiles = new List<LaserProjectile>();
-            this.ground = ground;
-        }
-
-        public void AddEnemy(Entity e)
+        public static void AddEnemy(Entity e)
         {
             enemies.Add(e);
         }
 
-        public void RemoveEnemy(Entity e)
+        public static void RemoveEnemy(Entity e)
         {
             enemies.Remove(e);
         }
 
-        public void AddBuilding(Entity e)
+        public static void AddBuilding(Entity e)
         {
             buildings.Add(e);
         }
 
-        public void RemoveBuilding(Entity e)
+        public static void RemoveBuilding(Entity e)
         {
             buildings.Remove(e);
         }
 
-        public void AddProjectile(LaserProjectile e)
+        public static void AddProjectile(LaserProjectile e)
         {
             projectiles.Add(e);
         }
 
-        public void RemoveProjectile(LaserProjectile e)
+        public static void RemoveProjectile(LaserProjectile e)
         {
             projectiles.Remove(e);
         }
 
-        public void Update()
+        public static void Update()
         {
             for (int e = enemies.Count - 1; e >= 0; --e)
             {
@@ -83,8 +74,6 @@ namespace coolgame
                     projectiles.RemoveAt(p);
                     continue;
                 }
-                if (ground.Collides(projectiles[p]))
-                    projectiles[p].Alive = false;
             }
         }
     }

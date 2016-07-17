@@ -25,9 +25,9 @@ namespace coolgame
             healthBar.Height = 10;
         }
 
-        public override void Update(GameTime gameTime, InputManager input, CollisionDetector collisionDetector)
+        public override void Update(float deltaTime, InputManager input)
         {
-            base.Update(gameTime, input, collisionDetector);
+            base.Update(deltaTime, input);
         }
     }
 }
