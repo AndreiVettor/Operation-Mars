@@ -51,9 +51,7 @@ namespace coolgame
 
             EnemyFactory.LoadContent(Content);
 
-            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH - 50, 460));
-
-
+            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH - 50, 460),  1500);
         }
 
         protected override void UnloadContent()
@@ -68,6 +66,7 @@ namespace coolgame
             Debug.Update(deltaTime);
             input.Update();
             GameManager.UpdateEntities(deltaTime, input);
+            CollisionDetector.Update();
 
             if (input.KeyDown(Keys.Escape))
                 Exit();
@@ -83,6 +82,7 @@ namespace coolgame
 
             baseBuilding.Update(deltaTime, input);
             towerBuilding.Update(deltaTime, input);
+            enemySpawner1.Update(deltaTime);
            
             base.Update(gameTime);
         }
@@ -93,15 +93,15 @@ namespace coolgame
             GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
-
             spriteBatch.Draw(bgImage, Vector2.Zero, Color.White);
 
             towerBuilding.Draw(spriteBatch);
             baseBuilding.Draw(spriteBatch);
             ground.Draw(spriteBatch);
-            GameManager.DrawEntities(spriteBatch);
 
+            GameManager.DrawEntities(spriteBatch);
             Debug.Draw(spriteBatch);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -16,9 +16,31 @@ namespace coolgame
             set { position = value; }
         }
 
-        public EnemySpawner(Vector2 position)
+        float spawnTimer = 0;
+
+        private float spawnRate;
+        public float SpawnRate
+        {
+            get { return spawnRate; }
+            set { spawnRate = value; }
+        }
+
+
+        public EnemySpawner(Vector2 position, float spawnRate)
         {
             this.position = position;
+            this.spawnRate = spawnRate;
+        }
+
+        public void Update(float deltaTime)
+        {
+            spawnTimer += deltaTime;
+
+            if(spawnTimer >= SpawnRate)
+            {
+                spawnTimer -= SpawnRate;
+                SpawnEnemy("Steve");
+            }
         }
 
         public void SpawnEnemy(string enemyType)
@@ -28,6 +50,7 @@ namespace coolgame
             tempEnemy.Y = position.Y;
             GameManager.AddEntity(tempEnemy);
             CollisionDetector.AddEnemy(tempEnemy);
+            Debug.Log("Steve spawned");
         }       
     }
 }

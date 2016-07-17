@@ -63,7 +63,11 @@ namespace coolgame
                         continue;
                     }
                     if (enemies[e].Collides(projectiles[p]))
+                    {
                         projectiles[p].Hit(enemies[e]);
+                        Debug.Log("Hit");
+                    }
+
                 }
             }
 
