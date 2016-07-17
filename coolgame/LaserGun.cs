@@ -32,7 +32,7 @@ namespace coolgame
             Rotation = (float)Math.Atan2(input.MouseY - Y - Height / 2, input.MouseX - X - Width / 2);
 
             cooldownTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (input.MouseLeft == ButtonState.Pressed && cooldownTime > 200f)
+            if (input.MouseLeft == ButtonState.Pressed && cooldownTime > 100f)
             {
                 cooldownTime = 0;
                 projectiles.Add(new LaserProjectile(content, X + Width / 2, Y + Height / 2, Rotation));
