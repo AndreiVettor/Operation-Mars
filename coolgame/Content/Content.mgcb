@@ -121,7 +121,7 @@
 /processorParam:TextureFormat=Color
 /build:tower.png
 
-#begin tower_scaled.png
+#begin testlaser.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -131,5 +131,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:tower_scaled.png
+/build:testlaser.png
 
