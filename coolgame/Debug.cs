@@ -19,7 +19,7 @@ namespace coolgame
 
         public static void LoadContent(ContentManager Content)
         {
-            font = Content.Load<SpriteFont>("debugFont");
+            font = Content.Load<SpriteFont>("SpriteFont");
         }
 
         public static void Update(float deltaTime)

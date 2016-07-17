@@ -86,10 +86,11 @@ namespace coolgame
             GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
-            Debug.Draw(spriteBatch);
+
 
             spriteBatch.Draw(bgImage, Vector2.Zero, Color.White);
-            
+            Debug.Draw(spriteBatch);
+
 
             towerBuilding.Draw(spriteBatch);
             baseBuilding.Draw(spriteBatch);
