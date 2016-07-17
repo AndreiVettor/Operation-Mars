@@ -12,7 +12,7 @@ namespace coolgame
 {
     public class LaserProjectile : Entity
     {
-        private float speed = 50f;
+        private float speed = 3f;
 
         public LaserProjectile(ContentManager content, double x, double y, float direction) : base(content)
         {
@@ -24,15 +24,21 @@ namespace coolgame
             Rotation = direction;
         }
 
-        public override void Update(GameTime gameTime, InputManager input)
+        public override void Update(GameTime gameTime, InputManager input, CollisionDetector collisionDetector)
         {
-            X += (float)(Math.Cos(Rotation) * speed);
-            Y += (float)(Math.Sin(Rotation) * speed);
+            X += (float)(Math.Cos(Rotation) * speed * gameTime.ElapsedGameTime.TotalMilliseconds);
+            Y += (float)(Math.Sin(Rotation) * speed * gameTime.ElapsedGameTime.TotalMilliseconds);
 
             if (X + Width < 0 || Y + Height < 0 || X > Game.GAME_WIDTH || Y > Game.GAME_HEIGHT)
                 Alive = false;
 
-            base.Update(gameTime, input);
+            base.Update(gameTime, input, collisionDetector);
+        }
+
+        public void Hit(Entity target)
+        {
+            target.Damage(5);
+            Alive = false;
         }
     }
 }

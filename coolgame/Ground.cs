@@ -14,6 +14,7 @@ namespace coolgame
     {
         private Texture2D texture;
         private Vector2 position;
+        private Rectangle collisionBox;
 
         public int Top
         {
@@ -27,12 +28,19 @@ namespace coolgame
         {
             texture = content.Load<Texture2D>("ground");
             position = new Vector2(0, Game.GAME_HEIGHT - texture.Height);
+            collisionBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
         }
 
         public Ground(ContentManager content, int height)
         {
             texture = content.Load<Texture2D>("ground");
             position = new Vector2(0, Game.GAME_HEIGHT - height);
+            collisionBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, height);
+        }
+
+        public bool Collides(Entity e)
+        {
+            return e.Collides(collisionBox);
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Base.cs" />
+    <Compile Include="CollisionDetector.cs" />
     <Compile Include="Enemy1.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />

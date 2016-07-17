@@ -15,6 +15,7 @@ namespace coolgame
         private double x;
         private double y;
         protected Texture2D texture;
+        private Rectangle collisionBox;
         private Rectangle sourceRectangle;
         private Vector2 drawPosition;
         private Vector2 origin;
@@ -37,6 +38,7 @@ namespace coolgame
                 x = value;
                 drawPosition.X = (float)value + origin.X;
                 healthBar.X = (int)value + Width / 2;
+                collisionBox.X = (int)value + (int)origin.X;
             }
         }
 
@@ -48,6 +50,7 @@ namespace coolgame
                 y = value;
                 drawPosition.Y = (float)value + origin.Y;
                 healthBar.Y = (int)value - 20;
+                collisionBox.Y = (int)value + (int)origin.Y;
             }
         }
 
@@ -62,6 +65,7 @@ namespace coolgame
                     totalFrames = texture.Width / value;
                     healthBar.X = (int)X + value / 2;
                     origin.X = value / 2;
+                    collisionBox.Width = value;
                 }
             }
         }
@@ -73,6 +77,7 @@ namespace coolgame
             {
                 sourceRectangle.Height = value;
                 origin.Y = value / 2;
+                collisionBox.Height = value;
             }
         }
 
@@ -114,7 +119,21 @@ namespace coolgame
             X = Y = 0;
         }
 
-        public virtual void Update(GameTime gameTime, InputManager input)
+        public bool Collides(Entity e)
+        {
+            if (collisionBox.Intersects(e.collisionBox))
+                return true;
+            return false;
+        }
+
+        public bool Collides(Rectangle r)
+        {
+            if (collisionBox.Intersects(r))
+                return true;
+            return false;
+        }
+
+        public virtual void Update(GameTime gameTime, InputManager input, CollisionDetector collisionDetector)
         {
             if (alive)
             {
