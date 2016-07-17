@@ -12,7 +12,7 @@ namespace coolgame
 {
     public class LaserProjectile : Entity
     {
-        private float speed = .3f;
+        private float speed = .1f;
 
         public LaserProjectile(ContentManager content, double x, double y, float direction) : base(content)
         {

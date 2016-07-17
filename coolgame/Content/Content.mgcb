@@ -133,3 +133,8 @@
 /processorParam:TextureFormat=Color
 /build:testlaser.png
 
+#begin debugFont
+/importer:H264Importer
+/processor:VideoProcessor
+/build:debugFont
+

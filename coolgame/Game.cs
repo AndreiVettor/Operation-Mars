@@ -18,6 +18,8 @@ namespace coolgame
         Base baseBuilding;
         Tower towerBuilding;
 
+        float deltaTime;
+
         Enemy1 steve;
 
         public Game()
@@ -25,6 +27,10 @@ namespace coolgame
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = GAME_WIDTH;
             graphics.PreferredBackBufferHeight = GAME_HEIGHT;
+
+            IsFixedTimeStep = false;
+            graphics.SynchronizeWithVerticalRetrace = false;
+
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
             input = new InputManager();
@@ -38,6 +44,7 @@ namespace coolgame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Debug.LoadContent(Content);
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
             collisionDetector = new CollisionDetector(ground);
@@ -57,6 +64,8 @@ namespace coolgame
 
         protected override void Update(GameTime gameTime)
         {
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            Debug.Update(deltaTime);
             input.Update();
             collisionDetector.Update();
 
@@ -66,16 +75,18 @@ namespace coolgame
             baseBuilding.Update(gameTime, input, collisionDetector);
             towerBuilding.Update(gameTime, input, collisionDetector);
             steve.Update(gameTime, input, collisionDetector);
-            steve.X -= 1;
+            steve.X -= 0.1f * deltaTime;
            
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
+
             GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
+            Debug.Draw(spriteBatch);
 
             spriteBatch.Draw(bgImage, Vector2.Zero, Color.White);
             
