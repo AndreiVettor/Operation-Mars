@@ -51,7 +51,7 @@ namespace coolgame
 
             EnemyFactory.LoadContent(Content);
 
-            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH - 50, 460),  1500);
+            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, 460), 500);
         }
 
         protected override void UnloadContent()
