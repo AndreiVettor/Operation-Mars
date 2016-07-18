@@ -9,6 +9,8 @@ namespace coolgame
 {
     class EnemySpawner
     {
+        public static float spawnRate;
+
         private Random random;
         private Enemy.EnemyDirection enemyDirection;
         private Vector2 position;
@@ -19,7 +21,7 @@ namespace coolgame
             set { position = value; }
         }
 
-        private float spawnRate = 0.01f;
+        //private float spawnRate = 0.01f;
         private float spawnTime;
 
         public float SpawnRate
@@ -36,8 +38,10 @@ namespace coolgame
             random = new Random(seed);
         }
 
-        public void Update(float deltaTime)
+        public void Update(float totalGameTime, float deltaTime)
         {
+            spawnRate = (float)(Math.Pow(Math.E, - Math.Pow(totalGameTime / 200000 - 1.3f, 2))) * .02f;
+
             spawnTime += deltaTime;
 
             if (spawnTime >= 1000 / 60)

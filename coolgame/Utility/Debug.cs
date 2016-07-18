@@ -120,12 +120,13 @@ namespace coolgame
                 {
                     fpsText = "FPS: " + fps.ToString();
                 }
-                DrawText(spriteBatch, fpsText, new Vector2(10, 40));
+                DrawText(spriteBatch, fpsText, new Vector2(10, 30));
             }
 
             DrawText(spriteBatch, VERSION, new Vector2(10, 10));
 
-            DrawText(spriteBatch, "Manelisti ucisi: " + enemiesKilled, new Vector2(Game.GAME_WIDTH - 100, 10));
+            DrawText(spriteBatch, "Manelisti ucisi: " + enemiesKilled, new Vector2(Game.GAME_WIDTH - 130, 10));
+            DrawText(spriteBatch, "Spawn rate: " + EnemySpawner.spawnRate, new Vector2(Game.GAME_WIDTH - 130, 30));
 
             if (debugMessages)
             {

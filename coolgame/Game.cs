@@ -19,7 +19,7 @@ namespace coolgame
         Base baseBuilding;
         Tower towerBuilding;
 
-        float deltaTime;
+        float deltaTime, totalGameTime;
 
         EnemySpawner enemySpawner1, enemySpawner2;
 
@@ -82,6 +82,7 @@ namespace coolgame
         protected override void Update(GameTime gameTime)
         {
             deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            totalGameTime = (float)gameTime.TotalGameTime.TotalMilliseconds;
 
             Debug.Update(deltaTime);
             input.Update();
@@ -121,8 +122,8 @@ namespace coolgame
 
             baseBuilding.Update(deltaTime, input);
             towerBuilding.Update(deltaTime, input);
-            enemySpawner1.Update(deltaTime);
-            enemySpawner2.Update(deltaTime);
+            enemySpawner1.Update(totalGameTime, deltaTime);
+            enemySpawner2.Update(totalGameTime, deltaTime);
            
             base.Update(gameTime);
         }
