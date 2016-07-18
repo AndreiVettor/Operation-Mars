@@ -191,7 +191,10 @@ namespace coolgame
         {
             healthBar.Health -= hitpoints;
             if (healthBar.Health <= 0)
+            {
                 Alive = false;
+                Debug.enemiesKilled++;
+            }
         }
     }
 }

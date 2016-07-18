@@ -27,13 +27,15 @@ namespace coolgame
         private static int padding = 10;
         private static int shadowSize = 1;
 
-        public static bool debugMessages = true;
+        public static bool debugMessages = false;
         public static bool debugFPS = true;
         public static bool debugRectangles = false;
 
         private static Texture2D debugTexture;
         private static Rectangle debugRectangle;
         private static float debugOpacity = 0.2f;
+
+        public static int enemiesKilled = 0;
 
         public static void LoadContent(ContentManager Content)
         {
@@ -105,6 +107,9 @@ namespace coolgame
 
             spriteBatch.DrawString(font, VERSION, new Vector2(10, 10), Color.Black);
             spriteBatch.DrawString(font, VERSION, new Vector2(9, 11), Color.White);
+
+            spriteBatch.DrawString(font, "Manelisti ucisi: " + enemiesKilled, new Vector2(Game.GAME_WIDTH - 100, 10), Color.Black);
+            spriteBatch.DrawString(font, "Manelisti ucisi: " + enemiesKilled, new Vector2(Game.GAME_WIDTH - 100 - 1, 11), Color.White);
 
             if (debugMessages)
             {
