@@ -15,6 +15,7 @@ namespace coolgame
         private Texture2D texture;
         private Vector2 position;
         private Rectangle collisionBox;
+        private float layerDepth = LayerManager.GetLayerDepth(Layer.Ground);
 
         public int Top
         {
@@ -45,7 +46,7 @@ namespace coolgame
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, Color.White);
+            spriteBatch.Draw(texture, position, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, layerDepth);
         }
     }
 }

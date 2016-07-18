@@ -21,6 +21,7 @@ namespace coolgame
         private static List<string> messages = new List<string>();
         private static float messageLifespan = 1000;
         private static float messageTimer = 0;
+        private static float layerDepth = LayerManager.GetLayerDepth(Layer.Debugging);
         private static int lineHeight = 20;
         private static Vector2 messageBoxPos = new Vector2(15,Game.GAME_HEIGHT - 15);
         private static int maxLength = 0;
@@ -96,6 +97,12 @@ namespace coolgame
             }
         }
 
+        private static void DrawText(SpriteBatch spriteBatch, string text, Vector2 position)
+        {
+            spriteBatch.DrawString(font, text, position, Color.Black, 0, Vector2.Zero, 1, SpriteEffects.None, layerDepth + 0.01f);
+            spriteBatch.DrawString(font, text, new Vector2(position.X - shadowSize, position.Y + shadowSize), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, layerDepth);
+        }
+
         public static void Draw(SpriteBatch spriteBatch)
         {
             frameCount++;
@@ -110,25 +117,21 @@ namespace coolgame
                 {
                     fpsText = "FPS: " + fps.ToString();
                 }
-                spriteBatch.DrawString(font, fpsText, new Vector2(10, 40), Color.Black);
-                spriteBatch.DrawString(font, fpsText, new Vector2(9, 41), Color.White);
+                DrawText(spriteBatch, fpsText, new Vector2(10, 40));
             }
 
-            spriteBatch.DrawString(font, VERSION, new Vector2(10, 10), Color.Black);
-            spriteBatch.DrawString(font, VERSION, new Vector2(9, 11), Color.White);
+            DrawText(spriteBatch, VERSION, new Vector2(10, 10));
 
-            spriteBatch.DrawString(font, "Manelisti ucisi: " + enemiesKilled, new Vector2(Game.GAME_WIDTH - 100, 10), Color.Black);
-            spriteBatch.DrawString(font, "Manelisti ucisi: " + enemiesKilled, new Vector2(Game.GAME_WIDTH - 100 - 1, 11), Color.White);
+            DrawText(spriteBatch, "Manelisti ucisi: " + enemiesKilled, new Vector2(Game.GAME_WIDTH - 100, 10));
 
             if (debugMessages)
             {
                 debugRectangle = new Rectangle((int)messageBoxPos.X, (int)messageBoxPos.Y - lineHeight * messages.Count, maxLength, messages.Count * lineHeight);
-                spriteBatch.Draw(debugTexture, debugRectangle, new Color(Color.Black, 0.05f));
+                spriteBatch.Draw(debugTexture, debugRectangle, null, new Color(Color.Black, 0.05f), 0, Vector2.Zero, SpriteEffects.None, layerDepth + 0.02f);
 
                 for (int i = 0; i < messages.Count; i++)
                 {
-                    spriteBatch.DrawString(font, messages[i], new Vector2(messageBoxPos.X + padding, Game.GAME_HEIGHT - padding - (i+1) * lineHeight), Color.Black);
-                    spriteBatch.DrawString(font, messages[i], new Vector2(messageBoxPos.X + padding - shadowSize, Game.GAME_HEIGHT - padding - shadowSize - (i+1) * lineHeight), Color.White);
+                    DrawText(spriteBatch, messages[i], new Vector2(messageBoxPos.X + padding, Game.GAME_HEIGHT - padding - (i + 1) * lineHeight));
                 }
             }
 
@@ -141,7 +144,7 @@ namespace coolgame
                     //spriteBatch.Draw(debugTexture, debugRectangle, new Color(Color.Green, debugOpacity));
 
                     debugRectangle = e.CollisionBox;
-                    spriteBatch.Draw(debugTexture, debugRectangle, new Color(Color.Blue, debugOpacity));
+                    spriteBatch.Draw(debugTexture, debugRectangle, null, new Color(Color.Blue, debugOpacity), 0, Vector2.Zero, SpriteEffects.None, layerDepth + 0.03f);
                 }
             }
         }

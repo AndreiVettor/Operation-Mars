@@ -22,6 +22,7 @@ namespace coolgame
         private bool autoHide = true;
         private float autoHideTime;
         private bool visible;
+        private float layerDepth = 0.1f;
 
         public int Width
         {
@@ -61,6 +62,7 @@ namespace coolgame
                 UpdateAppearance();
                 UpdatePosition();
                 visible = true;
+                autoHideTime = 0;
             }
         }
 
@@ -124,7 +126,7 @@ namespace coolgame
         public void Draw(SpriteBatch spriteBatch)
         {
             if (!autoHide || (autoHide && visible))
-                spriteBatch.Draw(texture, rectangle, color);
+                spriteBatch.Draw(texture, rectangle, null, color, 0, Vector2.Zero, SpriteEffects.None, layerDepth);
         }
     }
 }

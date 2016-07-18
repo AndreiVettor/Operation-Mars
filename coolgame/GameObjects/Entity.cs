@@ -36,6 +36,7 @@ namespace coolgame
         private bool autoHideHealthBar = true;
         private bool alive = true;
         private SpriteEffects spriteEffects;
+        protected float layerDepth;
 
         public double X
         {
@@ -180,7 +181,7 @@ namespace coolgame
         {
             if (alive)
             {
-                spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, Vector2.One, Color.White, spriteEffects, 0);
+                spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, Vector2.One, Color.White, spriteEffects, layerDepth);
 
                 if (enableHealthBar)
                     healthBar.Draw(spriteBatch);

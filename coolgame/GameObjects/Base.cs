@@ -23,6 +23,7 @@ namespace coolgame
             healthBar.MaxHealth = 1000;
             healthBar.Width = 100;
             healthBar.Height = 10;
+            layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
         }
 
         public override void Update(float deltaTime, InputManager input)

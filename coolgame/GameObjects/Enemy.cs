@@ -31,6 +31,7 @@ namespace coolgame
         public Enemy (ContentManager Content) : base(Content)
         {
             Direction = SpriteDirection;
+            layerDepth = LayerManager.GetLayerDepth(Layer.Enemies);
         }
     }
 }

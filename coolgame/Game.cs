@@ -18,7 +18,6 @@ namespace coolgame
         Ground ground;
         Base baseBuilding;
         Tower towerBuilding;
-        
 
         float deltaTime;
 
@@ -125,8 +124,8 @@ namespace coolgame
 
             GraphicsDevice.Clear(Color.White);
 
-            spriteBatch.Begin();
-            spriteBatch.Draw(bgImage, Vector2.Zero, Color.White);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, null);
+            spriteBatch.Draw(bgImage, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             
             baseBuilding.Draw(spriteBatch);
             towerBuilding.Draw(spriteBatch);
