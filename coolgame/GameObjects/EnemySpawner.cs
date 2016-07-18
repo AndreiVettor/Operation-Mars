@@ -9,6 +9,8 @@ namespace coolgame
 {
     class EnemySpawner
     {
+        private static int totalEnemiesSpawned;
+
         private Random random;
         private Enemy.EnemyDirection enemyDirection;
         private Vector2 position;
@@ -38,6 +40,8 @@ namespace coolgame
             if(Roll(spawnRate))
             {
                 SpawnEnemy("Steve");
+                totalEnemiesSpawned++;
+                Debug.Log(totalEnemiesSpawned + " Steves spawned.");
             }
         }
 
