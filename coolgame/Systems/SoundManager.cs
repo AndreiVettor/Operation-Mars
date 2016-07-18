@@ -11,6 +11,11 @@ namespace coolgame
     {
         private static Dictionary<string, SoundEffect> clips = new Dictionary<string, SoundEffect>();
 
+        public static void SetVolume(int volume)
+        {
+            SoundEffect.MasterVolume = volume/100f;
+        }
+
         public static void AddClip(SoundEffect clip, string name)
         {
             clips.Add(name, clip);

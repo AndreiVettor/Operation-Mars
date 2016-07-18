@@ -40,6 +40,8 @@ namespace coolgame
         protected override void Initialize()
         {
             base.Initialize();
+
+            SoundManager.SetVolume(25);
         }
 
         protected override void LoadContent()
