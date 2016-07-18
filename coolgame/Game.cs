@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace coolgame
 {
@@ -55,6 +56,9 @@ namespace coolgame
 
             EnemyFactory.LoadContent(Content);
             SoundManager.AddClip(Content.Load<SoundEffect>("machine_gun"), "laser");
+            SoundManager.AddSong(Content.Load<Song>("music"), "music");
+
+            SoundManager.PlaySong("music");
 
             enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, 460), 1000, Enemy.EnemyDirection.ToLeft);
             enemySpawner2 = new EnemySpawner(new Vector2(-50, 460), 1000, Enemy.EnemyDirection.ToRight);
