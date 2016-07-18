@@ -106,12 +106,14 @@ namespace coolgame
 
             spriteBatch.Begin();
             spriteBatch.Draw(bgImage, Vector2.Zero, Color.White);
-
-            towerBuilding.Draw(spriteBatch);
+            
             baseBuilding.Draw(spriteBatch);
+            towerBuilding.Draw(spriteBatch);
+
             ground.Draw(spriteBatch);
 
             GameManager.DrawEntities(spriteBatch);
+
             Debug.Draw(spriteBatch);
 
             spriteBatch.End();
