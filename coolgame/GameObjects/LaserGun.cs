@@ -25,6 +25,7 @@ namespace coolgame
             Y = y;
             projectiles = new List<LaserProjectile>();
             this.content = content;
+            layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
         }
 
         public override void Update(float deltaTime, InputManager input)

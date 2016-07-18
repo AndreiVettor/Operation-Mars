@@ -22,6 +22,7 @@ namespace coolgame
             X = x - Width / 2;
             Y = y - Height / 2;
             Rotation = direction;
+            layerDepth = LayerManager.GetLayerDepth(Layer.Projectiles);
         }
 
         public override void Update(float deltaTime, InputManager input)

@@ -23,7 +23,7 @@ namespace coolgame
             Y = groundLevel - Height;
             EnableHealthBar = true;
             laserGun = new LaserGun(content, (int)X + 10, (int)Y + 10);
-            layerDepth = .8f;
+            layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
         }
 
         public override void Update(float deltaTime, InputManager input)

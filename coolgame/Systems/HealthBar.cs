@@ -22,7 +22,7 @@ namespace coolgame
         private bool autoHide = true;
         private float autoHideTime;
         private bool visible;
-        private float layerDepth = 0.1f;
+        private float layerDepth = LayerManager.GetLayerDepth(Layer.Healthbar);
 
         public int Width
         {

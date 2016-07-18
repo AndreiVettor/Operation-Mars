@@ -11,9 +11,8 @@ namespace coolgame
         Debugging,
         UI,
         Projectiles,
-        EnemiesHealthbar,
+        Healthbar,
         Enemies,
-        BuildingsHealthbar,
         Buildings,
         Ground,
         Background
@@ -28,11 +27,10 @@ namespace coolgame
                 case Layer.Debugging: return 0;
                 case Layer.UI: return .1f;
                 case Layer.Projectiles: return .2f;
-                case Layer.EnemiesHealthbar: return .3f;
-                case Layer.Enemies: return .31f;
-                case Layer.BuildingsHealthbar: return .4f;
-                case Layer.Buildings: return .41f;
-                case Layer.Ground: return .5f;
+                case Layer.Healthbar: return .3f;
+                case Layer.Enemies: return .4f;
+                case Layer.Buildings: return .5f;
+                case Layer.Ground: return .6f;
                 case Layer.Background: return 1f;
                 default: return 0;
             }
