@@ -12,6 +12,19 @@ namespace coolgame
     {
         private static List<Entity> entities = new List<Entity>();
 
+        private static bool frameLimiting;
+        public static bool FrameLimiting
+        {
+            get { return frameLimiting; }
+            set { frameLimiting = value;}
+        }
+        
+        public static void ToggleFrameLimiting(Game game)
+        {
+            frameLimiting = !frameLimiting;
+            game.IsFixedTimeStep = frameLimiting;
+        }
+
         public static List<Entity> GetEntityList()
         {
             return entities;

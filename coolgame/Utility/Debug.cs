@@ -101,8 +101,17 @@ namespace coolgame
             frameCount++;
             if (debugFPS)
             {
-                spriteBatch.DrawString(font, "FPS: " + fps.ToString(), new Vector2(10, 40), Color.Black);
-                spriteBatch.DrawString(font, "FPS: " + fps.ToString(), new Vector2(9, 41), Color.White);
+                string fpsText;
+                if(GameManager.FrameLimiting == true)
+                {
+                    fpsText = "FPS: " + fps.ToString() + " (capped)  'C' to uncap";
+                }
+                else
+                {
+                    fpsText = "FPS: " + fps.ToString();
+                }
+                spriteBatch.DrawString(font, fpsText, new Vector2(10, 40), Color.Black);
+                spriteBatch.DrawString(font, fpsText, new Vector2(9, 41), Color.White);
             }
 
             spriteBatch.DrawString(font, VERSION, new Vector2(10, 10), Color.Black);

@@ -31,6 +31,7 @@ namespace coolgame
             graphics.PreferredBackBufferHeight = GAME_HEIGHT;
 
             IsFixedTimeStep = true;
+            GameManager.FrameLimiting = true;
             graphics.SynchronizeWithVerticalRetrace = false;
 
             IsMouseVisible = true;
@@ -82,10 +83,9 @@ namespace coolgame
             if (input.KeyDown(Keys.Escape))
                 Exit();
 
-            if (input.KeyPress(Keys.D))
+            if (input.KeyPress(Keys.C))
             {
-                Debug.Log("Testing very long strings");
-                
+                GameManager.ToggleFrameLimiting(this);
             }
 
             if (input.KeyPress(Keys.F))
