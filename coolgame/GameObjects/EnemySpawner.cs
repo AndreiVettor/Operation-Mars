@@ -9,11 +9,10 @@ namespace coolgame
 {
     class EnemySpawner
     {
-        private static int totalEnemiesSpawned;
-
         private Random random;
         private Enemy.EnemyDirection enemyDirection;
         private Vector2 position;
+
         public Vector2 Position
         {
             get { return position; }
@@ -21,6 +20,8 @@ namespace coolgame
         }
 
         private float spawnRate = 0.01f;
+        private float spawnTime;
+
         public float SpawnRate
         {
             get { return spawnRate; }
@@ -37,11 +38,16 @@ namespace coolgame
 
         public void Update(float deltaTime)
         {
-            if(Roll(spawnRate))
+            spawnTime += deltaTime;
+
+            if (spawnTime >= 1000 / 60)
             {
-                SpawnEnemy("Steve");
-                totalEnemiesSpawned++;
-                Debug.Log(totalEnemiesSpawned + " Steves spawned.");
+                spawnTime = 0;
+
+                if (Roll(spawnRate))
+                {
+                    SpawnEnemy("Steve");
+                }
             }
         }
 

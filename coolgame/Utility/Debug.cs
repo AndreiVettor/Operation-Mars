@@ -61,12 +61,15 @@ namespace coolgame
 
         public static void Log(string message)
         {
-            messages.Insert(0, message);
-            if(messages.Count > 15)
+            if (debugMessages)
             {
-                messages.RemoveRange(14, messages.Count - 15);
+                messages.Insert(0, message);
+                if (messages.Count > 15)
+                {
+                    messages.RemoveRange(14, messages.Count - 15);
+                }
+                maxLength = Math.Max(maxLength, (int)font.MeasureString(message).X + 10 + padding);
             }
-            maxLength = Math.Max(maxLength, (int)font.MeasureString(message).X + 10 + padding);
         }
 
         public static void Update(float deltaTime)
