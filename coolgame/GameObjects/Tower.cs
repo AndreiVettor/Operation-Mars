@@ -19,7 +19,7 @@ namespace coolgame
             SetTexture(content, "tower");
             Width = texture.Width;
             Height = texture.Height;
-            X = Game.GAME_WIDTH / 2 - Width / 2;
+            X = Game.GAME_WIDTH / 2 - Width / 2 + 50;
             Y = groundLevel - Height;
             EnableHealthBar = true;
             laserGun = new LaserGun(content, (int)X + 10, (int)Y + 10);
