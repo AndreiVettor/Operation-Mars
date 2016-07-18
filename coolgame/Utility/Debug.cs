@@ -48,7 +48,7 @@ namespace coolgame
             debugFPS = !debugFPS;
         }
 
-        public static void ToggleMessages()
+        public static void ToggleDebugLog()
         {
             debugMessages = !debugMessages;
         }

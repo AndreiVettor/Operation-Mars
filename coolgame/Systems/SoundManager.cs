@@ -13,10 +13,52 @@ namespace coolgame
         private static Dictionary<string, SoundEffect> clips = new Dictionary<string, SoundEffect>();
         private static Dictionary<string, Song> songs = new Dictionary<string, Song>();
 
-        public static void SetVolume(int volume)
+        public static bool muted;
+
+        private static float soundVolume;
+        public static int SoundVolume
         {
-            SoundEffect.MasterVolume = volume/100f;
-            MediaPlayer.Volume = volume / 100f;
+            get { return (int)soundVolume; }
+            set
+            {
+                soundVolume = value/100f;
+                if(!muted)
+                {
+                    SoundEffect.MasterVolume = soundVolume;
+                }
+            }
+        }
+
+        private static float musicVolume;
+        public static int MusicVolume
+        {
+            get { return (int)musicVolume; }
+            set
+            {
+                musicVolume = value/100f;
+                if (!muted)
+                {
+                    MediaPlayer.Volume = musicVolume;
+                }
+            }
+        }
+
+        public static void ToggleMute()
+        {
+            if (!muted)
+            {
+                SoundEffect.MasterVolume = 0;
+                MediaPlayer.Volume = 0;
+                muted = true;
+                Debug.Log(SoundEffect.MasterVolume.ToString());
+            }
+            else
+            {
+                SoundEffect.MasterVolume = soundVolume;
+                MediaPlayer.Volume = musicVolume;
+                muted = false;
+                Debug.Log(SoundEffect.MasterVolume.ToString());
+            }
         }
 
         public static void AddClip(SoundEffect clip, string name)

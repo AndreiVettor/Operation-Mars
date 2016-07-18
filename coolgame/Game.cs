@@ -43,7 +43,8 @@ namespace coolgame
         {
             base.Initialize();
 
-            SoundManager.SetVolume(25);
+            SoundManager.SoundVolume = 50;
+            SoundManager.MusicVolume = 15;
         }
 
         protected override void LoadContent()
@@ -89,11 +90,22 @@ namespace coolgame
             }
 
             if (input.KeyPress(Keys.F))
+            {
                 Debug.ToggleFPS();
+            }
             if (input.KeyPress(Keys.M))
-                Debug.ToggleMessages();
+            {
+                SoundManager.ToggleMute();
+            }
+
             if (input.KeyPress(Keys.R))
+            {
                 Debug.ToggleRectangles();
+            }
+            if (input.KeyPress(Keys.L))
+            {
+                Debug.ToggleDebugLog();
+            }
 
             baseBuilding.Update(deltaTime, input);
             towerBuilding.Update(deltaTime, input);

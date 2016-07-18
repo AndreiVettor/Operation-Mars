@@ -53,7 +53,6 @@ namespace coolgame
             tempEnemy.Direction = enemyDirection;
             GameManager.AddEntity(tempEnemy);
             CollisionManager.AddEnemy(tempEnemy);
-            Debug.Log("Steve spawned");
         }       
     }
 }
