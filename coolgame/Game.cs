@@ -61,8 +61,16 @@ namespace coolgame
 
             SoundManager.PlaySong("music");
 
-            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, 460), 1000, Enemy.EnemyDirection.ToLeft);
-            enemySpawner2 = new EnemySpawner(new Vector2(-50, 460), 1000, Enemy.EnemyDirection.ToRight);
+            int seed = System.DateTime.Now.Year +
+                System.DateTime.Now.Month +
+                System.DateTime.Now.Day +
+                System.DateTime.Now.Hour +
+                System.DateTime.Now.Minute +
+                System.DateTime.Now.Second +
+                System.DateTime.Now.Millisecond;
+
+            enemySpawner1 = new EnemySpawner(seed, new Vector2(Game.GAME_WIDTH + 50, 460), Enemy.EnemyDirection.ToLeft);
+            enemySpawner2 = new EnemySpawner(seed + 1337, new Vector2(-50, 460), Enemy.EnemyDirection.ToRight);
             
         }
 

@@ -9,6 +9,7 @@ namespace coolgame
 {
     class EnemySpawner
     {
+        private Random random;
         private Enemy.EnemyDirection enemyDirection;
         private Vector2 position;
         public Vector2 Position
@@ -17,9 +18,7 @@ namespace coolgame
             set { position = value; }
         }
 
-        float spawnTimer = 0;
-
-        private float spawnRate;
+        private float spawnRate = 0.01f;
         public float SpawnRate
         {
             get { return spawnRate; }
@@ -27,22 +26,27 @@ namespace coolgame
         }
 
 
-        public EnemySpawner(Vector2 position, float spawnRate, Enemy.EnemyDirection enemyDirection)
+        public EnemySpawner(int seed, Vector2 position, Enemy.EnemyDirection enemyDirection)
         {
             this.position = position;
-            this.spawnRate = spawnRate;
             this.enemyDirection = enemyDirection;
+            random = new Random(seed);
         }
 
         public void Update(float deltaTime)
         {
-            spawnTimer += deltaTime;
-
-            if(spawnTimer >= SpawnRate)
+            if(Roll(spawnRate))
             {
-                spawnTimer -= SpawnRate;
                 SpawnEnemy("Steve");
             }
+        }
+
+        private bool Roll(float chance)
+        {
+            int pseudoRandomNumber = random.Next(100000);
+            if (pseudoRandomNumber < chance * 100000)
+                return true;
+            return false;
         }
 
         public void SpawnEnemy(string enemyType)
