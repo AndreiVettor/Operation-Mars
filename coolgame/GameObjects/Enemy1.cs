@@ -18,10 +18,21 @@ namespace coolgame
             EnableHealthBar = true;
         }
 
+        protected override EnemyDirection SpriteDirection
+        {
+            get
+            {
+                return EnemyDirection.ToLeft;
+            }
+        }
+
         public override void Update(float deltaTime, InputManager input)
         {
             base.Update(deltaTime, input);
-            X -= 0.1f * deltaTime;
+            if (Direction == EnemyDirection.ToLeft)
+                X -= 0.1f * deltaTime;
+            else if (Direction == EnemyDirection.ToRight)
+                X += 0.1f * deltaTime;
         }
         
     }

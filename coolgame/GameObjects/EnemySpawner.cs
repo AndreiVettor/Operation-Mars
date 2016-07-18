@@ -9,6 +9,7 @@ namespace coolgame
 {
     class EnemySpawner
     {
+        private Enemy.EnemyDirection enemyDirection;
         private Vector2 position;
         public Vector2 Position
         {
@@ -26,10 +27,11 @@ namespace coolgame
         }
 
 
-        public EnemySpawner(Vector2 position, float spawnRate)
+        public EnemySpawner(Vector2 position, float spawnRate, Enemy.EnemyDirection enemyDirection)
         {
             this.position = position;
             this.spawnRate = spawnRate;
+            this.enemyDirection = enemyDirection;
         }
 
         public void Update(float deltaTime)
@@ -48,6 +50,7 @@ namespace coolgame
             Enemy tempEnemy = EnemyFactory.CreateEnemy(enemyType);
             tempEnemy.X = position.X;
             tempEnemy.Y = position.Y;
+            tempEnemy.Direction = enemyDirection;
             GameManager.AddEntity(tempEnemy);
             CollisionManager.AddEnemy(tempEnemy);
             Debug.Log("Steve spawned");

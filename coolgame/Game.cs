@@ -21,7 +21,7 @@ namespace coolgame
 
         float deltaTime;
 
-        EnemySpawner enemySpawner1;
+        EnemySpawner enemySpawner1, enemySpawner2;
 
         public Game()
         {
@@ -54,7 +54,9 @@ namespace coolgame
             EnemyFactory.LoadContent(Content);
             SoundManager.AddClip(Content.Load<SoundEffect>("machine_gun"), "laser");
 
-            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, 460), 1500);
+            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, 460), 1000, Enemy.EnemyDirection.ToLeft);
+            enemySpawner2 = new EnemySpawner(new Vector2(-50, 460), 1000, Enemy.EnemyDirection.ToRight);
+            
         }
 
         protected override void UnloadContent()
@@ -90,6 +92,7 @@ namespace coolgame
             baseBuilding.Update(deltaTime, input);
             towerBuilding.Update(deltaTime, input);
             enemySpawner1.Update(deltaTime);
+            enemySpawner2.Update(deltaTime);
            
             base.Update(gameTime);
         }

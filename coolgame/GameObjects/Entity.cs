@@ -35,6 +35,7 @@ namespace coolgame
         private bool enableHealthBar;
         private bool autoHideHealthBar = true;
         private bool alive = true;
+        private SpriteEffects spriteEffects;
 
         public double X
         {
@@ -117,6 +118,12 @@ namespace coolgame
             set { alive = value; }
         }
 
+        public SpriteEffects Effects
+        {
+            get { return spriteEffects; }
+            set { spriteEffects = value; }
+        }
+
         public Entity(ContentManager content)
         {
             sourceRectangle = new Rectangle();
@@ -171,7 +178,7 @@ namespace coolgame
         {
             if (alive)
             {
-                spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, Vector2.One, Color.White, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, Vector2.One, Color.White, spriteEffects, 0);
 
                 if (enableHealthBar)
                     healthBar.Draw(spriteBatch);
