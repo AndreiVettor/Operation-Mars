@@ -19,6 +19,9 @@ namespace coolgame
         private int health;
         private int maxWidth;
         private int centerX;
+        private bool autoHide = true;
+        private float autoHideTime;
+        private bool visible;
 
         public int Width
         {
@@ -43,6 +46,7 @@ namespace coolgame
             set
             {
                 maxHealth = value;
+                health = value;
                 UpdateAppearance();
                 UpdatePosition();
             }
@@ -56,6 +60,7 @@ namespace coolgame
                 health = value;
                 UpdateAppearance();
                 UpdatePosition();
+                visible = true;
             }
         }
 
@@ -75,13 +80,33 @@ namespace coolgame
             set { rectangle.Y = value; }
         }
 
+        public bool AutoHide
+        {
+            get { return autoHide; }
+            set { autoHide = value; }
+        }
+
         public HealthBar(ContentManager content)
         {
             texture = content.Load<Texture2D>("hpbar");
             rectangle = new Rectangle();
             Width = 50;
             Height = 5;
-            MaxHealth = Health = 100;
+            MaxHealth = 100;
+            visible = false;
+        }
+
+        public void Update(float deltaTime)
+        {
+            if (autoHide && visible)
+            {
+                autoHideTime += deltaTime;
+                if (autoHideTime >= 1000f)
+                {
+                    autoHideTime = 0;
+                    visible = false;
+                }
+            }
         }
 
         private void UpdateAppearance()
@@ -98,7 +123,8 @@ namespace coolgame
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, rectangle, color);
+            if (!autoHide || (autoHide && visible))
+                spriteBatch.Draw(texture, rectangle, color);
         }
     }
 }

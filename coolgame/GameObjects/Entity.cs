@@ -164,6 +164,8 @@ namespace coolgame
                         sourceRectangle.X = currentFrame * Width;
                     }
                 }
+
+                healthBar.Update(deltaTime);
             }
         }
 

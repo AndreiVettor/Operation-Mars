@@ -20,7 +20,7 @@ namespace coolgame
             X = Game.GAME_WIDTH / 2 - Width / 2;
             Y = groundLevel - Height;
             EnableHealthBar = true;
-            healthBar.MaxHealth = healthBar.Health = 1000;
+            healthBar.MaxHealth = 1000;
             healthBar.Width = 100;
             healthBar.Height = 10;
         }
