@@ -50,14 +50,12 @@ namespace coolgame
                 SoundEffect.MasterVolume = 0;
                 MediaPlayer.Volume = 0;
                 muted = true;
-                Debug.Log(SoundEffect.MasterVolume.ToString());
             }
             else
             {
                 SoundEffect.MasterVolume = soundVolume;
                 MediaPlayer.Volume = musicVolume;
                 muted = false;
-                Debug.Log(SoundEffect.MasterVolume.ToString());
             }
         }
 

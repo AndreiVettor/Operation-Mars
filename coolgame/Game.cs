@@ -87,24 +87,29 @@ namespace coolgame
             if (input.KeyPress(Keys.C))
             {
                 GameManager.ToggleFrameLimiting(this);
+                Debug.Log("Toggled Frame Limiting");
             }
 
             if (input.KeyPress(Keys.F))
             {
                 Debug.ToggleFPS();
+                Debug.Log("Toggled FPS");
             }
             if (input.KeyPress(Keys.M))
             {
                 SoundManager.ToggleMute();
+                Debug.Log("Toggled Mute");
             }
 
             if (input.KeyPress(Keys.R))
             {
                 Debug.ToggleRectangles();
+                Debug.Log("Toggled Collision Boxes");
             }
             if (input.KeyPress(Keys.L))
             {
                 Debug.ToggleDebugLog();
+                Debug.Log("Toggled Debug Log");
             }
 
             baseBuilding.Update(deltaTime, input);
