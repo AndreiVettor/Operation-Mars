@@ -17,7 +17,6 @@ namespace coolgame
         Texture2D bgImage;
         Ground ground;
         Base baseBuilding;
-        Tower towerBuilding;
 
         float deltaTime, totalGameTime;
 
@@ -53,7 +52,6 @@ namespace coolgame
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
             baseBuilding = new Base(Content, ground.Top);
-            towerBuilding = new Tower(Content, ground.Top);
 
             EnemyFactory.LoadContent(Content);
             SoundManager.AddClip(Content.Load<SoundEffect>("machine_gun"), "laser");
@@ -121,7 +119,6 @@ namespace coolgame
             }
 
             baseBuilding.Update(deltaTime, input);
-            towerBuilding.Update(deltaTime, input);
             enemySpawner1.Update(totalGameTime, deltaTime);
             enemySpawner2.Update(totalGameTime, deltaTime);
            
@@ -145,7 +142,6 @@ namespace coolgame
                 LayerManager.GetLayerDepth(Layer.Background));
             
             baseBuilding.Draw(spriteBatch);
-            towerBuilding.Draw(spriteBatch);
 
             ground.Draw(spriteBatch);
 

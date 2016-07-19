@@ -16,7 +16,7 @@ namespace coolgame
         private double y;
         protected Texture2D texture;
 
-        private Rectangle collisionBox;
+        protected Rectangle collisionBox;
         public Rectangle CollisionBox
         {
             get { return collisionBox; }

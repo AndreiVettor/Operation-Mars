@@ -14,14 +14,13 @@ namespace coolgame
     {
         private LaserGun laserGun;
 
-        public Tower(ContentManager content, int groundLevel) : base(content)
+        public Tower(ContentManager content, int groundLevel, int basePosition) : base(content)
         {
             SetTexture(content, "tower");
             Width = texture.Width;
             Height = texture.Height;
-            X = Game.GAME_WIDTH / 2 - Width / 2 + 50;
+            X = basePosition + 150;
             Y = groundLevel - Height;
-            EnableHealthBar = true;
             laserGun = new LaserGun(content, (int)X + 10, (int)Y + 10);
             layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
         }

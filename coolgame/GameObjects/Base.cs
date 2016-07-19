@@ -12,6 +12,8 @@ namespace coolgame
 {
     public class Base : Entity
     {
+        private Tower tower;
+
         public Base(ContentManager content, int groundLevel) : base(content)
         {
             SetTexture(content, "base");
@@ -24,11 +26,20 @@ namespace coolgame
             healthBar.Width = 100;
             healthBar.Height = 10;
             layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
+
+            tower = new Tower(content, groundLevel, (int)X);
         }
 
         public override void Update(float deltaTime, InputManager input)
         {
             base.Update(deltaTime, input);
+            tower.Update(deltaTime, input);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            tower.Draw(spriteBatch);
         }
     }
 }
