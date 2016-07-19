@@ -9,6 +9,8 @@ namespace coolgame
 {
     public class Crawler : Enemy
     {
+        private Entity target;
+
         public Crawler(ContentManager Content) : base(Content)
         {
             SetTexture(Content, "crawler");
@@ -16,6 +18,7 @@ namespace coolgame
             Height = 64;
             EnableAnimation = true;
             healthBar.MaxHealth = 20;
+            AnimationSpeed /= 3;
         }
 
         protected override EnemyDirection SpriteDirection
@@ -29,10 +32,21 @@ namespace coolgame
         public override void Update(float deltaTime, InputManager input)
         {
             base.Update(deltaTime, input);
-            if (Direction == EnemyDirection.ToLeft)
-                X -= 0.1f * deltaTime;
-            else if (Direction == EnemyDirection.ToRight)
-                X += 0.1f * deltaTime;
+
+            target = CollisionManager.CollidesWithBuilding(this);
+
+            if (target == null)
+            {
+                if (Direction == EnemyDirection.ToLeft)
+                    X -= 0.033f * deltaTime;
+                else if (Direction == EnemyDirection.ToRight)
+                    X += 0.033f * deltaTime;
+            }
+            else
+            {
+                target.Damage(10);
+            }
+            
         }
     }
 }

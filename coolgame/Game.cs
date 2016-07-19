@@ -52,6 +52,7 @@ namespace coolgame
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
             baseBuilding = new Base(Content, ground.Top);
+            CollisionManager.AddBuilding(baseBuilding);
 
             EnemyFactory.LoadContent(Content);
             SoundManager.AddClip(Content.Load<SoundEffect>("machine_gun"), "laser");

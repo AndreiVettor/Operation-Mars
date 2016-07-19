@@ -42,13 +42,17 @@ namespace coolgame
         public override void Update(float deltaTime, InputManager input)
         {
             base.Update(deltaTime, input);
-            tower.Update(deltaTime, input);
+
+            if (Alive)
+                tower.Update(deltaTime, input);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            tower.Draw(spriteBatch);
+
+            if (Alive)
+                tower.Draw(spriteBatch);
         }
     }
 }

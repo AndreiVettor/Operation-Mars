@@ -55,6 +55,15 @@ namespace coolgame
             projectiles.Remove(e);
         }
 
+        public static Entity CollidesWithBuilding(Entity e)
+        {
+            foreach (Entity b in buildings)
+                if (b.Alive && e.Collides(b))
+                    return b;
+
+            return null;
+        }
+
         public static void Update()
         {
             for (int e = enemies.Count - 1; e >= 0; --e)
