@@ -25,7 +25,7 @@ namespace coolgame
 
             collisionBox.X = Math.Min(collisionBox.X, tower.CollisionBox.X);
             collisionBox.Y = Math.Min(collisionBox.Y, tower.CollisionBox.Y);
-            collisionBox.Width = Math.Max(collisionBox.Width, tower.CollisionBox.Width);
+            collisionBox.Width = Math.Max(collisionBox.X + collisionBox.Width, tower.CollisionBox.X + tower.CollisionBox.Width) - collisionBox.X;
             collisionBox.Height = Math.Max(collisionBox.Height, tower.CollisionBox.Height);
 
             healthBar.X -= 20;
