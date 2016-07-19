@@ -38,11 +38,11 @@ namespace coolgame
 
         public void Update(float totalGameTime, float deltaTime)
         {
-            spawnRate = (float)(Math.Pow(Math.E, - Math.Pow(totalGameTime / 200000 - 1.3f, 2))) * .02f;
+            spawnRate = (float)(Math.Pow(Math.E, - Math.Pow(totalGameTime / 200000 - 1.3f, 2))) * .2f;
 
             spawnTime += deltaTime;
 
-            if (spawnTime >= 1000 / 60)
+            if (spawnTime >= 1000 / 6)
             {
                 spawnTime = 0;
 
