@@ -14,6 +14,7 @@ namespace coolgame
     {
         private ContentManager content;
         private float cooldownTime;
+        private Random random;
 
         public LaserGun(ContentManager content, int x, int y) : base(content)
         {
@@ -24,6 +25,7 @@ namespace coolgame
             Y = y;
             this.content = content;
             layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
+            random = new Random();
         }
 
         public override void Update(float deltaTime, InputManager input)
@@ -35,7 +37,13 @@ namespace coolgame
             {
                 SoundManager.PlayClip("laser");
                 cooldownTime = 0;
-                LaserProjectile p = new LaserProjectile(content, X + Width / 2, Y + Height / 2, Rotation);
+                double projectileX = X + Width / 2 +  Math.Cos(Rotation) * (Width / 4);
+                double projectileY = Y + Height / 2 + Math.Sin(Rotation) * (Width / 4);
+                LaserProjectile p = new LaserProjectile(content, projectileX, projectileY, Rotation);
+                for (int i = 0; i < 50; ++i)
+                {
+                    p = new LaserProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * (float)Math.PI / 3);
+                }
             }
 
             base.Update(deltaTime, input);
