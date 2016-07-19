@@ -8,7 +8,7 @@ namespace coolgame
 {
     public class Game : Microsoft.Xna.Framework.Game
     {
-        public const int GAME_WIDTH = 800;
+        public const int GAME_WIDTH = 1200;
         public const int GAME_HEIGHT = 600;
 
         GraphicsDeviceManager graphics;
@@ -134,7 +134,15 @@ namespace coolgame
             GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, null);
-            spriteBatch.Draw(bgImage, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+
+            spriteBatch.Draw(bgImage,
+                new Rectangle(0, 0, GAME_WIDTH, GAME_HEIGHT),
+                null,
+                Color.White,
+                0,
+                Vector2.Zero,
+                SpriteEffects.None,
+                LayerManager.GetLayerDepth(Layer.Background));
             
             baseBuilding.Draw(spriteBatch);
             towerBuilding.Draw(spriteBatch);
