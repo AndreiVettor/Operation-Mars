@@ -38,7 +38,7 @@ namespace coolgame
 
         public void Hit(Entity target)
         {
-            target.Damage(20);
+            target.Damage(5);
             Alive = false;
         }
     }

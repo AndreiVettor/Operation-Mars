@@ -20,12 +20,15 @@ namespace coolgame
         public static Enemy CreateEnemy(string enemyType)
         {
             Enemy tempEnemy;
-            switch(enemyType)
+            switch(enemyType.ToLower())
             {
-                case "Steve":
+                case "steve":
                     {
                         return new Enemy1(content);
-                        break;
+                    }
+                case "crawler":
+                    {
+                        return new Crawler(content);
                     }
                 default:
                     {

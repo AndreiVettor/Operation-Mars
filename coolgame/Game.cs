@@ -69,8 +69,8 @@ namespace coolgame
                 System.DateTime.Now.Second +
                 System.DateTime.Now.Millisecond;
 
-            enemySpawner1 = new EnemySpawner(seed, new Vector2(Game.GAME_WIDTH + 50, 460), Enemy.EnemyDirection.ToLeft);
-            enemySpawner2 = new EnemySpawner(seed + 1337, new Vector2(-50, 460), Enemy.EnemyDirection.ToRight);
+            enemySpawner1 = new EnemySpawner(seed, new Vector2(Game.GAME_WIDTH + 50, ground.Top), Enemy.EnemyDirection.ToLeft);
+            enemySpawner2 = new EnemySpawner(seed + 1337, new Vector2(-50, ground.Top), Enemy.EnemyDirection.ToRight);
             
         }
 

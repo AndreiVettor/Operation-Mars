@@ -1,20 +1,21 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Content;
 
 namespace coolgame
 {
-    class Enemy1 : Enemy
+    public class Crawler : Enemy
     {
-        public Enemy1(ContentManager Content) :base(Content) {
-            SetTexture(Content, "enemy2");
-            Width = 58;
-            Height = 80;
+        public Crawler(ContentManager Content) : base(Content)
+        {
+            SetTexture(Content, "crawler");
+            Width = 64;
+            Height = 64;
             EnableAnimation = true;
+            healthBar.MaxHealth = 20;
         }
 
         protected override EnemyDirection SpriteDirection
@@ -33,6 +34,5 @@ namespace coolgame
             else if (Direction == EnemyDirection.ToRight)
                 X += 0.1f * deltaTime;
         }
-        
     }
 }

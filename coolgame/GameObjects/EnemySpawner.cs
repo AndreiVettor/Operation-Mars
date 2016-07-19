@@ -50,7 +50,7 @@ namespace coolgame
 
                 if (Roll(spawnRate))
                 {
-                    SpawnEnemy("Steve");
+                    SpawnEnemy("crawler");
                 }
             }
         }
@@ -67,7 +67,7 @@ namespace coolgame
         {
             Enemy tempEnemy = EnemyFactory.CreateEnemy(enemyType);
             tempEnemy.X = position.X;
-            tempEnemy.Y = position.Y;
+            tempEnemy.Y = position.Y - tempEnemy.Height;
             tempEnemy.Direction = enemyDirection;
             GameManager.AddEntity(tempEnemy);
             CollisionManager.AddEnemy(tempEnemy);
