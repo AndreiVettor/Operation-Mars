@@ -175,3 +175,15 @@
 /processorParam:Quality=Best
 /build:music sample.mp3
 
+#begin towerlaser.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:towerlaser.wav
+
+#begin towerlaser2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:towerlaser2.wav
+
