@@ -40,9 +40,9 @@ namespace coolgame
                 double projectileX = X + Width / 2 +  Math.Cos(Rotation) * (Width / 4);
                 double projectileY = Y + Height / 2 + Math.Sin(Rotation) * (Width / 4);
                 LaserProjectile p = new LaserProjectile(content, projectileX, projectileY, Rotation);
-                for (int i = 0; i < 50; ++i)
+                for (int i = 0; i < 1000; ++i)
                 {
-                    p = new LaserProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * (float)Math.PI / 3);
+                    p = new LaserProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * (float)Math.PI * 2);
                 }
             }
 
