@@ -42,7 +42,7 @@ namespace coolgame
             base.Initialize();
 
             SoundManager.SoundVolume = 50;
-            SoundManager.MusicVolume = 15;
+            SoundManager.MusicVolume = 50;
         }
 
         protected override void LoadContent()
@@ -55,7 +55,7 @@ namespace coolgame
 
             EnemyFactory.LoadContent(Content);
             SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
-            SoundManager.AddSong(Content.Load<Song>("music sample"), "music");
+            SoundManager.AddSong(Content.Load<Song>("music"), "music");
 
             SoundManager.PlaySong("music");
 
