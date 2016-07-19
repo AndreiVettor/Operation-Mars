@@ -50,10 +50,17 @@ namespace coolgame
                 if (attackCooldown >= 1000)
                 {
                     target.InflictDamage(10);
+                    SoundManager.PlayClip("crawlerhit");
                     attackCooldown = 0;
                 }
             }
             
+        }
+
+        public override void InflictDamage(int hitpoints)
+        {
+            base.InflictDamage(hitpoints);
+            SoundManager.PlayClip("crawlerhit");
         }
     }
 }

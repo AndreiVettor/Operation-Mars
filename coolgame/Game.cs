@@ -56,6 +56,7 @@ namespace coolgame
             EnemyFactory.LoadContent(Content);
             SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
             SoundManager.AddSong(Content.Load<Song>("music"), "music");
+            SoundManager.AddClip(Content.Load<SoundEffect>("crawlerhit"), "crawlerhit");
 
             SoundManager.PlaySong("music");
 

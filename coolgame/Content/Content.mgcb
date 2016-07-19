@@ -187,3 +187,9 @@
 /processorParam:Quality=Best
 /build:music.mp3
 
+#begin crawlerhit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:crawlerhit.wav
+
