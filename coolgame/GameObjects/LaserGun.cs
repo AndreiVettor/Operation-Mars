@@ -31,7 +31,7 @@ namespace coolgame
             Rotation = (float)Math.Atan2(input.MouseY - Y - Height / 2, input.MouseX - X - Width / 2);
 
             cooldownTime += deltaTime;
-            if (input.MouseLeft == ButtonState.Pressed && cooldownTime > 100f)
+            if (input.MouseLeft == ButtonState.Pressed && cooldownTime > 100.0f)
             {
                 SoundManager.PlayClip("laser");
                 cooldownTime = 0;

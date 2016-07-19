@@ -55,7 +55,7 @@ namespace coolgame
 
             EnemyFactory.LoadContent(Content);
             SoundManager.AddClip(Content.Load<SoundEffect>("machine_gun"), "laser");
-            SoundManager.AddSong(Content.Load<Song>("music"), "music");
+            SoundManager.AddSong(Content.Load<Song>("music sample"), "music");
 
             SoundManager.PlaySong("music");
 
