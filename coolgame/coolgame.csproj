@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GameObjects\Base.cs" />
+    <Compile Include="GameObjects\Building.cs" />
     <Compile Include="GameObjects\Crawler.cs" />
     <Compile Include="Systems\LayerManager.cs" />
     <Compile Include="Systems\CollisionManager.cs" />

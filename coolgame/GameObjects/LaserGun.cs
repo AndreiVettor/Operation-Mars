@@ -38,7 +38,6 @@ namespace coolgame
                 SoundManager.PlayClip("laser");
                 cooldownTime = 0;
                 projectiles.Add(new LaserProjectile(content, X + Width / 2, Y + Height / 2, Rotation));
-                CollisionManager.AddProjectile(projectiles[projectiles.Count - 1]);
             }
 
             for (int i = projectiles.Count - 1; i >= 0; i--)

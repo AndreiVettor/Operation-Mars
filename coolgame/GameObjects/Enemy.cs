@@ -33,7 +33,7 @@ namespace coolgame
             Direction = SpriteDirection;
             layerDepth = LayerManager.GetLayerDepth(Layer.Enemies);
             EnableHealthBar = true;
-            CollisionManager.AddEnemy(this);
+            GameManager.AddEntity(this);
         }
     }
 }

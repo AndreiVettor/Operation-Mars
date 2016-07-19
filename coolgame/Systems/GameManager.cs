@@ -10,13 +10,15 @@ namespace coolgame
 {
     public static class GameManager
     {
-        private static List<Entity> entities = new List<Entity>();
+        private static List<Enemy> enemies = new List<Enemy>();
+        private static List<Building> buildings = new List<Building>();
+        private static List<LaserProjectile> projectiles = new List<LaserProjectile>();
 
         private static bool frameLimiting;
         public static bool FrameLimiting
         {
             get { return frameLimiting; }
-            set { frameLimiting = value;}
+            set { frameLimiting = value; }
         }
         
         public static void ToggleFrameLimiting(Game game)
@@ -25,27 +27,68 @@ namespace coolgame
             game.IsFixedTimeStep = frameLimiting;
         }
 
-        public static List<Entity> GetEntityList()
+        public static void AddEntity(Enemy e)
         {
-            return entities;
+            enemies.Add(e);
+            CollisionManager.AddEnemy(e);
         }
 
-        public static void AddEntity(Entity entity)
+        public static void AddEntity(Building e)
         {
-            entities.Add(entity);
+            buildings.Add(e);
+            CollisionManager.AddBuilding(e);
+        }
+
+        public static void AddEntity(LaserProjectile e)
+        {
+            projectiles.Add(e);
+            CollisionManager.AddProjectile(e);
         }
 
         public static void UpdateEntities(float deltaTime, InputManager input)
         {
-            foreach(Entity e in entities)
+            for(int i = enemies.Count - 1; i >= 0; i--)
             {
-                e.Update(deltaTime, input);
+                enemies[i].Update(deltaTime, input);
+                if (!enemies[i].Alive)
+                {
+                    CollisionManager.RemoveEnemy(enemies[i]);
+                    enemies.Remove(enemies[i]);
+                }
+            }
+
+            for (int i = buildings.Count - 1; i >= 0; i--)
+            {
+                buildings[i].Update(deltaTime, input);
+                if (!buildings[i].Alive)
+                {
+                    CollisionManager.RemoveBuilding(buildings[i]);
+                    buildings.Remove(buildings[i]);
+                }
+            }
+
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+            {
+                projectiles[i].Update(deltaTime, input);
+                if (!projectiles[i].Alive)
+                {
+                    CollisionManager.RemoveProjectile(projectiles[i]);
+                    projectiles.Remove(projectiles[i]);
+                }
             }
         }
 
         public static void DrawEntities(SpriteBatch spriteBatch)
         {
-            foreach(Entity e in entities)
+            foreach(Enemy e in enemies)
+            {
+                e.Draw(spriteBatch);
+            }
+            foreach (Building e in buildings)
+            {
+                e.Draw(spriteBatch);
+            }
+            foreach (LaserProjectile e in projectiles)
             {
                 e.Draw(spriteBatch);
             }

@@ -69,7 +69,6 @@ namespace coolgame
             tempEnemy.X = position.X;
             tempEnemy.Y = position.Y - tempEnemy.Height;
             tempEnemy.Direction = enemyDirection;
-            GameManager.AddEntity(tempEnemy);
         }       
     }
 }

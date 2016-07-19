@@ -175,6 +175,12 @@ namespace coolgame
             texture = content.Load<Texture2D>(assetName);
             if (Width > 0)
                 totalFrames = texture.Width / Width;
+            
+            if (!enableAnimation)
+            {
+                Width = texture.Width;
+                Height = texture.Height;
+            }
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

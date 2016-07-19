@@ -52,7 +52,6 @@ namespace coolgame
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
             baseBuilding = new Base(Content, ground.Top);
-            CollisionManager.AddBuilding(baseBuilding);
 
             EnemyFactory.LoadContent(Content);
             SoundManager.AddClip(Content.Load<SoundEffect>("machine_gun"), "laser");
@@ -86,7 +85,6 @@ namespace coolgame
             Debug.Update(deltaTime);
             input.Update();
             GameManager.UpdateEntities(deltaTime, input);
-            CollisionManager.Update();
 
             if (input.KeyDown(Keys.Escape))
                 Exit();
@@ -119,7 +117,6 @@ namespace coolgame
                 Debug.Log("Toggled Debug Log");
             }
 
-            baseBuilding.Update(deltaTime, input);
             enemySpawner1.Update(totalGameTime, deltaTime);
             enemySpawner2.Update(totalGameTime, deltaTime);
            
@@ -141,8 +138,6 @@ namespace coolgame
                 Vector2.Zero,
                 SpriteEffects.None,
                 LayerManager.GetLayerDepth(Layer.Background));
-            
-            baseBuilding.Draw(spriteBatch);
 
             ground.Draw(spriteBatch);
 

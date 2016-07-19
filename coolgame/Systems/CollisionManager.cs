@@ -12,9 +12,10 @@ namespace coolgame
 {
     public static class CollisionManager
     {
-        private static List<Entity> enemies = new List<Entity>();
-        private static List<Entity> buildings = new List<Entity>();
+        private static List<Enemy> enemies = new List<Enemy>();
+        private static List<Building> buildings = new List<Building>();
         private static List<LaserProjectile> projectiles = new List<LaserProjectile>();
+        private static Ground ground;
 
         public static List<Entity> GetEntityList()
         {
@@ -25,22 +26,27 @@ namespace coolgame
             return newList;
         }
 
-        public static void AddEnemy(Entity e)
+        public static void SetGround(Ground g)
+        {
+            ground = g;
+        }
+
+        public static void AddEnemy(Enemy e)
         {
             enemies.Add(e);
         }
 
-        public static void RemoveEnemy(Entity e)
+        public static void RemoveEnemy(Enemy e)
         {
             enemies.Remove(e);
         }
 
-        public static void AddBuilding(Entity e)
+        public static void AddBuilding(Building e)
         {
             buildings.Add(e);
         }
 
-        public static void RemoveBuilding(Entity e)
+        public static void RemoveBuilding(Building e)
         {
             buildings.Remove(e);
         }
@@ -55,47 +61,27 @@ namespace coolgame
             projectiles.Remove(e);
         }
 
-        public static Entity CollidesWithBuilding(Entity e)
+        public static bool CollidesWithGround(Entity e)
         {
-            foreach (Entity b in buildings)
+            return ground.Collides(e);
+        }
+
+        public static Building CollidesWithBuilding(Entity e)
+        {
+            foreach (Building b in buildings)
                 if (b.Alive && e.Collides(b))
                     return b;
 
             return null;
         }
 
-        public static void Update()
+        public static Enemy CollidesWithEnemy(Entity e)
         {
-            for (int e = enemies.Count - 1; e >= 0; --e)
-            {
-                if (!enemies[e].Alive)
-                {
-                    enemies.RemoveAt(e);
-                    continue;
-                }
-                for (int p = projectiles.Count - 1; p >= 0; --p)
-                {
-                    if (!projectiles[p].Alive)
-                    {
-                        projectiles.RemoveAt(p);
-                        continue;
-                    }
-                    if (enemies[e].Collides(projectiles[p]))
-                    {
-                        projectiles[p].Hit(enemies[e]);
-                    }
+            foreach (Enemy enemy in enemies)
+                if (enemy.Alive && e.Collides(enemy))
+                    return enemy;
 
-                }
-            }
-
-            for (int p = projectiles.Count - 1; p >= 0; --p)
-            {
-                if (!projectiles[p].Alive)
-                {
-                    projectiles.RemoveAt(p);
-                    continue;
-                }
-            }
+            return null;
         }
     }
 }

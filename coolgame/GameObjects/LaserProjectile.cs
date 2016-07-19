@@ -23,6 +23,8 @@ namespace coolgame
             Y = y - Height / 2;
             Rotation = direction;
             layerDepth = LayerManager.GetLayerDepth(Layer.Projectiles);
+
+            GameManager.AddEntity(this);
         }
 
         public override void Update(float deltaTime, InputManager input)
@@ -33,13 +35,17 @@ namespace coolgame
             if (X + Width < 0 || Y + Height < 0 || X > Game.GAME_WIDTH || Y > Game.GAME_HEIGHT)
                 Alive = false;
 
-            base.Update(deltaTime, input);
-        }
+            if (CollisionManager.CollidesWithGround(this))
+                Alive = false;
 
-        public void Hit(Entity target)
-        {
-            target.Damage(5);
-            Alive = false;
+            Enemy victim = CollisionManager.CollidesWithEnemy(this);
+            if (victim != null)
+            {
+                victim.Damage(5);
+                Alive = false;
+            }
+
+            base.Update(deltaTime, input);
         }
     }
 }
