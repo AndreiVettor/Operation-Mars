@@ -7,11 +7,8 @@ using Microsoft.Xna.Framework.Content;
 
 namespace coolgame
 {
-    public class Crawler : Enemy
+    public class Crawler : MeleeEnemy
     {
-        private Entity target;
-        private float attackCooldown;
-
         public Crawler(ContentManager Content) : base(Content)
         {
             SetTexture(Content, "crawler");
@@ -20,6 +17,10 @@ namespace coolgame
             EnableAnimation = true;
             healthBar.MaxHealth = 20;
             AnimationSpeed /= 3;
+            movingSpeed = 3.3f;
+            attackSpeed = 1f;
+            attackSound = "crawlerhit";
+            attackPower = 10;
         }
 
         protected override EnemyDirection SpriteDirection
@@ -28,33 +29,6 @@ namespace coolgame
             {
                 return EnemyDirection.ToLeft;
             }
-        }
-
-        public override void Update(float deltaTime, InputManager input)
-        {
-            base.Update(deltaTime, input);
-
-            attackCooldown += deltaTime;
-
-            target = CollisionManager.CollidesWithBuilding(this);
-
-            if (target == null)
-            {
-                if (Direction == EnemyDirection.ToLeft)
-                    X -= 0.033f * deltaTime;
-                else if (Direction == EnemyDirection.ToRight)
-                    X += 0.033f * deltaTime;
-            }
-            else
-            {
-                if (attackCooldown >= 1000)
-                {
-                    target.InflictDamage(10);
-                    SoundManager.PlayClip("crawlerhit");
-                    attackCooldown = 0;
-                }
-            }
-            
         }
 
         public override void InflictDamage(int hitpoints)
