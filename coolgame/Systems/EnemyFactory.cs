@@ -30,6 +30,10 @@ namespace coolgame
                     {
                         return new Crawler(content);
                     }
+                case "steelroach":
+                    {
+                        return new Steelroach(content);
+                    }
                 default:
                     {
                         Debug.Log("Tried to create an invalid enemy type!");

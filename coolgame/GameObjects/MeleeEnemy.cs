@@ -41,8 +41,9 @@ namespace coolgame
                 if (attackCooldown >= 1000f / attackSpeed)
                 {
                     target.InflictDamage(attackPower);
-                    SoundManager.PlayClip(attackSound);
                     attackCooldown = 0;
+                    if (attackSound != null)
+                        SoundManager.PlayClip(attackSound);
                 }
             }
         }

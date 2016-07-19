@@ -28,6 +28,9 @@ namespace coolgame
 
         protected abstract EnemyDirection SpriteDirection { get; }
 
+        public static float spawnRateMultiplier = 1f;
+        public static int level = 1;
+
         public Enemy (ContentManager Content) : base(Content)
         {
             Direction = SpriteDirection;

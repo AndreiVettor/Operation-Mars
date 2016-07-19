@@ -42,6 +42,7 @@
     <Compile Include="GameObjects\Building.cs" />
     <Compile Include="GameObjects\Crawler.cs" />
     <Compile Include="GameObjects\MeleeEnemy.cs" />
+    <Compile Include="GameObjects\Steelroach.cs" />
     <Compile Include="Systems\LayerManager.cs" />
     <Compile Include="Systems\CollisionManager.cs" />
     <Compile Include="Systems\SoundManager.cs" />

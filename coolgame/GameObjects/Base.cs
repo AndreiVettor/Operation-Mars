@@ -21,7 +21,7 @@ namespace coolgame
             SetTexture(content, "base");
             X = Game.GAME_WIDTH / 2 - Width / 2 - 50;
             Y = groundLevel - Height;
-            healthBar.MaxHealth = 100;
+            healthBar.MaxHealth = Int32.MaxValue;
 
             tower = new Tower(content, groundLevel, (int)X);
 

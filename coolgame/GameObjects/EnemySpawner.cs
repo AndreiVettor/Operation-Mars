@@ -19,15 +19,7 @@ namespace coolgame
             set { position = value; }
         }
 
-        private float spawnRate = 0.01f;
         private float spawnTime;
-
-        public float SpawnRate
-        {
-            get { return spawnRate; }
-            set { spawnRate = value; }
-        }
-
 
         public EnemySpawner(int seed, Vector2 position, Enemy.EnemyDirection enemyDirection)
         {
@@ -38,19 +30,26 @@ namespace coolgame
 
         public void Update(float totalGameTime, float deltaTime)
         {
-            spawnRate = (float)(Math.Pow(Math.E, - Math.Pow(totalGameTime / 200000 - 1.3f, 2))) * .2f;
-
             spawnTime += deltaTime;
 
             if (spawnTime >= 1000 / 6)
             {
                 spawnTime = 0;
 
-                if (Roll(spawnRate))
+                if (Roll(GetSpawnRate(totalGameTime, Crawler.level, Crawler.spawnRateMultiplier)))
                 {
                     SpawnEnemy("crawler");
                 }
+                if (Roll(GetSpawnRate(totalGameTime, Steelroach.level, Steelroach.spawnRateMultiplier)))
+                {
+                    SpawnEnemy("steelroach");
+                }
             }
+        }
+
+        private float GetSpawnRate(float totalGameTime, int level, float multiplier)
+        {
+            return (float)(Math.Pow(Math.E, - Math.Pow(totalGameTime / 200000 - 1.25f - (level - 1) * .4f, 2))) * .1f * multiplier;
         }
 
         private bool Roll(float chance)
