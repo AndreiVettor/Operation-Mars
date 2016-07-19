@@ -10,6 +10,7 @@ namespace coolgame
     public class Crawler : Enemy
     {
         private Entity target;
+        private float attackCooldown;
 
         public Crawler(ContentManager Content) : base(Content)
         {
@@ -33,6 +34,8 @@ namespace coolgame
         {
             base.Update(deltaTime, input);
 
+            attackCooldown += deltaTime;
+
             target = CollisionManager.CollidesWithBuilding(this);
 
             if (target == null)
@@ -44,7 +47,11 @@ namespace coolgame
             }
             else
             {
-                target.InflictDamage(10);
+                if (attackCooldown >= 1000)
+                {
+                    target.InflictDamage(10);
+                    attackCooldown = 0;
+                }
             }
             
         }
