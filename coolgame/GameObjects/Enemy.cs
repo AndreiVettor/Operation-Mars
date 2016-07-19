@@ -35,5 +35,12 @@ namespace coolgame
             EnableHealthBar = true;
             GameManager.AddEntity(this);
         }
+
+        public override void InflictDamage(int hitpoints)
+        {
+            base.InflictDamage(hitpoints);
+            if(healthBar.Health <= 0)
+                Debug.enemiesKilled++;
+        }
     }
 }

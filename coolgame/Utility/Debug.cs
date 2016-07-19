@@ -11,7 +11,7 @@ namespace coolgame
 {
     static class Debug
     {
-        const string VERSION = "Alpha 0.2. Do not distribute.";
+        const string VERSION = "Alpha 0.3. Do not distribute.";
 
         private static float frameCount = 0;
         private static float timer = 0;
@@ -114,7 +114,7 @@ namespace coolgame
                 string fpsText;
                 if(GameManager.FrameLimiting == true)
                 {
-                    fpsText = "FPS: " + fps.ToString() + " (capped)  'C' to uncap";
+                    fpsText = "FPS: " + fps.ToString() + " (capped)";
                 }
                 else
                 {
@@ -125,8 +125,7 @@ namespace coolgame
 
             DrawText(spriteBatch, VERSION, new Vector2(10, 10));
 
-            DrawText(spriteBatch, "Manelisti ucisi: " + enemiesKilled, new Vector2(Game.GAME_WIDTH - 130, 10));
-            DrawText(spriteBatch, "Spawn rate: " + EnemySpawner.spawnRate, new Vector2(Game.GAME_WIDTH - 130, 30));
+            DrawText(spriteBatch, "Score: " + enemiesKilled, new Vector2(Game.GAME_WIDTH - 70, 10));
 
             if (debugMessages)
             {

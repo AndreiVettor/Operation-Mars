@@ -44,7 +44,7 @@ namespace coolgame
             }
             else
             {
-                target.Damage(10);
+                target.InflictDamage(10);
             }
             
         }

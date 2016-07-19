@@ -9,8 +9,6 @@ namespace coolgame
 {
     class EnemySpawner
     {
-        public static float spawnRate;
-
         private Random random;
         private Enemy.EnemyDirection enemyDirection;
         private Vector2 position;
@@ -21,7 +19,7 @@ namespace coolgame
             set { position = value; }
         }
 
-        //private float spawnRate = 0.01f;
+        private float spawnRate = 0.01f;
         private float spawnTime;
 
         public float SpawnRate

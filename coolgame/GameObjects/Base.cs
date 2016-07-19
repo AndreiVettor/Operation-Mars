@@ -16,6 +16,8 @@ namespace coolgame
 
         public Base(ContentManager content, int groundLevel) : base(content, groundLevel)
         {
+            layerDepth += .02f;
+
             SetTexture(content, "base");
             X = Game.GAME_WIDTH / 2 - Width / 2 - 50;
             Y = groundLevel - Height;

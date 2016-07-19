@@ -194,13 +194,12 @@ namespace coolgame
             }
         }
 
-        public void Damage(int hitpoints)
+        public virtual void InflictDamage(int hitpoints)
         {
             healthBar.Health -= hitpoints;
             if (healthBar.Health <= 0)
             {
                 Alive = false;
-                Debug.enemiesKilled++;
             }
         }
     }

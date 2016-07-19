@@ -49,8 +49,11 @@ namespace coolgame
         {
             for(int i = enemies.Count - 1; i >= 0; i--)
             {
-                enemies[i].Update(deltaTime, input);
-                if (!enemies[i].Alive)
+                if (enemies[i].Alive)
+                {
+                    enemies[i].Update(deltaTime, input);
+                }
+                else
                 {
                     CollisionManager.RemoveEnemy(enemies[i]);
                     enemies.Remove(enemies[i]);
@@ -58,9 +61,12 @@ namespace coolgame
             }
 
             for (int i = buildings.Count - 1; i >= 0; i--)
-            {
-                buildings[i].Update(deltaTime, input);
-                if (!buildings[i].Alive)
+            { 
+                if (buildings[i].Alive)
+                {
+                    buildings[i].Update(deltaTime, input);
+                }
+                else
                 {
                     CollisionManager.RemoveBuilding(buildings[i]);
                     buildings.Remove(buildings[i]);
@@ -69,8 +75,11 @@ namespace coolgame
 
             for (int i = projectiles.Count - 1; i >= 0; i--)
             {
-                projectiles[i].Update(deltaTime, input);
-                if (!projectiles[i].Alive)
+                if (projectiles[i].Alive)
+                {
+                    projectiles[i].Update(deltaTime, input);
+                }
+                else
                 {
                     CollisionManager.RemoveProjectile(projectiles[i]);
                     projectiles.Remove(projectiles[i]);

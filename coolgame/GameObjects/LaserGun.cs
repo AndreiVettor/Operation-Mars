@@ -12,7 +12,6 @@ namespace coolgame
 {
     public class LaserGun : Entity
     {
-        private List<LaserProjectile> projectiles;
         private ContentManager content;
         private float cooldownTime;
 
@@ -23,7 +22,6 @@ namespace coolgame
             Height = texture.Height;
             X = x;
             Y = y;
-            projectiles = new List<LaserProjectile>();
             this.content = content;
             layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
         }
@@ -37,14 +35,7 @@ namespace coolgame
             {
                 SoundManager.PlayClip("laser");
                 cooldownTime = 0;
-                projectiles.Add(new LaserProjectile(content, X + Width / 2, Y + Height / 2, Rotation));
-            }
-
-            for (int i = projectiles.Count - 1; i >= 0; i--)
-            {
-                projectiles[i].Update(deltaTime, input);
-                if (!projectiles[i].Alive)
-                    projectiles.RemoveAt(i);
+                LaserProjectile p = new LaserProjectile(content, X + Width / 2, Y + Height / 2, Rotation);
             }
 
             base.Update(deltaTime, input);
@@ -52,9 +43,6 @@ namespace coolgame
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            foreach (LaserProjectile p in projectiles)
-                p.Draw(spriteBatch);
-
             base.Draw(spriteBatch);
         }
     }
