@@ -48,6 +48,10 @@ namespace coolgame
                 {
                     SpawnEnemy("reptilian");
                 }
+                if (Roll(GetSpawnRate(totalGameTime, 1, 5f)))
+                {
+                    SpawnEnemy("mwat");
+                }
             }
         }
 

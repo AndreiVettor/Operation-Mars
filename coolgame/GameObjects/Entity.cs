@@ -39,7 +39,7 @@ namespace coolgame
         private SpriteEffects spriteEffects;
         protected float layerDepth;
 
-        public double X
+        public virtual double X
         {
             get { return x; }
             set
@@ -51,7 +51,7 @@ namespace coolgame
             }
         }
 
-        public double Y
+        public virtual double Y
         {
             get { return y; }
             set
@@ -63,7 +63,7 @@ namespace coolgame
             }
         }
 
-        public int Width
+        public virtual int Width
         {
             get { return sourceRectangle.Width; }
             set
@@ -79,7 +79,7 @@ namespace coolgame
             }
         }
 
-        public int Height
+        public virtual int Height
         {
             get { return sourceRectangle.Height; }
             set
@@ -93,7 +93,16 @@ namespace coolgame
         public bool EnableAnimation
         {
             get { return enableAnimation; }
-            set { enableAnimation = value; }
+            set
+            {
+                enableAnimation = value;
+
+                if (value == false)
+                {
+                    currentFrame = 0;
+                    sourceRectangle.X = 0;
+                }
+            }
         }
 
         public float AnimationSpeed

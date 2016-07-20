@@ -43,12 +43,13 @@
     <Compile Include="GameObjects\Crawler.cs" />
     <Compile Include="GameObjects\EnemyProjectile.cs" />
     <Compile Include="GameObjects\MeleeEnemy.cs" />
+    <Compile Include="GameObjects\Mwat.cs" />
     <Compile Include="GameObjects\PlayerProjectile.cs" />
     <Compile Include="GameObjects\Reptilian.cs" />
     <Compile Include="GameObjects\Steelroach.cs" />
     <Compile Include="Systems\LayerManager.cs" />
     <Compile Include="Systems\CollisionManager.cs" />
-    <Compile Include="Systems\RangedEnemy.cs" />
+    <Compile Include="GameObjects\RangedEnemy.cs" />
     <Compile Include="Systems\SoundManager.cs" />
     <Compile Include="Utility\Debug.cs" />
     <Compile Include="GameObjects\Enemy.cs" />

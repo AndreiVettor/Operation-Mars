@@ -14,6 +14,8 @@ namespace coolgame
             SetTexture("redlaser");
             Width = texture.Width;
             Height = texture.Height;
+            X = x - Width / 2;
+            Y = y - Height / 2;
         }
 
         public override void Update(float deltaTime)

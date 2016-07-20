@@ -16,11 +16,39 @@ namespace coolgame
 
         public LaserProjectile(ContentManager content, double x, double y, float direction) : base(content)
         {
-            X = x - Width / 2;
-            Y = y - Height / 2;
+            //X = x;
+            //Y = y;
             Rotation = direction;
             layerDepth = LayerManager.GetLayerDepth(Layer.Projectiles);
             GameManager.AddEntity(this);
+        }
+
+        public override int Width
+        {
+            get
+            {
+                return base.Width;
+            }
+
+            set
+            {
+                base.Width = value;
+                //X -= value / 2;
+            }
+        }
+
+        public override int Height
+        {
+            get
+            {
+                return base.Height;
+            }
+
+            set
+            {
+                base.Height = value;
+                //Y -= value / 2;
+            }
         }
 
         public override void Update(float deltaTime)

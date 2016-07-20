@@ -37,6 +37,10 @@ namespace coolgame
                     {
                         return new Reptilian(content);
                     }
+                case "mwat":
+                    {
+                        return new Mwat(content);
+                    }
                 default:
                     {
                         Debug.Log("Tried to create an invalid enemy type!");
