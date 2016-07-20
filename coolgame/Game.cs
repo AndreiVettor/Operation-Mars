@@ -98,6 +98,12 @@ namespace coolgame
                 Debug.Log("Toggled Frame Limiting");
             }
 
+            if (input.KeyPress(Keys.P))
+            {
+                GameManager.GamePaused = !GameManager.GamePaused;
+                Debug.Log("Toggled Game Pause");
+            }
+
             if (input.KeyPress(Keys.F))
             {
                 Debug.ToggleFPS();

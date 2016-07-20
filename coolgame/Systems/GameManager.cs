@@ -26,6 +26,13 @@ namespace coolgame
             get { return projectiles; }
         }
 
+        private static bool gamePaused = false;
+        public static bool GamePaused
+        {
+            set { gamePaused = value; }
+            get { return gamePaused; }
+        }
+
         private static Ground ground;
         public static Ground Ground
         {
@@ -50,12 +57,10 @@ namespace coolgame
         {
             enemies.Add(e);
         }
-
         public static void AddEntity(Building e)
         {
             buildings.Add(e);
         }
-
         public static void AddEntity(LaserProjectile e)
         {
             projectiles.Add(e);
@@ -72,39 +77,42 @@ namespace coolgame
 
         public static void UpdateEntities(float deltaTime, InputManager input)
         {
-            for(int i = enemies.Count - 1; i >= 0; i--)
+            if (!gamePaused)
             {
-                if (enemies[i].Alive)
+                for (int i = enemies.Count - 1; i >= 0; i--)
                 {
-                    enemies[i].Update(deltaTime, input);
+                    if (enemies[i].Alive)
+                    {
+                        enemies[i].Update(deltaTime, input);
+                    }
+                    else
+                    {
+                        enemies.Remove(enemies[i]);
+                    }
                 }
-                else
-                {
-                    enemies.Remove(enemies[i]);
-                }
-            }
 
-            for (int i = buildings.Count - 1; i >= 0; i--)
-            { 
-                if (buildings[i].Alive)
+                for (int i = buildings.Count - 1; i >= 0; i--)
                 {
-                    buildings[i].Update(deltaTime, input);
+                    if (buildings[i].Alive)
+                    {
+                        buildings[i].Update(deltaTime, input);
+                    }
+                    else
+                    {
+                        buildings.Remove(buildings[i]);
+                    }
                 }
-                else
-                {
-                    buildings.Remove(buildings[i]);
-                }
-            }
 
-            for (int i = projectiles.Count - 1; i >= 0; i--)
-            {
-                if (projectiles[i].Alive)
+                for (int i = projectiles.Count - 1; i >= 0; i--)
                 {
-                    projectiles[i].Update(deltaTime, input);
-                }
-                else
-                {
-                    projectiles.Remove(projectiles[i]);
+                    if (projectiles[i].Alive)
+                    {
+                        projectiles[i].Update(deltaTime, input);
+                    }
+                    else
+                    {
+                        projectiles.Remove(projectiles[i]);
+                    }
                 }
             }
         }
