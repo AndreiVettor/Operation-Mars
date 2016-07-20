@@ -16,7 +16,7 @@ namespace coolgame
 
         public Tower(ContentManager content, int groundLevel, int basePosition) : base(content)
         {
-            SetTexture(content, "tower");
+            SetTexture("tower");
             Width = texture.Width;
             Height = texture.Height;
             X = basePosition + 150;

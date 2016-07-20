@@ -22,6 +22,7 @@ namespace coolgame
             get { return collisionBox; }
         }
 
+        private ContentManager content;
         private Rectangle sourceRectangle;
         private Vector2 drawPosition;
         private Vector2 origin;
@@ -131,6 +132,7 @@ namespace coolgame
             totalFrames = 0;
             healthBar = new HealthBar(content);
             X = Y = 0;
+            this.content = content;
         }
 
         public bool Collides(Entity e)
@@ -170,7 +172,7 @@ namespace coolgame
             }
         }
 
-        protected void SetTexture(ContentManager content, string assetName)
+        protected void SetTexture(string assetName)
         {
             texture = content.Load<Texture2D>(assetName);
             if (Width > 0)

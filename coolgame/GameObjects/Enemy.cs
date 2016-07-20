@@ -11,7 +11,8 @@ namespace coolgame
     {
         public enum EnemyDirection { ToLeft, ToRight }
 
-        private EnemyDirection direction;
+        protected EnemyDirection direction;
+        protected EnemyDirection spriteFacing;
 
         public EnemyDirection Direction
         {
@@ -19,21 +20,16 @@ namespace coolgame
             set
             {
                 direction = value;
-                if (SpriteDirection == value)
+                if (spriteFacing == value)
                     Effects = Microsoft.Xna.Framework.Graphics.SpriteEffects.None;
                 else
                     Effects = Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally;
             }
         }
 
-        protected abstract EnemyDirection SpriteDirection { get; }
-
-        public static float spawnRateMultiplier = 1f;
-        public static int level = 1;
-
         public Enemy (ContentManager Content) : base(Content)
         {
-            Direction = SpriteDirection;
+            Direction = spriteFacing = EnemyDirection.ToLeft;
             layerDepth = LayerManager.GetLayerDepth(Layer.Enemies);
             EnableHealthBar = true;
             GameManager.AddEntity(this);

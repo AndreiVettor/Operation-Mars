@@ -19,7 +19,6 @@ namespace coolgame
 
         public static Enemy CreateEnemy(string enemyType)
         {
-            Enemy tempEnemy;
             switch(enemyType.ToLower())
             {
                 case "steve":

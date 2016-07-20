@@ -9,12 +9,9 @@ namespace coolgame
 {
     public class Steelroach : MeleeEnemy
     {
-        public static new float spawnRateMultiplier = .5f;
-        public static new int level = 2;
-
         public Steelroach(ContentManager Content) : base(Content)
         {
-            SetTexture(Content, "steelroach");
+            SetTexture("steelroach");
             Width = Height = 64;
             EnableAnimation = true;
 
@@ -25,14 +22,6 @@ namespace coolgame
 
             hitSound = "steelroachhit";
             attackSound = "steelroachattack";
-        }
-
-        protected override EnemyDirection SpriteDirection
-        {
-            get
-            {
-                return EnemyDirection.ToLeft;
-            }
         }
     }
 }

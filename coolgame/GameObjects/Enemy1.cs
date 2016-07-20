@@ -11,18 +11,10 @@ namespace coolgame
     class Enemy1 : Enemy
     {
         public Enemy1(ContentManager Content) :base(Content) {
-            SetTexture(Content, "enemy2");
+            SetTexture("enemy2");
             Width = 58;
             Height = 80;
             EnableAnimation = true;
-        }
-
-        protected override EnemyDirection SpriteDirection
-        {
-            get
-            {
-                return EnemyDirection.ToLeft;
-            }
         }
 
         public override void Update(float deltaTime, InputManager input)

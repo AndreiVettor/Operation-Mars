@@ -36,11 +36,11 @@ namespace coolgame
             {
                 spawnTime = 0;
 
-                if (Roll(GetSpawnRate(totalGameTime, Crawler.level, Crawler.spawnRateMultiplier)))
+                if (Roll(GetSpawnRate(totalGameTime, 1, 1f)))
                 {
                     SpawnEnemy("crawler");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, Steelroach.level, Steelroach.spawnRateMultiplier)))
+                if (Roll(GetSpawnRate(totalGameTime, 2, .5f)))
                 {
                     SpawnEnemy("steelroach");
                 }

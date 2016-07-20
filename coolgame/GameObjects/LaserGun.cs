@@ -18,7 +18,7 @@ namespace coolgame
 
         public LaserGun(ContentManager content, int x, int y) : base(content)
         {
-            SetTexture(content, "laser");
+            SetTexture("laser");
             Width = texture.Width;
             Height = texture.Height;
             X = x;
