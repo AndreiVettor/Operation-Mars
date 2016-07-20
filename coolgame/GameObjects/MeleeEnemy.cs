@@ -9,18 +9,9 @@ namespace coolgame
 {
     public abstract class MeleeEnemy : Enemy
     {
-        private Building target;
-        private float attackCooldown;
-        protected float movingSpeed;
-        protected float attackSpeed;
-        protected int attackPower;
-        protected string attackSound;
-        protected string hitSound;
-
         public MeleeEnemy(ContentManager Content) : base(Content)
         {
-            movingSpeed = 1f;
-            attackSpeed = 1f;
+            
         }
 
         public override void Update(float deltaTime, InputManager input)

@@ -13,6 +13,13 @@ namespace coolgame
 
         protected EnemyDirection direction;
         protected EnemyDirection spriteFacing;
+        protected float attackCooldown;
+        protected float movingSpeed;
+        protected float attackSpeed;
+        protected int attackPower;
+        protected string attackSound;
+        protected string hitSound;
+        protected Building target;
 
         public EnemyDirection Direction
         {
@@ -33,6 +40,8 @@ namespace coolgame
             layerDepth = LayerManager.GetLayerDepth(Layer.Enemies);
             EnableHealthBar = true;
             GameManager.AddEntity(this);
+            movingSpeed = 1f;
+            attackSpeed = 1f;
         }
 
         public override void InflictDamage(int hitpoints)
