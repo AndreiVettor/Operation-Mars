@@ -229,3 +229,9 @@
 /processorParam:TextureFormat=Color
 /build:reptilian.png
 
+#begin UIFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:UIFont.spritefont
+

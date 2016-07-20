@@ -17,6 +17,8 @@ namespace coolgame
         Base baseBuilding;
         Ground ground;
 
+        Button testButton;
+
         float deltaTime, totalGameTime;
 
         EnemySpawner enemySpawner1, enemySpawner2;
@@ -41,6 +43,8 @@ namespace coolgame
 
             SoundManager.SoundVolume = 50;
             SoundManager.MusicVolume = 50;
+
+            Debug.Log("Game Initialized");
         }
 
         protected override void LoadContent()
@@ -53,6 +57,8 @@ namespace coolgame
 
             EnemyFactory.LoadContent(Content);
             Debug.LoadContent(Content);
+
+            testButton = new Button(Content, new Vector2(50, 50), 100, 100);
 
             SoundManager.AddSong(Content.Load<Song>("music"), "music");
             SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
@@ -89,6 +95,7 @@ namespace coolgame
             InputManager.Update();
             GameManager.UpdateEntities(deltaTime);
 
+            testButton.Update();
             ReadKeyPresses();
 
             enemySpawner1.Update(totalGameTime, deltaTime);
@@ -154,6 +161,8 @@ namespace coolgame
                 LayerManager.GetLayerDepth(Layer.Background));
 
             GameManager.DrawEntities(spriteBatch);
+
+            testButton.Draw(spriteBatch);
 
             Debug.Draw(spriteBatch);
 

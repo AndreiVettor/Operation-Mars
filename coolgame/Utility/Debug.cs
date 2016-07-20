@@ -28,7 +28,7 @@ namespace coolgame
         private static int padding = 10;
         private static int shadowSize = 1;
 
-        public static bool debugMessages = false;
+        public static bool debugMessages = true;
         public static bool debugFPS = true;
         public static bool debugRectangles = false;
 

@@ -16,12 +16,20 @@ namespace coolgame
         private static MouseState mouseState;
         private static MouseState prevMouseState;
 
+        private static Rectangle mouseRectangle = new Rectangle(0,0,1,1);
+
         public static void Update()
         {
             prevKeyState = keyState;
             keyState = Keyboard.GetState();
             prevMouseState = mouseState;
             mouseState = Mouse.GetState();
+            mouseRectangle.Location = new Point(mouseState.X, mouseState.Y);
+        }
+
+        public static bool HoversUIElement(UIElement element)
+        {
+            return mouseRectangle.Intersects(element.Rectangle);
         }
 
         public static int MouseX { get { return mouseState.X; } }

@@ -12,7 +12,6 @@ namespace coolgame
 {
     public class LaserGun : Entity
     {
-        private ContentManager content;
         private float cooldownTime;
         private Random random;
 

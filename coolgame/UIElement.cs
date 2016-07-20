@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,16 @@ using System.Threading.Tasks;
 
 namespace coolgame
 {
-    class UIElement
+    public class UIElement
     {
         protected Vector2 position;
-        public Vector2 Poisition
+        public Vector2 Position
         {
             get { return position; }
-            set {
+            set
+            {
                 position = value;
-                rectangle = new Rectangle((int)position.X, (int)position.Y, rectangle.Width, rectangle.Height);
+                rectangle.Location = new Point((int)value.X, (int)value.Y);
             }
         }
 
@@ -25,20 +27,20 @@ namespace coolgame
         public int Width
         {
             get { return rectangle.Width; }
-            set
-            {
-                rectangle = new Rectangle(rectangle.X, rectangle.Y, value, rectangle.Height);
-            }
+            set { rectangle.Width = value; }
         }
-
         public int Height
         {
             get { return rectangle.Height; }
-            set { rectangle = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height); }
+            set { rectangle.Height = value; }
         }
 
         protected Texture2D texture;
         protected Rectangle rectangle;
+        public Rectangle Rectangle
+        {
+            get { return rectangle; }
+        }
 
         protected Color backgroundColor;
         public Color BackgroundColor
@@ -69,20 +71,30 @@ namespace coolgame
 
         protected SpriteFont font;
 
-        public UIElement(Vector2 position, int width, int height)
+        public UIElement(ContentManager Content, Vector2 position, int width, int height)
         {
-            this.position = position;
+            texture = Content.Load<Texture2D>("tile");
+            font = Content.Load<SpriteFont>("UIFont");
+            BackgroundColor = new Color(Color.Black, 0.2f);
+            ForegroundColor = Color.White;
+            Position = position;
             Width = width;
             Height = height;
             this.text = "";
         }
 
-        public UIElement(Vector2 position, int width, int height, string text)
+        public UIElement(ContentManager Content, Vector2 position, int width, int height, string text)
         {
-            this.position = position;
+            texture = Content.Load<Texture2D>("tile");
+            font = Content.Load<SpriteFont>("UIFont");
+            BackgroundColor = new Color(Color.Black, 0.2f);
+            ForegroundColor = Color.White;
+            Position = position;
             Width = width;
             Height = height;
             this.text = text;
+            textSize = font.MeasureString(text);
+            textPosition = new Vector2(position.X + Width / 2 - textSize.X / 2, position.Y + Height / 2 - textSize.Y / 2);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -90,7 +102,7 @@ namespace coolgame
             spriteBatch.Draw(texture, rectangle, backgroundColor);
             if(text != "")
             {
-                spriteBatch.DrawString(font, text, position, foregroundColor);
+                spriteBatch.DrawString(font, text, textPosition, foregroundColor);
             }
         }
     }
