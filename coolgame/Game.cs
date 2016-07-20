@@ -46,14 +46,16 @@ namespace coolgame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Debug.LoadContent(Content);
+        
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
             baseBuilding = new Base(Content, GameManager.Ground.Top);
 
             EnemyFactory.LoadContent(Content);
-            SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
+            Debug.LoadContent(Content);
+
             SoundManager.AddSong(Content.Load<Song>("music"), "music");
+            SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
             SoundManager.AddClip(Content.Load<SoundEffect>("crawlerhit"), "crawlerhit");
             SoundManager.AddClip(Content.Load<SoundEffect>("steelroachhit"), "steelroachhit");
             SoundManager.AddClip(Content.Load<SoundEffect>("steelroachattack"), "steelroachattack");
@@ -87,6 +89,16 @@ namespace coolgame
             InputManager.Update();
             GameManager.UpdateEntities(deltaTime);
 
+            ReadKeyPresses();
+
+            enemySpawner1.Update(totalGameTime, deltaTime);
+            enemySpawner2.Update(totalGameTime, deltaTime);
+           
+            base.Update(gameTime);
+        }
+
+        public void ReadKeyPresses()
+        {
             if (InputManager.KeyDown(Keys.Escape))
                 Exit();
 
@@ -123,11 +135,6 @@ namespace coolgame
                 Debug.ToggleDebugLog();
                 Debug.Log("Toggled Debug Log");
             }
-
-            enemySpawner1.Update(totalGameTime, deltaTime);
-            enemySpawner2.Update(totalGameTime, deltaTime);
-           
-            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)

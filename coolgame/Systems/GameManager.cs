@@ -46,7 +46,6 @@ namespace coolgame
             get { return frameLimiting; }
             set { frameLimiting = value; }
         }
-        
         public static void ToggleFrameLimiting(Game game)
         {
             frameLimiting = !frameLimiting;
