@@ -20,6 +20,9 @@ namespace coolgame
             movingSpeed = 9f;
             attackSpeed = 1f;
             attackPower = 30;
+
+            attackSound = "steelroachattack";
+            hitSound = "steelroachattack";
         }
     }
 }
