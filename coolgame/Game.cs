@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using coolgame.Systems;
 
 namespace coolgame
 {
@@ -13,11 +14,14 @@ namespace coolgame
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteBatch UIspriteBatch;
+
         Texture2D bgImage;
         Base baseBuilding;
         Ground ground;
 
-        Button testButton;
+        Button resumeButton;
+        Button exitButton;
 
         float deltaTime, totalGameTime;
 
@@ -50,6 +54,7 @@ namespace coolgame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            UIspriteBatch = new SpriteBatch(GraphicsDevice);
         
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
@@ -58,7 +63,13 @@ namespace coolgame
             EnemyFactory.LoadContent(Content);
             Debug.LoadContent(Content);
 
-            testButton = new Button(Content, new Vector2(50, 50), 100, 100);
+            resumeButton = new Button(Content, new Vector2(GAME_WIDTH/2 - 140/2, GAME_HEIGHT/2 - 80), 140, 40, "RESUME");
+            resumeButton.BackgroundColor = Color.CadetBlue;
+            UIManager.AddElement(resumeButton);
+
+            exitButton = new Button(Content, new Vector2(GAME_WIDTH / 2 - 140 / 2, GAME_HEIGHT / 2 - 60 / 2), 140, 40, "EXIT GAME");
+            exitButton.BackgroundColor = Color.CadetBlue;
+            UIManager.AddElement(exitButton);
 
             SoundManager.AddSong(Content.Load<Song>("music"), "music");
             SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
@@ -94,8 +105,8 @@ namespace coolgame
             Debug.Update(deltaTime);
             InputManager.Update();
             GameManager.UpdateEntities(deltaTime);
+            UIManager.Update(this);
 
-            testButton.Update();
             ReadKeyPresses();
 
             enemySpawner1.Update(totalGameTime, deltaTime);
@@ -106,10 +117,12 @@ namespace coolgame
 
         public void ReadKeyPresses()
         {
-            if (InputManager.KeyDown(Keys.Escape))
-                Exit();
+            if (InputManager.KeyPress(Keys.Escape))
+            {
+                UIManager.ToggleMenu();
+            }
 
-            if (InputManager.KeyPress(Keys.C))
+                if (InputManager.KeyPress(Keys.C))
             {
                 GameManager.ToggleFrameLimiting(this);
                 Debug.Log("Toggled Frame Limiting");
@@ -161,12 +174,16 @@ namespace coolgame
                 LayerManager.GetLayerDepth(Layer.Background));
 
             GameManager.DrawEntities(spriteBatch);
-
-            testButton.Draw(spriteBatch);
-
             Debug.Draw(spriteBatch);
 
             spriteBatch.End();
+
+            //UI
+            UIspriteBatch.Begin();
+
+            UIManager.Draw(UIspriteBatch);
+
+            UIspriteBatch.End();
 
             base.Draw(gameTime);
         }

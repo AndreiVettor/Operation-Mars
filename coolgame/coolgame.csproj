@@ -52,6 +52,7 @@
     <Compile Include="Systems\CollisionManager.cs" />
     <Compile Include="GameObjects\RangedEnemy.cs" />
     <Compile Include="Systems\SoundManager.cs" />
+    <Compile Include="Systems\UIManager.cs" />
     <Compile Include="UIElement.cs" />
     <Compile Include="Utility\Debug.cs" />
     <Compile Include="GameObjects\Enemy.cs" />

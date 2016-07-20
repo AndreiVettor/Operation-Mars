@@ -92,12 +92,10 @@ namespace coolgame
             Position = position;
             Width = width;
             Height = height;
-            this.text = text;
-            textSize = font.MeasureString(text);
-            textPosition = new Vector2(position.X + Width / 2 - textSize.X / 2, position.Y + Height / 2 - textSize.Y / 2);
+            Text = text;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, rectangle, backgroundColor);
             if(text != "")

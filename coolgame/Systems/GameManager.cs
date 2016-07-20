@@ -32,6 +32,11 @@ namespace coolgame
             set { gamePaused = value; }
             get { return gamePaused; }
         }
+        public static void TogglePause()
+        {
+            gamePaused = !gamePaused;
+            Debug.Log("Game has been " + (gamePaused ? "paused" : "unpaused"));
+        }
 
         private static Ground ground;
         public static Ground Ground
