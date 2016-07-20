@@ -39,6 +39,26 @@ namespace coolgame
         public override void Update(float deltaTime, InputManager input)
         {
             base.Update(deltaTime, input);
+
+            target = CollisionManager.CollidesWithBuilding(rangeBox);
+
+            if (target == null)
+            {
+                if (Direction == EnemyDirection.ToLeft)
+                    X -= movingSpeed / 100 * deltaTime;
+                else if (Direction == EnemyDirection.ToRight)
+                    X += movingSpeed / 100 * deltaTime;
+            }
+            else
+            {
+                if (attackCooldown >= 1000f / attackSpeed)
+                {
+                    target.InflictDamage(attackPower);
+                    attackCooldown = 0;
+                    if (attackSound != null)
+                        SoundManager.PlayClip(attackSound);
+                }
+            }
         }
     }
 }
