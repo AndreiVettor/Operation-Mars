@@ -9,19 +9,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace coolgame
 {
-    public class InputManager
+    public static class InputManager
     {
-        private KeyboardState keyState;
-        private KeyboardState prevKeyState;
-        private MouseState mouseState;
-        private MouseState prevMouseState;
+        private static KeyboardState keyState;
+        private static KeyboardState prevKeyState;
+        private static MouseState mouseState;
+        private static MouseState prevMouseState;
 
-        public InputManager()
-        {
-
-        }
-
-        public void Update()
+        public static void Update()
         {
             prevKeyState = keyState;
             keyState = Keyboard.GetState();
@@ -29,23 +24,23 @@ namespace coolgame
             mouseState = Mouse.GetState();
         }
 
-        public int MouseX { get { return mouseState.X; } }
+        public static int MouseX { get { return mouseState.X; } }
 
-        public int MouseY { get { return mouseState.Y; } }
+        public static int MouseY { get { return mouseState.Y; } }
 
-        public int DeltaMouseX { get { return mouseState.X - prevMouseState.X; } }
+        public static int DeltaMouseX { get { return mouseState.X - prevMouseState.X; } }
 
-        public int DeltaMouseY { get { return mouseState.Y - prevMouseState.Y; } }
+        public static int DeltaMouseY { get { return mouseState.Y - prevMouseState.Y; } }
 
-        public ButtonState MouseLeft { get { return mouseState.LeftButton; } }
+        public static ButtonState MouseLeft { get { return mouseState.LeftButton; } }
 
-        public ButtonState MouseRight { get { return mouseState.RightButton; } }
+        public static ButtonState MouseRight { get { return mouseState.RightButton; } }
 
-        public ButtonState MouseMiddle { get { return mouseState.MiddleButton; } }
+        public static ButtonState MouseMiddle { get { return mouseState.MiddleButton; } }
 
-        public int MouseScroll { get { return mouseState.ScrollWheelValue - prevMouseState.ScrollWheelValue; } }
+        public static int MouseScroll { get { return mouseState.ScrollWheelValue - prevMouseState.ScrollWheelValue; } }
 
-        public bool LeftClick
+        public static bool LeftClick
         {
             get
             {
@@ -53,7 +48,7 @@ namespace coolgame
             }
         }
 
-        public bool RightClick
+        public static bool RightClick
         {
             get
             {
@@ -61,7 +56,7 @@ namespace coolgame
             }
         }
 
-        public bool MiddleClick
+        public static bool MiddleClick
         {
             get
             {
@@ -69,22 +64,22 @@ namespace coolgame
             }
         }
 
-        public bool KeyDown(Keys key)
+        public static bool KeyDown(Keys key)
         {
             return keyState.IsKeyDown(key);
         }
 
-        public bool KeyUp(Keys key)
+        public static bool KeyUp(Keys key)
         {
             return keyState.IsKeyUp(key);
         }
 
-        public bool KeyPress(Keys key)
+        public static bool KeyPress(Keys key)
         {
             return keyState.IsKeyDown(key) && prevKeyState.IsKeyUp(key);
         }
 
-        public bool KeyRelease(Keys key)
+        public static bool KeyRelease(Keys key)
         {
             return keyState.IsKeyUp(key) && prevKeyState.IsKeyDown(key);
         }

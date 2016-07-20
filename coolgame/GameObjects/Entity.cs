@@ -149,7 +149,7 @@ namespace coolgame
             return false;
         }
 
-        public virtual void Update(float deltaTime, InputManager input)
+        public virtual void Update(float deltaTime)
         {
             if (alive)
             {

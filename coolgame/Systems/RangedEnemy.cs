@@ -36,9 +36,9 @@ namespace coolgame
             rangeBox = new Rectangle();
         }
 
-        public override void Update(float deltaTime, InputManager input)
+        public override void Update(float deltaTime)
         {
-            base.Update(deltaTime, input);
+            base.Update(deltaTime);
 
             target = CollisionManager.CollidesWithBuilding(rangeBox);
 

@@ -14,9 +14,9 @@ namespace coolgame
             
         }
 
-        public override void Update(float deltaTime, InputManager input)
+        public override void Update(float deltaTime)
         {
-            base.Update(deltaTime, input);
+            base.Update(deltaTime);
 
             attackCooldown += deltaTime;
             target = CollisionManager.CollidesWithBuilding(this);

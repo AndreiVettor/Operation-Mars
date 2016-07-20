@@ -17,9 +17,9 @@ namespace coolgame
             EnableAnimation = true;
         }
 
-        public override void Update(float deltaTime, InputManager input)
+        public override void Update(float deltaTime)
         {
-            base.Update(deltaTime, input);
+            base.Update(deltaTime);
             if (Direction == EnemyDirection.ToLeft)
                 X -= 0.1f * deltaTime;
             else if (Direction == EnemyDirection.ToRight)

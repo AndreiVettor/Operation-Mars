@@ -75,7 +75,7 @@ namespace coolgame
             return temp;
         }
 
-        public static void UpdateEntities(float deltaTime, InputManager input)
+        public static void UpdateEntities(float deltaTime)
         {
             if (!gamePaused)
             {
@@ -83,7 +83,7 @@ namespace coolgame
                 {
                     if (enemies[i].Alive)
                     {
-                        enemies[i].Update(deltaTime, input);
+                        enemies[i].Update(deltaTime);
                     }
                     else
                     {
@@ -95,7 +95,7 @@ namespace coolgame
                 {
                     if (buildings[i].Alive)
                     {
-                        buildings[i].Update(deltaTime, input);
+                        buildings[i].Update(deltaTime);
                     }
                     else
                     {
@@ -107,7 +107,7 @@ namespace coolgame
                 {
                     if (projectiles[i].Alive)
                     {
-                        projectiles[i].Update(deltaTime, input);
+                        projectiles[i].Update(deltaTime);
                     }
                     else
                     {

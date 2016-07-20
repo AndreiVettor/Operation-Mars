@@ -28,12 +28,12 @@ namespace coolgame
             random = new Random();
         }
 
-        public override void Update(float deltaTime, InputManager input)
+        public override void Update(float deltaTime)
         {
-            Rotation = (float)Math.Atan2(input.MouseY - Y - Height / 2, input.MouseX - X - Width / 2);
+            Rotation = (float)Math.Atan2(InputManager.MouseY - Y - Height / 2, InputManager.MouseX - X - Width / 2);
 
             cooldownTime += deltaTime;
-            if (input.MouseLeft == ButtonState.Pressed && cooldownTime > 200.0f)
+            if (InputManager.MouseLeft == ButtonState.Pressed && cooldownTime > 200.0f)
             {
                 SoundManager.PlayClip("laser");
                 cooldownTime = 0;
@@ -47,7 +47,7 @@ namespace coolgame
                 }*/
             }
 
-            base.Update(deltaTime, input);
+            base.Update(deltaTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

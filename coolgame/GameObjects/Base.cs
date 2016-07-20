@@ -35,10 +35,10 @@ namespace coolgame
             //healthBar.Y = collisionBox.Y - 20;
         }
 
-        public override void Update(float deltaTime, InputManager input)
+        public override void Update(float deltaTime)
         {
-            base.Update(deltaTime, input);
-            tower.Update(deltaTime, input);
+            base.Update(deltaTime);
+            tower.Update(deltaTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

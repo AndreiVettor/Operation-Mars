@@ -27,10 +27,10 @@ namespace coolgame
             layerDepth += .01f;
         }
 
-        public override void Update(float deltaTime, InputManager input)
+        public override void Update(float deltaTime)
         {
-            base.Update(deltaTime, input);
-            laserGun.Update(deltaTime, input);
+            base.Update(deltaTime);
+            laserGun.Update(deltaTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

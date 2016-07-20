@@ -27,7 +27,7 @@ namespace coolgame
             GameManager.AddEntity(this);
         }
 
-        public override void Update(float deltaTime, InputManager input)
+        public override void Update(float deltaTime)
         {
             X += (float)(Math.Cos(Rotation) * speed * deltaTime);
             Y += (float)(Math.Sin(Rotation) * speed * deltaTime);
@@ -45,7 +45,7 @@ namespace coolgame
                 Alive = false;
             }
 
-            base.Update(deltaTime, input);
+            base.Update(deltaTime);
         }
     }
 }

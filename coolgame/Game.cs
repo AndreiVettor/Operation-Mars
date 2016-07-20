@@ -13,7 +13,6 @@ namespace coolgame
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        InputManager input;
         Texture2D bgImage;
         Base baseBuilding;
         Ground ground;
@@ -34,7 +33,6 @@ namespace coolgame
 
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
-            input = new InputManager();
         }
 
         protected override void Initialize()
@@ -86,41 +84,41 @@ namespace coolgame
             totalGameTime = (float)gameTime.TotalGameTime.TotalMilliseconds;
 
             Debug.Update(deltaTime);
-            input.Update();
-            GameManager.UpdateEntities(deltaTime, input);
+            InputManager.Update();
+            GameManager.UpdateEntities(deltaTime);
 
-            if (input.KeyDown(Keys.Escape))
+            if (InputManager.KeyDown(Keys.Escape))
                 Exit();
 
-            if (input.KeyPress(Keys.C))
+            if (InputManager.KeyPress(Keys.C))
             {
                 GameManager.ToggleFrameLimiting(this);
                 Debug.Log("Toggled Frame Limiting");
             }
 
-            if (input.KeyPress(Keys.P))
+            if (InputManager.KeyPress(Keys.P))
             {
                 GameManager.GamePaused = !GameManager.GamePaused;
                 Debug.Log("Toggled Game Pause");
             }
 
-            if (input.KeyPress(Keys.F))
+            if (InputManager.KeyPress(Keys.F))
             {
                 Debug.ToggleFPS();
                 Debug.Log("Toggled FPS");
             }
-            if (input.KeyPress(Keys.M))
+            if (InputManager.KeyPress(Keys.M))
             {
                 SoundManager.ToggleMute();
                 Debug.Log("Toggled Mute");
             }
 
-            if (input.KeyPress(Keys.R))
+            if (InputManager.KeyPress(Keys.R))
             {
                 Debug.ToggleRectangles();
                 Debug.Log("Toggled Collision Boxes");
             }
-            if (input.KeyPress(Keys.L))
+            if (InputManager.KeyPress(Keys.L))
             {
                 Debug.ToggleDebugLog();
                 Debug.Log("Toggled Debug Log");
