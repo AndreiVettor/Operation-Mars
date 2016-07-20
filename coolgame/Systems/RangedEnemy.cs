@@ -39,8 +39,6 @@ namespace coolgame
         public override void Update(float deltaTime, InputManager input)
         {
             base.Update(deltaTime, input);
-
-
         }
     }
 }

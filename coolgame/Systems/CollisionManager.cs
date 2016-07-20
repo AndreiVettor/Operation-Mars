@@ -27,10 +27,28 @@ namespace coolgame
             return null;
         }
 
+        public static Building CollidesWithBuilding(Rectangle r)
+        {
+            foreach (Building b in GameManager.Buildings)
+                if (b.Alive && b.Collides(r))
+                    return b;
+
+            return null;
+        }
+
         public static Enemy CollidesWithEnemy(Entity e)
         {
             foreach (Enemy enemy in GameManager.Enemies)
                 if (enemy.Alive && e.Collides(enemy))
+                    return enemy;
+
+            return null;
+        }
+
+        public static Enemy CollidesWithEnemy(Rectangle r)
+        {
+            foreach (Enemy enemy in GameManager.Enemies)
+                if (enemy.Alive && enemy.Collides(r))
                     return enemy;
 
             return null;

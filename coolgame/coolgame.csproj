@@ -46,6 +46,7 @@
     <Compile Include="GameObjects\Steelroach.cs" />
     <Compile Include="Systems\LayerManager.cs" />
     <Compile Include="Systems\CollisionManager.cs" />
+    <Compile Include="Systems\RangedEnemy.cs" />
     <Compile Include="Systems\SoundManager.cs" />
     <Compile Include="Utility\Debug.cs" />
     <Compile Include="GameObjects\Enemy.cs" />
