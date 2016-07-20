@@ -23,6 +23,7 @@ namespace coolgame
             movingSpeed = 3.3f;
             attackSpeed = 1f;
             attackSound = "crawlerhit";
+            hitSound = "crawlerhit";
             attackPower = 10;
         }
 
@@ -37,7 +38,6 @@ namespace coolgame
         public override void InflictDamage(int hitpoints)
         {
             base.InflictDamage(hitpoints);
-            SoundManager.PlayClip("crawlerhit");
         }
     }
 }

@@ -205,3 +205,15 @@
 /processorParam:TextureFormat=Color
 /build:steelroach.png
 
+#begin steelroachhit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:steelroachhit.wav
+
+#begin steelroachattack.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:steelroachattack.wav
+

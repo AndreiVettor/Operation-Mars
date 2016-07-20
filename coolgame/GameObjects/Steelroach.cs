@@ -22,6 +22,9 @@ namespace coolgame
             movingSpeed = 6f;
             attackSpeed = 1f;
             attackPower = 15;
+
+            hitSound = "steelroachhit";
+            attackSound = "steelroachattack";
         }
 
         protected override EnemyDirection SpriteDirection

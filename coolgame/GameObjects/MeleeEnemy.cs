@@ -15,6 +15,7 @@ namespace coolgame
         protected float attackSpeed;
         protected int attackPower;
         protected string attackSound;
+        protected string hitSound;
 
         public MeleeEnemy(ContentManager Content) : base(Content)
         {
@@ -46,6 +47,13 @@ namespace coolgame
                         SoundManager.PlayClip(attackSound);
                 }
             }
+        }
+
+        public override void InflictDamage(int hitpoints)
+        {
+            base.InflictDamage(hitpoints);
+            if (hitSound != null)
+                SoundManager.PlayClip(hitSound);
         }
     }
 }

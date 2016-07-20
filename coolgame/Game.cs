@@ -57,6 +57,8 @@ namespace coolgame
             SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
             SoundManager.AddSong(Content.Load<Song>("music"), "music");
             SoundManager.AddClip(Content.Load<SoundEffect>("crawlerhit"), "crawlerhit");
+            SoundManager.AddClip(Content.Load<SoundEffect>("steelroachhit"), "steelroachhit");
+            SoundManager.AddClip(Content.Load<SoundEffect>("steelroachattack"), "steelroachattack");
 
             SoundManager.PlaySong("music");
 

@@ -49,7 +49,7 @@ namespace coolgame
 
         private float GetSpawnRate(float totalGameTime, int level, float multiplier)
         {
-            return (float)(Math.Pow(Math.E, - Math.Pow(totalGameTime / 200000 - 1.25f - (level - 1) * .4f, 2))) * .1f * multiplier;
+            return (float)(Math.Pow(Math.E, - Math.Pow(totalGameTime / 200000 - 1.2f - (level - 1) * .4f, 2))) * .05f * multiplier;
         }
 
         private bool Roll(float chance)
