@@ -44,6 +44,10 @@ namespace coolgame
                 {
                     SpawnEnemy("steelroach");
                 }
+                if (Roll(GetSpawnRate(totalGameTime, 1, .5f)))
+                {
+                    SpawnEnemy("reptilian");
+                }
             }
         }
 

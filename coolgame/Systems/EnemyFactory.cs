@@ -33,6 +33,10 @@ namespace coolgame
                     {
                         return new Steelroach(content);
                     }
+                case "reptilian":
+                    {
+                        return new Reptilian(content);
+                    }
                 default:
                     {
                         Debug.Log("Tried to create an invalid enemy type!");
