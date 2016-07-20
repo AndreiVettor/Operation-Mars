@@ -140,7 +140,7 @@ namespace coolgame
 
             if(debugRectangles)
             {
-                List<Entity> entities = CollisionManager.GetEntityList();
+                List<Entity> entities = GameManager.GetEntityList();
                 foreach (Entity e in entities)
                 {
                     //debugRectangle = new Rectangle((int)e.X, (int)e.Y, e.Width, e.Height);

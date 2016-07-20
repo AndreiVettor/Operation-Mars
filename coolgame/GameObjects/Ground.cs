@@ -28,7 +28,7 @@ namespace coolgame
         {
             texture = content.Load<Texture2D>("ground");
             rectangle = new Rectangle(0, Game.GAME_HEIGHT - texture.Height, Game.GAME_WIDTH, texture.Height);
-            CollisionManager.SetGround(this);
+            GameManager.Ground = this;
         }
 
         public Ground(ContentManager content, int height)

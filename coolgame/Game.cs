@@ -15,8 +15,8 @@ namespace coolgame
         SpriteBatch spriteBatch;
         InputManager input;
         Texture2D bgImage;
-        Ground ground;
         Base baseBuilding;
+        Ground ground;
 
         float deltaTime, totalGameTime;
 
@@ -51,7 +51,7 @@ namespace coolgame
             Debug.LoadContent(Content);
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
-            baseBuilding = new Base(Content, ground.Top);
+            baseBuilding = new Base(Content, GameManager.Ground.Top);
 
             EnemyFactory.LoadContent(Content);
             SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
@@ -70,8 +70,8 @@ namespace coolgame
                 System.DateTime.Now.Second +
                 System.DateTime.Now.Millisecond;
 
-            enemySpawner1 = new EnemySpawner(seed, new Vector2(Game.GAME_WIDTH + 50, ground.Top), Enemy.EnemyDirection.ToLeft);
-            enemySpawner2 = new EnemySpawner(seed + 1337, new Vector2(-50, ground.Top), Enemy.EnemyDirection.ToRight);
+            enemySpawner1 = new EnemySpawner(seed, new Vector2(Game.GAME_WIDTH + 50, GameManager.Ground.Top), Enemy.EnemyDirection.ToLeft);
+            enemySpawner2 = new EnemySpawner(seed + 1337, new Vector2(-50, GameManager.Ground.Top), Enemy.EnemyDirection.ToRight);
             
         }
 
@@ -141,8 +141,6 @@ namespace coolgame
                 Vector2.Zero,
                 SpriteEffects.None,
                 LayerManager.GetLayerDepth(Layer.Background));
-
-            ground.Draw(spriteBatch);
 
             GameManager.DrawEntities(spriteBatch);
 

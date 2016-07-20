@@ -11,8 +11,27 @@ namespace coolgame
     public static class GameManager
     {
         private static List<Enemy> enemies = new List<Enemy>();
+        public static List<Enemy> Enemies
+        {
+            get { return enemies; }
+        }
         private static List<Building> buildings = new List<Building>();
+        public static List<Building> Buildings
+        {
+            get { return buildings; }
+        }
         private static List<LaserProjectile> projectiles = new List<LaserProjectile>();
+        public static List<LaserProjectile> Projectiles
+        {
+            get { return projectiles; }
+        }
+
+        private static Ground ground;
+        public static Ground Ground
+        {
+            set { ground = value; }
+            get { return ground; }
+        }
 
         private static bool frameLimiting;
         public static bool FrameLimiting
@@ -30,19 +49,25 @@ namespace coolgame
         public static void AddEntity(Enemy e)
         {
             enemies.Add(e);
-            CollisionManager.AddEnemy(e);
         }
 
         public static void AddEntity(Building e)
         {
             buildings.Add(e);
-            CollisionManager.AddBuilding(e);
         }
 
         public static void AddEntity(LaserProjectile e)
         {
             projectiles.Add(e);
-            CollisionManager.AddProjectile(e);
+        }
+
+        public static List<Entity> GetEntityList()
+        {
+            List<Entity> temp = new List<Entity>();
+            temp.AddRange(enemies);
+            temp.AddRange(buildings);
+            temp.AddRange(projectiles);
+            return temp;
         }
 
         public static void UpdateEntities(float deltaTime, InputManager input)
@@ -55,7 +80,6 @@ namespace coolgame
                 }
                 else
                 {
-                    CollisionManager.RemoveEnemy(enemies[i]);
                     enemies.Remove(enemies[i]);
                 }
             }
@@ -68,7 +92,6 @@ namespace coolgame
                 }
                 else
                 {
-                    CollisionManager.RemoveBuilding(buildings[i]);
                     buildings.Remove(buildings[i]);
                 }
             }
@@ -81,7 +104,6 @@ namespace coolgame
                 }
                 else
                 {
-                    CollisionManager.RemoveProjectile(projectiles[i]);
                     projectiles.Remove(projectiles[i]);
                 }
             }
@@ -89,6 +111,8 @@ namespace coolgame
 
         public static void DrawEntities(SpriteBatch spriteBatch)
         {
+            ground.Draw(spriteBatch);
+
             foreach(Enemy e in enemies)
             {
                 e.Draw(spriteBatch);
