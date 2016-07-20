@@ -22,7 +22,7 @@ namespace coolgame
             get { return collisionBox; }
         }
 
-        private ContentManager content;
+        protected ContentManager content;
         private Rectangle sourceRectangle;
         private Vector2 drawPosition;
         private Vector2 origin;

@@ -39,7 +39,7 @@ namespace coolgame
                 cooldownTime = 0;
                 double projectileX = X + Width / 2 +  Math.Cos(Rotation) * (Width / 4);
                 double projectileY = Y + Height / 2 + Math.Sin(Rotation) * (Width / 4);
-                LaserProjectile p = new LaserProjectile(content, projectileX, projectileY, Rotation);
+                LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation);
 
                 /*for (int i = 0; i < 1000; ++i)
                 {

@@ -53,7 +53,7 @@ namespace coolgame
             {
                 if (attackCooldown >= 1000f / attackSpeed)
                 {
-                    target.InflictDamage(attackPower);
+                    EnemyProjectile p = new EnemyProjectile(content, X + Width, Y + Height / 2, 0, attackPower);
                     attackCooldown = 0;
                     if (attackSound != null)
                         SoundManager.PlayClip(attackSound);
