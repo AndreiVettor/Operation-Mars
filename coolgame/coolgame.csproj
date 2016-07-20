@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Button.cs" />
     <Compile Include="GameObjects\Base.cs" />
     <Compile Include="GameObjects\Building.cs" />
     <Compile Include="GameObjects\Crawler.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Systems\CollisionManager.cs" />
     <Compile Include="Systems\RangedEnemy.cs" />
     <Compile Include="Systems\SoundManager.cs" />
+    <Compile Include="UIElement.cs" />
     <Compile Include="Utility\Debug.cs" />
     <Compile Include="GameObjects\Enemy.cs" />
     <Compile Include="GameObjects\Enemy1.cs" />
