@@ -12,6 +12,8 @@ namespace coolgame
 {
     public class HealthBar
     {
+        public enum HealthBarColoring { Normal, Forcefield };
+
         private Texture2D texture;
         private Rectangle rectangle;
         private Color color;
@@ -23,6 +25,7 @@ namespace coolgame
         private float autoHideTime;
         private bool visible;
         private float layerDepth = LayerManager.GetLayerDepth(Layer.Healthbar);
+        private HealthBarColoring colorScheme;
 
         public int Width
         {
@@ -88,6 +91,16 @@ namespace coolgame
             set { autoHide = value; }
         }
 
+        public HealthBarColoring ColorScheme
+        {
+            get { return colorScheme; }
+            set
+            {
+                colorScheme = value;
+                UpdateAppearance();
+            }
+        }
+
         public HealthBar(ContentManager content)
         {
             texture = content.Load<Texture2D>("hpbar");
@@ -96,6 +109,7 @@ namespace coolgame
             Height = 5;
             MaxHealth = 100;
             visible = false;
+            colorScheme = HealthBarColoring.Normal;
         }
 
         public void Update(float deltaTime)
@@ -115,7 +129,11 @@ namespace coolgame
         {
             float value = (float)health / maxHealth;
             rectangle.Width = (int)(maxWidth * value);
-            color = new Color(Math.Min(255, (int)(500 * (1 - value))), Math.Min(255, (int)(500 * value)), 0);
+
+            if (colorScheme == HealthBarColoring.Normal)
+                color = new Color(Math.Min(255, (int)(500 * (1 - value))), Math.Min(255, (int)(500 * value)), 0);
+            else if (colorScheme == HealthBarColoring.Forcefield)
+                color = new Color((int)(255 * (1 - value)), Math.Max(135, (int)(255 * (1 - value))), 255);
         }
 
         private void UpdatePosition()

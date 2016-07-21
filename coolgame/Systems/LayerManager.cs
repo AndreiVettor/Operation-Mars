@@ -10,6 +10,7 @@ namespace coolgame
     {
         Debugging,
         UI,
+        Forcefields,
         Projectiles,
         Healthbar,
         Enemies,
@@ -26,6 +27,7 @@ namespace coolgame
             {
                 case Layer.Debugging: return 0;
                 case Layer.UI: return .1f;
+                case Layer.Forcefields: return .15f;
                 case Layer.Projectiles: return .2f;
                 case Layer.Healthbar: return .3f;
                 case Layer.Enemies: return .4f;

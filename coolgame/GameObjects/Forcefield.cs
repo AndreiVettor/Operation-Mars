@@ -20,8 +20,11 @@ namespace coolgame
             Y = groundLevel - Height;
 
             healthBar.MaxHealth = 1000;
+            healthBar.ColorScheme = HealthBar.HealthBarColoring.Forcefield;
             rechargeRate = 1f;
             rechargePower = 1;
+
+            this.layerDepth = LayerManager.GetLayerDepth(Layer.Forcefields);
         }
 
         public override void Update(float deltaTime)
