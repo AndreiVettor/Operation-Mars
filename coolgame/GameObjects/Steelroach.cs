@@ -11,11 +11,12 @@ namespace coolgame
     {
         public Steelroach(ContentManager Content) : base(Content)
         {
-            SetTexture("steelroach");
-            Width = Height = 64;
+            SetTexture("steelroach2");
+            Width = 98;
+            Height = 53;
             EnableAnimation = true;
 
-            healthBar.MaxHealth = 50;
+            healthBar.MaxHealth = 40;
             movingSpeed = 6f;
             attackSpeed = 1f;
             attackPower = 15;
