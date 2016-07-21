@@ -20,7 +20,7 @@ namespace coolgame
             movingSpeed = 9f;
             attackSpeed = 1f;
             attackPower = 30;
-            precision = 10f;
+            precision = ((float)GameManager.RNG.NextDouble() * 10f + 10f);
 
             Range = GameManager.RNG.Next(100, 350);
 
