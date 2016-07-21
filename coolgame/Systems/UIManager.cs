@@ -37,7 +37,7 @@ namespace coolgame.Systems
             foreach (Button b in uiElements)
             {
                 b.Update();
-                if (b.Pressed)
+                if (drawMenu && b.Pressed)
                 {
                     switch (uiElements.IndexOf(b))
                     {
