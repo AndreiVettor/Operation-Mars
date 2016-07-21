@@ -133,7 +133,7 @@ namespace coolgame
             if (colorScheme == HealthBarColoring.Normal)
                 color = new Color(Math.Min(255, (int)(500 * (1 - value))), Math.Min(255, (int)(500 * value)), 0);
             else if (colorScheme == HealthBarColoring.Forcefield)
-                color = new Color((int)(255 * (1 - value)), Math.Max(135, (int)(255 * (1 - value))), 255);
+                color = new Color((int)(255 * (1 - value)), 135 + (int)(120 * (1 - value)), 255);
         }
 
         private void UpdatePosition()
