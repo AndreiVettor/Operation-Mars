@@ -14,6 +14,8 @@ namespace coolgame
         private Building target;
         private double pathLeft, pathRight;
         private float altitudeVariation;
+        private float altitudeVariationModifier;
+        private float ebriety;
 
         public ReptilianSaucer(ContentManager Content) : base(Content)
         {
@@ -26,6 +28,8 @@ namespace coolgame
             movingSpeed = 10;
             attackPower = 50;
             attackSound = "enemylaser";
+            ebriety = GameManager.RNG.Next(0, 200);
+            altitudeVariationModifier = (float)GameManager.RNG.NextDouble() / 2 + .5f;
         }
 
         public override double X
@@ -49,7 +53,12 @@ namespace coolgame
 
             attackCooldown += deltaTime;
 
-            target = CollisionManager.CollidesWithForcefield(detectionBox);
+            if (target != null && !target.Alive)
+                target = null;
+
+            if (target == null)
+                target = CollisionManager.CollidesWithForcefield(detectionBox);
+
             if (target == null)
                 target = CollisionManager.CollidesWithBuilding(detectionBox);
 
@@ -71,8 +80,8 @@ namespace coolgame
                         SoundManager.PlayClip(attackSound);
                 }
 
-                pathLeft = target.X;
-                pathRight = target.X + target.Width;
+                pathLeft = target.X - ebriety;
+                pathRight = target.X + target.Width + ebriety;
             }
 
             if (direction == EnemyDirection.ToLeft)
@@ -89,7 +98,7 @@ namespace coolgame
                 if (pathRight <= X + Width / 2)
                     direction = EnemyDirection.ToLeft;
             }
-            Y = Y - 0.7f * Math.Sin(altitudeVariation / 300);
+            Y = Y - altitudeVariationModifier * Math.Sin(altitudeVariation / 300);
         }
     }
 }

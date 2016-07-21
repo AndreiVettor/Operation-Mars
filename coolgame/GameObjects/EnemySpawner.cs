@@ -48,7 +48,7 @@ namespace coolgame
                 }
                 if (Roll(GetSpawnRate(totalGameTime, 1, 1f)))
                 {
-                    //SpawnEnemy("reptiliansaucer");
+                    SpawnEnemy("reptiliansaucer");
                 }
                 if (Roll(GetSpawnRate(totalGameTime, 1, 4f)))
                 {
