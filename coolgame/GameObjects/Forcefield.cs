@@ -21,8 +21,8 @@ namespace coolgame
 
             healthBar.MaxHealth = 1000;
             healthBar.ColorScheme = HealthBar.HealthBarColoring.Forcefield;
-            rechargeRate = 100f;
-            rechargePower = 1;
+            rechargeRate = 1;
+            rechargePower = 5;
 
             this.layerDepth = LayerManager.GetLayerDepth(Layer.Forcefields);
         }

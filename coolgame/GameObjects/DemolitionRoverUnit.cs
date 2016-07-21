@@ -13,7 +13,7 @@ namespace coolgame
         {
             SetTexture("tank");
 
-            healthBar.MaxHealth = 100;
+            healthBar.MaxHealth = 50;
             movingSpeed = 9f;
             attackSpeed = 50f;
             attackPower = 1;
