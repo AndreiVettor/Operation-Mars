@@ -17,7 +17,6 @@ namespace coolgame
         SpriteBatch UIspriteBatch;
 
         Texture2D bgImage;
-        Base baseBuilding;
         Ground ground;
 
         Button resumeButton;
@@ -58,7 +57,8 @@ namespace coolgame
         
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
-            baseBuilding = new Base(Content, GameManager.Ground.Top);
+            Base baseBuilding = new Base(Content, GameManager.Ground.Top);
+            Forcefield test = new Forcefield(Content, GameManager.Ground.Top);
 
             EnemyFactory.LoadContent(Content);
             Debug.LoadContent(Content);

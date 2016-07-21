@@ -43,6 +43,7 @@
     <Compile Include="GameObjects\Building.cs" />
     <Compile Include="GameObjects\Crawler.cs" />
     <Compile Include="GameObjects\EnemyProjectile.cs" />
+    <Compile Include="GameObjects\Forcefield.cs" />
     <Compile Include="GameObjects\MeleeEnemy.cs" />
     <Compile Include="GameObjects\Mwat.cs" />
     <Compile Include="GameObjects\PlayerProjectile.cs" />
