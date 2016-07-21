@@ -52,7 +52,11 @@ namespace coolgame
                 }
                 if (Roll(GetSpawnRate(totalGameTime, 1, 4f)))
                 {
-                    SpawnEnemy("demolitionroverunit");
+                    //SpawnEnemy("demolitionroverunit");
+                }
+                if (Roll(GetSpawnRate(totalGameTime, 1, 4f)))
+                {
+                    SpawnEnemy("mwat");
                 }
             }
         }

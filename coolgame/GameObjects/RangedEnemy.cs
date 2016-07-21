@@ -13,6 +13,7 @@ namespace coolgame
     {
         private int range;
         private Rectangle rangeBox;
+        protected float precision;
 
         protected int Range
         {
@@ -84,6 +85,7 @@ namespace coolgame
         public RangedEnemy(ContentManager Content) : base(Content)
         {
             rangeBox = new Rectangle();
+            precision = 1f;
         }
 
         public override void Update(float deltaTime)
@@ -107,16 +109,16 @@ namespace coolgame
                 if (attackCooldown >= 1000f / attackSpeed)
                 {
                     double projectileX;
-                    float projectileDirection;
+                    float projectileDirection = (float)((GameManager.RNG.NextDouble() - .5f) * Math.PI / precision);
                     if (direction == EnemyDirection.ToLeft)
                     {
                         projectileX = X;
-                        projectileDirection = (float)Math.PI;
+                        projectileDirection += (float)Math.PI;
                     }
                     else
                     {
                         projectileX = X + Width;
-                        projectileDirection = 0;
+                        //projectileDirection = 0;
                     }
                     EnemyProjectile p = new EnemyProjectile(content, projectileX, Y + Height / 2, projectileDirection, attackPower);
                     attackCooldown = 0;
