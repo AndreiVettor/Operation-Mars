@@ -14,12 +14,15 @@ namespace coolgame
     {
         private float cooldownTime;
         private Random random;
+        private float acceleration;
+        private int defaultX;
 
         public LaserGun(ContentManager content, int x, int y) : base(content)
         {
             SetTexture("laser");
             Width = texture.Width;
             Height = texture.Height;
+            defaultX = x;
             X = x;
             Y = y;
             this.content = content;
@@ -40,11 +43,29 @@ namespace coolgame
                 double projectileY = Y + Height / 2 + Math.Sin(Rotation) * (Width / 4);
                 LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation);
 
+                //Recoil
+                X -= 5;
+                acceleration = -1;
+
+
                 /*for (int i = 0; i < 3; ++i)
                 {
                     p = new PlayerProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * (float)Math.PI / 20);
                 }*/
             }
+            X += acceleration;
+            if (Math.Abs(defaultX - X) < 5)
+            {
+                X = defaultX;
+                acceleration = 0;
+            }
+
+            acceleration += 0.2f;
+            if(acceleration > 1)
+            {
+                acceleration = 1;
+            }
+
 
             base.Update(deltaTime);
         }
