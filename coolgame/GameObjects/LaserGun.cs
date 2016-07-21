@@ -14,6 +14,9 @@ namespace coolgame
     {
         private float cooldownTime;
         private Random random;
+        private int auxiliaryProjectiles;
+        private float maxSpread;
+        private float cooldown;
 
         public LaserGun(ContentManager content, int x, int y) : base(content)
         {
@@ -25,14 +28,25 @@ namespace coolgame
             this.content = content;
             layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
             random = new Random();
+            cooldown = 200f;
         }
 
         public override void Update(float deltaTime)
         {
+            if (InputManager.KeyPress(Keys.D1))
+            {
+                auxiliaryProjectiles++;
+                maxSpread = (float)Math.PI / 40 * auxiliaryProjectiles;
+            }
+            if (InputManager.KeyDown(Keys.D2))
+            {
+                cooldown /= 1.05f;
+            }
+
             Rotation = (float)Math.Atan2(InputManager.MouseY - Y - Height / 2, InputManager.MouseX - X - Width / 2);
 
             cooldownTime += deltaTime;
-            if (InputManager.MouseLeft == ButtonState.Pressed && cooldownTime > 200.0f)
+            if (InputManager.MouseLeft == ButtonState.Pressed && cooldownTime > cooldown)
             {
                 SoundManager.PlayClip("laser");
                 cooldownTime = 0;
@@ -40,10 +54,10 @@ namespace coolgame
                 double projectileY = Y + Height / 2 + Math.Sin(Rotation) * (Width / 4);
                 LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation);
 
-                /*for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < auxiliaryProjectiles; ++i)
                 {
-                    p = new PlayerProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * (float)Math.PI / 20);
-                }*/
+                    p = new PlayerProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * maxSpread);
+                }
             }
 
             base.Update(deltaTime);

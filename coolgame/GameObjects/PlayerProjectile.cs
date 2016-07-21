@@ -26,7 +26,7 @@ namespace coolgame
             Enemy victim = CollisionManager.CollidesWithEnemy(this);
             if (victim != null)
             {
-                victim.InflictDamage(5);
+                victim.InflictDamage(10);
                 Alive = false;
             }
 
