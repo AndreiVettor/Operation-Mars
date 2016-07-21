@@ -155,7 +155,7 @@ namespace coolgame
 
             GraphicsDevice.Clear(Color.White);
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, null, null, null, null, null);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null);
 
             spriteBatch.Draw(bgImage,
                 new Rectangle(0, 0, GAME_WIDTH, GAME_HEIGHT),

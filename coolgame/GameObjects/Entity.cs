@@ -135,6 +135,12 @@ namespace coolgame
             set { spriteEffects = value; }
         }
 
+        public float LayerDepth
+        {
+            get { return layerDepth; }
+            set { layerDepth = value; }
+        }
+
         public Entity(ContentManager content)
         {
             sourceRectangle = new Rectangle();
