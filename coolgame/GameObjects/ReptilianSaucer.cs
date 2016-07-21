@@ -23,6 +23,8 @@ namespace coolgame
             detectionBox.Height = Game.GAME_HEIGHT - detectionBox.Y;
             detectionBox.Width = Width;
             movingSpeed = 10;
+            attackPower = 50;
+            attackSound = "enemylaser";
         }
 
         public override double X
@@ -43,8 +45,9 @@ namespace coolgame
         {
             base.Update(deltaTime);
 
-            target = CollisionManager.CollidesWithForcefield(detectionBox);
+            attackCooldown += deltaTime;
 
+            target = CollisionManager.CollidesWithForcefield(detectionBox);
             if (target == null)
                 target = CollisionManager.CollidesWithBuilding(detectionBox);
 
@@ -55,6 +58,17 @@ namespace coolgame
             }
             else
             {
+                if (attackCooldown >= 1000f / attackSpeed)
+                {
+                    double projectileX = X + Width / 2;
+                    double projectileY = Y + Height;
+                    float projectileDirection = (float)Math.PI / 2;
+                    EnemyProjectile p = new EnemyProjectile(content, projectileX, projectileY, projectileDirection, attackPower);
+                    attackCooldown = 0;
+                    if (attackSound != null)
+                        SoundManager.PlayClip(attackSound);
+                }
+
                 pathLeft = target.X;
                 pathRight = target.X + target.Width;
             }
