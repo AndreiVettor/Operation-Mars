@@ -93,7 +93,9 @@ namespace coolgame
         protected override void Update(GameTime gameTime)
         {
             deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            totalGameTime = (float)gameTime.TotalGameTime.TotalMilliseconds;
+
+            if (!GameManager.GamePaused)
+                totalGameTime += deltaTime;
 
             Debug.Update(deltaTime);
             InputManager.Update();
