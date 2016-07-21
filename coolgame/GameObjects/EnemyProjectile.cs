@@ -13,11 +13,11 @@ namespace coolgame
 
         public EnemyProjectile(ContentManager content, double x, double y, float direction, int attackPower) : base(content, x, y, direction)
         {
-            SetTexture("testlaser");
+            SetTexture("mwatlaser");
             Width = texture.Width;
             Height = texture.Height;
             this.attackPower = attackPower;
-            speed = 1f;
+            speed = 3f;
             X = x - Width / 2;
             Y = y - Height / 2;
         }

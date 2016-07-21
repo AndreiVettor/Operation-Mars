@@ -21,8 +21,9 @@ namespace coolgame
             attackSpeed = 1f;
             attackPower = 30;
 
-            MinRange = 50;
-            MaxRange = 150;
+            Range = GameManager.RNG.Next(100, 350);
+
+            attackSound = "enemylaser";
         }
     }
 }

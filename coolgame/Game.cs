@@ -72,6 +72,7 @@ namespace coolgame
             UIManager.AddElement(exitButton);
 
             SoundManager.AddSong(Content.Load<Song>("music"), "music");
+            SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser"), "enemylaser");
             SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
             SoundManager.AddClip(Content.Load<SoundEffect>("crawlerhit"), "crawlerhit");
             SoundManager.AddClip(Content.Load<SoundEffect>("steelroachhit"), "steelroachhit");
@@ -79,16 +80,8 @@ namespace coolgame
 
             SoundManager.PlaySong("music");
 
-            int seed = System.DateTime.Now.Year +
-                System.DateTime.Now.Month +
-                System.DateTime.Now.Day +
-                System.DateTime.Now.Hour +
-                System.DateTime.Now.Minute +
-                System.DateTime.Now.Second +
-                System.DateTime.Now.Millisecond;
-
-            enemySpawner1 = new EnemySpawner(seed, new Vector2(Game.GAME_WIDTH + 50, GameManager.Ground.Top), Enemy.EnemyDirection.ToLeft);
-            enemySpawner2 = new EnemySpawner(seed + 1337, new Vector2(-50, GameManager.Ground.Top), Enemy.EnemyDirection.ToRight);
+            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, GameManager.Ground.Top), Enemy.EnemyDirection.ToLeft);
+            enemySpawner2 = new EnemySpawner(new Vector2(-50, GameManager.Ground.Top), Enemy.EnemyDirection.ToRight);
             
         }
 
