@@ -16,7 +16,7 @@ namespace coolgame
         private Random random;
 
         private float acceleration;
-        private int defaultX;
+        private int defaultX, defaultY;
         private int recoilOffset;
         private float recoilAcceleration;
         private float recoilRecovery;
@@ -33,6 +33,7 @@ namespace coolgame
             Height = texture.Height;
 
             defaultX = x;
+            defaultY = y;
             recoilOffset = 6;
             recoilAcceleration = -1;
             recoilRecovery = 0.3f;
@@ -73,7 +74,8 @@ namespace coolgame
                 LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation);
 
                 //Recoil
-                X -= recoilOffset;
+                X -= recoilOffset * Math.Cos(Rotation);
+                Y -= recoilOffset * Math.Sin(Rotation);
                 acceleration = recoilAcceleration;
 
                 for (int i = 0; i < auxiliaryProjectiles; ++i)
@@ -82,12 +84,20 @@ namespace coolgame
                 }
             }
 
-            X += acceleration;
+            X += acceleration * Math.Cos(Rotation);
+            Y += acceleration * Math.Sin(Rotation);
 
             //If laser is close enough to default position lock into place
-            if (Math.Abs(defaultX - X) < 2)
+            if (Math.Abs(defaultX - X) < 3)
             {
                 X = defaultX;
+            }
+            if (Math.Abs(defaultY - Y) < 3)
+            {
+                Y = defaultY;
+            }
+            if (Math.Abs(defaultX - X) < 3 && Math.Abs(defaultY - Y) < 3)
+            {
                 acceleration = 0;
             }
 
@@ -107,6 +117,17 @@ namespace coolgame
                 }
                 else {
                     X = defaultX + 10;
+                }
+            }
+            if (Math.Abs(defaultY - Y) > 10)
+            {
+                if (defaultY - Y > 0)
+                {
+                    Y = defaultY - 10;
+                }
+                else
+                {
+                    Y = defaultY + 10;
                 }
             }
 

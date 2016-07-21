@@ -25,7 +25,7 @@ namespace coolgame
         protected ContentManager content;
         private Rectangle sourceRectangle;
         private Vector2 drawPosition;
-        private Vector2 origin;
+        protected Vector2 origin;
         private int totalFrames;
         private int currentFrame;
         private float frameUpdateTime;
