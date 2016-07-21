@@ -36,19 +36,23 @@ namespace coolgame
 
                 if (Roll(GetSpawnRate(totalGameTime, 1, 1f)))
                 {
-                    SpawnEnemy("crawler");
+                    //SpawnEnemy("crawler");
                 }
                 if (Roll(GetSpawnRate(totalGameTime, 2, .5f)))
                 {
-                    SpawnEnemy("steelroach");
+                    //SpawnEnemy("steelroach");
                 }
                 if (Roll(GetSpawnRate(totalGameTime, 1, .5f)))
                 {
-                    SpawnEnemy("reptilian");
+                    //SpawnEnemy("reptilian");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, 1, 5f)))
+                if (Roll(GetSpawnRate(totalGameTime, 1, 1f)))
                 {
-                    SpawnEnemy("reptiliansaucer");
+                    //SpawnEnemy("reptiliansaucer");
+                }
+                if (Roll(GetSpawnRate(totalGameTime, 1, 4f)))
+                {
+                    SpawnEnemy("demolitionroverunit");
                 }
             }
         }

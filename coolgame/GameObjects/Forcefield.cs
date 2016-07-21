@@ -21,7 +21,7 @@ namespace coolgame
 
             healthBar.MaxHealth = 1000;
             healthBar.ColorScheme = HealthBar.HealthBarColoring.Forcefield;
-            rechargeRate = 1f;
+            rechargeRate = 100f;
             rechargePower = 1;
 
             this.layerDepth = LayerManager.GetLayerDepth(Layer.Forcefields);
@@ -34,7 +34,7 @@ namespace coolgame
             if (healthBar.Health < healthBar.MaxHealth)
             {
                 rechargeTime += deltaTime;
-                if (rechargeTime >= 1 / (rechargeRate * 60))
+                if (rechargeTime >= 1000f / rechargeRate )
                 {
                     healthBar.Health += rechargePower;
                     rechargeTime = 0;

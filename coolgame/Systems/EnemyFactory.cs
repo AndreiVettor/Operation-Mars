@@ -45,6 +45,10 @@ namespace coolgame
                     {
                         return new ReptilianSaucer(content);
                     }
+                case "demolitionroverunit":
+                    {
+                        return new DemolitionRoverUnit(content);
+                    }
                 default:
                     {
                         Debug.Log("Tried to create an invalid enemy type!");
