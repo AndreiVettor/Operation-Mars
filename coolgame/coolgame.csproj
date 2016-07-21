@@ -52,6 +52,7 @@
     <Compile Include="Systems\LayerManager.cs" />
     <Compile Include="Systems\CollisionManager.cs" />
     <Compile Include="GameObjects\RangedEnemy.cs" />
+    <Compile Include="GameObjects\ReptilianSaucer.cs" />
     <Compile Include="Systems\SoundManager.cs" />
     <Compile Include="Systems\UIManager.cs" />
     <Compile Include="UIElement.cs" />

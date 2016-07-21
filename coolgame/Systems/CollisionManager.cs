@@ -36,6 +36,15 @@ namespace coolgame
             return null;
         }
 
+        public static Forcefield CollidesWithForcefield(Rectangle r)
+        {
+            foreach (Building f in GameManager.Buildings)
+                if (typeof(Forcefield).IsInstanceOfType(f) && f.Alive && f.Collides(r))
+                    return (Forcefield)f;
+
+            return null;
+        }
+
         public static Enemy CollidesWithEnemy(Entity e)
         {
             foreach (Enemy enemy in GameManager.Enemies)

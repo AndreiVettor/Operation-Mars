@@ -48,7 +48,7 @@ namespace coolgame
                 }
                 if (Roll(GetSpawnRate(totalGameTime, 1, 5f)))
                 {
-                    SpawnEnemy("mwat");
+                    SpawnEnemy("reptiliansaucer");
                 }
             }
         }
@@ -69,8 +69,15 @@ namespace coolgame
         public void SpawnEnemy(string enemyType)
         {
             Enemy tempEnemy = EnemyFactory.CreateEnemy(enemyType);
-            tempEnemy.X = position.X;
-            tempEnemy.Y = position.Y - tempEnemy.Height;
+
+            if (enemyDirection == Enemy.EnemyDirection.ToLeft)
+                tempEnemy.X = position.X;
+            else
+                tempEnemy.X = position.X - tempEnemy.Width;
+
+            if (enemyType != "reptiliansaucer")
+                tempEnemy.Y = position.Y - tempEnemy.Height;
+
             tempEnemy.Direction = enemyDirection;
         }       
     }
