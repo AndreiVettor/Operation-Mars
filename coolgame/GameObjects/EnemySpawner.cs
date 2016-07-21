@@ -9,7 +9,6 @@ namespace coolgame
 {
     class EnemySpawner
     {
-        private Random random;
         private Enemy.EnemyDirection enemyDirection;
         private Vector2 position;
 
@@ -21,11 +20,10 @@ namespace coolgame
 
         private float spawnTime;
 
-        public EnemySpawner(int seed, Vector2 position, Enemy.EnemyDirection enemyDirection)
+        public EnemySpawner(Vector2 position, Enemy.EnemyDirection enemyDirection)
         {
             this.position = position;
             this.enemyDirection = enemyDirection;
-            random = new Random(seed);
         }
 
         public void Update(float totalGameTime, float deltaTime)
@@ -62,7 +60,7 @@ namespace coolgame
 
         private bool Roll(float chance)
         {
-            int pseudoRandomNumber = random.Next(100000);
+            int pseudoRandomNumber = GameManager.RNG.Next(100000);
             if (pseudoRandomNumber < chance * 100000)
                 return true;
             return false;

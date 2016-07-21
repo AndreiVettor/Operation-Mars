@@ -16,6 +16,7 @@ namespace coolgame
             Height = texture.Height;
             X = x - Width / 2;
             Y = y - Height / 2;
+            speed = 3;
         }
 
         public override void Update(float deltaTime)

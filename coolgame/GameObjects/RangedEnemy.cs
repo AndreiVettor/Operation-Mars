@@ -11,41 +11,17 @@ namespace coolgame
 {
     public abstract class RangedEnemy : Enemy
     {
-        private int minRange;
-        private int maxRange;
-        private int actualRange;
+        private int range;
         private Rectangle rangeBox;
-        private Random random = new Random();
 
-        protected int MinRange
+        protected int Range
         {
-            get { return minRange; }
+            get { return range; }
             set
             {
-                minRange = value;
-
-                if (value < maxRange)
-                {
-                    actualRange = random.Next(value, maxRange + 1);
-                    rangeBox.X = (int)X - actualRange;
-                    rangeBox.Width = Width + 2 * actualRange;
-                }      
-            }
-        }
-
-        protected int MaxRange
-        {
-            get { return maxRange; }
-            set
-            {
-                maxRange = value;
-
-                if (minRange < value)
-                {
-                    actualRange = random.Next(value, maxRange + 1);
-                    rangeBox.X = (int)X - actualRange;
-                    rangeBox.Width = Width + 2 * actualRange;
-                }
+                range = value;
+                rangeBox.X = (int)X - range;
+                rangeBox.Width = Width + 2 * range;
             }
         }
 
@@ -59,7 +35,7 @@ namespace coolgame
             set
             {
                 base.X = value;
-                rangeBox.X = (int)X - actualRange;
+                rangeBox.X = (int)X - range;
             }
         }
 
@@ -87,7 +63,7 @@ namespace coolgame
             set
             {
                 base.Width = value;
-                rangeBox.Width = Width + 2 * actualRange;
+                rangeBox.Width = Width + 2 * range;
             }
         }
 
@@ -134,12 +110,12 @@ namespace coolgame
                     float projectileDirection;
                     if (direction == EnemyDirection.ToLeft)
                     {
-                        projectileX = X - 50;
+                        projectileX = X;
                         projectileDirection = (float)Math.PI;
                     }
                     else
                     {
-                        projectileX = X + Width + 50;
+                        projectileX = X + Width;
                         projectileDirection = 0;
                     }
                     EnemyProjectile p = new EnemyProjectile(content, projectileX, Y + Height / 2, projectileDirection, attackPower);
