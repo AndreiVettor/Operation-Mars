@@ -13,11 +13,12 @@ namespace coolgame
         private Rectangle detectionBox;
         private Building target;
         private double pathLeft, pathRight;
+        private float altitudeVariation;
 
         public ReptilianSaucer(ContentManager Content) : base(Content)
         {
             SetTexture("ufo");
-            Y = GameManager.RNG.Next(10, 200);
+            Y = GameManager.RNG.Next(40, 200);
             detectionBox = new Rectangle();
             detectionBox.Y = (int)Y;
             detectionBox.Height = Game.GAME_HEIGHT - detectionBox.Y;
@@ -44,6 +45,7 @@ namespace coolgame
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
+            altitudeVariation += deltaTime;
 
             attackCooldown += deltaTime;
 
@@ -87,6 +89,7 @@ namespace coolgame
                 if (pathRight <= X + Width / 2)
                     direction = EnemyDirection.ToLeft;
             }
+            Y = Y - 0.7f * Math.Sin(altitudeVariation / 300);
         }
     }
 }
