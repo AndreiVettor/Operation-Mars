@@ -77,6 +77,7 @@ namespace coolgame
         public static void PlaySong(string songName)
         {
             MediaPlayer.Play(songs[songName]);
+            MediaPlayer.IsRepeating = true;
         }
 
     }
