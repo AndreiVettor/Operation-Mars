@@ -15,7 +15,7 @@ namespace coolgame
         private float cooldownTime;
         private Random random;
 
-        private Vector2 acceleration;
+        private Vector2 velocity;
         //private float acceleration;
         private int defaultX, defaultY;
         private int recoilOffset;
@@ -78,7 +78,7 @@ namespace coolgame
                 X -= recoilOffset * Math.Cos(Rotation);
                 Y -= recoilOffset * Math.Sin(Rotation);
                 //acceleration = recoilAcceleration;
-                acceleration = new Vector2(recoilAcceleration * (float)Math.Cos(Rotation), recoilAcceleration * (float)Math.Sin(Rotation));
+                velocity = new Vector2(recoilAcceleration * (float)Math.Cos(Rotation), recoilAcceleration * (float)Math.Sin(Rotation));
 
                 for (int i = 0; i < auxiliaryProjectiles; ++i)
                 {
@@ -91,11 +91,11 @@ namespace coolgame
 
             //acceleration += recoilRecovery;
 
-            X += acceleration.X;
-            Y += acceleration.Y;
+            X += velocity.X;
+            Y += velocity.Y;
 
             float recoveryAngle = (float)Math.Atan2(Y - defaultY, X - defaultX);
-            acceleration -= new Vector2(recoilRecovery * (float)Math.Cos(recoveryAngle), recoilRecovery * (float)Math.Sin(recoveryAngle));
+            velocity -= new Vector2(recoilRecovery * (float)Math.Cos(recoveryAngle), recoilRecovery * (float)Math.Sin(recoveryAngle));
 
             //If laser is close enough to default position lock into place
             if (Math.Abs(defaultX - X) < 3)
@@ -108,7 +108,7 @@ namespace coolgame
             }
             if (Math.Abs(defaultX - X) < 3 && Math.Abs(defaultY - Y) < 3)
             {
-                acceleration = Vector2.Zero;
+                velocity = Vector2.Zero;
                 //acceleration = 0;
             }
 
