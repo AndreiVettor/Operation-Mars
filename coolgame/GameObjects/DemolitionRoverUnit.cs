@@ -12,11 +12,11 @@ namespace coolgame
         public DemolitionRoverUnit(ContentManager Content) : base(Content)
         {
             SetTexture("tank");
-            Width = 132;
+            Width = 133;
             Height = 57;
             EnableAnimation = true;
-            AnimationSpeed /= 3;
-            healthBar.MaxHealth = 50;
+            AnimationSpeed /= 1;
+            healthBar.MaxHealth = 550;
             movingSpeed = 9f;
             attackSpeed = 50f;
             attackPower = 1;
