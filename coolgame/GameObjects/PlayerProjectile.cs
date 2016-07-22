@@ -9,7 +9,7 @@ namespace coolgame
 {
     public class PlayerProjectile : LaserProjectile
     {
-        public PlayerProjectile(ContentManager content, double x, double y, float direction) : base(content, x, y, direction)
+        public PlayerProjectile(ContentManager content, double x, double y, float direction, int attackPower) : base(content, x, y, direction, attackPower)
         {
             SetTexture("redlaser");
             Width = texture.Width;
@@ -26,7 +26,7 @@ namespace coolgame
             Enemy victim = CollisionManager.CollidesWithEnemy(this);
             if (victim != null)
             {
-                victim.InflictDamage(10);
+                victim.InflictDamage(attackPower);
                 Alive = false;
             }
 

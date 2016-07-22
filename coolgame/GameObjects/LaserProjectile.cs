@@ -13,14 +13,16 @@ namespace coolgame
     public abstract class LaserProjectile : Entity
     {
         protected float speed = 3;
+        protected int attackPower;
 
-        public LaserProjectile(ContentManager content, double x, double y, float direction) : base(content)
+        public LaserProjectile(ContentManager content, double x, double y, float direction, int attackPower) : base(content)
         {
             //X = x;
             //Y = y;
             Rotation = direction;
             layerDepth = LayerManager.GetLayerDepth(Layer.Projectiles);
             GameManager.AddEntity(this);
+            this.attackPower = attackPower;
         }
 
         public override int Width

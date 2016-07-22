@@ -25,6 +25,14 @@ namespace coolgame
         private float maxSpread;
         private float cooldown;
 
+        private int attackPower;
+
+        public int AttackPower
+        {
+            get { return attackPower; }
+            set { attackPower = value; }
+        }
+
         public LaserGun(ContentManager content, int x, int y) : base(content)
         {
             SetTexture("laser");
@@ -43,6 +51,8 @@ namespace coolgame
             layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
             random = new Random();
             cooldown = 200f;
+
+            attackPower = 10;
         }
 
         public void PointAt(int targetX, int targetY)
@@ -58,7 +68,7 @@ namespace coolgame
                 cooldownTime = 0;
                 double projectileX = X + Width / 2 + Math.Cos(Rotation) * (Width / 4);
                 double projectileY = Y + Height / 2 + Math.Sin(Rotation) * (Width / 4);
-                LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation);
+                LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation, attackPower);
 
                 //Recoil
                 X -= recoilOffset * Math.Cos(Rotation);
@@ -68,7 +78,7 @@ namespace coolgame
 
                 for (int i = 0; i < auxiliaryProjectiles; ++i)
                 {
-                    p = new PlayerProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * maxSpread);
+                    p = new PlayerProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * maxSpread, attackPower);
                 }
             }
         }
