@@ -21,7 +21,7 @@ namespace coolgame
             Height = texture.Height;
             X = basePosition + 150;
             Y = groundLevel - Height;
-            laserGun = new LaserGun(content, (int)X + 10, (int)Y + 15);
+            laserGun = new LaserGun(content, (int)X + 15, (int)Y + 15);
             layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
 
             layerDepth += .01f;
