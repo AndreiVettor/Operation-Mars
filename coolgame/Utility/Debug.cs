@@ -11,7 +11,7 @@ namespace coolgame
 {
     static class Debug
     {
-        const string VERSION = "Alpha 0.5. Do not distribute.";
+        const string VERSION = "Alpha 0.6. Do not distribute.";
 
         private static float frameCount = 0;
         private static float timer = 0;
