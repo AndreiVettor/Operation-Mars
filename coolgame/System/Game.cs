@@ -21,6 +21,7 @@ namespace coolgame
         Ground ground;
 
         UIWindow pauseMenu;
+        UIWindow upgradeMenu;
         Button resumeButton;
         Button exitButton;
 
@@ -80,7 +81,13 @@ namespace coolgame
 
             pauseMenu.AddItem(resumeButton);
             pauseMenu.AddItem(exitButton);
+
+            upgradeMenu = new UIWindow(Content, new Vector2(GAME_WIDTH / 2 - 500/2, GAME_HEIGHT / 2-400/2), 500, 400);
+
+            
+
             UIManager.AddElement(pauseMenu);
+            UIManager.AddElement(upgradeMenu);
 
 
             //Sound
@@ -133,10 +140,15 @@ namespace coolgame
         {
             if (InputManager.KeyPress(Keys.Escape))
             {
-                UIManager.ToggleMenu();
+                UIManager.TogglePauseMenu();
             }
 
-                if (InputManager.KeyPress(Keys.C))
+            if(InputManager.KeyPress(Keys.U))
+            {
+                UIManager.ToggleUpgradeMenu();
+            }
+
+            if (InputManager.KeyPress(Keys.C))
             {
                 GameManager.ToggleFrameLimiting(this);
                 Debug.Log("Toggled Frame Limiting");

@@ -15,19 +15,32 @@ namespace coolgame.Systems
         private static List<UIElement> elements = new List<UIElement>();
 
         private static int windowNumber = 0;
-        private static bool drawMenu = false;
+        private static bool pauseMenuOpen = false;
+        private static bool upgradeMenuOpen = false;
 
-        public static void ToggleMenu()
+        public static void TogglePauseMenu()
         {
-            if(drawMenu)
+            if(pauseMenuOpen)
             {
-                drawMenu = false;
+                pauseMenuOpen = false;
                 GameManager.GamePaused = false;
             }
             else
             {
-                drawMenu = true;
+                pauseMenuOpen = true;
                 GameManager.GamePaused = true;
+            }
+        }
+
+        public static void ToggleUpgradeMenu()
+        {
+            if (upgradeMenuOpen)
+            {
+                upgradeMenuOpen = false;
+            }
+            else
+            {
+                upgradeMenuOpen = true;
             }
         }
 
@@ -71,16 +84,16 @@ namespace coolgame.Systems
                                     //Resume button
                                     case 0:
                                         {
-                                            if(windows[i].GetButtons()[j].Pressed && drawMenu)
+                                            if(windows[i].GetButtons()[j].Pressed && pauseMenuOpen)
                                             {
-                                                ToggleMenu();
+                                                TogglePauseMenu();
                                             }
                                             break;
                                         }
                                     //Exit button
                                     case 1:
                                         {
-                                            if (windows[i].GetButtons()[j].Pressed && drawMenu)
+                                            if (windows[i].GetButtons()[j].Pressed && pauseMenuOpen)
                                             {
                                                 game.Exit();
                                             }
@@ -91,6 +104,30 @@ namespace coolgame.Systems
                                             break;
                                         }
                                 }
+                            }
+                            break;
+                        } 
+                    //Upgrade Menu
+                    case 1:
+                        {
+                            for (int j = 0; j < windows[i].GetButtons().Count; j++)
+                            {
+                                switch (j)
+                                {
+                                    case 0:
+                                        {
+                                            if (windows[i].GetButtons()[j].Pressed && upgradeMenuOpen)
+                                            {
+                                                TogglePauseMenu();
+                                            }
+                                            break;
+                                        }
+                                    default:
+                                        {
+                                            break;
+                                        }
+                                }
+
                             }
                             break;
                         }
@@ -112,7 +149,15 @@ namespace coolgame.Systems
                     //Pause Menu
                     case 0:
                         {
-                            if (drawMenu)
+                            if (pauseMenuOpen)
+                            {
+                                windows[i].Draw(spriteBatch);
+                            }
+                            break;
+                        }
+                    case 1:
+                        {
+                            if(upgradeMenuOpen)
                             {
                                 windows[i].Draw(spriteBatch);
                             }
