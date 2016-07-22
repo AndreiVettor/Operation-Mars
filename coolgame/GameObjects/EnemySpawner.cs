@@ -38,7 +38,7 @@ namespace coolgame
                 {
                     SpawnEnemy("crawler");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, 3, .1f)))
+                if (Roll(GetSpawnRate(totalGameTime, 1, .25f)))
                 {
                     SpawnEnemy("steelroach");
                 }

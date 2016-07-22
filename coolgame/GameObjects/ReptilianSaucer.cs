@@ -99,7 +99,7 @@ namespace coolgame
                 if (pathRight <= X + Width / 2)
                     direction = EnemyDirection.ToLeft;
             }
-            Y = Y - altitudeVariationModifier * Math.Sin(altitudeVariation / 300);
+            Y = Y - altitudeVariationModifier * Math.Sin(altitudeVariation / 300) * deltaTime * 6 / 100;
         }
     }
 }

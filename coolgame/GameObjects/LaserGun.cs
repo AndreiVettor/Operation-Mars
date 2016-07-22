@@ -91,11 +91,12 @@ namespace coolgame
 
             //acceleration += recoilRecovery;
 
-            X += velocity.X;
-            Y += velocity.Y;
+            X += velocity.X * deltaTime * 6 / 100;
+            Y += velocity.Y * deltaTime * 6 / 100;
 
             float recoveryAngle = (float)Math.Atan2(Y - defaultY, X - defaultX);
-            velocity -= new Vector2(recoilRecovery * (float)Math.Cos(recoveryAngle), recoilRecovery * (float)Math.Sin(recoveryAngle));
+            velocity -= new Vector2(recoilRecovery * (float)Math.Cos(recoveryAngle), recoilRecovery * (float)Math.Sin(recoveryAngle)) *
+                deltaTime * 6 / 100;
 
             //If laser is close enough to default position lock into place
             if (Math.Abs(defaultX - X) < 3)
