@@ -50,6 +50,7 @@
     <Compile Include="GameObjects\PlayerProjectile.cs" />
     <Compile Include="GameObjects\Reptilian.cs" />
     <Compile Include="GameObjects\Steelroach.cs" />
+    <Compile Include="GameObjects\Turret.cs" />
     <Compile Include="Systems\LayerManager.cs" />
     <Compile Include="Systems\CollisionManager.cs" />
     <Compile Include="GameObjects\RangedEnemy.cs" />

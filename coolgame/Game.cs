@@ -58,6 +58,8 @@ namespace coolgame
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
             Base baseBuilding = new Base(Content, GameManager.Ground.Top);
+            Turret t1 = new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToLeft);
+            Turret t2 = new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToRight);
             Forcefield test = new Forcefield(Content, GameManager.Ground.Top);
 
             EnemyFactory.LoadContent(Content);
