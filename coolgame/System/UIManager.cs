@@ -18,6 +18,8 @@ namespace coolgame.Systems
         private static bool pauseMenuOpen = false;
         private static bool upgradeMenuOpen = false;
 
+        private static bool clickedUI = false;
+
         public static void TogglePauseMenu()
         {
             if(pauseMenuOpen)
@@ -112,22 +114,26 @@ namespace coolgame.Systems
                         {
                             for (int j = 0; j < windows[i].GetButtons().Count; j++)
                             {
-                                switch (j)
+                                if (windows[i].GetButtons()[j].Pressed && upgradeMenuOpen)
                                 {
-                                    case 0:
-                                        {
-                                            if (windows[i].GetButtons()[j].Pressed && upgradeMenuOpen)
+                                    switch (j)
+                                    {
+                                        case 0:
                                             {
-                                                TogglePauseMenu();
+                                                ToggleUpgradeMenu();
+                                                break;
                                             }
-                                            break;
-                                        }
-                                    default:
-                                        {
-                                            break;
-                                        }
+                                        case 1:
+                                            {
+                                                
+                                                break;
+                                            }
+                                        default:
+                                            {
+                                                break;
+                                            }
+                                    }
                                 }
-
                             }
                             break;
                         }

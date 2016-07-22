@@ -15,6 +15,8 @@ namespace coolgame.UI
         private List<UIElement> menuItems;
         private UIElement background;
 
+        public bool ButtonPressed;
+
         public List<Button> GetButtons()
         {
             return menuButtons;
@@ -36,13 +38,19 @@ namespace coolgame.UI
             menuItems = new List<UIElement>();
             background = new UIElement(Content, position, width, height);
             background.BackgroundColor = new Color(Color.SlateGray, 0.2f);
+            ButtonPressed = false;
         }
 
         public void Update()
         {
             foreach(Button b in menuItems)
             {
+                ButtonPressed = false;
                 b.Update();
+                if(b.Pressed)
+                {
+                    ButtonPressed = true;
+                }
             }
         }
 

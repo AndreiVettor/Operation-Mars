@@ -22,8 +22,7 @@ namespace coolgame
 
         UIWindow pauseMenu;
         UIWindow upgradeMenu;
-        Button resumeButton;
-        Button exitButton;
+        Button menuButton;
 
         float deltaTime, totalGameTime;
 
@@ -72,19 +71,9 @@ namespace coolgame
 
             //UI
             pauseMenu = new UIWindow(Content, new Vector2(GAME_WIDTH / 2 - 200/2, GAME_HEIGHT / 2 - 200/2), 200, 140);
+            upgradeMenu = new UIWindow(Content, new Vector2(GAME_WIDTH / 2 - 500 / 2, GAME_HEIGHT / 2 - 400 / 2), 500, 400);
 
-            resumeButton = new Button(Content, new Vector2(GAME_WIDTH/2 - 140/2, GAME_HEIGHT/2 - 80), 140, 40, "RESUME");
-            resumeButton.BackgroundColor = Color.CadetBlue;
-
-            exitButton = new Button(Content, new Vector2(GAME_WIDTH / 2 - 140 / 2, GAME_HEIGHT / 2 - 60 / 2), 140, 40, "EXIT GAME");
-            exitButton.BackgroundColor = Color.CadetBlue;
-
-            pauseMenu.AddItem(resumeButton);
-            pauseMenu.AddItem(exitButton);
-
-            upgradeMenu = new UIWindow(Content, new Vector2(GAME_WIDTH / 2 - 500/2, GAME_HEIGHT / 2-400/2), 500, 400);
-
-            
+            AddButtons();
 
             UIManager.AddElement(pauseMenu);
             UIManager.AddElement(upgradeMenu);
@@ -108,6 +97,82 @@ namespace coolgame
             
         }
 
+        public void AddButtons()
+        {
+            //PAUSE MENU
+            menuButton = new Button(
+               Content, new Vector2(
+                   GAME_WIDTH / 2 - 140 / 2,
+                   GAME_HEIGHT / 2 - 80),
+               140, 40, "RESUME");
+            menuButton.BackgroundColor = Color.CadetBlue;
+            pauseMenu.AddItem(menuButton);
+
+            menuButton = new Button(
+                Content,
+                new Vector2(
+                    GAME_WIDTH / 2 - 140 / 2,
+                    GAME_HEIGHT / 2 - 60 / 2),
+                140, 40, "EXIT GAME");
+            menuButton.BackgroundColor = Color.CadetBlue;
+            pauseMenu.AddItem(menuButton);
+
+            //UPGRADE MENU
+            menuButton = new Button(
+                Content,
+                new Vector2(
+                    upgradeMenu.Position.X + upgradeMenu.Width - 30 - 10,
+                    upgradeMenu.Position.Y + 10),
+                30, 30, "X");
+            menuButton.BackgroundColor = Color.CadetBlue;
+            upgradeMenu.AddItem(menuButton);
+
+            menuButton = new Button(
+                Content,
+                new Vector2(
+                    upgradeMenu.Position.X + 20,
+                    upgradeMenu.Position.Y + 20),
+                250, 30, "Upgrade Lasergun Speed (x2)");
+            menuButton.BackgroundColor = Color.CadetBlue;
+            upgradeMenu.AddItem(menuButton);
+
+            menuButton = new Button(
+                Content,
+                new Vector2(
+                    upgradeMenu.Position.X + 20,
+                    upgradeMenu.Position.Y + 70),
+                250, 30, "Add Auxiliary Shooting (x2)");
+            menuButton.BackgroundColor = Color.CadetBlue;
+            upgradeMenu.AddItem(menuButton);
+
+            menuButton = new Button(
+                Content,
+                new Vector2(
+                    upgradeMenu.Position.X + 20,
+                    upgradeMenu.Position.Y + 120),
+                250, 30, "Build Forcefield Generator");
+            menuButton.BackgroundColor = Color.CadetBlue;
+            upgradeMenu.AddItem(menuButton);
+
+            menuButton = new Button(
+                Content,
+                new Vector2(
+                    upgradeMenu.Position.X + 20,
+                    upgradeMenu.Position.Y + 170),
+                250, 30, "Upgrade Forcefield Regen");
+            menuButton.BackgroundColor = Color.CadetBlue;
+            upgradeMenu.AddItem(menuButton);
+
+            menuButton = new Button(
+                Content,
+                new Vector2(
+                    upgradeMenu.Position.X + 20,
+                    upgradeMenu.Position.Y + 220),
+                250, 30, "Upgrade Forcefield Strength");
+            menuButton.BackgroundColor = Color.CadetBlue;
+            upgradeMenu.AddItem(menuButton);
+        }
+
         protected override void UnloadContent()
         {
 
@@ -120,10 +185,10 @@ namespace coolgame
             if (!GameManager.GamePaused)
                 totalGameTime += deltaTime;
 
+            UIManager.Update(this);
             Debug.Update(deltaTime);
             InputManager.Update();
             GameManager.UpdateEntities(deltaTime);
-            UIManager.Update(this);
 
             ReadKeyPresses();
 
