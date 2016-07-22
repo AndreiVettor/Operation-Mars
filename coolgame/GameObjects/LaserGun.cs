@@ -15,7 +15,8 @@ namespace coolgame
         private float cooldownTime;
         private Random random;
 
-        private float acceleration;
+        private Vector2 acceleration;
+        //private float acceleration;
         private int defaultX, defaultY;
         private int recoilOffset;
         private float recoilAcceleration;
@@ -61,7 +62,7 @@ namespace coolgame
                 if (recoilOffset < 0) recoilOffset = 0;
             }
 
-            if (acceleration == 0)
+            //if (acceleration == 0)
                 Rotation = (float)Math.Atan2(InputManager.MouseY - Y - Height / 2, InputManager.MouseX - X - Width / 2);
 
             cooldownTime += deltaTime;
@@ -76,7 +77,8 @@ namespace coolgame
                 //Recoil
                 X -= recoilOffset * Math.Cos(Rotation);
                 Y -= recoilOffset * Math.Sin(Rotation);
-                acceleration = recoilAcceleration;
+                //acceleration = recoilAcceleration;
+                acceleration = new Vector2(recoilAcceleration * (float)Math.Cos(Rotation), recoilAcceleration * (float)Math.Sin(Rotation));
 
                 for (int i = 0; i < auxiliaryProjectiles; ++i)
                 {
@@ -84,10 +86,16 @@ namespace coolgame
                 }
             }
 
-            X += acceleration * Math.Cos(Rotation);
-            Y += acceleration * Math.Sin(Rotation);
+            //X += acceleration * Math.Cos(Rotation);
+            //Y += acceleration * Math.Sin(Rotation);
 
-            acceleration += recoilRecovery;
+            //acceleration += recoilRecovery;
+
+            X += acceleration.X;
+            Y += acceleration.Y;
+
+            float recoveryAngle = (float)Math.Atan2(Y - defaultY, X - defaultX);
+            acceleration -= new Vector2(recoilRecovery * (float)Math.Cos(recoveryAngle), recoilRecovery * (float)Math.Sin(recoveryAngle));
 
             //If laser is close enough to default position lock into place
             if (Math.Abs(defaultX - X) < 3)
@@ -100,14 +108,15 @@ namespace coolgame
             }
             if (Math.Abs(defaultX - X) < 3 && Math.Abs(defaultY - Y) < 3)
             {
-                acceleration = 0;
+                acceleration = Vector2.Zero;
+                //acceleration = 0;
             }
 
             //Clamp acceleration
-            if (acceleration > -recoilAcceleration)
+            /*if (acceleration > -recoilAcceleration)
             {
                 acceleration = -recoilAcceleration;
-            }
+            }*/
 
             if (Math.Abs(defaultX - X) > 10)
             {
