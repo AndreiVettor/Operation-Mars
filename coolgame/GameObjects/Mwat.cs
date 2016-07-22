@@ -22,7 +22,7 @@ namespace coolgame
             attackPower = 30;
             precision = ((float)GameManager.RNG.NextDouble() * 10f + 10f);
 
-            Range = GameManager.RNG.Next(100, 350);
+            Range = GameManager.RNG.Next(100, 300);
 
             attackSound = "enemylaser";
         }
