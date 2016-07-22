@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace coolgame
 {
-    class Button : UIElement
+    public class Button : UIElement
     {
         private Color pressedColor;
         public Color PressedColor

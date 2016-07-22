@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using coolgame.Systems;
+using coolgame.UI;
 
 namespace coolgame
 {
@@ -19,6 +20,7 @@ namespace coolgame
         Texture2D bgImage;
         Ground ground;
 
+        UIWindow pauseMenu;
         Button resumeButton;
         Button exitButton;
 
@@ -55,6 +57,7 @@ namespace coolgame
             spriteBatch = new SpriteBatch(GraphicsDevice);
             UIspriteBatch = new SpriteBatch(GraphicsDevice);
         
+            //Base
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
             Base baseBuilding = new Base(Content, GameManager.Ground.Top);
@@ -62,17 +65,25 @@ namespace coolgame
             Turret t2 = new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToRight);
             Forcefield test = new Forcefield(Content, GameManager.Ground.Top);
 
-            EnemyFactory.LoadContent(Content);
+            //Utility
             Debug.LoadContent(Content);
+
+
+            //UI
+            pauseMenu = new UIWindow(Content, new Vector2(GAME_WIDTH / 2 - 200/2, GAME_HEIGHT / 2 - 200/2), 200, 140);
 
             resumeButton = new Button(Content, new Vector2(GAME_WIDTH/2 - 140/2, GAME_HEIGHT/2 - 80), 140, 40, "RESUME");
             resumeButton.BackgroundColor = Color.CadetBlue;
-            UIManager.AddElement(resumeButton);
 
             exitButton = new Button(Content, new Vector2(GAME_WIDTH / 2 - 140 / 2, GAME_HEIGHT / 2 - 60 / 2), 140, 40, "EXIT GAME");
             exitButton.BackgroundColor = Color.CadetBlue;
-            UIManager.AddElement(exitButton);
 
+            pauseMenu.AddItem(resumeButton);
+            pauseMenu.AddItem(exitButton);
+            UIManager.AddElement(pauseMenu);
+
+
+            //Sound
             SoundManager.AddSong(Content.Load<Song>("music"), "music");
             SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser"), "enemylaser");
             SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
@@ -82,6 +93,9 @@ namespace coolgame
 
             SoundManager.PlaySong("music");
 
+
+            //Enemies
+            EnemyFactory.LoadContent(Content);
             enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, GameManager.Ground.Top), Enemy.EnemyDirection.ToLeft);
             enemySpawner2 = new EnemySpawner(new Vector2(-50, GameManager.Ground.Top), Enemy.EnemyDirection.ToRight);
             

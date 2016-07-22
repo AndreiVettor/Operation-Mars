@@ -11,22 +11,23 @@ namespace coolgame
     public static class GameManager
     {
         private static Random random = new Random();
-        private static List<Enemy> enemies = new List<Enemy>();
-
         public static Random RNG
         {
             get { return random; }
         }
 
+        private static List<Enemy> enemies = new List<Enemy>();
         public static List<Enemy> Enemies
         {
             get { return enemies; }
         }
+
         private static List<Building> buildings = new List<Building>();
         public static List<Building> Buildings
         {
             get { return buildings; }
         }
+
         private static List<LaserProjectile> projectiles = new List<LaserProjectile>();
         public static List<LaserProjectile> Projectiles
         {
