@@ -25,7 +25,6 @@ namespace coolgame
         private float maxSpread;
         private float cooldown;
 
-
         public LaserGun(ContentManager content, int x, int y) : base(content)
         {
             SetTexture("laser");
@@ -62,7 +61,8 @@ namespace coolgame
                 if (recoilOffset < 0) recoilOffset = 0;
             }
 
-            Rotation = (float)Math.Atan2(InputManager.MouseY - Y - Height / 2, InputManager.MouseX - X - Width / 2);
+            if (acceleration == 0)
+                Rotation = (float)Math.Atan2(InputManager.MouseY - Y - Height / 2, InputManager.MouseX - X - Width / 2);
 
             cooldownTime += deltaTime;
             if (InputManager.MouseLeft == ButtonState.Pressed && cooldownTime > cooldown)
@@ -87,6 +87,8 @@ namespace coolgame
             X += acceleration * Math.Cos(Rotation);
             Y += acceleration * Math.Sin(Rotation);
 
+            acceleration += recoilRecovery;
+
             //If laser is close enough to default position lock into place
             if (Math.Abs(defaultX - X) < 3)
             {
@@ -100,8 +102,6 @@ namespace coolgame
             {
                 acceleration = 0;
             }
-
-            acceleration += recoilRecovery;
 
             //Clamp acceleration
             if (acceleration > -recoilAcceleration)
@@ -130,6 +130,8 @@ namespace coolgame
                     Y = defaultY + 10;
                 }
             }
+
+            //origin = new Vector2((float)X - defaultX + Width / 2, (float)Y - defaultY + Height / 2);
 
             base.Update(deltaTime);
         }

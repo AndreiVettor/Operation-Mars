@@ -25,7 +25,7 @@ namespace coolgame
         protected ContentManager content;
         private Rectangle sourceRectangle;
         private Vector2 drawPosition;
-        protected Vector2 origin;
+        private Vector2 origin;
         private int totalFrames;
         private int currentFrame;
         private float frameUpdateTime;
@@ -117,7 +117,7 @@ namespace coolgame
             set { enableHealthBar = value; }
         }
 
-        public float Rotation
+        public virtual float Rotation
         {
             get { return rotation; }
             set { rotation = value; }
