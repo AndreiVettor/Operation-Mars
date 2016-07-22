@@ -49,6 +49,10 @@ namespace coolgame
                     {
                         return new DemolitionRoverUnit(content);
                     }
+                case "illuminati":
+                    {
+                        return new Illuminati(content);
+                    }
                 default:
                     {
                         Debug.Log("Tried to create an invalid enemy type!");

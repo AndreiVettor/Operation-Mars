@@ -120,9 +120,12 @@ namespace coolgame
 
             ReadKeyPresses();
 
-            enemySpawner1.Update(totalGameTime, deltaTime);
-            enemySpawner2.Update(totalGameTime, deltaTime);
-           
+            if (!GameManager.GamePaused)
+            {
+                enemySpawner1.Update(totalGameTime, deltaTime);
+                enemySpawner2.Update(totalGameTime, deltaTime);
+            }
+
             base.Update(gameTime);
         }
 
