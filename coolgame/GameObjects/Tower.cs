@@ -30,6 +30,14 @@ namespace coolgame
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
+
+            laserGun.PointAt(InputManager.MouseX, InputManager.MouseY);
+
+            if (InputManager.MouseLeft == ButtonState.Pressed)
+            {
+                laserGun.Shoot();
+            }
+
             laserGun.Update(deltaTime);
         }
 

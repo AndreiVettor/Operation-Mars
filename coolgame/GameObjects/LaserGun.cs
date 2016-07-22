@@ -16,7 +16,6 @@ namespace coolgame
         private Random random;
 
         private Vector2 velocity;
-        //private float acceleration;
         private int defaultX, defaultY;
         private int recoilOffset;
         private float recoilAcceleration;
@@ -46,6 +45,34 @@ namespace coolgame
             cooldown = 200f;
         }
 
+        public void PointAt(int targetX, int targetY)
+        {
+            Rotation = (float)Math.Atan2(targetY - Y - Height / 2, targetX - X - Width / 2);
+        }
+
+        public void Shoot()
+        {
+            if (cooldownTime > cooldown)
+            {
+                SoundManager.PlayClip("laser");
+                cooldownTime = 0;
+                double projectileX = X + Width / 2 + Math.Cos(Rotation) * (Width / 4);
+                double projectileY = Y + Height / 2 + Math.Sin(Rotation) * (Width / 4);
+                LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation);
+
+                //Recoil
+                X -= recoilOffset * Math.Cos(Rotation);
+                Y -= recoilOffset * Math.Sin(Rotation);
+
+                velocity = new Vector2(recoilAcceleration * (float)Math.Cos(Rotation), recoilAcceleration * (float)Math.Sin(Rotation));
+
+                for (int i = 0; i < auxiliaryProjectiles; ++i)
+                {
+                    p = new PlayerProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * maxSpread);
+                }
+            }
+        }
+
         public override void Update(float deltaTime)
         {
             if (InputManager.KeyPress(Keys.D1))
@@ -58,38 +85,10 @@ namespace coolgame
                 cooldown /= 1.05f;
 
                 recoilRecovery += 0.3f;
-                //recoilOffset -= 1;
                 if (recoilOffset < 0) recoilOffset = 0;
             }
 
-            //if (acceleration == 0)
-                Rotation = (float)Math.Atan2(InputManager.MouseY - Y - Height / 2, InputManager.MouseX - X - Width / 2);
-
             cooldownTime += deltaTime;
-            if (InputManager.MouseLeft == ButtonState.Pressed && cooldownTime > cooldown)
-            {
-                SoundManager.PlayClip("laser");
-                cooldownTime = 0;
-                double projectileX = X + Width / 2 + Math.Cos(Rotation) * (Width / 4);
-                double projectileY = Y + Height / 2 + Math.Sin(Rotation) * (Width / 4);
-                LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation);
-
-                //Recoil
-                X -= recoilOffset * Math.Cos(Rotation);
-                Y -= recoilOffset * Math.Sin(Rotation);
-                //acceleration = recoilAcceleration;
-                velocity = new Vector2(recoilAcceleration * (float)Math.Cos(Rotation), recoilAcceleration * (float)Math.Sin(Rotation));
-
-                for (int i = 0; i < auxiliaryProjectiles; ++i)
-                {
-                    p = new PlayerProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * maxSpread);
-                }
-            }
-
-            //X += acceleration * Math.Cos(Rotation);
-            //Y += acceleration * Math.Sin(Rotation);
-
-            //acceleration += recoilRecovery;
 
             X += velocity.X * deltaTime * 6 / 100;
             Y += velocity.Y * deltaTime * 6 / 100;
@@ -110,14 +109,17 @@ namespace coolgame
             if (Math.Abs(defaultX - X) < 3 && Math.Abs(defaultY - Y) < 3)
             {
                 velocity = Vector2.Zero;
-                //acceleration = 0;
             }
 
-            //Clamp acceleration
-            /*if (acceleration > -recoilAcceleration)
+            //Clamp velocity
+            if (velocity.X > -recoilAcceleration)
             {
-                acceleration = -recoilAcceleration;
-            }*/
+                velocity.X = -recoilAcceleration;
+            }
+            if (velocity.Y > -recoilAcceleration)
+            {
+                velocity.Y = -recoilAcceleration;
+            }
 
             if (Math.Abs(defaultX - X) > 10)
             {
@@ -141,14 +143,7 @@ namespace coolgame
                 }
             }
 
-            //origin = new Vector2((float)X - defaultX + Width / 2, (float)Y - defaultY + Height / 2);
-
             base.Update(deltaTime);
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
         }
     }
 }

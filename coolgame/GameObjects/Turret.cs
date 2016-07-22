@@ -13,61 +13,53 @@ namespace coolgame
     {
         private Rectangle view;
         private Enemy target;
-        private Vector2 projectileOrigin;
-        private float cooldownTime;
+        private LaserGun laserGun;
 
         public Turret(ContentManager content, int groundLevel, Enemy.EnemyDirection enemyDirection) : base(content, groundLevel)
         {
-            SetTexture("shitturret");
+            SetTexture("turret");
 
             Y = groundLevel - Height;
 
             if (enemyDirection == Enemy.EnemyDirection.ToLeft)
             {
-                X = Game.GAME_WIDTH / 2 - Width / 2 + 260;
-                Effects = SpriteEffects.FlipHorizontally;
-                projectileOrigin = new Vector2((int)X + Width, (int)Y + 50);
-            }
-            else
-            {
-                X = Game.GAME_WIDTH / 2 - Width / 2 - 260;
-                Effects = SpriteEffects.None;
-                projectileOrigin = new Vector2((int)X, (int)Y + 50);
-            }
-
-            healthBar.MaxHealth = 500;
-
-            if (enemyDirection == Enemy.EnemyDirection.ToLeft)
-            {
+                X = Game.GAME_WIDTH / 2 - Width / 2 + 290;
                 view = new Rectangle((int)X + Width, 0, Game.GAME_WIDTH - (int)X - Width, (int)Y + Height);
             }
             else
             {
+                X = Game.GAME_WIDTH / 2 - Width / 2 - 290;
                 view = new Rectangle(0, 0, (int)X, (int)Y + Height);
             }
+
+            laserGun = new LaserGun(content, (int)X, (int)Y + Height / 3);
+
+            healthBar.MaxHealth = 500;
+            healthBar.Height /= 2;
+            healthBar.Width /= 2;
+
+            layerDepth += .01f;
         }
 
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
 
-            cooldownTime += deltaTime;
-
             target = CollisionManager.CollidesWithEnemy(view);
 
             if (target != null)
             {
-                if (cooldownTime >= 200.0f)
-                {
-                    float projectileAngle = (float)Math.Atan2(target.Y + target.Height / 2 - projectileOrigin.Y,
-                    target.X + target.Width / 2 - projectileOrigin.X);
-
-                    PlayerProjectile p = new PlayerProjectile(content, projectileOrigin.X, projectileOrigin.Y, projectileAngle);
-                    SoundManager.PlayClip("laser");
-
-                    cooldownTime = 0;
-                }
+                laserGun.PointAt((int)target.X + target.Width / 2, (int)target.Y + target.Height / 2);
+                laserGun.Shoot();
             }
+
+            laserGun.Update(deltaTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            laserGun.Draw(spriteBatch);
         }
     }
 }
