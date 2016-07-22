@@ -58,6 +58,10 @@ namespace coolgame
                 {
                     SpawnEnemy("mwat");
                 }
+                if (Roll(GetSpawnRate(totalGameTime, 1, .0001f)))
+                {
+                    SpawnEnemy("illuminati");
+                }
             }
         }
 

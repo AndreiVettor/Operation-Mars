@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameObjects\Enemies\Illuminati.cs" />
     <Compile Include="UI\Button.cs" />
     <Compile Include="GameObjects\Buildings\Base.cs" />
     <Compile Include="GameObjects\Buildings\Building.cs" />
