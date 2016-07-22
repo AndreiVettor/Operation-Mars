@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using coolgame.UI;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,11 @@ namespace coolgame.Systems
 {
     public static class UIManager
     {
-        private static List<UIElement> uiElements = new List<UIElement>();
+        private static List<Button> buttons = new List<Button>();
+        private static List<UIWindow> windows = new List<UIWindow>();
+        private static List<UIElement> elements = new List<UIElement>();
 
+        private static int windowNumber = 0;
         private static bool drawMenu = false;
 
         public static void ToggleMenu()
@@ -29,49 +33,102 @@ namespace coolgame.Systems
 
         public static void AddElement(UIElement element)
         {
-            uiElements.Add(element);
+            elements.Add(element);
+        }
+        public static void AddElement(Button button)
+        {
+            buttons.Add(button);
+        }
+        public static void AddElement(UIWindow window)
+        {
+            windows.Add(window);
+            windowNumber++;
         }
 
         public static void Update(Game game)
         {
-            foreach (Button b in uiElements)
+            //Update buttons
+            for (int i = 0; i < windowNumber; i++)
             {
-                b.Update();
-                if (drawMenu && b.Pressed)
+                for (int j = 0; j < windows[i].GetButtons().Count; j++)
                 {
-                    switch (uiElements.IndexOf(b))
-                    {
-                        case 0:
-                            {
-                                ToggleMenu();
-                                break;
-                            }
-                        case 1:
-                            {
-                                game.Exit();
-                                break;
-                            }
-                        default:
-                            {
-                                break;
-                            }
-                    }
+                    windows[i].GetButtons()[j].Update();
                 }
+            }
+
+            //Button events
+            for (int i = 0; i < windowNumber; i++)
+            {
+                switch (i)
+                {
+                    //Pause Menu
+                    case 0:
+                        {
+                            for (int j = 0; j < windows[i].GetButtons().Count; j++)
+                            {
+                                switch(j)
+                                {
+                                    //Resume button
+                                    case 0:
+                                        {
+                                            if(windows[i].GetButtons()[j].Pressed && drawMenu)
+                                            {
+                                                ToggleMenu();
+                                            }
+                                            break;
+                                        }
+                                    //Exit button
+                                    case 1:
+                                        {
+                                            if (windows[i].GetButtons()[j].Pressed && drawMenu)
+                                            {
+                                                game.Exit();
+                                            }
+                                            break;
+                                        }
+                                    default:
+                                        {
+                                            break;
+                                        }
+                                }
+                            }
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+
             }
         }
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            for(int i = 0; i < 2; i++)
+            for (int i = 0; i < windowNumber; i++)
             {
-                if(drawMenu)
+                switch (i)
                 {
-                    uiElements[i].Draw(spriteBatch);
+                    //Pause Menu
+                    case 0:
+                        {
+                            if (drawMenu)
+                            {
+                                windows[i].Draw(spriteBatch);
+                            }
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
                 }
+
             }
-            for (int i = 2; i < uiElements.Count(); i++)
+
+            for (int i = 1; i < elements.Count(); i++)
             {
-                    uiElements[i].Draw(spriteBatch);
+                    elements[i].Draw(spriteBatch);
             }
         }
     }
