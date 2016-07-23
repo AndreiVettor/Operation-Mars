@@ -25,8 +25,6 @@ namespace coolgame
         private float maxSpread;
         private float cooldown;
 
-        private bool facingLeft;
-
         private int attackPower;
 
         public int AttackPower
@@ -55,12 +53,10 @@ namespace coolgame
             cooldown = 200f;
 
             attackPower = 10;
-            facingLeft = false;
         }
 
         public void PointAt(int targetX, int targetY)
         {
-            Debug.Log(Rotation.ToString());
             Rotation = (float)Math.Atan2(targetY - Y - Height / 2, targetX - X - Width / 2);
             if(Rotation < -Math.PI/2 || Rotation > Math.PI/2)
             {
