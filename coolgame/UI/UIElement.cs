@@ -19,6 +19,7 @@ namespace coolgame
             {
                 position = value;
                 rectangle.Location = new Point((int)value.X, (int)value.Y);
+                Text = text;
             }
         }
 
@@ -62,7 +63,7 @@ namespace coolgame
             get { return text; }
             set {
                 text = value;
-                textSize = font.MeasureString(text);
+                textSize = font.MeasureString(value);
                 textPosition = new Vector2(position.X + Width / 2 - textSize.X / 2, position.Y + Height / 2 - textSize.Y / 2);
             }
         }
@@ -75,24 +76,24 @@ namespace coolgame
         {
             texture = Content.Load<Texture2D>("tile");
             font = Content.Load<SpriteFont>("UIFont");
-            BackgroundColor = new Color(Color.Black, 0.2f);
+            BackgroundColor = new Color(Color.Black, 0.5f);
             ForegroundColor = Color.White;
+            this.text = "";
             Position = position;
             Width = width;
             Height = height;
-            this.text = "";
         }
 
         public UIElement(ContentManager Content, Vector2 position, int width, int height, string text)
         {
             texture = Content.Load<Texture2D>("tile");
             font = Content.Load<SpriteFont>("UIFont");
-            BackgroundColor = new Color(Color.Black, 0.2f);
+            BackgroundColor = new Color(Color.Black, 0.5f);
             ForegroundColor = Color.White;
+            Text = text;
             Position = position;
             Width = width;
             Height = height;
-            Text = text;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

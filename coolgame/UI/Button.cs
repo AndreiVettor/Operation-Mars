@@ -60,7 +60,7 @@ namespace coolgame
 
         public Button(ContentManager Content, Vector2 position, int width, int height, string text) : base(Content, position, width, height, text)
         {
-
+            BackgroundColor = Color.CadetBlue;
         }
 
         public void Update()
