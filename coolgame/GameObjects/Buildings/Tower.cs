@@ -34,7 +34,7 @@ namespace coolgame
 
             laserGun.PointAt(InputManager.MouseX, InputManager.MouseY);
 
-            if (InputManager.MouseLeft == ButtonState.Pressed && UIManager.ClickedUI == false)
+            if (InputManager.MouseLeft == ButtonState.Pressed)
             {
                 laserGun.Shoot();
             }
