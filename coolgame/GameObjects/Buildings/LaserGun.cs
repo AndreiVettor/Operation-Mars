@@ -90,7 +90,7 @@ namespace coolgame
                 auxiliaryProjectiles++;
                 maxSpread = (float)Math.PI / 40 * auxiliaryProjectiles;
             }
-            if (InputManager.KeyDown(Keys.D2))
+            if (InputManager.KeyPress(Keys.D2))
             {
                 cooldown /= 1.05f;
 

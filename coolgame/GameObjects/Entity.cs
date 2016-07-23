@@ -38,6 +38,7 @@ namespace coolgame
         private bool alive = true;
         private SpriteEffects spriteEffects;
         protected float layerDepth;
+        protected Color color = Color.White;
 
         public virtual double X
         {
@@ -204,7 +205,7 @@ namespace coolgame
         {
             if (alive)
             {
-                spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, Vector2.One, Color.White, spriteEffects, layerDepth);
+                spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, Vector2.One, color, spriteEffects, layerDepth);
 
                 if (enableHealthBar)
                     healthBar.Draw(spriteBatch);
