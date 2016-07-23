@@ -55,7 +55,10 @@ namespace coolgame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             UIspriteBatch = new SpriteBatch(GraphicsDevice);
-        
+
+            //Utility
+            Debug.LoadContent(Content);
+
             //Base
             bgImage = Content.Load<Texture2D>("background");
             ground = new Ground(Content);
@@ -63,10 +66,6 @@ namespace coolgame
             Turret t1 = new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToLeft);
             Turret t2 = new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToRight);
             Forcefield test = new Forcefield(Content, GameManager.Ground.Top);
-
-            //Utility
-            Debug.LoadContent(Content);
-
 
             //UI
             UIManager.SetCrosshair(Content.Load<Texture2D>("crosshair"));
