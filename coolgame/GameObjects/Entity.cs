@@ -15,6 +15,7 @@ namespace coolgame
         private double x;
         private double y;
         protected Texture2D texture;
+        protected Vector2 scale;
 
         protected Rectangle collisionBox;
         public Rectangle CollisionBox
@@ -24,7 +25,7 @@ namespace coolgame
 
         protected ContentManager content;
         private Rectangle sourceRectangle;
-        private Vector2 drawPosition;
+        private Rectangle drawRectangle;
         private Vector2 origin;
         private int totalFrames;
         private int currentFrame;
@@ -46,7 +47,7 @@ namespace coolgame
             set
             {
                 x = value;
-                drawPosition.X = (float)value + origin.X;
+                drawRectangle.X = (int)value + (int)origin.X;
                 healthBar.X = (int)value + Width / 2;
                 collisionBox.X = (int)value;
             }
@@ -58,7 +59,7 @@ namespace coolgame
             set
             {
                 y = value;
-                drawPosition.Y = (float)value + origin.Y;
+                drawRectangle.Y = (int)value + (int)origin.Y;
                 healthBar.Y = (int)value - 20;
                 collisionBox.Y = (int)value;
             }
@@ -76,6 +77,7 @@ namespace coolgame
                     healthBar.X = (int)X + value / 2;
                     origin.X = value / 2;
                     collisionBox.Width = value;
+                    drawRectangle.Width = value;
                 }
             }
         }
@@ -88,6 +90,7 @@ namespace coolgame
                 sourceRectangle.Height = value;
                 origin.Y = value / 2;
                 collisionBox.Height = value;
+                drawRectangle.Height = (int)(value * scale.Y);
             }
         }
 
@@ -149,6 +152,7 @@ namespace coolgame
             healthBar = new HealthBar(content);
             X = Y = 0;
             this.content = content;
+            scale = Vector2.One;
         }
 
         public bool Collides(Entity e)
@@ -205,7 +209,7 @@ namespace coolgame
         {
             if (alive)
             {
-                spriteBatch.Draw(texture, drawPosition, null, sourceRectangle, origin, rotation, Vector2.One, color, spriteEffects, layerDepth);
+                spriteBatch.Draw(texture, null, drawRectangle, sourceRectangle, origin, rotation, Vector2.One, color, spriteEffects, layerDepth);
 
                 if (enableHealthBar)
                     healthBar.Draw(spriteBatch);
