@@ -108,7 +108,7 @@ namespace coolgame
                 if (attackCooldown >= 1000f / attackSpeed)
                 {
                     double projectileX;
-                    float projectileDirection = (float)((GameManager.RNG.NextDouble() - .5f) * Math.PI / precision);
+                    float projectileDirection = (float)((GameManager.RNG.NextDouble() - .5f) * Math.PI);
                     if (direction == EnemyDirection.ToLeft)
                     {
                         projectileX = X;
