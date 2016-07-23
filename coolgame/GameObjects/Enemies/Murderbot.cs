@@ -19,10 +19,10 @@ namespace coolgame
         {
             rangeBox = new Rectangle();
 
-            SetTexture("enemy2");
-            Width = 58;
-            Height = 80;
-            EnableAnimation = true;
+            SetTexture("murderbot");
+            //Width = 58;
+            //Height = 80;
+            //EnableAnimation = true;
 
             healthBar.MaxHealth = 500;
             movingSpeed = 9f;
