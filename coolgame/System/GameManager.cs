@@ -34,6 +34,12 @@ namespace coolgame
             get { return projectiles; }
         }
 
+        private static List<LaserBeam> laserBeams = new List<LaserBeam>();
+        public static List<LaserProjectile> LaserBeams
+        {
+            get { return laserBeams; }
+        }
+
         private static bool gamePaused = false;
         public static bool GamePaused
         {
@@ -76,6 +82,10 @@ namespace coolgame
         public static void AddEntity(LaserProjectile e)
         {
             projectiles.Add(e);
+        }
+        public static void AddEntity(LaserBeam e)
+        {
+            laserBeams.Add(e);
         }
 
         public static List<Entity> GetEntityList()

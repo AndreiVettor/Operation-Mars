@@ -14,6 +14,7 @@ namespace coolgame
         {
             SetTexture("electrobeam");
             color = Color.Blue;
+            GameManager.AddEntity(this);
         }
     }
 }
