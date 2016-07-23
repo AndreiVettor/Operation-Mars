@@ -94,6 +94,17 @@ namespace coolgame
             }
         }
 
+        public virtual Vector2 Scale
+        {
+            get { return scale; }
+            set
+            {
+                scale = value;
+                drawRectangle.Width = (int)(value.X * Width);
+                drawRectangle.Height = (int)(value.Y * Height);
+            }
+        }
+
         public bool EnableAnimation
         {
             get { return enableAnimation; }

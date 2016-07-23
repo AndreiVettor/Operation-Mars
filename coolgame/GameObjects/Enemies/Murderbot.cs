@@ -13,6 +13,7 @@ namespace coolgame
     {
         private int range;
         private Rectangle rangeBox;
+        private LaserBeam beam;
 
         public Murderbot(ContentManager Content) : base(Content)
         {
@@ -99,10 +100,33 @@ namespace coolgame
                 else if (Direction == EnemyDirection.ToRight)
                     X += movingSpeed / 100 * deltaTime;
                 EnableAnimation = true;
+
+                if (beam != null)
+                {
+                    beam.Alive = false;
+                }
             }
             else
             {
+                if (beam == null)
+                    beam = new LaserBeam(content);
 
+                int beamWidth;
+
+                if (direction == EnemyDirection.ToLeft)
+                {
+                    beam.X = target.X + target.Width;
+                    beamWidth = (int)X - (int)beam.X;
+                }
+                else
+                {
+                    beam.X = X + Width;
+                    beamWidth = (int)target.X - (int)beam.X;
+                }
+
+                beam.Y = (int)Y + Height / 2 - beam.Height / 2;
+
+                beam.Scale = new Vector2((float)beamWidth / beam.Width, 1);
 
                 EnableAnimation = false;
                 if (attackCooldown >= 1000f / attackSpeed)
