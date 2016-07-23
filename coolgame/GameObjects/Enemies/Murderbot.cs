@@ -18,6 +18,20 @@ namespace coolgame
         public Murderbot(ContentManager Content) : base(Content)
         {
             rangeBox = new Rectangle();
+
+            SetTexture("enemy2");
+            Width = 58;
+            Height = 80;
+            EnableAnimation = true;
+
+            healthBar.MaxHealth = 500;
+            movingSpeed = 9f;
+            attackSpeed = 1f;
+            attackPower = 30;
+
+            Range = GameManager.RNG.Next(100, 250);
+
+            //attackSound = "enemylaser";
         }
 
         protected int Range
@@ -109,7 +123,7 @@ namespace coolgame
             else
             {
                 if (beam == null)
-                    beam = new LaserBeam(content);
+                    beam = new LaserBeam(content, this);
 
                 int beamWidth;
 
@@ -129,25 +143,6 @@ namespace coolgame
                 beam.Scale = new Vector2((float)beamWidth / beam.Width, 1);
 
                 EnableAnimation = false;
-                if (attackCooldown >= 1000f / attackSpeed)
-                {
-                    double projectileX;
-                    float projectileDirection = (float)((GameManager.RNG.NextDouble() - .5f) * Math.PI);
-                    if (direction == EnemyDirection.ToLeft)
-                    {
-                        projectileX = X;
-                        projectileDirection += (float)Math.PI;
-                    }
-                    else
-                    {
-                        projectileX = X + Width;
-                        //projectileDirection = 0;
-                    }
-                    EnemyProjectile p = new EnemyProjectile(content, projectileX, Y + Height / 2, projectileDirection, attackPower);
-                    attackCooldown = 0;
-                    if (attackSound != null)
-                        SoundManager.PlayClip(attackSound);
-                }
             }
         }
 

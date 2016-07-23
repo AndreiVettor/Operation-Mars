@@ -53,6 +53,10 @@ namespace coolgame
                     {
                         return new Illuminati(content);
                     }
+                case "murderbot":
+                    {
+                        return new Murderbot(content);
+                    }
                 default:
                     {
                         Debug.Log("Tried to create an invalid enemy type!");

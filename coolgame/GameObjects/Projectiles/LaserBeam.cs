@@ -10,11 +10,22 @@ namespace coolgame
 {
     public class LaserBeam : Entity
     {
-        public LaserBeam(ContentManager content) : base(content)
+        Murderbot shooter;
+
+        public LaserBeam(ContentManager content, Murderbot shooter) : base(content)
         {
             SetTexture("electrobeam");
             color = Color.Blue;
             GameManager.AddEntity(this);
+            layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
+            this.shooter = shooter;
+        }
+
+        public override void Update(float deltaTime)
+        {
+            base.Update(deltaTime);
+
+            this.Alive = shooter.Alive;
         }
     }
 }

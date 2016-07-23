@@ -47,7 +47,7 @@ namespace coolgame
             set
             {
                 x = value;
-                drawRectangle.X = (int)value + (int)origin.X;
+                drawRectangle.X = (int)(value + origin.X * scale.X);
                 healthBar.X = (int)value + Width / 2;
                 collisionBox.X = (int)value;
             }
@@ -59,7 +59,7 @@ namespace coolgame
             set
             {
                 y = value;
-                drawRectangle.Y = (int)value + (int)origin.Y;
+                drawRectangle.Y = (int)(value + origin.Y * scale.Y);
                 healthBar.Y = (int)value - 20;
                 collisionBox.Y = (int)value;
             }
@@ -77,7 +77,7 @@ namespace coolgame
                     healthBar.X = (int)X + value / 2;
                     origin.X = value / 2;
                     collisionBox.Width = value;
-                    drawRectangle.Width = value;
+                    drawRectangle.Width = (int)(value * scale.X);
                 }
             }
         }
@@ -100,6 +100,8 @@ namespace coolgame
             set
             {
                 scale = value;
+                drawRectangle.X = (int)(X + origin.X * value.X);
+                drawRectangle.Y = (int)(Y + origin.Y * value.Y);
                 drawRectangle.Width = (int)(value.X * Width);
                 drawRectangle.Height = (int)(value.Y * Height);
             }
