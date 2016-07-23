@@ -37,7 +37,7 @@ namespace coolgame
             GameManager.FrameLimiting = true;
             graphics.SynchronizeWithVerticalRetrace = false;
 
-            IsMouseVisible = true;
+            IsMouseVisible = false;
             Content.RootDirectory = "Content";
         }
 
@@ -69,6 +69,7 @@ namespace coolgame
 
 
             //UI
+            UIManager.SetCrosshair(Content.Load<Texture2D>("crosshair"));
             //pauseMenu = new UIWindow(Content, new Vector2(GAME_WIDTH / 2 - 200/2, GAME_HEIGHT / 2 - 200/2), 200, 140);
             //upgradeMenu = new UIWindow(Content, new Vector2(GAME_WIDTH / 2 - 500 / 2, GAME_HEIGHT / 2 - 400 / 2), 500, 400);
             pauseMenu = new PauseMenu(Content);

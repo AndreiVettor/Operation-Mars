@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GameObjects\Enemies\Illuminati.cs" />
+    <Compile Include="UI\PauseMenu.cs" />
     <Compile Include="UI\Button.cs" />
     <Compile Include="GameObjects\Buildings\Base.cs" />
     <Compile Include="GameObjects\Buildings\Building.cs" />
@@ -58,7 +59,6 @@
     <Compile Include="GameObjects\Enemies\ReptilianSaucer.cs" />
     <Compile Include="System\SoundManager.cs" />
     <Compile Include="System\UIManager.cs" />
-    <Compile Include="UI\PauseMenu.cs" />
     <Compile Include="UI\UIWindow.cs" />
     <Compile Include="UI\UIElement.cs" />
     <Compile Include="System\Debug.cs" />

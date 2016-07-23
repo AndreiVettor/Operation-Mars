@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
+using coolgame.Systems;
 
 namespace coolgame
 {
@@ -33,7 +34,7 @@ namespace coolgame
 
             laserGun.PointAt(InputManager.MouseX, InputManager.MouseY);
 
-            if (InputManager.MouseLeft == ButtonState.Pressed)
+            if (InputManager.MouseLeft == ButtonState.Pressed && UIManager.ClickedUI == false)
             {
                 laserGun.Shoot();
             }

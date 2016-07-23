@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,22 @@ namespace coolgame.Systems
         private static List<UIWindow> windows = new List<UIWindow>();
         private static List<UIElement> elements = new List<UIElement>();
 
+        private static Texture2D crosshair;
+
         private static int windowNumber = 0;
         private static bool pauseMenuOpen = false;
         private static bool upgradeMenuOpen = false;
 
         private static bool clickedUI = false;
+        public static bool ClickedUI
+        {
+            get { return clickedUI; }
+        }
+
+        public static void SetCrosshair(Texture2D newCrosshair)
+        {
+            crosshair = newCrosshair;
+        }
 
         public static void TogglePauseMenu()
         {
@@ -61,12 +73,14 @@ namespace coolgame.Systems
 
         public static void Update(Game game)
         {
-            //Update buttons
+            clickedUI = false;
+            //Update menus
             for (int i = 0; i < windowNumber; i++)
             {
-                for (int j = 0; j < windows[i].GetButtons().Count; j++)
+                windows[i].Update();
+                if(windows[i].ButtonHeld)
                 {
-                    windows[i].GetButtons()[j].Update();
+                    clickedUI = true;
                 }
             }
 
@@ -119,7 +133,7 @@ namespace coolgame.Systems
                                     {
                                         case 0:
                                             {
-                                                ToggleUpgradeMenu();
+                                                //ToggleUpgradeMenu();
                                                 break;
                                             }
                                         case 1:
@@ -179,6 +193,23 @@ namespace coolgame.Systems
             for (int i = 1; i < elements.Count(); i++)
             {
                     elements[i].Draw(spriteBatch);
+            }
+
+            if(crosshair != null)
+            {
+                spriteBatch.Draw(
+                    crosshair,
+                    new Vector2(
+                        InputManager.MouseX - crosshair.Width / 2,
+                        InputManager.MouseY - crosshair.Height / 2),
+                    null,
+                    null,
+                    null,
+                    0f,
+                    new Vector2(1, 1),
+                    Color.White,
+                    SpriteEffects.None,
+                    0);
             }
         }
     }

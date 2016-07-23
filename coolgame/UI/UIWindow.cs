@@ -16,7 +16,11 @@ namespace coolgame
         private UIElement background;
         protected int spacing = 10;
 
-        public bool ButtonPressed;
+        private bool buttonHeld;
+        public bool ButtonHeld
+        {
+            get { return buttonHeld; }
+        }
 
         public List<Button> GetButtons()
         {
@@ -72,19 +76,19 @@ namespace coolgame
             menuItems = new List<UIElement>();
             background = new UIElement(Content, position, width, height);
             background.BackgroundColor = new Color(Color.SlateGray, 0.2f);
-            ButtonPressed = false;
+            buttonHeld = false;
             text = "";
         }
 
         public void Update()
         {
-            foreach(Button b in menuItems)
+            buttonHeld = false;
+            foreach (Button b in menuButtons)
             {
-                ButtonPressed = false;
                 b.Update();
-                if(b.Pressed)
+                if(b.Held)
                 {
-                    ButtonPressed = true;
+                    buttonHeld = true;
                 }
             }
         }
