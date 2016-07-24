@@ -34,35 +34,35 @@ namespace coolgame
             {
                 spawnTime = 0;
 
-                //if (Roll(GetSpawnRate(totalGameTime, 1, 1.5f)))
-                //{
-                //    SpawnEnemy("crawler");
-                //}
-                //if (Roll(GetSpawnRate(totalGameTime, 1, .25f)))
-                //{
-                //    SpawnEnemy("steelroach");
-                //}
-                //if (Roll(GetSpawnRate(totalGameTime, 1, .5f)))
-                //{
-                //    SpawnEnemy("reptilian");
-                //}
-                //if (Roll(GetSpawnRate(totalGameTime, 1, 5f)))
-                //{
-                //    SpawnEnemy("reptiliansaucer");
-                //}
-                //if (Roll(GetSpawnRate(totalGameTime, 1, .35f)))
-                //{
-                //    SpawnEnemy("demolitionroverunit");
-                //}
-                //if (Roll(GetSpawnRate(totalGameTime, 1, .5f)))
-                //{
-                //    SpawnEnemy("mwat");
-                //}
-                //if (Roll(GetSpawnRate(totalGameTime, 1, .0001f)))
-                //{
-                //    SpawnEnemy("illuminati");
-                //}
-                if (Roll(GetSpawnRate(totalGameTime, 1, 3f)))
+                if (Roll(GetSpawnRate(totalGameTime, 1, 1.5f)))
+                {
+                    SpawnEnemy("crawler");
+                }
+                if (Roll(GetSpawnRate(totalGameTime, 1, .25f)))
+                {
+                    SpawnEnemy("steelroach");
+                }
+                if (Roll(GetSpawnRate(totalGameTime, 1, .5f)))
+                {
+                    SpawnEnemy("reptilian");
+                }
+                if (Roll(GetSpawnRate(totalGameTime, 1, 5f)))
+                {
+                    SpawnEnemy("reptiliansaucer");
+                }
+                if (Roll(GetSpawnRate(totalGameTime, 1, .35f)))
+                {
+                    SpawnEnemy("demolitionroverunit");
+                }
+                if (Roll(GetSpawnRate(totalGameTime, 1, .5f)))
+                {
+                    SpawnEnemy("mwat");
+                }
+                if (Roll(GetSpawnRate(totalGameTime, 1, .0001f)))
+                {
+                    SpawnEnemy("illuminati");
+                }
+                if (Roll(GetSpawnRate(totalGameTime, 1, .1f)))
                 {
                     SpawnEnemy("murderbot");
                 }

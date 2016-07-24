@@ -12,12 +12,13 @@ namespace coolgame
     {
         private int targetx;
         private bool toLeft;
+        private float opacity;
 
         public ElectrobeamComponent(ContentManager content, int x, int y, int targetx) : base(content)
         {
             SetTexture("electrobeamring");
             X = x - Width / 2;
-            Y = y = Height / 2;
+            Y = y - Height / 2;
             this.targetx = targetx;
             toLeft = x > targetx;
             layerDepth = LayerManager.GetLayerDepth(Layer.Projectiles);
@@ -33,7 +34,10 @@ namespace coolgame
                 X += .1f * deltaTime;
 
             if ((X > targetx && !toLeft) || (X < targetx && toLeft))
-                color = new Color(color, Math.Abs((float)(1 / (X - targetx))));
+            {
+                opacity = Math.Abs((float)(1 / (X - targetx)));
+                color = Color.White * opacity;
+            }
         }
     }
 }

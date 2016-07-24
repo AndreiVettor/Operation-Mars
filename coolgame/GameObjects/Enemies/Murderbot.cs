@@ -26,10 +26,10 @@ namespace coolgame
 
             healthBar.MaxHealth = 500;
             movingSpeed = 9f;
-            attackSpeed = 1f;
-            attackPower = 30;
+            attackSpeed = 30f;
+            attackPower = 5;
 
-            Range = GameManager.RNG.Next(100, 250);
+            Range = GameManager.RNG.Next(100, 200);
 
             //attackSound = "enemylaser";
         }
@@ -105,6 +105,8 @@ namespace coolgame
         {
             base.Update(deltaTime);
 
+            attackCooldown += deltaTime;
+
             target = CollisionManager.CollidesWithBuilding(rangeBox);
 
             if (target == null)
@@ -115,23 +117,28 @@ namespace coolgame
                     X += movingSpeed / 100 * deltaTime;
                 EnableAnimation = true;
 
-                if (beam != null)
-                {
-                    //beam.Alive = false;
-                }
+                beam = null;
             }
             else
             {
                 if (beam == null)
                 {
+                    int beamY = Math.Max((int)Y + Height / 2, (int)target.Y + target.Height / 2);
+
                     if (direction == EnemyDirection.ToLeft)
                     {
-                        beam = new Electrobeam(content, this, (int)X, (int)Y + Height / 2, (int)target.X + target.Width);
+                        beam = new Electrobeam(content, this, (int)X, beamY, (int)target.X + target.Width);
                     }
                     else
                     {
-                        beam = new Electrobeam(content, this, (int)X + Width, (int)Y + Height / 2, (int)target.X);
+                        beam = new Electrobeam(content, this, (int)X + Width, beamY, (int)target.X);
                     }
+                }
+
+                if (attackCooldown >= 1000f / attackSpeed)
+                {
+                    target.InflictDamage(attackPower);
+                    attackCooldown = 0;
                 }
 
                 EnableAnimation = false;
