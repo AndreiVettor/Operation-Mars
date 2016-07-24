@@ -12,20 +12,20 @@ namespace coolgame
     public class Electrobeam
     {
         private ContentManager content;
-        private Murderbot shooter;
         private List<ElectrobeamComponent> components;
         private float componentSpawnTime;
         private int x;
         private int y;
         private int targetx;
+        private bool forceField;
 
-        public Electrobeam(ContentManager content, Murderbot shooter, int x, int y, int targetx)
+        public Electrobeam(ContentManager content, int x, int y, int targetx, bool forceField)
         {
             this.x = x;
             this.y = y;
             this.targetx = targetx;
-            this.shooter = shooter;
             this.content = content;
+            this.forceField = forceField;
 
             components = new List<ElectrobeamComponent>();
 
@@ -33,14 +33,14 @@ namespace coolgame
             {
                 for (int i = x; i < targetx; i += 10)
                 {
-                    components.Add(new ElectrobeamComponent(content, i, y, targetx));
+                    components.Add(new ElectrobeamComponent(content, i, y, targetx, forceField));
                 }
             }
             else
             {
                 for (int i = x; i > targetx; i -= 10)
                 {
-                    components.Add(new ElectrobeamComponent(content, i, y, targetx));
+                    components.Add(new ElectrobeamComponent(content, i, y, targetx, forceField));
                 }
             }
             
@@ -53,7 +53,7 @@ namespace coolgame
 
             if (componentSpawnTime > 100)
             {
-                components.Add(new ElectrobeamComponent(content, x, y, targetx));
+                components.Add(new ElectrobeamComponent(content, x, y, targetx, forceField));
                 componentSpawnTime = 0;
             }
                 

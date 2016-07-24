@@ -121,25 +121,49 @@ namespace coolgame
             }
             else
             {
+                bool forceField = typeof(Forcefield).IsInstanceOfType(target);
+
                 if (beam == null)
                 {
+                    int beamX;
                     int beamY = Math.Max((int)Y + Height / 2, (int)target.Y + target.Height / 2);
+                    int beamTargetX;
 
                     if (direction == EnemyDirection.ToLeft)
                     {
-                        beam = new Electrobeam(content, this, (int)X, beamY, (int)target.X + target.Width);
+                        if (forceField)
+                        {
+                            beamX = (int)target.X + target.Width;
+                            beamTargetX = (int)X;
+                        }
+                        else
+                        {
+                            beamX = (int)X;
+                            beamTargetX = (int)target.X + target.Width;
+                        }
                     }
                     else
                     {
-                        beam = new Electrobeam(content, this, (int)X + Width, beamY, (int)target.X);
+                        if (forceField)
+                        {
+                            beamX = (int)target.X;
+                            beamTargetX = (int)X + Width;
+                        }
+                        else
+                        {
+                            beamX = (int)X + Width;
+                            beamTargetX = (int)target.X;
+                        }
                     }
+
+                    beam = new Electrobeam(content, beamX, beamY, beamTargetX, forceField);
                 }
 
                 if (attackCooldown >= 1000f / attackSpeed)
                 {
                     target.InflictDamage(attackPower);
 
-                    if (typeof(Forcefield).IsInstanceOfType(target))
+                    if (forceField)
                     {
                         healthBar.ColorScheme = HealthBar.HealthBarColoring.Forcefield;
                         healthBar.Health += attackPower;

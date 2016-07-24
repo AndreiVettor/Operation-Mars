@@ -14,9 +14,13 @@ namespace coolgame
         private bool toLeft;
         private float opacity;
 
-        public ElectrobeamComponent(ContentManager content, int x, int y, int targetx) : base(content)
+        public ElectrobeamComponent(ContentManager content, int x, int y, int targetx, bool forceField) : base(content)
         {
-            SetTexture("electrobeamring");
+            if (forceField)
+                SetTexture("electrobeamring");
+            else
+                SetTexture("electrobeamring2");
+
             X = x - Width / 2;
             Y = y - Height / 2;
             this.targetx = targetx;
