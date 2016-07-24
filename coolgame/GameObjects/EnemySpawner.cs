@@ -46,7 +46,7 @@ namespace coolgame
                 {
                     SpawnEnemy("reptilian");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, 1, 5f)))
+                if (Roll(GetSpawnRate(totalGameTime, 1, .5f)))
                 {
                     SpawnEnemy("reptiliansaucer");
                 }
@@ -62,7 +62,7 @@ namespace coolgame
                 {
                     SpawnEnemy("illuminati");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, 1, .1f)))
+                if (Roll(GetSpawnRate(totalGameTime, 1, 1f)))
                 {
                     SpawnEnemy("murderbot");
                 }

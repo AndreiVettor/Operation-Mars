@@ -138,6 +138,15 @@ namespace coolgame
                 if (attackCooldown >= 1000f / attackSpeed)
                 {
                     target.InflictDamage(attackPower);
+
+                    if (typeof(Forcefield).IsInstanceOfType(target))
+                    {
+                        healthBar.ColorScheme = HealthBar.HealthBarColoring.Forcefield;
+                        healthBar.Health += attackPower;
+                    }
+                    else
+                        healthBar.ColorScheme = HealthBar.HealthBarColoring.Normal;
+
                     attackCooldown = 0;
                 }
 
