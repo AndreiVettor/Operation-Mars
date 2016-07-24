@@ -13,7 +13,7 @@ namespace coolgame
     {
         private int range;
         private Rectangle rangeBox;
-        private LaserBeam beam;
+        private Electrobeam beam;
 
         public Murderbot(ContentManager Content) : base(Content)
         {
@@ -117,38 +117,36 @@ namespace coolgame
 
                 if (beam != null)
                 {
-                    beam.Alive = false;
+                    //beam.Alive = false;
                 }
             }
             else
             {
                 if (beam == null)
-                    beam = new LaserBeam(content, this);
-
-                int beamWidth;
-
-                if (direction == EnemyDirection.ToLeft)
                 {
-                    beam.X = target.X + target.Width;
-                    beamWidth = (int)X - (int)beam.X;
+                    if (direction == EnemyDirection.ToLeft)
+                    {
+                        beam = new Electrobeam(content, this, (int)X, (int)Y + Height / 2, (int)target.X + target.Width);
+                    }
+                    else
+                    {
+                        beam = new Electrobeam(content, this, (int)X + Width, (int)Y + Height / 2, (int)target.X);
+                    }
                 }
-                else
-                {
-                    beam.X = X + Width;
-                    beamWidth = (int)target.X - (int)beam.X;
-                }
-
-                beam.Y = (int)Y + Height / 2 - beam.Height / 2;
-
-                beam.Scale = new Vector2((float)beamWidth / beam.Width, 1);
 
                 EnableAnimation = false;
             }
+
+            if (beam != null)
+                beam.Update(deltaTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+
+            if (beam != null)
+                beam.Draw(spriteBatch);
 
             //spriteBatch.Draw(content.Load<Texture2D>("tile"), rangeBox, Color.White);
         }

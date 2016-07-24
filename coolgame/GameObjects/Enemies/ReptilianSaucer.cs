@@ -31,7 +31,6 @@ namespace coolgame
             attackSound = "enemylaser";
             ebriety = GameManager.RNG.Next(0, 200);
             altitudeVariationModifier = (float)GameManager.RNG.NextDouble() / 2 + .5f;
-            color = new Color(GameManager.RNG.Next(0, 255), GameManager.RNG.Next(0, 255), GameManager.RNG.Next(0, 255));
         }
 
         public override double X

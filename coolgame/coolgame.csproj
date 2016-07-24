@@ -40,7 +40,8 @@
   <ItemGroup>
     <Compile Include="GameObjects\Enemies\Illuminati.cs" />
     <Compile Include="GameObjects\Enemies\Murderbot.cs" />
-    <Compile Include="GameObjects\Projectiles\LaserBeam.cs" />
+    <Compile Include="GameObjects\Projectiles\ElectrobeamComponent.cs" />
+    <Compile Include="GameObjects\Projectiles\Electrobeam.cs" />
     <Compile Include="UI\PauseMenu.cs" />
     <Compile Include="UI\Button.cs" />
     <Compile Include="GameObjects\Buildings\Base.cs" />

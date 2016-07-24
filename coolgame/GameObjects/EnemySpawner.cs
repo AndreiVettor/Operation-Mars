@@ -62,7 +62,7 @@ namespace coolgame
                 //{
                 //    SpawnEnemy("illuminati");
                 //}
-                if (Roll(GetSpawnRate(totalGameTime, 1, 1f)))
+                if (Roll(GetSpawnRate(totalGameTime, 1, 3f)))
                 {
                     SpawnEnemy("murderbot");
                 }

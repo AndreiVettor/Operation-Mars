@@ -34,12 +34,6 @@ namespace coolgame
             get { return projectiles; }
         }
 
-        private static List<LaserBeam> laserBeams = new List<LaserBeam>();
-        public static List<LaserBeam> LaserBeams
-        {
-            get { return laserBeams; }
-        }
-
         private static bool gamePaused = false;
         public static bool GamePaused
         {
@@ -82,10 +76,6 @@ namespace coolgame
         public static void AddEntity(LaserProjectile e)
         {
             projectiles.Add(e);
-        }
-        public static void AddEntity(LaserBeam e)
-        {
-            laserBeams.Add(e);
         }
 
         public static List<Entity> GetEntityList()
@@ -137,18 +127,6 @@ namespace coolgame
                         projectiles.Remove(projectiles[i]);
                     }
                 }
-
-                for (int i = laserBeams.Count - 1; i >= 0; i--)
-                {
-                    if (laserBeams[i].Alive)
-                    {
-                        laserBeams[i].Update(deltaTime);
-                    }
-                    else
-                    {
-                        laserBeams.Remove(laserBeams[i]);
-                    }
-                }
             }
         }
 
@@ -165,10 +143,6 @@ namespace coolgame
                 e.Draw(spriteBatch);
             }
             foreach (LaserProjectile e in projectiles)
-            {
-                e.Draw(spriteBatch);
-            }
-            foreach (LaserBeam e in laserBeams)
             {
                 e.Draw(spriteBatch);
             }
