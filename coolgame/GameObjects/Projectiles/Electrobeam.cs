@@ -18,6 +18,7 @@ namespace coolgame
         private int y;
         private int targetx;
         private bool forceField;
+        private float soundLoopTime;
 
         public Electrobeam(ContentManager content, int x, int y, int targetx, bool forceField)
         {
@@ -50,13 +51,18 @@ namespace coolgame
         public void Update(float deltaTime)
         {
             componentSpawnTime += deltaTime;
+            soundLoopTime += deltaTime;
 
             if (componentSpawnTime > 100)
             {
                 components.Add(new ElectrobeamComponent(content, x, y, targetx, forceField));
                 componentSpawnTime = 0;
             }
-                
+            if (soundLoopTime > 200)
+            {
+                SoundManager.PlayClip("electrobeam");
+                soundLoopTime = 0;
+            } 
 
             foreach (ElectrobeamComponent c in components)
                 c.Update(deltaTime);

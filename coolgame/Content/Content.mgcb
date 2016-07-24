@@ -391,3 +391,9 @@
 /processorParam:TextureFormat=Color
 /build:electrobeamring2.png
 
+#begin ebloop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:ebloop.wav
+

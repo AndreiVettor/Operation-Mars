@@ -87,6 +87,7 @@ namespace coolgame
             SoundManager.AddClip(Content.Load<SoundEffect>("crawlerhit"), "crawlerhit");
             SoundManager.AddClip(Content.Load<SoundEffect>("steelroachhit"), "steelroachhit");
             SoundManager.AddClip(Content.Load<SoundEffect>("steelroachattack"), "steelroachattack");
+            SoundManager.AddClip(Content.Load<SoundEffect>("ebloop"), "electrobeam");
 
             SoundManager.PlaySong("music");
 
