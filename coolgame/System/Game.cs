@@ -56,7 +56,7 @@ namespace coolgame
             //Base
             GameManager.Background = Content.Load<Texture2D>("background");
             GameManager.Ground = new Ground(Content);
-            GameManager.AddEntity(new Base(Content, GameManager.Ground.Top));
+            GameManager.PlayerBase = new Base(Content, GameManager.Ground.Top);
             GameManager.AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToLeft));
             GameManager.AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToRight));
             GameManager.AddEntity(new Forcefield(Content, GameManager.Ground.Top));
@@ -193,7 +193,11 @@ namespace coolgame
 
             if(InputManager.KeyPress(Keys.D))
             {
-                UIManager.DisplayMessage("Test Message More Words Mouse");
+                UIManager.DisplayMessage("3 FREE UNLOCKS FOR YOU!!!");
+                GameManager.laser_damage++;
+                GameManager.laser_speed++;
+                GameManager.laser_spread++;
+                GameManager.Upgrade();
             }
 
             if(InputManager.KeyPress(Keys.U))

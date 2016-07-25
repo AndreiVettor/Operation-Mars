@@ -24,34 +24,34 @@ namespace coolgame
             {
                 spawnTime = 0;
 
-                //if (Roll(.01f))
-                //{
-                //    SpawnEnemy("crawler");
-                //}
-                //if (Roll(.01f))
-                //{
-                //    SpawnEnemy("steelroach");
-                //}
-                //if (Roll(.01f))
-                //{
-                //    SpawnEnemy("reptilian");
-                //}
-                //if (Roll(.01f))
-                //{
-                //    SpawnEnemy("reptiliansaucer");
-                //}
-                //if (Roll(.01f))
-                //{
-                //    SpawnEnemy("demolitionroverunit");
-                //}
-                //if (Roll(.05f))
-                //{
-                //    SpawnEnemy("mwat");
-                //}
-                //if (Roll(.00001f))
-                //{
-                //    SpawnEnemy("illuminati");
-                //}
+                if (Roll(.01f))
+                {
+                    SpawnEnemy("crawler");
+                }
+                if (Roll(.01f))
+                {
+                    SpawnEnemy("steelroach");
+                }
+                if (Roll(.01f))
+                {
+                    SpawnEnemy("reptilian");
+                }
+                if (Roll(.01f))
+                {
+                    SpawnEnemy("reptiliansaucer");
+                }
+                if (Roll(.01f))
+                {
+                    SpawnEnemy("demolitionroverunit");
+                }
+                if (Roll(.05f))
+                {
+                    SpawnEnemy("mwat");
+                }
+                if (Roll(.00001f))
+                {
+                    SpawnEnemy("illuminati");
+                }
                 if (Roll(.01f))
                 {
                     SpawnEnemy("murderbot");
