@@ -26,11 +26,13 @@ namespace coolgame
         private float cooldown;
 
         private int attackPower;
-
         public int AttackPower
         {
             get { return attackPower; }
-            set { attackPower = value; }
+            set
+            {
+                attackPower = value * 10;
+            }
         }
 
         public LaserGun(ContentManager content, int x, int y) : base(content)
@@ -38,6 +40,7 @@ namespace coolgame
             SetTexture("laser");
             Width = texture.Width;
             Height = texture.Height;
+            isUpgradeable = true;
 
             defaultX = x;
             defaultY = y;
@@ -53,6 +56,29 @@ namespace coolgame
             cooldown = 200f;
 
             attackPower = 10;
+
+        }
+
+        public void Upgrade()
+        {
+            SetSpread(GameManager.laser_spread);
+            SetCooldown(GameManager.laser_speed);
+            AttackPower = GameManager.laser_damage;
+            Debug.Log(auxiliaryProjectiles);
+        }
+
+        public void SetCooldown(int level)
+        {
+            cooldown /= level * 1.05f;
+
+            recoilRecovery += level * 0.3f;
+            if (recoilOffset < 0) recoilOffset = 0;
+        }
+
+        public void SetSpread(int level)
+        {
+            auxiliaryProjectiles = level;
+            maxSpread = (float)Math.PI / 40 * auxiliaryProjectiles;
         }
 
         public void PointAt(int targetX, int targetY)

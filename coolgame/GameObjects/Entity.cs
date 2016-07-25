@@ -42,6 +42,11 @@ namespace coolgame
         private SpriteEffects spriteEffects;
         protected float layerDepth;
         protected Color color = Color.White;
+        protected bool isUpgradeable;
+        public bool IsUpgradeable
+        {
+            get { return isUpgradeable; }
+        }
 
         public virtual double X
         {
@@ -172,6 +177,7 @@ namespace coolgame
             X = Y = 0;
             this.content = content;
             scale = Vector2.One;
+            isUpgradeable = false;
         }
 
         public bool Collides(Entity e)

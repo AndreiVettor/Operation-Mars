@@ -35,6 +35,11 @@ namespace coolgame
             //healthBar.Y = collisionBox.Y - 20;
         }
 
+        public new void Upgrade()
+        {
+            tower.Upgrade();
+        }
+
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);

@@ -16,5 +16,7 @@ namespace coolgame
             layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
             EnableHealthBar = true;
         }
+
+        public void Upgrade() { }
     }
 }
