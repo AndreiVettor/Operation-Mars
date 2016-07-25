@@ -17,6 +17,6 @@ namespace coolgame
             EnableHealthBar = true;
         }
 
-        public void Upgrade() { }
+        public virtual void Upgrade() { }
     }
 }
