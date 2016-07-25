@@ -9,9 +9,11 @@ namespace coolgame
 {
     public class PlayerProjectile : LaserProjectile
     {
-        public PlayerProjectile(ContentManager content, double x, double y, float direction, int attackPower) : base(content, x, y, direction, attackPower)
+        public PlayerProjectile(ContentManager content, double x, double y, float direction, int attackPower, int powerLevel) : base(content, x, y, direction, attackPower)
         {
-            SetTexture("redlaser");
+
+            SetTexture("laser" + powerLevel.ToString());
+
             Width = texture.Width;
             Height = texture.Height;
             X = x - Width / 2;

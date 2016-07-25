@@ -26,12 +26,16 @@ namespace coolgame
         private float cooldown;
 
         private int attackPower;
+
+        private int powerLevel;
+
         public int AttackPower
         {
             get { return attackPower; }
             set
             {
                 attackPower = value * 10;
+                powerLevel = value;
             }
         }
 
@@ -75,7 +79,7 @@ namespace coolgame
 
         public void SetSpread(int level)
         {
-            auxiliaryProjectiles = level;
+            auxiliaryProjectiles = level - 1;
             maxSpread = (float)Math.PI / 40 * auxiliaryProjectiles;
         }
 
@@ -101,7 +105,7 @@ namespace coolgame
                 cooldownTime = 0;
                 double projectileX = X + Width / 2 + Math.Cos(Rotation) * (Width / 4);
                 double projectileY = Y + Height / 2 + Math.Sin(Rotation) * (Width / 4);
-                LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation, attackPower);
+                LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation, attackPower, powerLevel);
 
                 //Recoil
                 X -= recoilOffset * Math.Cos(Rotation);
@@ -111,7 +115,7 @@ namespace coolgame
 
                 for (int i = 0; i < auxiliaryProjectiles; ++i)
                 {
-                    p = new PlayerProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * maxSpread, attackPower);
+                    p = new PlayerProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * maxSpread, attackPower, powerLevel);
                 }
             }
         }
