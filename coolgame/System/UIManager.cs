@@ -191,12 +191,17 @@ namespace coolgame.Systems
                                     {
                                         case 0:
                                             {
-                                                //ToggleUpgradeMenu();
+                                                GameManager.laser_damage++;
                                                 break;
                                             }
                                         case 1:
                                             {
-                                                
+                                                GameManager.laser_speed++;
+                                                break;
+                                            }
+                                        case 2:
+                                            {
+                                                GameManager.laser_spread++;
                                                 break;
                                             }
                                         default:
