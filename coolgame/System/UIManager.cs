@@ -81,10 +81,12 @@ namespace coolgame.Systems
             if (upgradeMenuOpen)
             {
                 upgradeMenuOpen = false;
+                GameManager.GamePaused = false;
             }
             else
             {
                 upgradeMenuOpen = true;
+                GameManager.GamePaused = true;
             }
         }
 
@@ -217,6 +219,7 @@ namespace coolgame.Systems
 
         public static void Draw(SpriteBatch spriteBatch)
         {
+
             //Message Drawing
             if (showMessage)
             {
@@ -228,6 +231,7 @@ namespace coolgame.Systems
                         Game.GAME_HEIGHT/2 - messageFont.MeasureString(messageText).Y/2 - 150), 
                     messageColor);
             }
+
 
             //Menu Drawing
             for (int i = 0; i < windowNumber; i++)
