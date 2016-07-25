@@ -9,21 +9,11 @@ namespace coolgame
 {
     class EnemySpawner
     {
-        private Enemy.EnemyDirection enemyDirection;
-        private Vector2 position;
-
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-
         private float spawnTime;
 
-        public EnemySpawner(Vector2 position, Enemy.EnemyDirection enemyDirection)
+        public EnemySpawner()
         {
-            this.position = position;
-            this.enemyDirection = enemyDirection;
+
         }
 
         public void Update(float totalGameTime, float deltaTime)
@@ -34,44 +24,39 @@ namespace coolgame
             {
                 spawnTime = 0;
 
-                if (Roll(GetSpawnRate(totalGameTime, 1, 1.5f)))
+                if (Roll(.01f))
                 {
                     SpawnEnemy("crawler");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, 1, .25f)))
+                if (Roll(.01f))
                 {
                     SpawnEnemy("steelroach");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, 1, .5f)))
+                if (Roll(.01f))
                 {
                     SpawnEnemy("reptilian");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, 1, .5f)))
+                if (Roll(.01f))
                 {
                     SpawnEnemy("reptiliansaucer");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, 1, .35f)))
+                if (Roll(.01f))
                 {
                     SpawnEnemy("demolitionroverunit");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, 1, .5f)))
+                if (Roll(.01f))
                 {
                     SpawnEnemy("mwat");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, 1, .0001f)))
+                if (Roll(.00001f))
                 {
                     SpawnEnemy("illuminati");
                 }
-                if (Roll(GetSpawnRate(totalGameTime, 1, 1f)))
+                if (Roll(.01f))
                 {
                     SpawnEnemy("murderbot");
                 }
             }
-        }
-
-        private float GetSpawnRate(float totalGameTime, int level, float multiplier)
-        {
-            return (float)(Math.Pow(Math.E, - Math.Pow(totalGameTime / 200000 - 1.2f - (level - 1) * .4f, 2))) * .05f * multiplier;
         }
 
         private bool Roll(float chance)
@@ -86,15 +71,21 @@ namespace coolgame
         {
             Enemy tempEnemy = EnemyFactory.CreateEnemy(enemyType);
 
-            if (enemyDirection == Enemy.EnemyDirection.ToLeft)
-                tempEnemy.X = position.X;
+            int direction = GameManager.RNG.Next(2);
+
+            if (direction == 0)
+            {
+                tempEnemy.X = Game.GAME_WIDTH;
+                tempEnemy.Direction = Enemy.EnemyDirection.ToLeft;
+            }
             else
-                tempEnemy.X = position.X - tempEnemy.Width;
+            {
+                tempEnemy.X = - tempEnemy.Width;
+                tempEnemy.Direction = Enemy.EnemyDirection.ToRight;
+            }
 
             if (enemyType != "reptiliansaucer")
-                tempEnemy.Y = position.Y - tempEnemy.Height;
-
-            tempEnemy.Direction = enemyDirection;
+                tempEnemy.Y = GameManager.Ground.Top - tempEnemy.Height;
         }       
     }
 }

@@ -21,7 +21,7 @@ namespace coolgame
 
         float deltaTime, totalGameTime;
 
-        EnemySpawner enemySpawner1, enemySpawner2;
+        EnemySpawner enemySpawner;
 
         public Game()
         {
@@ -76,8 +76,7 @@ namespace coolgame
 
             //Enemies
             EnemyFactory.LoadContent(Content);
-            enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, GameManager.Ground.Top), Enemy.EnemyDirection.ToLeft);
-            enemySpawner2 = new EnemySpawner(new Vector2(-50, GameManager.Ground.Top), Enemy.EnemyDirection.ToRight);
+            enemySpawner = new EnemySpawner();
 
             Debug.Log("Content Loaded");
         }
@@ -179,8 +178,7 @@ namespace coolgame
 
             if (!GameManager.GamePaused)
             {
-                enemySpawner1.Update(totalGameTime, deltaTime);
-                enemySpawner2.Update(totalGameTime, deltaTime);
+                enemySpawner.Update(totalGameTime, deltaTime);
             }
 
             base.Update(gameTime);
