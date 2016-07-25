@@ -11,10 +11,11 @@ namespace coolgame
     {
         public Mwat(ContentManager Content) : base(Content)
         {
-            SetTexture("enemy2");
-            Width = 58;
-            Height = 80;
+            SetTexture("mwat_shooting");
+            Width = 77;
+            Height = 125;
             EnableAnimation = true;
+            AnimationSpeed = 100;
 
             healthBar.MaxHealth = 500;
             movingSpeed = 9f;
