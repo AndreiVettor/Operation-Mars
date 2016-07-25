@@ -56,7 +56,6 @@ namespace coolgame
             cooldown = 200f;
 
             attackPower = 10;
-
         }
 
         public void Upgrade()
@@ -64,14 +63,13 @@ namespace coolgame
             SetSpread(GameManager.laser_spread);
             SetCooldown(GameManager.laser_speed);
             AttackPower = GameManager.laser_damage;
-            Debug.Log(auxiliaryProjectiles);
         }
 
         public void SetCooldown(int level)
         {
-            cooldown /= level * 1.05f;
+            cooldown = 200/(level * 1.05f);
 
-            recoilRecovery += level * 0.3f;
+            recoilRecovery = level * 0.3f;
             if (recoilOffset < 0) recoilOffset = 0;
         }
 
@@ -98,6 +96,7 @@ namespace coolgame
         {
             if (cooldownTime > cooldown)
             {
+                Upgrade();
                 SoundManager.PlayClip("laser");
                 cooldownTime = 0;
                 double projectileX = X + Width / 2 + Math.Cos(Rotation) * (Width / 4);

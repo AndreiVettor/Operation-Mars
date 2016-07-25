@@ -34,16 +34,6 @@ namespace coolgame
             get { return projectiles; }
         }
 
-        private static Building playerBase;
-        public static Building PlayerBase
-        {
-            get { return playerBase; }
-            set
-            {
-                playerBase = value;
-            }
-        }
-
         public static int laser_speed = 1;
         public static int laser_damage = 1;
         public static int laser_spread = 1;
@@ -88,11 +78,6 @@ namespace coolgame
             game.IsFixedTimeStep = frameLimiting;
         }
 
-        public static void Upgrade()
-        {
-            PlayerBase.Upgrade();
-        }
-
         public static void AddEntity(Enemy e)
         {
             enemies.Add(e);
@@ -132,7 +117,6 @@ namespace coolgame
                     }
                 }
 
-                playerBase.Update(deltaTime);
                 for (int i = buildings.Count - 1; i >= 0; i--)
                 {
                     if (buildings[i].Alive)
@@ -175,7 +159,6 @@ namespace coolgame
             {
                 e.Draw(spriteBatch);
             }
-            playerBase.Draw(spriteBatch);
             foreach (Building e in buildings)
             {
                 e.Draw(spriteBatch);

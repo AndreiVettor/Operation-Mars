@@ -28,11 +28,6 @@ namespace coolgame
             layerDepth += .01f;
         }
 
-        public void Upgrade()
-        {
-            laserGun.Upgrade();
-        }
-
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
