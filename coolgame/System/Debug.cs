@@ -72,6 +72,21 @@ namespace coolgame
             }
         }
 
+        public static void Log(int message)
+        {
+            Log(message.ToString());
+        }
+
+        public static void Log(float message)
+        {
+            Log(message.ToString());
+        }
+
+        public static void Log(bool message)
+        {
+            Log(message.ToString());
+        }
+
         public static void Update(float deltaTime)
         {
             timer += deltaTime;
