@@ -12,8 +12,8 @@ namespace coolgame
         public Mwat(ContentManager Content) : base(Content)
         {
             SetTexture("mwat_shooting");
-            Width = 77;
-            Height = 125;
+            Width = 46;
+            Height = 75;
             EnableAnimation = true;
             AnimationSpeed = 100;
 
