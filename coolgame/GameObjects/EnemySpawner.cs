@@ -44,18 +44,18 @@ namespace coolgame
                 //{
                 //    SpawnEnemy("demolitionroverunit");
                 //}
-                if (Roll(.05f))
-                {
-                    SpawnEnemy("mwat");
-                }
+                //if (Roll(.05f))
+                //{
+                //    SpawnEnemy("mwat");
+                //}
                 //if (Roll(.00001f))
                 //{
                 //    SpawnEnemy("illuminati");
                 //}
-                //if (Roll(.01f))
-                //{
-                //    SpawnEnemy("murderbot");
-                //}
+                if (Roll(.01f))
+                {
+                    SpawnEnemy("murderbot");
+                }
             }
         }
 
