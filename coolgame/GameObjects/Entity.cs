@@ -27,8 +27,10 @@ namespace coolgame
         private Rectangle sourceRectangle;
         private Rectangle drawRectangle;
         private Vector2 origin;
-        private int totalFrames;
-        private int currentFrame;
+        private int totalFramesX;
+        private int totalFramesY;
+        private int currentFrameX;
+        private int currentFrameY;
         private float frameUpdateTime;
         private float rotation;
         private bool enableAnimation;
@@ -73,7 +75,7 @@ namespace coolgame
                 if (value > 0)
                 {
                     sourceRectangle.Width = value;
-                    totalFrames = texture.Width / value;
+                    totalFramesX = texture.Width / value;
                     healthBar.X = (int)X + value / 2;
                     origin.X = value / 2;
                     collisionBox.Width = value;
@@ -88,6 +90,7 @@ namespace coolgame
             set
             {
                 sourceRectangle.Height = value;
+                totalFramesY = texture.Height / value;
                 origin.Y = value / 2;
                 collisionBox.Height = value;
                 drawRectangle.Height = (int)(value * scale.Y);
@@ -116,8 +119,10 @@ namespace coolgame
 
                 if (value == false)
                 {
-                    currentFrame = 0;
+                    currentFrameX = 0;
+                    currentFrameY = 0;
                     sourceRectangle.X = 0;
+                    sourceRectangle.Y = 0;
                 }
             }
         }
@@ -161,7 +166,8 @@ namespace coolgame
         public Entity(ContentManager content)
         {
             sourceRectangle = new Rectangle();
-            totalFrames = 0;
+            totalFramesX = 1;
+            totalFramesY = 1;
             healthBar = new HealthBar(content);
             X = Y = 0;
             this.content = content;
@@ -193,11 +199,19 @@ namespace coolgame
                     {
                         frameUpdateTime = 0;
 
-                        currentFrame++;
-                        if (currentFrame == totalFrames)
-                            currentFrame = 0;
+                        currentFrameX++;
+                        if (currentFrameX == totalFramesX)
+                        {
+                            currentFrameX = 0;
+                            currentFrameY++;
+                        }
+                        if (currentFrameY == totalFramesY)
+                        {
+                            currentFrameY = 0;
+                        }
 
-                        sourceRectangle.X = currentFrame * Width;
+                        sourceRectangle.X = currentFrameX * Width;
+                        sourceRectangle.Y = currentFrameY * Height;
                     }
                 }
 
@@ -209,7 +223,10 @@ namespace coolgame
         {
             texture = content.Load<Texture2D>(assetName);
             if (Width > 0)
-                totalFrames = texture.Width / Width;
+            {
+                totalFramesX = texture.Width / Width;
+                totalFramesY = texture.Height / Height;
+            }
             
             if (!enableAnimation)
             {
