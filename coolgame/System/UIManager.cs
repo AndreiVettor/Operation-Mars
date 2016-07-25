@@ -127,7 +127,6 @@ namespace coolgame.Systems
                 {
                     messageColor = new Color(messageColor, messageColor.A - (int)(deltaTime / (fadeDuration / 255)));
                 }
-                Debug.Log(messageTimer);
             }
 
             //Update menus
