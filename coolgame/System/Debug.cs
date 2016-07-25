@@ -11,7 +11,7 @@ namespace coolgame
 {
     static class Debug
     {
-        const string VERSION = "Operation Mars Alpha 0.7. Do not distribute.";
+        const string VERSION = "Operation Mars Alpha 0.8. Do not distribute.";
 
         private static float frameCount = 0;
         private static float timer = 0;

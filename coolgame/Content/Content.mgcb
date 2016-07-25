@@ -391,15 +391,15 @@
 /processorParam:TextureFormat=Color
 /build:electrobeamring2.png
 
-#begin ebloop.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:ebloop.wav
-
 #begin messageFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:TextureFormat=Compressed
 /build:messageFont.spritefont
+
+#begin ebloop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:ebloop.wav
 
