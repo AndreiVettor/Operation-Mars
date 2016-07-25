@@ -16,10 +16,13 @@ namespace coolgame
             Height = 80;
             EnableAnimation = true;
 
-            healthBar.MaxHealth = 50;
+            healthBar.MaxHealth = 500;
             movingSpeed = 9f;
-            attackSpeed = 1f;
-            attackPower = 30;
+            attackSpeed = 1.5f;
+            attackPower = 10;
+            burstFire = true;
+            burstFireAmmount = 3;
+            burstFireSpeed = 10f;
             precision = ((float)GameManager.RNG.NextDouble() * 10f + 10f);
 
             Range = GameManager.RNG.Next(100, 250);

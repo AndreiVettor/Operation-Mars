@@ -14,6 +14,10 @@ namespace coolgame
         private int range;
         private Rectangle rangeBox;
         protected float precision;
+        protected bool burstFire;
+        protected int burstFireAmmount;
+        protected float burstFireSpeed;
+        private int currentBurstProjectile;
 
         protected int Range
         {
@@ -106,8 +110,16 @@ namespace coolgame
             else
             {
                 EnableAnimation = false;
-                if (attackCooldown >= 1000f / attackSpeed)
+                if ((attackCooldown >= 1000f / attackSpeed) || 
+                    (burstFire && (currentBurstProjectile < burstFireAmmount)) && (attackCooldown >= 1000f / burstFireSpeed))
                 {
+                    if (burstFire)
+                    {
+                        ++currentBurstProjectile;
+                        if (attackCooldown >= 1000f / attackSpeed)
+                            currentBurstProjectile = 1;
+                    }
+
                     double projectileX;
                     float projectileDirection = (float)((GameManager.RNG.NextDouble() - .5f) * Math.PI / precision);
                     if (direction == EnemyDirection.ToLeft)
