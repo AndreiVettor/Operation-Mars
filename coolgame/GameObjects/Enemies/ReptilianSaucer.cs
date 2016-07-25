@@ -11,7 +11,6 @@ namespace coolgame
     public class ReptilianSaucer : Enemy
     {
         private Rectangle detectionBox;
-        private Building target;
         private double pathLeft, pathRight;
         private float altitudeVariation;
         private float altitudeVariationModifier;

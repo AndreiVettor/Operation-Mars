@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,42 @@ namespace coolgame.Systems
             get { return clickedUI; }
         }
 
-        public static void SetCrosshair(Texture2D newCrosshair)
+        //message variables
+        private static SpriteFont messageFont;
+        private static bool showMessage = false;
+        private static string messageText;
+        private static float messageDuration;
+        private static float messageTimer;
+        private static float fadeDuration = 500;
+        private static bool messageFading = false;
+        private static Color messageColor = Color.White;
+
+        public static void LoadContent(ContentManager Content)
         {
-            crosshair = newCrosshair;
+            crosshair = Content.Load<Texture2D>("crosshair");
+            messageFont = Content.Load<SpriteFont>("messageFont");
+        }
+
+        public static void DisplayMessage(string text)
+        {
+            showMessage = true;
+            messageFading = true;
+            messageText = text;
+            messageTimer = 0;
+            messageColor = new Color(messageColor, 0);
+
+            messageDuration = 3000 - fadeDuration;
+        }
+
+        public static void DisplayMessage(string text, float duration)
+        {
+            showMessage = true;
+            messageFading = true;
+            messageText = text;
+            messageTimer = 0;
+            messageColor = new Color(messageColor, 0);
+
+            messageDuration = duration - fadeDuration;
         }
 
         public static void TogglePauseMenu()
@@ -71,10 +105,45 @@ namespace coolgame.Systems
             windowNumber++;
         }
 
-        public static void Update(Game game)
+        public static void Update(Game game, float deltaTime)
         {
-            clickedUI = false;
+            //Message display
+            messageTimer += deltaTime;
+
+            //Fade out
+            if(messageTimer >= messageDuration - fadeDuration)
+            {
+                messageFading = true;
+            }
+
+            //Disable message
+            if (messageTimer >= messageDuration)
+            {
+                messageTimer -= messageDuration;
+                showMessage = false;
+            }
+
+            //Stop fading
+            if(messageFading && messageTimer >= fadeDuration)
+            {
+                messageFading = false;
+            }
+
+            if (messageFading && showMessage)
+            {
+                messageColor = new Color(messageColor, messageColor.A + deltaTime / (fadeDuration / 255));
+            }
+
+            if (messageFading && !showMessage)
+            {
+                messageColor = new Color(messageColor, messageColor.A - deltaTime / (fadeDuration / 255));
+            }
+
+            Debug.Log("fading " + messageFading);
+            Debug.Log("showing " +showMessage);
+
             //Update menus
+            clickedUI = false;
             for (int i = 0; i < windowNumber; i++)
             {
                 windows[i].Update();
@@ -161,6 +230,19 @@ namespace coolgame.Systems
 
         public static void Draw(SpriteBatch spriteBatch)
         {
+            //Message Drawing
+            if (showMessage)
+            {
+                spriteBatch.DrawString(
+                    messageFont,
+                    messageText, 
+                    new Vector2(
+                        Game.GAME_WIDTH/2 - messageFont.MeasureString(messageText).X/2, 
+                        Game.GAME_HEIGHT/2 - messageFont.MeasureString(messageText).Y/2 - 150), 
+                    messageColor);
+            }
+
+            //Menu Drawing
             for (int i = 0; i < windowNumber; i++)
             {
                 switch (i)

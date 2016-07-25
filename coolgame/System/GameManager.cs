@@ -40,6 +40,7 @@ namespace coolgame
             set { gamePaused = value; }
             get { return gamePaused; }
         }
+
         public static void TogglePause()
         {
             gamePaused = !gamePaused;
@@ -53,12 +54,20 @@ namespace coolgame
             get { return ground; }
         }
 
+        private static Texture2D background;
+        public static Texture2D Background
+        {
+            get { return background; }
+            set { background = value; }
+        }
+
         private static bool frameLimiting;
         public static bool FrameLimiting
         {
             get { return frameLimiting; }
             set { frameLimiting = value; }
         }
+
         public static void ToggleFrameLimiting(Game game)
         {
             frameLimiting = !frameLimiting;
@@ -132,6 +141,14 @@ namespace coolgame
 
         public static void DrawEntities(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(background,
+                new Rectangle(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT),
+                null,
+                Color.White,
+                0,
+                Vector2.Zero,
+                SpriteEffects.None,
+                LayerManager.GetLayerDepth(Layer.Background));
             ground.Draw(spriteBatch);
 
             foreach(Enemy e in enemies)

@@ -16,12 +16,8 @@ namespace coolgame
         SpriteBatch spriteBatch;
         SpriteBatch UIspriteBatch;
 
-        Texture2D bgImage;
-        Ground ground;
-
         UIWindow pauseMenu;
         UIWindow upgradeMenu;
-        Button menuButton;
 
         float deltaTime, totalGameTime;
 
@@ -47,8 +43,6 @@ namespace coolgame
 
             SoundManager.SoundVolume = 50;
             SoundManager.MusicVolume = 50;
-
-            Debug.Log("Game Initialized");
         }
 
         protected override void LoadContent()
@@ -60,35 +54,23 @@ namespace coolgame
             Debug.LoadContent(Content);
 
             //Base
-            bgImage = Content.Load<Texture2D>("background");
-            ground = new Ground(Content);
-            Base baseBuilding = new Base(Content, GameManager.Ground.Top);
-            Turret t1 = new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToLeft);
-            Turret t2 = new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToRight);
-            Forcefield test = new Forcefield(Content, GameManager.Ground.Top);
+            GameManager.Background = Content.Load<Texture2D>("background");
+            GameManager.Ground = new Ground(Content);
+            GameManager.AddEntity(new Base(Content, GameManager.Ground.Top));
+            GameManager.AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToLeft));
+            GameManager.AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToRight));
+            GameManager.AddEntity(new Forcefield(Content, GameManager.Ground.Top));
 
             //UI
-            UIManager.SetCrosshair(Content.Load<Texture2D>("crosshair"));
-            //pauseMenu = new UIWindow(Content, new Vector2(GAME_WIDTH / 2 - 200/2, GAME_HEIGHT / 2 - 200/2), 200, 140);
-            //upgradeMenu = new UIWindow(Content, new Vector2(GAME_WIDTH / 2 - 500 / 2, GAME_HEIGHT / 2 - 400 / 2), 500, 400);
+            UIManager.LoadContent(Content);
             pauseMenu = new PauseMenu(Content);
             upgradeMenu = new UpgradesMenu(Content);
-
-            //AddButtons();
-
             UIManager.AddElement(pauseMenu);
             UIManager.AddElement(upgradeMenu);
 
 
             //Sound
-            SoundManager.AddSong(Content.Load<Song>("music"), "music");
-            SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser"), "enemylaser");
-            SoundManager.AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
-            SoundManager.AddClip(Content.Load<SoundEffect>("crawlerhit"), "crawlerhit");
-            SoundManager.AddClip(Content.Load<SoundEffect>("steelroachhit"), "steelroachhit");
-            SoundManager.AddClip(Content.Load<SoundEffect>("steelroachattack"), "steelroachattack");
-            SoundManager.AddClip(Content.Load<SoundEffect>("ebloop"), "electrobeam");
-
+            SoundManager.LoadContent(Content);
             SoundManager.PlaySong("music");
 
 
@@ -96,7 +78,8 @@ namespace coolgame
             EnemyFactory.LoadContent(Content);
             enemySpawner1 = new EnemySpawner(new Vector2(Game.GAME_WIDTH + 50, GameManager.Ground.Top), Enemy.EnemyDirection.ToLeft);
             enemySpawner2 = new EnemySpawner(new Vector2(-50, GameManager.Ground.Top), Enemy.EnemyDirection.ToRight);
-            
+
+            Debug.Log("Content Loaded");
         }
 
         public void AddButtons()
@@ -187,7 +170,7 @@ namespace coolgame
             if (!GameManager.GamePaused)
                 totalGameTime += deltaTime;
 
-            UIManager.Update(this);
+            UIManager.Update(this, deltaTime);
             Debug.Update(deltaTime);
             InputManager.Update();
             GameManager.UpdateEntities(deltaTime);
@@ -208,6 +191,11 @@ namespace coolgame
             if (InputManager.KeyPress(Keys.Escape))
             {
                 UIManager.TogglePauseMenu();
+            }
+
+            if(InputManager.KeyPress(Keys.D))
+            {
+                UIManager.DisplayMessage("Test Message More Words Mouse");
             }
 
             if(InputManager.KeyPress(Keys.U))
@@ -257,22 +245,13 @@ namespace coolgame
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null);
 
-            spriteBatch.Draw(bgImage,
-                new Rectangle(0, 0, GAME_WIDTH, GAME_HEIGHT),
-                null,
-                Color.White,
-                0,
-                Vector2.Zero,
-                SpriteEffects.None,
-                LayerManager.GetLayerDepth(Layer.Background));
-
             GameManager.DrawEntities(spriteBatch);
             Debug.Draw(spriteBatch);
 
             spriteBatch.End();
 
             //UI
-            UIspriteBatch.Begin();
+            UIspriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, null);
 
             UIManager.Draw(UIspriteBatch);
 

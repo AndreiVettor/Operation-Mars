@@ -15,7 +15,6 @@ namespace coolgame
             healthBar.Height = 10;
             layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
             EnableHealthBar = true;
-            GameManager.AddEntity(this);
         }
     }
 }

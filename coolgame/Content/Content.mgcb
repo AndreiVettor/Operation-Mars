@@ -397,3 +397,9 @@
 /processorParam:Quality=Best
 /build:ebloop.wav
 
+#begin messageFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:messageFont.spritefont
+

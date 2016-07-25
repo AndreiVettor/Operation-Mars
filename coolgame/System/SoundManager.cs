@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Content;
 
 namespace coolgame
 {
@@ -67,6 +68,17 @@ namespace coolgame
         public static void AddSong(Song song, string name)
         {
             songs.Add(name, song);
+        }
+
+        public static void LoadContent(ContentManager Content)
+        {
+            AddSong(Content.Load<Song>("music"), "music");
+            AddClip(Content.Load<SoundEffect>("towerlaser"), "enemylaser");
+            AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
+            AddClip(Content.Load<SoundEffect>("crawlerhit"), "crawlerhit");
+            AddClip(Content.Load<SoundEffect>("steelroachhit"), "steelroachhit");
+            AddClip(Content.Load<SoundEffect>("steelroachattack"), "steelroachattack");
+            AddClip(Content.Load<SoundEffect>("ebloop"), "electrobeam");
         }
 
         public static void PlayClip(string clipName)
