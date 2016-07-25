@@ -52,7 +52,7 @@ namespace coolgame
                 //{
                 //    SpawnEnemy("illuminati");
                 //}
-                if (Roll(.01f))
+                if (Roll(.05f))
                 {
                     SpawnEnemy("murderbot");
                 }
