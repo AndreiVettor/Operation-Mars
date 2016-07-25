@@ -119,15 +119,15 @@ namespace coolgame.Systems
                 //Fade In
                 if (messageTimer <= fadeDuration)
                 {
-                    messageColor = new Color(messageColor, messageColor.A + deltaTime / (fadeDuration / 255));
+                    messageColor = new Color(messageColor, messageColor.A + (int)(deltaTime / (fadeDuration / 255)));
                 }
    
                 //Fade Out
-                if (messageTimer > fadeDuration && messageTimer <= messageDuration - fadeDuration)
+                if (messageTimer >= messageDuration - fadeDuration)
                 {
-                    messageColor = new Color(messageColor, messageColor.A - deltaTime / (fadeDuration / 255));
+                    messageColor = new Color(messageColor, messageColor.A - (int)(deltaTime / (fadeDuration / 255)));
                 }
-
+                Debug.Log(messageTimer);
             }
 
             //Update menus
