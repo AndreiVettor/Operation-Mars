@@ -34,7 +34,6 @@ namespace coolgame.Systems
         private static float messageDuration;
         private static float messageTimer;
         private static float fadeDuration = 500;
-        private static bool messageFading = false;
         private static Color messageColor = Color.White;
 
         public static void LoadContent(ContentManager Content)
@@ -46,23 +45,21 @@ namespace coolgame.Systems
         public static void DisplayMessage(string text)
         {
             showMessage = true;
-            messageFading = true;
             messageText = text;
             messageTimer = 0;
             messageColor = new Color(messageColor, 0);
 
-            messageDuration = 3000 - fadeDuration;
+            messageDuration = 3000;
         }
 
         public static void DisplayMessage(string text, float duration)
         {
             showMessage = true;
-            messageFading = true;
             messageText = text;
             messageTimer = 0;
             messageColor = new Color(messageColor, 0);
 
-            messageDuration = duration - fadeDuration;
+            messageDuration = duration;
         }
 
         public static void TogglePauseMenu()
@@ -108,39 +105,30 @@ namespace coolgame.Systems
         public static void Update(Game game, float deltaTime)
         {
             //Message display
-            messageTimer += deltaTime;
-
-            //Fade out
-            if(messageTimer >= messageDuration - fadeDuration)
+            if(showMessage)
             {
-                messageFading = true;
-            }
+                messageTimer += deltaTime;
 
-            //Disable message
-            if (messageTimer >= messageDuration)
-            {
-                messageTimer -= messageDuration;
-                showMessage = false;
-            }
+                //Disable message
+                if (messageTimer >= messageDuration)
+                {
+                    messageTimer = 0;
+                    showMessage = false;
+                }
 
-            //Stop fading
-            if(messageFading && messageTimer >= fadeDuration)
-            {
-                messageFading = false;
-            }
+                //Fade In
+                if (messageTimer <= fadeDuration)
+                {
+                    messageColor = new Color(messageColor, messageColor.A + deltaTime / (fadeDuration / 255));
+                }
+   
+                //Fade Out
+                if (messageTimer > fadeDuration && messageTimer <= messageDuration - fadeDuration)
+                {
+                    messageColor = new Color(messageColor, messageColor.A - deltaTime / (fadeDuration / 255));
+                }
 
-            if (messageFading && showMessage)
-            {
-                messageColor = new Color(messageColor, messageColor.A + deltaTime / (fadeDuration / 255));
             }
-
-            if (messageFading && !showMessage)
-            {
-                messageColor = new Color(messageColor, messageColor.A - deltaTime / (fadeDuration / 255));
-            }
-
-            Debug.Log("fading " + messageFading);
-            Debug.Log("showing " +showMessage);
 
             //Update menus
             clickedUI = false;
