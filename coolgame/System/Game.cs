@@ -165,8 +165,8 @@ namespace coolgame
         {
             deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            UIManager.Update(this, deltaTime);
             GameManager.Update(deltaTime);
+            UIManager.Update(this, deltaTime);
             Debug.Update(deltaTime);
             InputManager.Update();
 

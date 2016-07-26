@@ -37,11 +37,26 @@ namespace coolgame
         }
 
         private static bool gamePaused = false;
+        private static bool gamePausing = false;
+
         public static bool GamePaused
         {
-            set { gamePaused = value; }
+            set
+            {
+                if(value == false)
+                {
+                    gamePausing = true;
+                }
+                else
+                {
+                    gamePaused = true;
+                }
+            }
             get { return gamePaused; }
         }
+
+        private static float pauseDelay = 80;
+        private static float pauseTimer;
 
         private static Ground ground;
         public static Ground Ground
@@ -138,6 +153,17 @@ namespace coolgame
 
         public static void Update(float deltaTime)
         {
+            if(gamePausing)
+            {
+                pauseTimer += deltaTime;
+                if (pauseTimer >= pauseDelay)
+                {
+                    pauseTimer = 0;
+                    gamePaused = false;
+                    gamePausing = false;
+                }
+            }
+
             if(!gamePaused)
             {
                 UpdateEntities(deltaTime);
