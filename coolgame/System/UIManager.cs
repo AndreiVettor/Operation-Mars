@@ -15,6 +15,7 @@ namespace coolgame.Systems
         private static List<UIWindow> windows = new List<UIWindow>();
         private static List<UIElement> elements = new List<UIElement>();
 
+        private static Texture2D spaceCashTexture;
         private static Texture2D crosshair;
         private static bool displayCrosshair;
 
@@ -33,9 +34,11 @@ namespace coolgame.Systems
 
         private static SpriteFont gameFont;
 
+
         public static void LoadContent(ContentManager Content)
         {
             crosshair = Content.Load<Texture2D>("crosshair");
+            spaceCashTexture = Content.Load<Texture2D>("spaceCash");
             messageFont = Content.Load<SpriteFont>("messageFont");
             gameFont = Content.Load<SpriteFont>("gameFont");
         }
@@ -225,8 +228,8 @@ namespace coolgame.Systems
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-
-            spriteBatch.DrawString(gameFont, "Space Cash: " + GameManager.SpaceCash, new Vector2(Game.GAME_WIDTH - 200, 20), Color.White);
+            spriteBatch.Draw(spaceCashTexture, new Vector2(Game.GAME_WIDTH - 150, 33), Color.White);
+            spriteBatch.DrawString(gameFont, "" + GameManager.SpaceCash, new Vector2(Game.GAME_WIDTH - 100, 40), Color.White);
 
             //Message Drawing
             if (showMessage)
