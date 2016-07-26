@@ -62,6 +62,7 @@
     <Compile Include="GameObjects\Enemies\EnemyType\ReptilianSaucer.cs" />
     <Compile Include="System\SoundManager.cs" />
     <Compile Include="System\UIManager.cs" />
+    <Compile Include="UI\StartMenu.cs" />
     <Compile Include="UI\UIWindow.cs" />
     <Compile Include="UI\UIElement.cs" />
     <Compile Include="System\Debug.cs" />

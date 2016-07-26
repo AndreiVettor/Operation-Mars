@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using coolgame.Systems;
+using coolgame.UI;
 
 namespace coolgame
 {
@@ -18,6 +19,7 @@ namespace coolgame
 
         UIWindow pauseMenu;
         UIWindow upgradeMenu;
+        UIWindow startMenu;
 
         float deltaTime, totalGameTime;
 
@@ -65,8 +67,10 @@ namespace coolgame
             UIManager.LoadContent(Content);
             pauseMenu = new PauseMenu(Content);
             upgradeMenu = new UpgradesMenu(Content);
+            startMenu = new StartMenu(Content);
             UIManager.AddElement(upgradeMenu);
             UIManager.AddElement(pauseMenu);
+            UIManager.AddElement(startMenu);
 
 
             //Sound

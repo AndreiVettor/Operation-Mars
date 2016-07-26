@@ -125,10 +125,6 @@ namespace coolgame.Systems
 
         public static void Update(Game game, float deltaTime)
         {
-            if(GameManager.State == GameState.StartMenu && InputManager.MouseLeft == ButtonState.Pressed)
-            {
-                GameManager.State = GameState.Game;
-            }
             //Message display
             if (showMessage)
             {
@@ -233,8 +229,42 @@ namespace coolgame.Systems
                             }
                             break;
                         }
+                    case 2:
+                        {
+                            for (int j = 0; j < windows[i].GetButtons().Count; j++)
+                            {
+                                if (windows[i].GetButtons()[j].Pressed)
+                                    switch (j)
+                                    {
+                                        //Start
+                                        case 0:
+                                            {
+                                                GameManager.State = GameState.Game;
+                                                break;
+                                            }
+                                        //About
+                                        case 1:
+                                            {
+                                                //Show about section
+                                                break;
+                                            }
+                                        //Load
+                                        case 2:
+                                            {
+                                                //Load Game
+                                                break;
+                                            }
+                                        default:
+                                            {
+                                                break;
+                                            }
+                                    }
+                            }
+                            break;
+                        }
                     default:
                         {
+                            Debug.Log("Invalid Menu Case");
                             break;
                         }
                 }
@@ -283,9 +313,17 @@ namespace coolgame.Systems
                             }
                             break;
                         }
-
+                    case 2:
+                        {
+                            if(GameManager.State == GameState.StartMenu)
+                            {
+                                windows[i].Draw(spriteBatch);
+                            }
+                            break;
+                        }
                     default:
                         {
+                            Debug.Log("Invalid Menu Case");
                             break;
                         }
                 }
