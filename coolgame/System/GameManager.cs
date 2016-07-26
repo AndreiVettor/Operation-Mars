@@ -117,6 +117,33 @@ namespace coolgame
             return temp;
         }
 
+        private static void ClearEntities()
+        {
+            enemies.Clear();
+            projectiles.Clear();
+        }
+
+        private static void ClearUpgrades()
+        {
+            laser_speed = 1;
+            laser_damage = 1;
+            laser_spread = 1;
+        }
+
+        public static void Restart()
+        {
+            ClearEntities();
+            ClearUpgrades();
+        }
+
+        public static void Update(float deltaTime)
+        {
+            if(!gamePaused)
+            {
+                UpdateEntities(deltaTime);
+            }
+        }
+
         public static void UpdateEntities(float deltaTime)
         {
             if (!gamePaused)

@@ -108,7 +108,7 @@ namespace coolgame.Systems
         public static void Update(Game game, float deltaTime)
         {
             //Message display
-            if(showMessage)
+            if (showMessage)
             {
                 messageTimer += deltaTime;
 
@@ -124,7 +124,7 @@ namespace coolgame.Systems
                 {
                     messageColor = new Color(messageColor, messageColor.A + (int)(deltaTime / (fadeDuration / 255)));
                 }
-   
+
                 //Fade Out
                 if (messageTimer >= messageDuration - fadeDuration)
                 {
@@ -148,34 +148,36 @@ namespace coolgame.Systems
                         {
                             for (int j = 0; j < windows[i].GetButtons().Count; j++)
                             {
-                                switch(j)
-                                {
-                                    //Resume button
-                                    case 0:
-                                        {
-                                            if(windows[i].GetButtons()[j].Pressed && pauseMenuOpen)
+                                if (windows[i].GetButtons()[j].Pressed && pauseMenuOpen)
+                                    switch (j)
+                                    {
+                                        //Resume button
+                                        case 0:
                                             {
                                                 TogglePauseMenu();
+                                                break;
                                             }
-                                            break;
-                                        }
-                                    //Exit button
-                                    case 1:
-                                        {
-                                            if (windows[i].GetButtons()[j].Pressed && pauseMenuOpen)
+                                        //Restart Button
+                                        case 1:
+                                            {
+                                                GameManager.Restart();
+                                                TogglePauseMenu();
+                                                break;
+                                            }
+                                        //Exit Button
+                                        case 2:
                                             {
                                                 game.Exit();
+                                                break;
                                             }
-                                            break;
-                                        }
-                                    default:
-                                        {
-                                            break;
-                                        }
-                                }
+                                        default:
+                                            {
+                                                break;
+                                            }
+                                    }
                             }
                             break;
-                        } 
+                        }
                     //Upgrade Menu
                     case 1:
                         {

@@ -165,22 +165,22 @@ namespace coolgame
         {
             deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (!GameManager.GamePaused)
-                totalGameTime += deltaTime;
-
-            UIManager.Update(this, deltaTime);
+            GameManager.Update(deltaTime);
             Debug.Update(deltaTime);
+            UIManager.Update(this, deltaTime);
             InputManager.Update();
-            GameManager.UpdateEntities(deltaTime);
 
-            ReadKeyPresses();
 
             if (!GameManager.GamePaused)
             {
-                enemySpawner.Update(totalGameTime, deltaTime);
-            }
+                totalGameTime += deltaTime;
 
-            base.Update(gameTime);
+                ReadKeyPresses();
+
+                enemySpawner.Update(totalGameTime, deltaTime);
+
+                base.Update(gameTime);
+            }
         }
 
         public void ReadKeyPresses()
@@ -190,7 +190,13 @@ namespace coolgame
                 UIManager.TogglePauseMenu();
             }
 
-            if(InputManager.KeyPress(Keys.D))
+            if (InputManager.KeyPress(Keys.R))
+            {
+                GameManager.Restart();
+                Debug.Log("Game Restarted");
+            }
+
+            if (InputManager.KeyPress(Keys.D))
             {
                 if(GameManager.GodMode)
                 {
@@ -238,7 +244,7 @@ namespace coolgame
                 Debug.Log("Toggled Mute");
             }
 
-            if (InputManager.KeyPress(Keys.R))
+            if (InputManager.KeyPress(Keys.B))
             {
                 Debug.ToggleRectangles();
                 Debug.Log("Toggled Collision Boxes");

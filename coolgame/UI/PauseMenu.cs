@@ -14,6 +14,7 @@ namespace coolgame
         {
             spacing = 20;
             AddItem(new Button(Content, Vector2.Zero, 140, 40, "RESUME"));
+            AddItem(new Button(Content, Vector2.Zero, 140, 40, "RESTART"));
             AddItem(new Button(Content, Vector2.Zero, 140, 40, "EXIT GAME"));
         }
     }
