@@ -13,9 +13,9 @@ namespace coolgame
         public PauseMenu(ContentManager Content) : base(Content, Vector2.Zero, 0, 0)
         {
             spacing = 20;
-            AddItem(new Button(Content, Vector2.Zero, 140, 40, "RESUME"));
-            AddItem(new Button(Content, Vector2.Zero, 140, 40, "RESTART"));
-            AddItem(new Button(Content, Vector2.Zero, 140, 40, "EXIT GAME"));
+            AddItem(new Button(Content, Vector2.Zero, "RESUME"));
+            AddItem(new Button(Content, Vector2.Zero, "RESTART"));
+            AddItem(new Button(Content, Vector2.Zero, "EXIT GAME"));
         }
     }
 }

@@ -72,6 +72,16 @@ namespace coolgame
 
         protected SpriteFont font;
 
+        public UIElement(ContentManager Content, Vector2 position, string text)
+        {
+            texture = Content.Load<Texture2D>("tile");
+            font = Content.Load<SpriteFont>("UIFont");
+            BackgroundColor = new Color(Color.Black, 0.5f);
+            ForegroundColor = Color.White;
+            this.text = text;
+            Position = position;
+        }
+
         public UIElement(ContentManager Content, Vector2 position, int width, int height)
         {
             texture = Content.Load<Texture2D>("tile");

@@ -13,9 +13,18 @@ namespace coolgame.UI
         public StartMenu(ContentManager Content) : base(Content, Vector2.Zero, 0, 0)
         {
             spacing = 20;
-            AddItem(new Button(Content, Vector2.Zero, 140, 40, "START GAME"));
-            AddItem(new Button(Content, Vector2.Zero, 140, 40, "ABOUT THE GAME"));
-            AddItem(new Button(Content, Vector2.Zero, 140, 40, "LOAD GAME?"));
+            AddItem(new Button(Content, Vector2.Zero, "START GAME"));
+            AddItem(new Button(Content, Vector2.Zero, "ABOUT THE GAME"));
+            AddItem(new Button(Content, Vector2.Zero, "LOAD GAME?"));
+            AddItem(new Button(Content, Vector2.Zero, "EXIT GAME"));
+            HasBackground = false;
+        }
+
+        public override void ArrangeMenu()
+        {
+            base.ArrangeMenu();
+            position.X = 300;
+            position.Y = 300;
         }
     }
 }

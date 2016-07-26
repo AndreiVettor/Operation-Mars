@@ -16,6 +16,13 @@ namespace coolgame
         private UIElement background;
         protected int spacing = 10;
 
+        private bool hasBackground;
+        public bool HasBackground
+        {
+            get { return hasBackground; }
+            set { hasBackground = value; }
+        }
+
         private bool buttonHeld;
         public bool ButtonHeld
         {
@@ -30,7 +37,6 @@ namespace coolgame
         public void AddItem(UIElement item)
         {
             menuItems.Add(item);
-            //ArrangeMenu();
         }
 
         public void AddItem(Button button)
@@ -39,7 +45,7 @@ namespace coolgame
             ArrangeMenu();
         }
 
-        private void ArrangeMenu()
+        public virtual void ArrangeMenu()
         {
             // calculate the space occupied by the buttons
             int totalHeight = spacing;
@@ -50,6 +56,12 @@ namespace coolgame
                 if (b.Width > maxWidth)
                     maxWidth = b.Width;
             }
+
+            foreach (Button b in menuButtons)
+            {
+                b.Width = maxWidth;
+            }
+
             maxWidth += spacing * 2;
 
             // reposition the window in the center of the screen and resize it to fit all the elements
@@ -78,6 +90,7 @@ namespace coolgame
             background.BackgroundColor = new Color(Color.SlateGray, 0.2f);
             buttonHeld = false;
             text = "";
+            hasBackground = true;
         }
 
         public void Update()
@@ -95,7 +108,10 @@ namespace coolgame
 
         new public void Draw(SpriteBatch spriteBatch)
         {
-            background.Draw(spriteBatch);
+            if(hasBackground)
+            {
+                background.Draw(spriteBatch);
+            }
             foreach(Button b  in menuButtons)
             {
                 b.Draw(spriteBatch);

@@ -254,6 +254,11 @@ namespace coolgame.Systems
                                                 //Load Game
                                                 break;
                                             }
+                                        case 3:
+                                            {
+                                                game.Exit();
+                                                break;
+                                            }
                                         default:
                                             {
                                                 break;

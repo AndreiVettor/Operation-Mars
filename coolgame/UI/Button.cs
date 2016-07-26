@@ -58,8 +58,10 @@ namespace coolgame
             textPosition = new Vector2(position.X + Width / 2 - textSize.X / 2, position.Y + Height / 2 - textSize.Y / 2);
         }
 
-        public Button(ContentManager Content, Vector2 position, int width, int height, string text) : base(Content, position, width, height, text)
+        public Button(ContentManager Content, Vector2 position, string text) : base(Content, position, text)
         {
+            Width = (int)font.MeasureString(text).X + 20;
+            Height = (int)font.MeasureString(text).Y + 10;
             BackgroundColor = Color.CadetBlue;
         }
 
