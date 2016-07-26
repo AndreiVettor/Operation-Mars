@@ -165,18 +165,16 @@ namespace coolgame
         {
             deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
+            UIManager.Update(this, deltaTime);
             GameManager.Update(deltaTime);
             Debug.Update(deltaTime);
-            UIManager.Update(this, deltaTime);
             InputManager.Update();
 
+            ReadKeyPresses();
 
             if (!GameManager.GamePaused)
             {
                 totalGameTime += deltaTime;
-
-                ReadKeyPresses();
-
                 enemySpawner.Update(totalGameTime, deltaTime);
 
                 base.Update(gameTime);
