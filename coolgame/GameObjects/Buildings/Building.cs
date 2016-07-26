@@ -17,6 +17,12 @@ namespace coolgame
             EnableHealthBar = true;
         }
 
-        public virtual void Upgrade() { }
+        public override void InflictDamage(int hitpoints)
+        {
+            if(!GameManager.GodMode)
+            {
+                base.InflictDamage(hitpoints);
+            }
+        }
     }
 }
