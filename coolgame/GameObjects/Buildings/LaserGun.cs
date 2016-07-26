@@ -122,19 +122,6 @@ namespace coolgame
 
         public override void Update(float deltaTime)
         {
-            if (InputManager.KeyPress(Keys.D1))
-            {
-                auxiliaryProjectiles++;
-                maxSpread = (float)Math.PI / 40 * auxiliaryProjectiles;
-            }
-            if (InputManager.KeyPress(Keys.D2))
-            {
-                cooldown /= 1.05f;
-
-                recoilRecovery += 0.3f;
-                if (recoilOffset < 0) recoilOffset = 0;
-            }
-
             cooldownTime += deltaTime;
 
             X += velocity.X * deltaTime * 6 / 100;
