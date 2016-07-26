@@ -17,6 +17,11 @@ namespace coolgame
             EnableHealthBar = true;
         }
 
+        public virtual void Reset()
+        {
+            healthBar.Health = healthBar.MaxHealth;
+        }
+
         public override void InflictDamage(int hitpoints)
         {
             if(!GameManager.GodMode)

@@ -148,18 +148,25 @@ namespace coolgame
             enemies.Clear();
             projectiles.Clear();
         }
-
         private static void ClearUpgrades()
         {
             laser_speed = 1;
             laser_damage = 1;
             laser_spread = 1;
         }
+        private static void ResetBuildings()
+        {
+            foreach(Building b in buildings)
+            {
+                b.Reset();
+            }
+        }
 
         public static void Restart()
         {
             ClearEntities();
             ClearUpgrades();
+            ResetBuildings();
         }
 
         public static void Update(float deltaTime)
