@@ -32,7 +32,7 @@ namespace coolgame
             GameManager.SetFrameLimiting(this, true);
             GameManager.SetVSync(graphics, false);
 
-            IsMouseVisible = false;
+            UIManager.SetCrosshairDisplay(this, true);
             Content.RootDirectory = "Content";
         }
 

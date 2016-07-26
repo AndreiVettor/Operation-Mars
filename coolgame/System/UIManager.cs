@@ -101,8 +101,8 @@ namespace coolgame.Systems
 
         public static void SetCrosshairDisplay(Game game, bool value)
         {
-            displayCrosshair = !value;
-            game.IsMouseVisible = value;
+            displayCrosshair = value;
+            game.IsMouseVisible = !value;
         }
 
         public static void Update(Game game, float deltaTime)
