@@ -53,20 +53,8 @@ namespace coolgame
         public static GameState State
         {
             get { return state; }
-            set
-            {
-                state = value;
-                if (value == GameState.Paused)
-                {
-                    gamePausing = true;
-                }
-            }
+            set { state = value; }
         }
-
-        private static bool gamePausing = false;
-
-        private static float pauseDelay = 80;
-        private static float pauseTimer;
 
         private static Ground ground;
         public static Ground Ground
@@ -80,6 +68,13 @@ namespace coolgame
         {
             get { return background; }
             set { background = value; }
+        }
+
+        private static Texture2D startBackground;
+        public static Texture2D StartBackground
+        {
+            get { return startBackground; }
+            set { startBackground = value; }
         }
 
         private static bool godMode;
@@ -102,7 +97,6 @@ namespace coolgame
 
 
         //METHODS
-
         public static void TogglePause()
         {
             if (state == GameState.Paused)
@@ -170,17 +164,6 @@ namespace coolgame
 
         public static void Update(float deltaTime)
         {
-            if(gamePausing)
-            {
-                pauseTimer += deltaTime;
-                if (pauseTimer >= pauseDelay)
-                {
-                    pauseTimer = 0;
-                    state = GameState.Game;
-                    gamePausing = false;
-                }
-            }
-
             if(state == GameState.Game)
             {
                 UpdateEntities(deltaTime);
@@ -189,70 +172,74 @@ namespace coolgame
 
         public static void UpdateEntities(float deltaTime)
         {
-            if (state == GameState.Game)
+            for (int i = enemies.Count - 1; i >= 0; i--)
             {
-                for (int i = enemies.Count - 1; i >= 0; i--)
+                enemies[i].LayerDepth = LayerManager.GetLayerDepth(Layer.Enemies) + i * .00001f;
+                if (enemies[i].Alive)
                 {
-                    enemies[i].LayerDepth = LayerManager.GetLayerDepth(Layer.Enemies) + i * .00001f;
-                    if (enemies[i].Alive)
-                    {
-                        enemies[i].Update(deltaTime);
-                    }
-                    else
-                    {
-                        enemies.Remove(enemies[i]);
-                    }
+                    enemies[i].Update(deltaTime);
                 }
-
-                for (int i = buildings.Count - 1; i >= 0; i--)
+                else
                 {
-                    if (buildings[i].Alive)
-                    {
-                        buildings[i].Update(deltaTime);
-                    }
-                    else
-                    {
-                        buildings.Remove(buildings[i]);
-                    }
+                    enemies.Remove(enemies[i]);
                 }
+            }
 
-                for (int i = projectiles.Count - 1; i >= 0; i--)
+            for (int i = buildings.Count - 1; i >= 0; i--)
+            {
+                if (buildings[i].Alive)
                 {
-                    if (projectiles[i].Alive)
-                    {
-                        projectiles[i].Update(deltaTime);
-                    }
-                    else
-                    {
-                        projectiles.Remove(projectiles[i]);
-                    }
+                    buildings[i].Update(deltaTime);
+                }
+                else
+                {
+                    buildings.Remove(buildings[i]);
+                }
+            }
+
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+            {
+                if (projectiles[i].Alive)
+                {
+                    projectiles[i].Update(deltaTime);
+                }
+                else
+                {
+                    projectiles.Remove(projectiles[i]);
                 }
             }
         }
 
         public static void DrawEntities(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background,
-                new Rectangle(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT),
-                null,
-                Color.White,
-                0,
-                Vector2.Zero,
-                SpriteEffects.None,
-                LayerManager.GetLayerDepth(Layer.Background));
-            ground.Draw(spriteBatch);
+            if (state == GameState.StartMenu)
+            {
+                spriteBatch.Draw(startBackground, Vector2.Zero, Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(background,
+                    new Rectangle(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT),
+                    null,
+                    Color.White,
+                    0,
+                    Vector2.Zero,
+                    SpriteEffects.None,
+                    LayerManager.GetLayerDepth(Layer.Background));
+                ground.Draw(spriteBatch);
 
-            foreach(Enemy e in enemies)
-            {
-                e.Draw(spriteBatch);
-            }
-            foreach (Building e in buildings)
-            {
-                e.Draw(spriteBatch);
-            }
-            foreach (LaserProjectile e in projectiles)
-            {
-                e.Draw(spriteBatch);
+                foreach (Enemy e in enemies)
+                {
+                    e.Draw(spriteBatch);
+                }
+                foreach (Building e in buildings)
+                {
+                    e.Draw(spriteBatch);
+                }
+                foreach (LaserProjectile e in projectiles)
+                {
+                    e.Draw(spriteBatch);
+                }
             }
         }
     }

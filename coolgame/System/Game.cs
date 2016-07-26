@@ -54,6 +54,7 @@ namespace coolgame
 
             //Base
             GameManager.Background = Content.Load<Texture2D>("background");
+            GameManager.StartBackground = Content.Load<Texture2D>("startBackground");
             GameManager.Ground = new Ground(Content);
             GameManager.AddEntity(new Base(Content, GameManager.Ground.Top));
             GameManager.AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToLeft));
@@ -170,7 +171,11 @@ namespace coolgame
             Debug.Update(deltaTime);
             InputManager.Update();
 
+            Debug.Log(GameManager.State.ToString());
+
             ReadKeyPresses();
+
+            Debug.Log(GameManager.State.ToString());
 
             if (GameManager.State == GameState.Game)
             {
@@ -190,8 +195,11 @@ namespace coolgame
 
             if (InputManager.KeyPress(Keys.R))
             {
-                GameManager.Restart();
-                Debug.Log("Game Restarted");
+                GameManager.State = GameState.StartMenu;
+            }
+            if (InputManager.KeyPress(Keys.T))
+            {
+                GameManager.State = GameState.Game;
             }
 
             if (InputManager.KeyPress(Keys.D))
@@ -256,7 +264,6 @@ namespace coolgame
 
         protected override void Draw(GameTime gameTime)
         {
-
             GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null);
