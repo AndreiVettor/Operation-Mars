@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace coolgame
 {
-    class Enemy1 : Enemy
+    class Steve : Enemy
     {
-        public Enemy1(ContentManager Content) :base(Content) {
+        public Steve(ContentManager Content) :base(Content) {
             SetTexture("enemy2");
             Width = 58;
             Height = 80;
