@@ -32,7 +32,7 @@ namespace coolgame
                 view = new Rectangle(0, 0, (int)X, (int)Y + Height);
             }
 
-            laserGun = new LaserGun(content, (int)X, (int)Y + Height / 3);
+            laserGun = new LaserGun(content, (int)X, (int)Y + 15);
             laserGun.AttackPower = 5;
 
             if (enemyDirection == Enemy.EnemyDirection.ToRight)

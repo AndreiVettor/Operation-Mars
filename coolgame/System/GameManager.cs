@@ -8,10 +8,16 @@ using System.Threading.Tasks;
 
 namespace coolgame
 {
-    public static class GameManager
+    public enum GameState
     {
-        // VARIABLES
+        StartMenu,
+        Game,
+        Paused,
+    }
 
+    public static class GameManager
+    { 
+        // VARIABLES
         private static Random random = new Random();
         public static Random RNG
         {
@@ -43,24 +49,21 @@ namespace coolgame
             set { spaceCash = value; }
         }
 
-        private static bool gamePaused = false;
-        private static bool gamePausing = false;
-
-        public static bool GamePaused
+        private static GameState state = GameState.Game;
+        public static GameState State
         {
+            get { return state; }
             set
             {
-                if(value == false)
+                state = value;
+                if (value == GameState.Paused)
                 {
                     gamePausing = true;
                 }
-                else
-                {
-                    gamePaused = true;
-                }
             }
-            get { return gamePaused; }
         }
+
+        private static bool gamePausing = false;
 
         private static float pauseDelay = 80;
         private static float pauseTimer;
@@ -102,8 +105,15 @@ namespace coolgame
 
         public static void TogglePause()
         {
-            gamePaused = !gamePaused;
-            Debug.Log("Game has been " + (gamePaused ? "paused" : "unpaused"));
+            if (state == GameState.Paused)
+            {
+                state = GameState.Game;
+            }
+            else if (state == GameState.Game)
+            {
+                state = GameState.Paused;
+            }
+            Debug.Log("Toggled Pause");
         }
 
         public static void SetFrameLimiting(Game game, bool value)
@@ -166,12 +176,12 @@ namespace coolgame
                 if (pauseTimer >= pauseDelay)
                 {
                     pauseTimer = 0;
-                    gamePaused = false;
+                    state = GameState.Game;
                     gamePausing = false;
                 }
             }
 
-            if(!gamePaused)
+            if(state == GameState.Game)
             {
                 UpdateEntities(deltaTime);
             }
@@ -179,7 +189,7 @@ namespace coolgame
 
         public static void UpdateEntities(float deltaTime)
         {
-            if (!gamePaused)
+            if (state == GameState.Game)
             {
                 for (int i = enemies.Count - 1; i >= 0; i--)
                 {

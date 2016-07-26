@@ -172,7 +172,7 @@ namespace coolgame
 
             ReadKeyPresses();
 
-            if (!GameManager.GamePaused)
+            if (GameManager.State == GameState.Game)
             {
                 totalGameTime += deltaTime;
                 enemySpawner.Update(totalGameTime, deltaTime);
@@ -227,7 +227,7 @@ namespace coolgame
 
             if (InputManager.KeyPress(Keys.P))
             {
-                GameManager.GamePaused = !GameManager.GamePaused;
+                GameManager.TogglePause();
                 Debug.Log("Toggled Game Pause");
             }
 

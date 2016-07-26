@@ -68,12 +68,12 @@ namespace coolgame.Systems
             if(pauseMenuOpen)
             {
                 pauseMenuOpen = false;
-                GameManager.GamePaused = false;
+                GameManager.State = GameState.Game;
             }
             else
             {
                 pauseMenuOpen = true;
-                GameManager.GamePaused = true;
+                GameManager.State = GameState.Paused;
             }
         }
 
@@ -82,12 +82,12 @@ namespace coolgame.Systems
             if (upgradeMenuOpen)
             {
                 upgradeMenuOpen = false;
-                GameManager.GamePaused = false;
+                GameManager.State = GameState.Game;
             }
             else
             {
                 upgradeMenuOpen = true;
-                GameManager.GamePaused = true;
+                GameManager.State = GameState.Paused;
             }
         }
 
