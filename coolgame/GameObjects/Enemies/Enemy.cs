@@ -20,6 +20,7 @@ namespace coolgame
         protected string attackSound;
         protected string hitSound;
         protected Building target;
+        protected int spaceCash;
 
         public EnemyDirection Direction
         {
@@ -42,13 +43,17 @@ namespace coolgame
             GameManager.AddEntity(this);
             movingSpeed = 1f;
             attackSpeed = 1f;
+            spaceCash = 10;
         }
 
         public override void InflictDamage(int hitpoints)
         {
             base.InflictDamage(hitpoints);
             if (healthBar.Health <= 0)
-                Debug.enemiesKilled++;
+            {
+                GameManager.SpaceCash += spaceCash;
+            }
+
         }
     }
 }

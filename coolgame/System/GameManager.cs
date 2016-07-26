@@ -36,6 +36,13 @@ namespace coolgame
             get { return projectiles; }
         }
 
+        private static int spaceCash = 100;
+        public static int SpaceCash
+        {
+            get { return spaceCash; }
+            set { spaceCash = value; }
+        }
+
         private static bool gamePaused = false;
         private static bool gamePausing = false;
 

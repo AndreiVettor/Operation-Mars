@@ -31,10 +31,13 @@ namespace coolgame.Systems
         private static float fadeDuration = 500;
         private static Color messageColor = Color.White;
 
+        private static SpriteFont gameFont;
+
         public static void LoadContent(ContentManager Content)
         {
             crosshair = Content.Load<Texture2D>("crosshair");
             messageFont = Content.Load<SpriteFont>("messageFont");
+            gameFont = Content.Load<SpriteFont>("gameFont");
         }
 
         public static void DisplayMessage(string text)
@@ -222,6 +225,8 @@ namespace coolgame.Systems
 
         public static void Draw(SpriteBatch spriteBatch)
         {
+
+            spriteBatch.DrawString(gameFont, "Space Cash: " + GameManager.SpaceCash, new Vector2(Game.GAME_WIDTH - 200, 20), Color.White);
 
             //Message Drawing
             if (showMessage)

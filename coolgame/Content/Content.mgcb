@@ -511,3 +511,9 @@
 /processorParam:TextureFormat=Color
 /build:laseraux2.png
 
+#begin gameFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:gameFont.spritefont
+

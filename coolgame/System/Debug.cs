@@ -21,12 +21,13 @@ namespace coolgame
         private static List<string> messages = new List<string>();
         private static float messageLifespan = 1000;
         private static float messageTimer = 0;
-        private static float layerDepth = LayerManager.GetLayerDepth(Layer.Debugging);
+        private static Vector2 messageBoxPos = new Vector2(15, Game.GAME_HEIGHT - 15);
+        private static int messagePadding = 10;
+        private static int messageMaxLength = 0;
+        private static int textShadowSize = 1;
         private static int lineHeight = 20;
-        private static Vector2 messageBoxPos = new Vector2(15,Game.GAME_HEIGHT - 15);
-        private static int maxLength = 0;
-        private static int padding = 10;
-        private static int shadowSize = 1;
+
+        private static float layerDepth = LayerManager.GetLayerDepth(Layer.Debugging);
 
         public static bool debugMessages = true;
         public static bool debugFPS = true;
@@ -35,8 +36,6 @@ namespace coolgame
         private static Texture2D debugTexture;
         private static Rectangle debugRectangle;
         private static float debugOpacity = 0.2f;
-
-        public static int enemiesKilled = 0;
 
         public static void LoadContent(ContentManager Content)
         {
@@ -68,7 +67,7 @@ namespace coolgame
                 {
                     messages.RemoveRange(14, messages.Count - 15);
                 }
-                maxLength = Math.Max(maxLength, (int)font.MeasureString(message).X + 10 + padding);
+                messageMaxLength = Math.Max(messageMaxLength, (int)font.MeasureString(message).X + 10 + messagePadding);
             }
         }
 
@@ -83,7 +82,7 @@ namespace coolgame
                 {
                     messages.RemoveRange(14, messages.Count - 15);
                 }
-                maxLength = Math.Max(maxLength, (int)font.MeasureString(message).X + 10 + padding);
+                messageMaxLength = Math.Max(messageMaxLength, (int)font.MeasureString(message).X + 10 + messagePadding);
             }
         }
 
@@ -124,7 +123,7 @@ namespace coolgame
                     if (messages.Count == 0)
                     {
                         messageTimer = 0;
-                        maxLength = 0;
+                        messageMaxLength = 0;
                     }
                 }
             }
@@ -133,7 +132,7 @@ namespace coolgame
         private static void DrawText(SpriteBatch spriteBatch, string text, Vector2 position)
         {
             spriteBatch.DrawString(font, text, position, Color.Black, 0, Vector2.Zero, 1, SpriteEffects.None, layerDepth + 0.01f);
-            spriteBatch.DrawString(font, text, new Vector2(position.X - shadowSize, position.Y + shadowSize), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, layerDepth);
+            spriteBatch.DrawString(font, text, new Vector2(position.X - textShadowSize, position.Y + textShadowSize), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, layerDepth);
         }
 
         public static void Draw(SpriteBatch spriteBatch)
@@ -155,27 +154,21 @@ namespace coolgame
 
             DrawText(spriteBatch, VERSION, new Vector2(10, 10));
 
-            DrawText(spriteBatch, "Score: " + enemiesKilled, new Vector2(Game.GAME_WIDTH - 70, 10));
-
             if (debugMessages)
             {
-                debugRectangle = new Rectangle((int)messageBoxPos.X, (int)messageBoxPos.Y - lineHeight * messages.Count, maxLength, messages.Count * lineHeight);
+                debugRectangle = new Rectangle((int)messageBoxPos.X, (int)messageBoxPos.Y - lineHeight * messages.Count, messageMaxLength, messages.Count * lineHeight);
                 spriteBatch.Draw(debugTexture, debugRectangle, null, new Color(Color.Black, 0.05f), 0, Vector2.Zero, SpriteEffects.None, layerDepth + 0.02f);
 
                 for (int i = 0; i < messages.Count; i++)
                 {
-                    DrawText(spriteBatch, messages[i], new Vector2(messageBoxPos.X + padding, Game.GAME_HEIGHT - padding - (i + 1) * lineHeight));
+                    DrawText(spriteBatch, messages[i], new Vector2(messageBoxPos.X + messagePadding, Game.GAME_HEIGHT - messagePadding - (i + 1) * lineHeight));
                 }
             }
 
             if(debugRectangles)
             {
-                List<Entity> entities = GameManager.GetEntityList();
-                foreach (Entity e in entities)
+                foreach (Entity e in GameManager.GetEntityList())
                 {
-                    //debugRectangle = new Rectangle((int)e.X, (int)e.Y, e.Width, e.Height);
-                    //spriteBatch.Draw(debugTexture, debugRectangle, new Color(Color.Green, debugOpacity));
-
                     debugRectangle = e.CollisionBox;
                     spriteBatch.Draw(debugTexture, debugRectangle, null, new Color(Color.Blue, debugOpacity), 0, Vector2.Zero, SpriteEffects.None, layerDepth + 0.03f);
                 }
