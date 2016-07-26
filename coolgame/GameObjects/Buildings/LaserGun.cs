@@ -44,7 +44,6 @@ namespace coolgame
             SetTexture("laser");
             Width = texture.Width;
             Height = texture.Height;
-            isUpgradeable = true;
 
             defaultX = x;
             defaultY = y;
