@@ -29,9 +29,8 @@ namespace coolgame
             graphics.PreferredBackBufferWidth = GAME_WIDTH;
             graphics.PreferredBackBufferHeight = GAME_HEIGHT;
 
-            IsFixedTimeStep = true;
-            GameManager.FrameLimiting = true;
-            graphics.SynchronizeWithVerticalRetrace = false;
+            GameManager.SetFrameLimiting(this, true);
+            GameManager.SetVSync(graphics, false);
 
             IsMouseVisible = false;
             Content.RootDirectory = "Content";
@@ -211,8 +210,15 @@ namespace coolgame
 
             if (InputManager.KeyPress(Keys.C))
             {
-                GameManager.ToggleFrameLimiting(this);
-                Debug.Log("Toggled Frame Limiting");
+                if(GameManager.FrameLimiting)
+                {
+                    GameManager.SetFrameLimiting(this, false);
+                }
+                else
+                {
+                    GameManager.SetFrameLimiting(this, true);
+                }
+                Debug.Log("Frame Limiting", GameManager.FrameLimiting);
             }
 
             if (InputManager.KeyPress(Keys.P))

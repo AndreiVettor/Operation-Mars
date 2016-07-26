@@ -16,16 +16,11 @@ namespace coolgame.Systems
         private static List<UIElement> elements = new List<UIElement>();
 
         private static Texture2D crosshair;
+        private static bool displayCrosshair;
 
         private static int windowNumber = 0;
         private static bool pauseMenuOpen = false;
         private static bool upgradeMenuOpen = false;
-
-        private static bool clickedUI = false;
-        public static bool ClickedUI
-        {
-            get { return clickedUI; }
-        }
 
         //message variables
         private static SpriteFont messageFont;
@@ -104,6 +99,12 @@ namespace coolgame.Systems
             windowNumber++;
         }
 
+        public static void SetCrosshairDisplay(Game game, bool value)
+        {
+            displayCrosshair = !value;
+            game.IsMouseVisible = value;
+        }
+
         public static void Update(Game game, float deltaTime)
         {
             //Message display
@@ -132,14 +133,9 @@ namespace coolgame.Systems
             }
 
             //Update menus
-            clickedUI = false;
             for (int i = 0; i < windowNumber; i++)
             {
                 windows[i].Update();
-                if(windows[i].ButtonHeld)
-                {
-                    clickedUI = true;
-                }
             }
 
             //Button events
@@ -273,7 +269,7 @@ namespace coolgame.Systems
                     elements[i].Draw(spriteBatch);
             }
 
-            if(crosshair != null)
+            if(displayCrosshair)
             {
                 spriteBatch.Draw(
                     crosshair,

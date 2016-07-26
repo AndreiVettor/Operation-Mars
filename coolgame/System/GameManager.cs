@@ -10,6 +10,8 @@ namespace coolgame
 {
     public static class GameManager
     {
+        // VARIABLES
+
         private static Random random = new Random();
         public static Random RNG
         {
@@ -34,21 +36,11 @@ namespace coolgame
             get { return projectiles; }
         }
 
-        public static int laser_speed = 1;
-        public static int laser_damage = 1;
-        public static int laser_spread = 1;
-
         private static bool gamePaused = false;
         public static bool GamePaused
         {
             set { gamePaused = value; }
             get { return gamePaused; }
-        }
-
-        public static void TogglePause()
-        {
-            gamePaused = !gamePaused;
-            Debug.Log("Game has been " + (gamePaused ? "paused" : "unpaused"));
         }
 
         private static Ground ground;
@@ -76,13 +68,31 @@ namespace coolgame
         public static bool FrameLimiting
         {
             get { return frameLimiting; }
-            set { frameLimiting = value; }
+        }
+        private static bool vSync;
+
+        public static int laser_speed = 1;
+        public static int laser_damage = 1;
+        public static int laser_spread = 1;
+
+
+        //METHODS
+
+        public static void TogglePause()
+        {
+            gamePaused = !gamePaused;
+            Debug.Log("Game has been " + (gamePaused ? "paused" : "unpaused"));
         }
 
-        public static void ToggleFrameLimiting(Game game)
+        public static void SetFrameLimiting(Game game, bool value)
         {
-            frameLimiting = !frameLimiting;
-            game.IsFixedTimeStep = frameLimiting;
+            frameLimiting = value;
+            game.IsFixedTimeStep = value;
+        }
+        public static void SetVSync(GraphicsDeviceManager graphics, bool value)
+        {
+            vSync = value;
+            graphics.SynchronizeWithVerticalRetrace = value;
         }
 
         public static void AddEntity(Enemy e)
