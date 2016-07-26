@@ -19,12 +19,5 @@ namespace coolgame.UI
             AddItem(new Button(Content, Vector2.Zero, "EXIT GAME"));
             HasBackground = false;
         }
-
-        public override void ArrangeMenu()
-        {
-            base.ArrangeMenu();
-            position.X = 300;
-            position.Y = 300;
-        }
     }
 }

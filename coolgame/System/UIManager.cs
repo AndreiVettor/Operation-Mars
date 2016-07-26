@@ -231,39 +231,44 @@ namespace coolgame.Systems
                         }
                     case 2:
                         {
-                            for (int j = 0; j < windows[i].GetButtons().Count; j++)
+                            if (GameManager.State == GameState.StartMenu)
                             {
-                                if (windows[i].GetButtons()[j].Pressed)
-                                    switch (j)
-                                    {
-                                        //Start
-                                        case 0:
-                                            {
-                                                GameManager.State = GameState.Game;
-                                                break;
-                                            }
-                                        //About
-                                        case 1:
-                                            {
-                                                //Show about section
-                                                break;
-                                            }
-                                        //Load
-                                        case 2:
-                                            {
-                                                //Load Game
-                                                break;
-                                            }
-                                        case 3:
-                                            {
-                                                game.Exit();
-                                                break;
-                                            }
-                                        default:
-                                            {
-                                                break;
-                                            }
-                                    }
+                                for (int j = 0; j < windows[i].GetButtons().Count; j++)
+                                {
+                                    if (windows[i].GetButtons()[j].Pressed)
+                                        switch (j)
+                                        {
+                                            //Start
+                                            case 0:
+                                                {
+                                                    GameManager.State = GameState.Game;
+                                                    break;
+                                                }
+                                            //About
+                                            case 1:
+                                                {
+                                                    //Show about section
+                                                    break;
+                                                }
+                                            //Load
+                                            case 2:
+                                                {
+                                                    //Load Game
+                                                    break;
+                                                }
+                                            //Exit
+                                            case 3:
+                                                {
+                                                    game.Exit();
+                                                    break;
+                                                }
+                                            default:
+                                                {
+                                                    break;
+                                                }
+                                        }
+                                }
+
                             }
                             break;
                         }
