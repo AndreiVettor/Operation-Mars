@@ -20,6 +20,7 @@ namespace coolgame
         private int recoilOffset;
         private float recoilAcceleration;
         private float recoilRecovery;
+        private float lockDistance;
 
         private int auxiliaryProjectiles;
         private float maxSpread;
@@ -45,20 +46,22 @@ namespace coolgame
             Width = texture.Width;
             Height = texture.Height;
 
-            defaultX = x;
-            defaultY = y;
-            recoilOffset = 6;
-            recoilAcceleration = -1;
-            recoilRecovery = 0.3f;
-
             X = x;
             Y = y;
             this.content = content;
             layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
             random = new Random();
-            cooldown = 200f;
+
+            //Laser Specific
+            defaultX = x;
+            defaultY = y;
+            recoilOffset = 6;
+            recoilAcceleration = -1;
+            recoilRecovery = 0.018f;
+            lockDistance = 8;
 
             attackPower = 10;
+            cooldown = 200f;
         }
 
         public void Upgrade()
@@ -72,7 +75,7 @@ namespace coolgame
         {
             cooldown = 200/(level * 1.05f);
 
-            recoilRecovery = level * 0.3f;
+            recoilRecovery = level * 0.018f;
             if (recoilOffset < 0) recoilOffset = 0;
         }
 
@@ -85,7 +88,9 @@ namespace coolgame
         public void PointAt(int targetX, int targetY)
         {
             Rotation = (float)Math.Atan2(targetY - Y - Height / 2, targetX - X - Width / 2);
-            if(Rotation < -Math.PI/2 || Rotation > Math.PI/2)
+
+            //Flip Direction
+            if (Rotation < -Math.PI/2 || Rotation > Math.PI/2)
             {
                 Effects = SpriteEffects.FlipVertically;
             }
@@ -107,9 +112,11 @@ namespace coolgame
                 LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation, attackPower, powerLevel);
 
                 //Recoil
+                //initial offset
                 X -= recoilOffset * Math.Cos(Rotation);
                 Y -= recoilOffset * Math.Sin(Rotation);
 
+                //travel
                 velocity = new Vector2(recoilAcceleration * (float)Math.Cos(Rotation), recoilAcceleration * (float)Math.Sin(Rotation));
 
                 for (int i = 0; i < auxiliaryProjectiles; ++i)
@@ -123,23 +130,23 @@ namespace coolgame
         {
             cooldownTime += deltaTime;
 
-            X += velocity.X * deltaTime * 6 / 100;
-            Y += velocity.Y * deltaTime * 6 / 100;
+            X += velocity.X * deltaTime;
+            Y += velocity.Y * deltaTime;
 
             float recoveryAngle = (float)Math.Atan2(Y - defaultY, X - defaultX);
             velocity -= new Vector2(recoilRecovery * (float)Math.Cos(recoveryAngle), recoilRecovery * (float)Math.Sin(recoveryAngle)) *
-                deltaTime * 6 / 100;
+                deltaTime;
 
-            //If laser is close enough to default position lock into place
-            if (Math.Abs(defaultX - X) < 3)
+            //Lock gun into position if distance allows
+            if (Math.Abs(defaultX - X) < lockDistance)
             {
                 X = defaultX;
             }
-            if (Math.Abs(defaultY - Y) < 3)
+            if (Math.Abs(defaultY - Y) < lockDistance)
             {
                 Y = defaultY;
             }
-            if (Math.Abs(defaultX - X) < 3 && Math.Abs(defaultY - Y) < 3)
+            if (Math.Abs(defaultX - X) < lockDistance && Math.Abs(defaultY - Y) < lockDistance)
             {
                 velocity = Vector2.Zero;
             }
@@ -154,6 +161,7 @@ namespace coolgame
                 velocity.Y = -recoilAcceleration;
             }
 
+            //Outer bounds
             if (Math.Abs(defaultX - X) > 10)
             {
                 if (defaultX - X > 0)

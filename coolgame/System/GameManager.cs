@@ -65,6 +65,13 @@ namespace coolgame
             set { background = value; }
         }
 
+        private static bool godMode;
+        public static bool GodMode
+        {
+            get { return godMode; }
+            set { godMode = value; }
+        }
+
         private static bool frameLimiting;
         public static bool FrameLimiting
         {

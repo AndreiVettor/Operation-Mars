@@ -193,10 +193,15 @@ namespace coolgame
 
             if(InputManager.KeyPress(Keys.D))
             {
-                UIManager.DisplayMessage("3 FREE UNLOCKS FOR YOU!!!");
-                GameManager.laser_damage++;
-                GameManager.laser_speed++;
-                GameManager.laser_spread++;
+                if(GameManager.GodMode)
+                {
+                    GameManager.GodMode = false;
+                }
+                else
+                {
+                    GameManager.GodMode = true;
+                }
+                Debug.Log("God Mode", GameManager.GodMode);
             }
 
             if(InputManager.KeyPress(Keys.U))
