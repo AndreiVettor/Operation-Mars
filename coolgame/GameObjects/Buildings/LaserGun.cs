@@ -55,10 +55,10 @@ namespace coolgame
             //Laser Specific
             defaultX = x;
             defaultY = y;
-            recoilOffset = 6;
+            recoilOffset = 4;
             recoilAcceleration = -1;
             recoilRecovery = 0.018f;
-            lockDistance = 8;
+            lockDistance = 3;
 
             attackPower = 10;
             cooldown = 200f;
