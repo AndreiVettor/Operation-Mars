@@ -65,8 +65,8 @@ namespace coolgame
             UIManager.LoadContent(Content);
             pauseMenu = new PauseMenu(Content);
             upgradeMenu = new UpgradesMenu(Content);
-            UIManager.AddElement(pauseMenu);
             UIManager.AddElement(upgradeMenu);
+            UIManager.AddElement(pauseMenu);
 
 
             //Sound
@@ -188,15 +188,23 @@ namespace coolgame
 
         public void ReadKeyPresses()
         {
-            if (GameManager.State == GameState.Game)
+            if (GameManager.State != GameState.StartMenu)
             {
+                if (InputManager.KeyPress(Keys.Escape) )
+                {
+                    UIManager.TogglePauseMenu();
+                }
+
+                if (InputManager.KeyPress(Keys.U) && !UIManager.PauseMenuOpen)
+                {
+                    UIManager.ToggleUpgradeMenu();
+                }
 
                 if (InputManager.KeyPress(Keys.P))
                 {
                     GameManager.TogglePause();
                     Debug.Log("Toggled Game Pause");
                 }
-
 
                 if (InputManager.KeyPress(Keys.D))
                 {
@@ -210,17 +218,6 @@ namespace coolgame
                     }
                     Debug.Log("God Mode", GameManager.GodMode);
                 }
-
-                if (InputManager.KeyPress(Keys.Escape))
-                {
-                    UIManager.TogglePauseMenu();
-                }
-
-                if (InputManager.KeyPress(Keys.U))
-                {
-                    UIManager.ToggleUpgradeMenu();
-                }
-
 
                 if (InputManager.KeyPress(Keys.R))
                 {

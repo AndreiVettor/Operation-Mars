@@ -22,7 +22,15 @@ namespace coolgame.Systems
 
         private static int windowNumber = 0;
         private static bool pauseMenuOpen = false;
+        public static bool PauseMenuOpen
+        {
+            get { return pauseMenuOpen; }
+        }
         private static bool upgradeMenuOpen = false;
+        public static bool UpgradeMenuOpen
+        {
+            get { return upgradeMenuOpen; }
+        }
 
         //message variables
         private static SpriteFont messageFont;
@@ -68,8 +76,11 @@ namespace coolgame.Systems
         {
             if(pauseMenuOpen)
             {
+                if(!upgradeMenuOpen)
+                {
+                    GameManager.State = GameState.Game;
+                }
                 pauseMenuOpen = false;
-                GameManager.State = GameState.Game;
             }
             else
             {
@@ -154,8 +165,41 @@ namespace coolgame.Systems
             {
                 switch (i)
                 {
-                    //Pause Menu
+                    //Upgrade Menu
                     case 0:
+                        {
+                            for (int j = 0; j < windows[i].GetButtons().Count; j++)
+                            {
+                                if (windows[i].GetButtons()[j].Pressed && upgradeMenuOpen)
+                                {
+                                    switch (j)
+                                    {
+                                        case 0:
+                                            {
+                                                GameManager.laser_damage++;
+                                                break;
+                                            }
+                                        case 1:
+                                            {
+                                                GameManager.laser_speed++;
+                                                break;
+                                            }
+                                        case 2:
+                                            {
+                                                GameManager.laser_spread++;
+                                                break;
+                                            }
+                                        default:
+                                            {
+                                                break;
+                                            }
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    //Pause Menu
+                    case 1:
                         {
                             for (int j = 0; j < windows[i].GetButtons().Count; j++)
                             {
@@ -186,39 +230,6 @@ namespace coolgame.Systems
                                                 break;
                                             }
                                     }
-                            }
-                            break;
-                        }
-                    //Upgrade Menu
-                    case 1:
-                        {
-                            for (int j = 0; j < windows[i].GetButtons().Count; j++)
-                            {
-                                if (windows[i].GetButtons()[j].Pressed && upgradeMenuOpen)
-                                {
-                                    switch (j)
-                                    {
-                                        case 0:
-                                            {
-                                                GameManager.laser_damage++;
-                                                break;
-                                            }
-                                        case 1:
-                                            {
-                                                GameManager.laser_speed++;
-                                                break;
-                                            }
-                                        case 2:
-                                            {
-                                                GameManager.laser_spread++;
-                                                break;
-                                            }
-                                        default:
-                                            {
-                                                break;
-                                            }
-                                    }
-                                }
                             }
                             break;
                         }
@@ -254,8 +265,17 @@ namespace coolgame.Systems
             {
                 switch (i)
                 {
-                    //Pause Menu
+                    //Upgrade Menu
                     case 0:
+                        {
+                            if (upgradeMenuOpen)
+                            {
+                                windows[i].Draw(spriteBatch);
+                            }
+                            break;
+                        }
+                    //Pause Menu
+                    case 1:
                         {
                             if (pauseMenuOpen)
                             {
@@ -263,14 +283,7 @@ namespace coolgame.Systems
                             }
                             break;
                         }
-                    case 1:
-                        {
-                            if(upgradeMenuOpen)
-                            {
-                                windows[i].Draw(spriteBatch);
-                            }
-                            break;
-                        }
+
                     default:
                         {
                             break;
