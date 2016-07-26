@@ -188,36 +188,50 @@ namespace coolgame
 
         public void ReadKeyPresses()
         {
-            if (InputManager.KeyPress(Keys.Escape))
+            if (GameManager.State == GameState.Game)
             {
-                UIManager.TogglePauseMenu();
+
+                if (InputManager.KeyPress(Keys.P))
+                {
+                    GameManager.TogglePause();
+                    Debug.Log("Toggled Game Pause");
+                }
+
+
+                if (InputManager.KeyPress(Keys.D))
+                {
+                    if (GameManager.GodMode)
+                    {
+                        GameManager.GodMode = false;
+                    }
+                    else
+                    {
+                        GameManager.GodMode = true;
+                    }
+                    Debug.Log("God Mode", GameManager.GodMode);
+                }
+
+                if (InputManager.KeyPress(Keys.Escape))
+                {
+                    UIManager.TogglePauseMenu();
+                }
+
+                if (InputManager.KeyPress(Keys.U))
+                {
+                    UIManager.ToggleUpgradeMenu();
+                }
+
+
+                if (InputManager.KeyPress(Keys.R))
+                {
+                    GameManager.State = GameState.StartMenu;
+                }
             }
 
-            if (InputManager.KeyPress(Keys.R))
-            {
-                GameManager.State = GameState.StartMenu;
-            }
+
             if (InputManager.KeyPress(Keys.T))
             {
                 GameManager.State = GameState.Game;
-            }
-
-            if (InputManager.KeyPress(Keys.D))
-            {
-                if(GameManager.GodMode)
-                {
-                    GameManager.GodMode = false;
-                }
-                else
-                {
-                    GameManager.GodMode = true;
-                }
-                Debug.Log("God Mode", GameManager.GodMode);
-            }
-
-            if(InputManager.KeyPress(Keys.U))
-            {
-                UIManager.ToggleUpgradeMenu();
             }
 
             if (InputManager.KeyPress(Keys.C))
@@ -231,12 +245,6 @@ namespace coolgame
                     GameManager.SetFrameLimiting(this, true);
                 }
                 Debug.Log("Frame Limiting", GameManager.FrameLimiting);
-            }
-
-            if (InputManager.KeyPress(Keys.P))
-            {
-                GameManager.TogglePause();
-                Debug.Log("Toggled Game Pause");
             }
 
             if (InputManager.KeyPress(Keys.F))
