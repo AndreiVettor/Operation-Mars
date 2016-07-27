@@ -107,7 +107,7 @@ namespace coolgame
 
             GameManager.Update(deltaTime);
             UIManager.Update(this, Content, deltaTime);
-            guiManager.Update(this, Content, guiManager);
+            guiManager.Update(this, Content, guiManager, enemySpawner);
             Debug.Update(deltaTime);
             InputManager.Update();
 

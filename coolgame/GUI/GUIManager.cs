@@ -45,7 +45,7 @@ namespace coolgame.UI
             windows.Clear();
         }
 
-        public void Update(Game game, ContentManager Content, GUIManager guiManager)
+        public void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
         {
             for (int i = 0; i < windows.Count; i++)
             {
@@ -54,7 +54,7 @@ namespace coolgame.UI
                     windows.Remove(windows[i]);
                     continue;
                 }
-                windows[i].Update(game, Content, guiManager);
+                windows[i].Update(game, Content, guiManager, spawner);
             }
         }
 

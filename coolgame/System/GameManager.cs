@@ -302,7 +302,7 @@ namespace coolgame
             AddEntity(new Forcefield(Content, Ground.Top));
         }
 
-        public static void Restart(ContentManager Content, GUIManager guiManager)
+        public static void Restart(ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
         {
             ClearEntities();
             ResetBuildings(Content);
@@ -310,6 +310,7 @@ namespace coolgame
             spaceCash = 0;
             SoundManager.PlaySong("music");
             guiManager.Restart();
+            spawner.Wave = 1;
         }
 
         public static void Update(float deltaTime)

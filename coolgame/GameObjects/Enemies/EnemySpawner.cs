@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace coolgame
 {
-    class EnemySpawner
+    public class EnemySpawner
     {
         private const float SPAWN_CYCLE = 1000f / 6;
 

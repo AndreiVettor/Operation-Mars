@@ -80,7 +80,7 @@ namespace coolgame.UI
 
         }
 
-        public virtual void Update(Game game, ContentManager Content, GUIManager guiManager)
+        public virtual void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
         {
             foreach(GUIButton button in buttons)
             {

@@ -60,9 +60,9 @@ namespace coolgame.GUI.Menus
             }
         }
 
-        public override void Update(Game game, ContentManager Content, GUIManager guiManager)
+        public override void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
         {
-            base.Update(game, Content, guiManager);
+            base.Update(game, Content, guiManager, spawner);
 
             if (ButtonPressed(0))
             {
@@ -75,14 +75,14 @@ namespace coolgame.GUI.Menus
             }
             else if (ButtonPressed(2))
             {
-                GameManager.Restart(Content, guiManager);
+                GameManager.Restart(Content, guiManager, spawner);
                 GameManager.State = GameState.Game;
                 Closing = true;
             }
             else if (ButtonPressed(3))
             {
                 Closing = true;
-                GameManager.Restart(Content, guiManager);
+                GameManager.Restart(Content, guiManager, spawner);
                 GameManager.State = GameState.StartMenu;
             }
             else if (ButtonPressed(4))
