@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace coolgame.UI
 {
-    class GUIButton :GUIElement
+    public class GUIButton :GUIElement
     {
         private Color pressedColor;
         public Color PressedColor

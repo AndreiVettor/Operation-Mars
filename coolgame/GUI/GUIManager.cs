@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace coolgame.UI
 {
-    class GUIManager
+    public class GUIManager
     {
         private List<GUIWindow> windows;
         private GUISprite crossHair;
@@ -38,6 +38,11 @@ namespace coolgame.UI
         public void CloseWindow(GUIWindow window)
         {
             windows.Remove(window);
+        }
+
+        public void Restart()
+        {
+            windows.Clear();
         }
 
         public void Update(Game game, ContentManager Content, GUIManager guiManager)

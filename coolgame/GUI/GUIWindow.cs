@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace coolgame.UI
 {
-    class GUIWindow : GUIElement
+    public class GUIWindow : GUIElement
     {
         protected List<GUIButton> buttons;
         protected List<GUILabel> labels;

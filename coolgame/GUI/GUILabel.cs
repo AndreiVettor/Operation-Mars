@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace coolgame.UI
 {
-    class GUILabel : GUIElement
+    public class GUILabel : GUIElement
     {
         public GUILabel(ContentManager Content, SpriteFont textFont, string text, Vector2 position) : base(Content)
         {

@@ -251,7 +251,7 @@ namespace coolgame.Systems
                                         //Restart Button
                                         case 2:
                                             {
-                                                GameManager.Restart(Content);
+                                                //GameManager.Restart(Content);
                                                 GameManager.State = GameState.Game;
                                                 break;
                                             }
@@ -289,7 +289,7 @@ namespace coolgame.Systems
                                             //Start
                                             case 0:
                                                 {
-                                                    GameManager.Restart(Content);
+                                                    //GameManager.Restart(Content, gui);
                                                     GameManager.State = GameState.Game;
                                                     break;
                                                 }

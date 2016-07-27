@@ -1,4 +1,5 @@
 ﻿using coolgame.Systems;
+using coolgame.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -301,13 +302,14 @@ namespace coolgame
             AddEntity(new Forcefield(Content, Ground.Top));
         }
 
-        public static void Restart(ContentManager Content)
+        public static void Restart(ContentManager Content, GUIManager guiManager)
         {
             ClearEntities();
             ResetBuildings(Content);
             UIManager.Reset();
             spaceCash = 0;
             SoundManager.PlaySong("music");
+            guiManager.Restart();
         }
 
         public static void Update(float deltaTime)

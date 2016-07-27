@@ -24,7 +24,6 @@ namespace coolgame.GUI.Menus
             AddButton(new GUIButton(Content, textFont, "BACK TO START", new Vector2(0, 180), Color.DarkSlateBlue));
             AddButton(new GUIButton(Content, textFont, "EXIT GAME",     new Vector2(0, 240), Color.DarkSlateBlue));
             NormalizeButtonLength(true, true, 10);
-            AddLabel(new GUILabel(Content, textFont, "I'm a Label",     new Vector2(150, 0)));
             BackgroundColor = Color.CornflowerBlue;
         }
 
@@ -76,14 +75,14 @@ namespace coolgame.GUI.Menus
             }
             else if (ButtonPressed(2))
             {
-                GameManager.Restart(Content);
+                GameManager.Restart(Content, guiManager);
                 GameManager.State = GameState.Game;
                 Closing = true;
             }
             else if (ButtonPressed(3))
             {
                 Closing = true;
-                GameManager.Restart(Content);
+                GameManager.Restart(Content, guiManager);
                 GameManager.State = GameState.StartMenu;
             }
             else if (ButtonPressed(4))

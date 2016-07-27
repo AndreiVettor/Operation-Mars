@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace coolgame.GUI
 {
-    class GUISprite : GUIElement
+    public class GUISprite : GUIElement
     {
         public GUISprite (ContentManager Content, string textureName, Vector2 position) : base (Content, textureName)
         {
