@@ -149,7 +149,6 @@ namespace coolgame.Systems
 
         public static void Update(Game game, ContentManager Content, float deltaTime)
         {
-            Debug.Log("About", aboutPanelOpen);
             //Message display
             if (showMessage)
             {
@@ -243,6 +242,7 @@ namespace coolgame.Systems
                                         case 2:
                                             {
                                                 GameManager.Restart(Content);
+                                                GameManager.State = GameState.Game;
                                                 break;
                                             }
                                         //Back to Start
