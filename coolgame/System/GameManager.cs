@@ -45,7 +45,7 @@ namespace coolgame
             get { return projectiles; }
         }
 
-        private static int spaceCash = 100;
+        private static int spaceCash = 0;
         public static int SpaceCash
         {
             get { return spaceCash; }
@@ -99,6 +99,26 @@ namespace coolgame
         #region methods
 
         #region upgrade_system
+
+        public static void ActivateForcefield()
+        {
+            if (buildings.ContainsKey("forcefield"))
+                ((Forcefield)buildings["forcefield"]).Alive = true;
+        }
+
+        public static void ActivateTurret(bool left)
+        {
+            if (left)
+            {
+                if (buildings.ContainsKey("leftturret"))
+                    ((Turret)buildings["leftturret"]).Alive = true;;
+            }
+            else
+            {
+                if (buildings.ContainsKey("rightturret"))
+                    ((Turret)buildings["rightturret"]).Alive = true;
+            }
+        }
 
         public static void UpgradeLaserPower()
         {
@@ -265,7 +285,7 @@ namespace coolgame
             ClearEntities();
             ResetBuildings(Content);
             UIManager.Reset();
-            spaceCash = 100;
+            spaceCash = 0;
         }
 
         public static void Update(float deltaTime)
