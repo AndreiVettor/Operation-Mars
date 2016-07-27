@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using coolgame.Systems;
 using coolgame.UI;
+using coolgame.GUI.Menus;
 
 namespace coolgame
 {
@@ -16,6 +17,8 @@ namespace coolgame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteBatch UIspriteBatch;
+
+        GUIManager guiManager;
 
         UIWindow pauseMenu;
         UIWindow upgradeMenu;
@@ -36,6 +39,8 @@ namespace coolgame
             GameManager.SetVSync(graphics, false);
 
             UIManager.SetCrosshairDisplay(this, true);
+
+
             Content.RootDirectory = "Content";
         }
 
@@ -64,6 +69,11 @@ namespace coolgame
             GameManager.AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToRight), true);
             GameManager.AddEntity(new Forcefield(Content, GameManager.Ground.Top));
 
+            //GUI
+            guiManager = new GUIManager(Content);
+            guiManager.AddWindow(new GameMenu(Content, guiManager.TextFont));
+
+
             //UI
             UIManager.LoadContent(Content);
             pauseMenu = new PauseMenu(Content);
@@ -87,82 +97,6 @@ namespace coolgame
             Debug.Log("Content Loaded");
         }
 
-        public void AddButtons()
-        {
-            //PAUSE MENU
-            //menuButton = new Button(
-            //   Content, new Vector2(
-            //       GAME_WIDTH / 2 - 140 / 2,
-            //       GAME_HEIGHT / 2 - 80),
-            //   140, 40, "RESUME");
-            //menuButton.BackgroundColor = Color.CadetBlue;
-            //pauseMenu.AddItem(menuButton);
-
-            //menuButton = new Button(
-            //    Content,
-            //    new Vector2(
-            //        GAME_WIDTH / 2 - 140 / 2,
-            //        GAME_HEIGHT / 2 - 60 / 2),
-            //    140, 40, "EXIT GAME");
-            //menuButton.BackgroundColor = Color.CadetBlue;
-            //pauseMenu.AddItem(menuButton);
-
-            //UPGRADE MENU
-            //menuButton = new Button(
-            //    Content,
-            //    new Vector2(
-            //        upgradeMenu.Position.X + upgradeMenu.Width - 30 - 10,
-            //        upgradeMenu.Position.Y + 10),
-            //    30, 30, "X");
-            //menuButton.BackgroundColor = Color.CadetBlue;
-            //upgradeMenu.AddItem(menuButton);
-
-            //menuButton = new Button(
-            //    Content,
-            //    new Vector2(
-            //        upgradeMenu.Position.X + 20,
-            //        upgradeMenu.Position.Y + 20),
-            //    250, 30, "Upgrade Lasergun Speed (x2)");
-            //menuButton.BackgroundColor = Color.CadetBlue;
-            //upgradeMenu.AddItem(menuButton);
-
-            //menuButton = new Button(
-            //    Content,
-            //    new Vector2(
-            //        upgradeMenu.Position.X + 20,
-            //        upgradeMenu.Position.Y + 70),
-            //    250, 30, "Add Auxiliary Shooting (x2)");
-            //menuButton.BackgroundColor = Color.CadetBlue;
-            //upgradeMenu.AddItem(menuButton);
-
-            //menuButton = new Button(
-            //    Content,
-            //    new Vector2(
-            //        upgradeMenu.Position.X + 20,
-            //        upgradeMenu.Position.Y + 120),
-            //    250, 30, "Build Forcefield Generator");
-            //menuButton.BackgroundColor = Color.CadetBlue;
-            //upgradeMenu.AddItem(menuButton);
-
-            //menuButton = new Button(
-            //    Content,
-            //    new Vector2(
-            //        upgradeMenu.Position.X + 20,
-            //        upgradeMenu.Position.Y + 170),
-            //    250, 30, "Upgrade Forcefield Regen");
-            //menuButton.BackgroundColor = Color.CadetBlue;
-            //upgradeMenu.AddItem(menuButton);
-
-            //menuButton = new Button(
-            //    Content,
-            //    new Vector2(
-            //        upgradeMenu.Position.X + 20,
-            //        upgradeMenu.Position.Y + 220),
-            //    250, 30, "Upgrade Forcefield Strength");
-            //menuButton.BackgroundColor = Color.CadetBlue;
-            //upgradeMenu.AddItem(menuButton);
-        }
-
         protected override void UnloadContent()
         {
 
@@ -174,6 +108,7 @@ namespace coolgame
 
             GameManager.Update(deltaTime);
             UIManager.Update(this, Content, deltaTime);
+            guiManager.Update(this, Content, guiManager);
             Debug.Update(deltaTime);
             InputManager.Update();
 
@@ -281,14 +216,17 @@ namespace coolgame
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null);
 
             GameManager.DrawEntities(spriteBatch);
+            guiManager.Draw(spriteBatch);
             Debug.Draw(spriteBatch);
 
             spriteBatch.End();
 
             //UI
-            UIspriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, null);
+            UIspriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, null);
+
 
             UIManager.Draw(UIspriteBatch);
+
 
             UIspriteBatch.End();
 
