@@ -80,6 +80,17 @@ namespace coolgame
             }
         }
 
+        public UIWindow(ContentManager Content, string textureName, Vector2 position) : base(Content, textureName, position)
+        {
+            menuButtons = new List<Button>();
+            menuItems = new List<UIElement>();
+            background = new UIElement(Content, position, 0, 0);
+            //background.BackgroundColor = new Color(Color.SlateGray, 0.4f);
+            buttonHeld = false;
+            text = "";
+            hasBackground = false;
+        }
+
         public UIWindow (ContentManager Content, Vector2 position, int width, int height) : base(Content, position, width, height)
         {
             menuButtons = new List<Button>();

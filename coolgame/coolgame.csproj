@@ -42,6 +42,7 @@
     <Compile Include="GameObjects\Enemies\EnemyType\Murderbot.cs" />
     <Compile Include="GameObjects\Projectiles\ElectrobeamComponent.cs" />
     <Compile Include="GameObjects\Projectiles\Electrobeam.cs" />
+    <Compile Include="UI\InfoPanel.cs" />
     <Compile Include="UI\PauseMenu.cs" />
     <Compile Include="UI\Button.cs" />
     <Compile Include="GameObjects\Buildings\Base.cs" />

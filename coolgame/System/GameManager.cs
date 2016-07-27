@@ -171,6 +171,7 @@ namespace coolgame
             ClearUpgrades();
             ResetBuildings(Content);
             UIManager.Reset();
+            spaceCash = 100;
         }
 
         public static void Update(float deltaTime)

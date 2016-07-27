@@ -31,6 +31,12 @@ namespace coolgame.Systems
         {
             get { return upgradeMenuOpen; }
         }
+        private static bool aboutPanelOpen = false;
+        public static bool AboutPanelOpen
+        {
+            get { return aboutPanelOpen; }
+            set { aboutPanelOpen = value; }
+        }
 
         //message variables
         private static SpriteFont messageFont;
@@ -70,6 +76,18 @@ namespace coolgame.Systems
             messageColor = new Color(messageColor, 0);
 
             messageDuration = duration;
+        }
+
+        public static void ToggleAboutPanel()
+        {
+            if (aboutPanelOpen)
+            {
+                aboutPanelOpen = false;
+            }
+            else
+            {
+                aboutPanelOpen = true;
+            }
         }
 
         public static void TogglePauseMenu()
@@ -131,6 +149,7 @@ namespace coolgame.Systems
 
         public static void Update(Game game, ContentManager Content, float deltaTime)
         {
+            Debug.Log("About", aboutPanelOpen);
             //Message display
             if (showMessage)
             {
@@ -224,7 +243,6 @@ namespace coolgame.Systems
                                         case 2:
                                             {
                                                 GameManager.Restart(Content);
-                                                TogglePauseMenu();
                                                 break;
                                             }
                                         //Back to Start
@@ -267,7 +285,7 @@ namespace coolgame.Systems
                                             //About
                                             case 1:
                                                 {
-                                                    //Show about section
+                                                    aboutPanelOpen = true;
                                                     break;
                                                 }
                                             //Load
@@ -289,6 +307,15 @@ namespace coolgame.Systems
                                         }
                                 }
 
+                            }
+                            break;
+                        }
+                    //About
+                    case 3:
+                        {
+                            if (aboutPanelOpen && InputManager.MouseLeft == ButtonState.Pressed)
+                            {
+                                //aboutPanelOpen = false;
                             }
                             break;
                         }
@@ -347,6 +374,15 @@ namespace coolgame.Systems
                     case 2:
                         {
                             if(GameManager.State == GameState.StartMenu)
+                            {
+                                windows[i].Draw(spriteBatch);
+                            }
+                            break;
+                        }
+                    //About Panel
+                    case 3:
+                        {
+                            if(aboutPanelOpen)
                             {
                                 windows[i].Draw(spriteBatch);
                             }

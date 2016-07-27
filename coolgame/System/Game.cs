@@ -20,6 +20,7 @@ namespace coolgame
         UIWindow pauseMenu;
         UIWindow upgradeMenu;
         UIWindow startMenu;
+        UIWindow aboutPanel;
 
         float deltaTime, totalGameTime;
 
@@ -68,10 +69,11 @@ namespace coolgame
             pauseMenu = new PauseMenu(Content);
             upgradeMenu = new UpgradesMenu(Content, 500, 300);
             startMenu = new StartMenu(Content);
+            aboutPanel = new InfoPanel(Content, "about");
             UIManager.AddElement(upgradeMenu);
             UIManager.AddElement(pauseMenu);
             UIManager.AddElement(startMenu);
-
+            UIManager.AddElement(aboutPanel);
 
             //Sound
             SoundManager.LoadContent(Content);
