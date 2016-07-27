@@ -36,10 +36,10 @@ namespace coolgame
 
         public int AttackPowerLevel
         {
-            get { return attackPower; }
+            get { return powerLevel; }
             set
             {
-                powerLevel = Math.Min(4, value);
+                powerLevel = value;
                 attackPower = powerLevel * 10;
             }
         }
