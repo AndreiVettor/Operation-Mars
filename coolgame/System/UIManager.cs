@@ -123,6 +123,12 @@ namespace coolgame.Systems
             game.IsMouseVisible = !value;
         }
 
+        public static void Reset()
+        {
+            upgradeMenuOpen = false;
+            pauseMenuOpen = false;
+        }
+
         public static void Update(Game game, ContentManager Content, float deltaTime)
         {
             //Message display
@@ -209,15 +215,28 @@ namespace coolgame.Systems
                                                 TogglePauseMenu();
                                                 break;
                                             }
-                                        //Restart Button
+                                        //Mute
                                         case 1:
+                                            {
+                                                SoundManager.ToggleMute();
+                                                break;
+                                            }
+                                        //Restart Button
+                                        case 2:
                                             {
                                                 GameManager.Restart(Content);
                                                 TogglePauseMenu();
                                                 break;
                                             }
+                                        //Back to Start
+                                        case 3:
+                                            {
+                                                GameManager.Restart(Content);
+                                                GameManager.State = GameState.StartMenu;
+                                                break;
+                                            }
                                         //Exit Button
-                                        case 2:
+                                        case 4:
                                             {
                                                 game.Exit();
                                                 break;

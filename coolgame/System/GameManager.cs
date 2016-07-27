@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using coolgame.Systems;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -158,10 +159,10 @@ namespace coolgame
         private static void ResetBuildings(ContentManager Content)
         {
             buildings.Clear();
-            AddEntity(new Base(Content, GameManager.Ground.Top));
-            AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToLeft));
-            AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToRight));
-            AddEntity(new Forcefield(Content, GameManager.Ground.Top));
+            AddEntity(new Base(Content, Ground.Top));
+            AddEntity(new Turret(Content, Ground.Top, Enemy.EnemyDirection.ToLeft));
+            AddEntity(new Turret(Content, Ground.Top, Enemy.EnemyDirection.ToRight));
+            AddEntity(new Forcefield(Content, Ground.Top));
         }
 
         public static void Restart(ContentManager Content)
@@ -169,6 +170,7 @@ namespace coolgame
             ClearEntities();
             ClearUpgrades();
             ResetBuildings(Content);
+            UIManager.Reset();
         }
 
         public static void Update(float deltaTime)

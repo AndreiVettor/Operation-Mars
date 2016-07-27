@@ -14,7 +14,7 @@ namespace coolgame
         private static Dictionary<string, SoundEffect> clips = new Dictionary<string, SoundEffect>();
         private static Dictionary<string, Song> songs = new Dictionary<string, Song>();
 
-        public static bool muted;
+        public static bool Muted;
 
         private static float soundVolume;
         public static int SoundVolume
@@ -23,7 +23,7 @@ namespace coolgame
             set
             {
                 soundVolume = value/100f;
-                if(!muted)
+                if(!Muted)
                 {
                     SoundEffect.MasterVolume = soundVolume;
                 }
@@ -37,7 +37,7 @@ namespace coolgame
             set
             {
                 musicVolume = value/100f;
-                if (!muted)
+                if (!Muted)
                 {
                     MediaPlayer.Volume = musicVolume;
                 }
@@ -46,17 +46,17 @@ namespace coolgame
 
         public static void ToggleMute()
         {
-            if (!muted)
+            if (!Muted)
             {
                 SoundEffect.MasterVolume = 0;
                 MediaPlayer.Volume = 0;
-                muted = true;
+                Muted = true;
             }
             else
             {
                 SoundEffect.MasterVolume = soundVolume;
                 MediaPlayer.Volume = musicVolume;
-                muted = false;
+                Muted = false;
             }
         }
 
