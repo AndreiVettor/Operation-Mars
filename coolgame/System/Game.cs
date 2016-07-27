@@ -71,7 +71,7 @@ namespace coolgame
 
             //GUI
             guiManager = new GUIManager(Content);
-            guiManager.AddWindow(new GameMenu(Content, guiManager.TextFont));
+
 
 
             //UI
@@ -128,7 +128,15 @@ namespace coolgame
             {
                 if (InputManager.KeyPress(Keys.Escape) )
                 {
-                    UIManager.TogglePauseMenu();
+                    guiManager.AddWindow(new GameMenu(Content, guiManager.TextFont));
+                    if (GameManager.State == GameState.Game)
+                    {
+                        GameManager.State = GameState.Paused;
+                    }
+                    else if (GameManager.State == GameState.Paused)
+                    {
+                        GameManager.State = GameState.Paused;
+                    }
                 }
 
                 if (InputManager.KeyPress(Keys.U) && !UIManager.PauseMenuOpen)
@@ -215,16 +223,17 @@ namespace coolgame
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null);
 
             GameManager.DrawEntities(spriteBatch);
-            guiManager.Draw(spriteBatch);
+
             Debug.Draw(spriteBatch);
 
             spriteBatch.End();
 
             //UI
-            UIspriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, null);
+            UIspriteBatch.Begin();
 
-
+            guiManager.Draw(UIspriteBatch);
             UIManager.Draw(UIspriteBatch);
+
 
 
             UIspriteBatch.End();
