@@ -251,11 +251,6 @@ namespace coolgame
             projectiles.Clear();
         }
 
-        private static void ClearUpgrades()
-        {
-            // TODO: write some code here idk
-        }
-
         private static void ResetBuildings(ContentManager Content)
         {
             buildings.Clear();
