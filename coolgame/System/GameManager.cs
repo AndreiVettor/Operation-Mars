@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -154,19 +155,20 @@ namespace coolgame
             laser_damage = 1;
             laser_spread = 1;
         }
-        private static void ResetBuildings()
+        private static void ResetBuildings(ContentManager Content)
         {
-            foreach(Building b in buildings)
-            {
-                b.Reset();
-            }
+            buildings.Clear();
+            AddEntity(new Base(Content, GameManager.Ground.Top));
+            AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToLeft));
+            AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToRight));
+            AddEntity(new Forcefield(Content, GameManager.Ground.Top));
         }
 
-        public static void Restart()
+        public static void Restart(ContentManager Content)
         {
             ClearEntities();
             ClearUpgrades();
-            ResetBuildings();
+            ResetBuildings(Content);
         }
 
         public static void Update(float deltaTime)

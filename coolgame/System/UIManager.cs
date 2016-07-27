@@ -123,7 +123,7 @@ namespace coolgame.Systems
             game.IsMouseVisible = !value;
         }
 
-        public static void Update(Game game, float deltaTime)
+        public static void Update(Game game, ContentManager Content, float deltaTime)
         {
             //Message display
             if (showMessage)
@@ -166,7 +166,7 @@ namespace coolgame.Systems
                         {
                             for (int j = 0; j < windows[i].GetButtons().Count; j++)
                             {
-                                Debug.Log("X " + windows[i].GetButtons()[j].Rectangle.X + "Y " + windows[i].GetButtons()[j].Rectangle.Y + "W " + windows[i].GetButtons()[j].Rectangle.Width + "H " + windows[i].GetButtons()[j].Rectangle.Height + "X ");
+                                Debug.Log("X " + windows[i].GetButtons()[j].Rectangle.X + "Y " + windows[i].GetButtons()[j].Rectangle.Y + "W " + windows[i].GetButtons()[j].Rectangle.Width + "H " + windows[i].GetButtons()[j].Rectangle.Height);
                                 if (windows[i].GetButtons()[j].Pressed && upgradeMenuOpen)
                                 {
                                     switch (j)
@@ -212,7 +212,7 @@ namespace coolgame.Systems
                                         //Restart Button
                                         case 1:
                                             {
-                                                GameManager.Restart();
+                                                GameManager.Restart(Content);
                                                 TogglePauseMenu();
                                                 break;
                                             }
