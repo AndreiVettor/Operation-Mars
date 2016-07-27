@@ -68,14 +68,16 @@ namespace coolgame.GUI.Menus
             if (ButtonPressed(0))
             {
                 Closing = true;
+                GameManager.State = GameState.Game;
             }
             else if (ButtonPressed(1))
             {
-                SoundManager.Muted = !SoundManager.Muted;
+                SoundManager.ToggleMute();
             }
             else if (ButtonPressed(2))
             {
                 GameManager.Restart(Content);
+                GameManager.State = GameState.Game;
                 Closing = true;
             }
             else if (ButtonPressed(3))

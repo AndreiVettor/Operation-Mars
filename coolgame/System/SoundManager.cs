@@ -83,7 +83,10 @@ namespace coolgame
 
         public static void PlayClip(string clipName)
         {
-            clips[clipName].Play();
+            if(!Muted)
+            {
+                clips[clipName].Play();
+            }
         }
 
         public static void PlaySong(string songName)
