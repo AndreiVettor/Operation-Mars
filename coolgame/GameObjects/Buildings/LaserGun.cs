@@ -12,7 +12,7 @@ namespace coolgame
 {
     public class LaserGun : Entity
     {
-        private const float OPTIMAL_UPDATES_PER_MILLISECOND = 60 / 1000;
+        private const float OPTIMAL_UPDATES_PER_MILLISECOND = (float)60 / 1000;
 
         private float cooldownTime;
         private Random random;
