@@ -197,17 +197,17 @@ namespace coolgame.Systems
                                     {
                                         case 0:
                                             {
-                                                GameManager.laser_damage++;
+                                                GameManager.UpgradeLaserPower();
                                                 break;
                                             }
                                         case 1:
                                             {
-                                                GameManager.laser_speed++;
+                                                GameManager.UpgradeLaserSpeed();
                                                 break;
                                             }
                                         case 2:
                                             {
-                                                GameManager.laser_spread++;
+                                                GameManager.UpgradeLaserSpread();
                                                 break;
                                             }
                                         default:

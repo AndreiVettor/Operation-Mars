@@ -85,8 +85,10 @@ namespace coolgame
             recoilRecovery = 0.018f;
             lockDistance = 3;
 
-            attackPower = 10;
-            cooldown = 200f;
+            //Upgrades
+            AttackPowerLevel = 1;
+            SpeedLevel = 1;
+            SpreadLevel = 1;
         }
 
         public void PointAt(int targetX, int targetY)
