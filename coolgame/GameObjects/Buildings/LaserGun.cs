@@ -12,6 +12,8 @@ namespace coolgame
 {
     public class LaserGun : Entity
     {
+        private const float OPTIMAL_UPDATES_PER_MILLISECOND = 60 / 1000;
+
         private float cooldownTime;
         private Random random;
 
@@ -55,7 +57,7 @@ namespace coolgame
             //Laser Specific
             defaultX = x;
             defaultY = y;
-            recoilOffset = 4;
+            recoilOffset = 10;
             recoilAcceleration = -1;
             recoilRecovery = 0.018f;
             lockDistance = 3;
@@ -81,7 +83,7 @@ namespace coolgame
         {
             cooldown = 200/(level * 1.05f);
 
-            recoilRecovery = level * 0.018f;
+            recoilRecovery = level * level * 0.3f * OPTIMAL_UPDATES_PER_MILLISECOND;
             if (recoilOffset < 0) recoilOffset = 0;
         }
 
@@ -136,8 +138,8 @@ namespace coolgame
         {
             cooldownTime += deltaTime;
 
-            X += velocity.X * deltaTime;
-            Y += velocity.Y * deltaTime;
+            X += velocity.X * deltaTime * OPTIMAL_UPDATES_PER_MILLISECOND;
+            Y += velocity.Y * deltaTime * OPTIMAL_UPDATES_PER_MILLISECOND;
 
             float recoveryAngle = (float)Math.Atan2(Y - defaultY, X - defaultX);
             velocity -= new Vector2(recoilRecovery * (float)Math.Cos(recoveryAngle), recoilRecovery * (float)Math.Sin(recoveryAngle)) *
