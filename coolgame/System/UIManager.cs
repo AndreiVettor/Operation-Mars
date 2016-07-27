@@ -166,6 +166,7 @@ namespace coolgame.Systems
                         {
                             for (int j = 0; j < windows[i].GetButtons().Count; j++)
                             {
+                                Debug.Log("X " + windows[i].GetButtons()[j].Rectangle.X + "Y " + windows[i].GetButtons()[j].Rectangle.Y + "W " + windows[i].GetButtons()[j].Rectangle.Width + "H " + windows[i].GetButtons()[j].Rectangle.Height + "X ");
                                 if (windows[i].GetButtons()[j].Pressed && upgradeMenuOpen)
                                 {
                                     switch (j)
@@ -229,6 +230,7 @@ namespace coolgame.Systems
                             }
                             break;
                         }
+                    //Start Menu
                     case 2:
                         {
                             if (GameManager.State == GameState.StartMenu)
@@ -323,6 +325,7 @@ namespace coolgame.Systems
                             }
                             break;
                         }
+                    //Start Menu
                     case 2:
                         {
                             if(GameManager.State == GameState.StartMenu)

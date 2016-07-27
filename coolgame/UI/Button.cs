@@ -52,6 +52,11 @@ namespace coolgame
             set { held = value; }
         }
 
+        public Button(ContentManager Content, string textureName, Vector2 position) : base(Content, textureName, position)
+        {
+            BackgroundColor = Color.White;
+        }
+
         public Button (ContentManager Content, Vector2 position, int width, int height) : base (Content, position,  width,  height) {
             this.text = "BUTTON";
             textSize = font.MeasureString(text);
@@ -94,7 +99,7 @@ namespace coolgame
                 spriteBatch.Draw(texture, rectangle, backgroundColor);
             }
 
-            if (text != "")
+            if (text != null && text != "")
             {
                 spriteBatch.DrawString(font, text, textPosition, foregroundColor);
             }

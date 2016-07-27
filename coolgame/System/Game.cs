@@ -66,7 +66,7 @@ namespace coolgame
             //UI
             UIManager.LoadContent(Content);
             pauseMenu = new PauseMenu(Content);
-            upgradeMenu = new UpgradesMenu(Content);
+            upgradeMenu = new UpgradesMenu(Content, 500, 300);
             startMenu = new StartMenu(Content);
             UIManager.AddElement(upgradeMenu);
             UIManager.AddElement(pauseMenu);
@@ -175,11 +175,7 @@ namespace coolgame
             Debug.Update(deltaTime);
             InputManager.Update();
 
-            Debug.Log(GameManager.State.ToString());
-
             ReadKeyPresses();
-
-            Debug.Log(GameManager.State.ToString());
 
             if (GameManager.State == GameState.Game)
             {
@@ -226,6 +222,11 @@ namespace coolgame
                 if (InputManager.KeyPress(Keys.R))
                 {
                     GameManager.State = GameState.StartMenu;
+                }
+
+                if (InputManager.KeyPress(Keys.H))
+                {
+                    UIManager.DisplayMessage("Wave 1: Crawlers are warm and fuzzy");
                 }
             }
 

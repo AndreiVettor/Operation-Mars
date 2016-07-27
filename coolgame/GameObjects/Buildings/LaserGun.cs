@@ -42,7 +42,7 @@ namespace coolgame
 
         public LaserGun(ContentManager content, int x, int y) : base(content)
         {
-            SetTexture("laser");
+            SetTexture("laserGun1");
             Width = texture.Width;
             Height = texture.Height;
 
@@ -69,6 +69,12 @@ namespace coolgame
             SetSpread(GameManager.laser_spread);
             SetCooldown(GameManager.laser_speed);
             AttackPower = GameManager.laser_damage;
+
+            //Cap powerLevel
+            if (powerLevel > 4)
+            {
+                powerLevel = 4;
+            }
         }
 
         public void SetCooldown(int level)

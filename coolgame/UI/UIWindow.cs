@@ -11,9 +11,9 @@ namespace coolgame
 {
     public class UIWindow : UIElement
     {
-        private List<Button> menuButtons;
-        private List<UIElement> menuItems;
-        private UIElement background;
+        protected List<Button> menuButtons;
+        protected List<UIElement> menuItems;
+        protected UIElement background;
         protected int spacing = 10;
 
         private bool hasBackground;
@@ -79,7 +79,6 @@ namespace coolgame
             {
                 menuButtons[i].Position = new Vector2(position.X + spacing, menuButtons[i - 1].Position.Y + menuButtons[i - 1].Height + spacing);
             }
-
         }
 
         public UIWindow (ContentManager Content, Vector2 position, int width, int height) : base(Content, position, width, height)
@@ -87,7 +86,7 @@ namespace coolgame
             menuButtons = new List<Button>();
             menuItems = new List<UIElement>();
             background = new UIElement(Content, position, width, height);
-            background.BackgroundColor = new Color(Color.SlateGray, 0.2f);
+            //background.BackgroundColor = new Color(Color.SlateGray, 0.4f);
             buttonHeld = false;
             text = "";
             hasBackground = true;
@@ -112,7 +111,7 @@ namespace coolgame
             {
                 background.Draw(spriteBatch);
             }
-            foreach(Button b  in menuButtons)
+            foreach(Button b in menuButtons)
             {
                 b.Draw(spriteBatch);
             }
