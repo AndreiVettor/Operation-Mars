@@ -32,6 +32,11 @@ namespace coolgame
             return mouseRectangle.Intersects(element.Rectangle);
         }
 
+        public static bool MouseIntersects(Rectangle r)
+        {
+            return mouseRectangle.Intersects(r);
+        }
+
         public static int MouseX { get { return mouseState.X; } }
 
         public static int MouseY { get { return mouseState.Y; } }

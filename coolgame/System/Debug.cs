@@ -19,7 +19,7 @@ namespace coolgame
 
         static SpriteFont font;
         private static List<string> messages = new List<string>();
-        private static float messageLifespan = 1000;
+        private static float messageLifespan = 2500;
         private static float messageTimer = 0;
         private static Vector2 messageBoxPos = new Vector2(15, Game.GAME_HEIGHT - 15);
         private static int messagePadding = 10;
