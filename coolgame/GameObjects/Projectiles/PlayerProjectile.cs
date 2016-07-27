@@ -11,8 +11,6 @@ namespace coolgame
     {
         public PlayerProjectile(ContentManager content, double x, double y, float direction, int attackPower, int powerLevel) : base(content, x, y, direction, attackPower)
         {
-            if (powerLevel > 4)
-                powerLevel = 4;
 
             SetTexture("laser" + powerLevel.ToString());
 
