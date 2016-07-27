@@ -11,6 +11,7 @@ namespace coolgame
     {
         private const float SPAWN_CYCLE = 1000f / 6;
 
+        //needs tweaking
         private float[,] spawnTable = new float[,]
         {
             { .1f, .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, //crawler
