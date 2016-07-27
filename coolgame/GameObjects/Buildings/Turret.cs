@@ -21,6 +21,7 @@ namespace coolgame
 
             Y = groundLevel - Height;
 
+            
             if (enemyDirection == Enemy.EnemyDirection.ToLeft)
             {
                 X = Game.GAME_WIDTH / 2 - Width / 2 + 290;
@@ -30,9 +31,10 @@ namespace coolgame
             {
                 X = Game.GAME_WIDTH / 2 - Width / 2 - 290;
                 view = new Rectangle(0, 0, (int)X, (int)Y + Height);
+                spriteEffects = SpriteEffects.FlipHorizontally;
             }
 
-            laserGun = new LaserGun(content, (int)X, (int)Y + 15);
+            laserGun = new LaserGun(content, (int)X + 15 * (spriteEffects == SpriteEffects.FlipHorizontally ? 1 : 0), (int)Y + 15);
             laserGun.AttackPower = 5;
 
             if (enemyDirection == Enemy.EnemyDirection.ToRight)

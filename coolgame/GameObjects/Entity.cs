@@ -39,7 +39,7 @@ namespace coolgame
         private bool enableHealthBar;
         private bool autoHideHealthBar = true;
         private bool alive = true;
-        private SpriteEffects spriteEffects;
+        protected SpriteEffects spriteEffects;
         protected float layerDepth;
         protected Color color = Color.White;
 
