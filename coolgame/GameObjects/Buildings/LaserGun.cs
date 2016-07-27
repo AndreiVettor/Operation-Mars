@@ -40,7 +40,7 @@ namespace coolgame
             set
             {
                 powerLevel = value;
-                attackPower = powerLevel * 10;
+                attackPower = powerLevel * 3;
             }
         }
 
