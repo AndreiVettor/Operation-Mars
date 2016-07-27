@@ -25,6 +25,8 @@ namespace coolgame
             rechargePower = 5;
 
             this.layerDepth = LayerManager.GetLayerDepth(Layer.Forcefields);
+
+            Alive = false;
         }
 
         public override void Update(float deltaTime)

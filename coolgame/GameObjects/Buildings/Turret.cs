@@ -45,6 +45,8 @@ namespace coolgame
             healthBar.Width /= 2;
 
             layerDepth += .01f;
+
+            Alive = false;
         }
 
         public override void Update(float deltaTime)
@@ -65,7 +67,9 @@ namespace coolgame
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            laserGun.Draw(spriteBatch);
+
+            if (Alive)
+                laserGun.Draw(spriteBatch);
         }
     }
 }

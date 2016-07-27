@@ -202,10 +202,6 @@ namespace coolgame
                 {
                     buildings[i].Update(deltaTime);
                 }
-                else
-                {
-                    buildings.Remove(buildings[i]);
-                }
             }
 
             for (int i = projectiles.Count - 1; i >= 0; i--)
