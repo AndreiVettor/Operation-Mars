@@ -13,20 +13,48 @@ namespace coolgame
         private float rechargeRate;
         private float rechargeTime;
 
+        private int rechargeLevel;
+        private int strengthLevel;
+
+        public int RechargeLevel
+        {
+            get { return rechargeLevel; }
+            set
+            {
+                rechargeLevel = value;
+                rechargeRate = value;
+                rechargePower = (int)(5 * Math.Pow(1.5f, value));
+            }
+        }
+
+        public int StrengthLevel
+        {
+            get { return strengthLevel; }
+            set
+            {
+                strengthLevel = value;
+
+                int currentHealth = healthBar.Health;
+                healthBar.MaxHealth = (int)(400 * Math.Pow(1.5f, value - 1));
+                if (value > 1)
+                    healthBar.Health = currentHealth;
+            }
+        }
+
         public Forcefield(ContentManager content, int groundLevel) : base(content, groundLevel)
         {
             SetTexture("force_field");
             X = Game.GAME_WIDTH / 2 - Width / 2;
             Y = groundLevel - Height;
 
-            healthBar.MaxHealth = 1000;
             healthBar.ColorScheme = HealthBar.HealthBarColoring.Forcefield;
-            rechargeRate = 1;
-            rechargePower = 5;
 
             this.layerDepth = LayerManager.GetLayerDepth(Layer.Forcefields);
 
             Alive = false;
+
+            RechargeLevel = 1;
+            StrengthLevel = 1;
         }
 
         public override void Update(float deltaTime)

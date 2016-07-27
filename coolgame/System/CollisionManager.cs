@@ -20,27 +20,30 @@ namespace coolgame
 
         public static Building CollidesWithBuilding(Entity e)
         {
-            foreach (Building b in GameManager.Buildings)
-                if (b.Alive && e.Collides(b))
-                    return b;
+            foreach (KeyValuePair<string, Building> b in GameManager.Buildings)
+                if (b.Value.Alive && e.Collides(b.Value))
+                    return b.Value;
 
             return null;
         }
 
         public static Building CollidesWithBuilding(Rectangle r)
         {
-            foreach (Building b in GameManager.Buildings)
-                if (b.Alive && b.Collides(r))
-                    return b;
+            foreach (KeyValuePair<string, Building> b in GameManager.Buildings)
+                if (b.Value.Alive && b.Value.Collides(r))
+                    return b.Value;
 
             return null;
         }
 
         public static Forcefield CollidesWithForcefield(Rectangle r)
         {
-            foreach (Building f in GameManager.Buildings)
-                if (typeof(Forcefield).IsInstanceOfType(f) && f.Alive && f.Collides(r))
-                    return (Forcefield)f;
+            if (GameManager.Buildings.ContainsKey("forcefield"))
+            {
+                Forcefield f = (Forcefield)GameManager.Buildings["forcefield"];
+                if (f.Alive && f.Collides(r))
+                    return f;
+            }
 
             return null;
         }

@@ -18,8 +18,9 @@ namespace coolgame
     }
 
     public static class GameManager
-    { 
-        // VARIABLES
+    {
+        #region variables
+
         private static Random random = new Random();
         public static Random RNG
         {
@@ -32,8 +33,8 @@ namespace coolgame
             get { return enemies; }
         }
 
-        private static List<Building> buildings = new List<Building>();
-        public static List<Building> Buildings
+        private static Dictionary<string, Building> buildings = new Dictionary<string, Building>();
+        public static Dictionary<string, Building> Buildings
         {
             get { return buildings; }
         }
@@ -93,12 +94,86 @@ namespace coolgame
         }
         private static bool vSync;
 
-        public static int laser_speed = 1;
-        public static int laser_damage = 1;
-        public static int laser_spread = 1;
+        #endregion
 
+        #region methods
 
-        //METHODS
+        #region upgrade_system
+
+        public static void UpgradeLaserPower()
+        {
+            if (buildings.ContainsKey("base"))
+                ((Base)buildings["base"]).Gun.AttackPowerLevel++;
+        }
+
+        public static void UpgradeLaserSpeed()
+        {
+            if (buildings.ContainsKey("base"))
+                ((Base)buildings["base"]).Gun.SpeedLevel++;
+        }
+
+        public static void UpgradeLaserSpread()
+        {
+            if (buildings.ContainsKey("base"))
+                ((Base)buildings["base"]).Gun.SpreadLevel++;
+        }
+
+        public static void UpgradeTurretPower(bool left)
+        {
+            if (left)
+            {
+                if (buildings.ContainsKey("leftturret"))
+                    ((Turret)buildings["leftturret"]).Gun.AttackPowerLevel++;
+            }
+            else
+            {
+                if (buildings.ContainsKey("rightturret"))
+                    ((Turret)buildings["rightturret"]).Gun.AttackPowerLevel++;
+            }
+        }
+
+        public static void UpgradeTurretSpeed(bool left)
+        {
+            if (left)
+            {
+                if (buildings.ContainsKey("leftturret"))
+                    ((Turret)buildings["leftturret"]).Gun.SpeedLevel++;
+            }
+            else
+            {
+                if (buildings.ContainsKey("rightturret"))
+                    ((Turret)buildings["rightturret"]).Gun.SpeedLevel++;
+            }
+        }
+
+        public static void UpgradeTurretSpread(bool left)
+        {
+            if (left)
+            {
+                if (buildings.ContainsKey("leftturret"))
+                    ((Turret)buildings["leftturret"]).Gun.SpreadLevel++;
+            }
+            else
+            {
+                if (buildings.ContainsKey("rightturret"))
+                    ((Turret)buildings["rightturret"]).Gun.SpreadLevel++;
+            }
+        }
+
+        public static void UpgradeForcefieldRecharge()
+        {
+            if (buildings.ContainsKey("forcefield"))
+                ((Forcefield)buildings["forcefield"]).RechargeLevel++;
+        }
+
+        public static void UpgradeForcefieldStrength()
+        {
+            if (buildings.ContainsKey("forcefield"))
+                ((Forcefield)buildings["forcefield"]).StrengthLevel++;
+        }
+
+        #endregion
+
         public static void TogglePause()
         {
             if (state == GameState.Paused)
@@ -127,9 +202,34 @@ namespace coolgame
         {
             enemies.Add(e);
         }
-        public static void AddEntity(Building e)
+        public static void AddEntity(Base e)
         {
-            buildings.Add(e);
+            if (buildings.ContainsKey("base"))
+                buildings.Remove("base");
+
+            buildings.Add("base", e);
+        }
+        public static void AddEntity(Forcefield e)
+        {
+            if (buildings.ContainsKey("forcefield"))
+                buildings.Remove("forcefield");
+
+            buildings.Add("forcefield", e);
+        }
+        public static void AddEntity(Turret e, bool left)
+        {
+            if (left)
+            {
+                if (buildings.ContainsKey("leftturret"))
+                    buildings.Remove("leftturret");
+                buildings.Add("leftturret", e);
+            }
+            else
+            {
+                if (buildings.ContainsKey("rightturret"))
+                    buildings.Remove("rightturret");
+                buildings.Add("rightturret", e);
+            }
         }
         public static void AddEntity(LaserProjectile e)
         {
@@ -140,7 +240,7 @@ namespace coolgame
         {
             List<Entity> temp = new List<Entity>();
             temp.AddRange(enemies);
-            temp.AddRange(buildings);
+            temp.AddRange(buildings.Values);
             temp.AddRange(projectiles);
             return temp;
         }
@@ -150,18 +250,18 @@ namespace coolgame
             enemies.Clear();
             projectiles.Clear();
         }
+
         private static void ClearUpgrades()
         {
-            laser_speed = 1;
-            laser_damage = 1;
-            laser_spread = 1;
+            // TODO: write some code here idk
         }
+
         private static void ResetBuildings(ContentManager Content)
         {
             buildings.Clear();
             AddEntity(new Base(Content, Ground.Top));
-            AddEntity(new Turret(Content, Ground.Top, Enemy.EnemyDirection.ToLeft));
-            AddEntity(new Turret(Content, Ground.Top, Enemy.EnemyDirection.ToRight));
+            AddEntity(new Turret(Content, Ground.Top, Enemy.EnemyDirection.ToLeft), true);
+            AddEntity(new Turret(Content, Ground.Top, Enemy.EnemyDirection.ToRight), false);
             AddEntity(new Forcefield(Content, Ground.Top));
         }
 
@@ -197,11 +297,11 @@ namespace coolgame
                 }
             }
 
-            for (int i = buildings.Count - 1; i >= 0; i--)
+            foreach (KeyValuePair<string, Building> b in buildings)
             {
-                if (buildings[i].Alive)
+                if (b.Value.Alive)
                 {
-                    buildings[i].Update(deltaTime);
+                    b.Value.Update(deltaTime);
                 }
             }
 
@@ -240,9 +340,12 @@ namespace coolgame
                 {
                     e.Draw(spriteBatch);
                 }
-                foreach (Building e in buildings)
+                foreach (KeyValuePair<string, Building> b in buildings)
                 {
-                    e.Draw(spriteBatch);
+                    if (b.Value.Alive)
+                    {
+                        b.Value.Draw(spriteBatch);
+                    }
                 }
                 foreach (LaserProjectile e in projectiles)
                 {
@@ -250,5 +353,7 @@ namespace coolgame
                 }
             }
         }
+
+        #endregion
     }
 }

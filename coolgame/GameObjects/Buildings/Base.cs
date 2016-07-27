@@ -13,6 +13,11 @@ namespace coolgame
     public class Base : Building
     {
         private Tower tower;
+        
+        public LaserGun Gun
+        {
+            get { return tower.Gun; }
+        }
 
         public Base(ContentManager content, int groundLevel) : base(content, groundLevel)
         {

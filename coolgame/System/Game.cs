@@ -60,8 +60,8 @@ namespace coolgame
             GameManager.StartBackground = Content.Load<Texture2D>("startBackground");
             GameManager.Ground = new Ground(Content);
             GameManager.AddEntity(new Base(Content, GameManager.Ground.Top));
-            GameManager.AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToLeft));
-            GameManager.AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToRight));
+            GameManager.AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToLeft), false);
+            GameManager.AddEntity(new Turret(Content, GameManager.Ground.Top, Enemy.EnemyDirection.ToRight), true);
             GameManager.AddEntity(new Forcefield(Content, GameManager.Ground.Top));
 
             //UI

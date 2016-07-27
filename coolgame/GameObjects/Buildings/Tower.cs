@@ -15,6 +15,11 @@ namespace coolgame
     {
         private LaserGun laserGun;
 
+        public LaserGun Gun
+        {
+            get { return laserGun; }
+        }
+
         public Tower(ContentManager content, int groundLevel, int basePosition) : base(content)
         {
             SetTexture("tower");

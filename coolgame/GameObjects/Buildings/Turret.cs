@@ -15,6 +15,11 @@ namespace coolgame
         private Enemy target;
         private LaserGun laserGun;
 
+        public LaserGun Gun
+        {
+            get { return laserGun; }
+        }
+
         public Turret(ContentManager content, int groundLevel, Enemy.EnemyDirection enemyDirection) : base(content, groundLevel)
         {
             SetTexture("turret");
@@ -35,7 +40,7 @@ namespace coolgame
             }
 
             laserGun = new LaserGun(content, (int)X + 15 * (spriteEffects == SpriteEffects.FlipHorizontally ? 1 : 0), (int)Y + 15);
-            laserGun.AttackPower = 5;
+            laserGun.AttackPowerLevel = 5;
 
             if (enemyDirection == Enemy.EnemyDirection.ToRight)
                 laserGun.PointAt(0, (int)laserGun.Y + laserGun.Height / 2);

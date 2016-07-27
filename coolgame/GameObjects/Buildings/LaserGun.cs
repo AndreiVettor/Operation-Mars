@@ -31,14 +31,37 @@ namespace coolgame
         private int attackPower;
 
         private int powerLevel;
+        private int speedLevel;
+        private int spreadLevel;
 
-        public int AttackPower
+        public int AttackPowerLevel
         {
             get { return attackPower; }
             set
             {
-                attackPower = value * 10;
-                powerLevel = value;
+                powerLevel = Math.Min(4, value);
+                attackPower = powerLevel * 10;
+            }
+        }
+
+        public int SpeedLevel
+        {
+            get { return speedLevel; }
+            set
+            {
+                speedLevel = value;
+                cooldown = (int)(200 / Math.Pow(1.5f, value - 1));
+            }
+        }
+
+        public int SpreadLevel
+        {
+            get { return spreadLevel; }
+            set
+            {
+                spreadLevel = value;
+                auxiliaryProjectiles = value - 1;
+                maxSpread = (float)Math.PI / 40 * (value - 1);
             }
         }
 
@@ -66,33 +89,6 @@ namespace coolgame
             cooldown = 200f;
         }
 
-        public void Upgrade()
-        {
-            SetSpread(GameManager.laser_spread);
-            SetCooldown(GameManager.laser_speed);
-            AttackPower = GameManager.laser_damage;
-
-            //Cap powerLevel
-            if (powerLevel > 4)
-            {
-                powerLevel = 4;
-            }
-        }
-
-        public void SetCooldown(int level)
-        {
-            cooldown = 200/(level * 1.05f);
-
-            recoilRecovery = level * level * 0.3f * OPTIMAL_UPDATES_PER_MILLISECOND;
-            if (recoilOffset < 0) recoilOffset = 0;
-        }
-
-        public void SetSpread(int level)
-        {
-            auxiliaryProjectiles = level - 1;
-            maxSpread = (float)Math.PI / 40 * auxiliaryProjectiles;
-        }
-
         public void PointAt(int targetX, int targetY)
         {
             Rotation = (float)Math.Atan2(targetY - Y - Height / 2, targetX - X - Width / 2);
@@ -112,7 +108,6 @@ namespace coolgame
         {
             if (cooldownTime > cooldown)
             {
-                Upgrade();
                 SoundManager.PlayClip("laser");
                 cooldownTime = 0;
                 double projectileX = X + Width / 2 + Math.Cos(Rotation) * (Width / 4);
