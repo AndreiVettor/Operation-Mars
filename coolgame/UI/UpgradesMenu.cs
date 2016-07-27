@@ -24,6 +24,8 @@ namespace coolgame
             AddItem(new Button(Content, "up_laserDamage", new Vector2(0,0)));
             AddItem(new Button(Content, "up_laserSpeed", new Vector2(50, 0)));
             AddItem(new Button(Content, "up_laserSpread", new Vector2(115, 0)));
+            AddItem(new Button(Content, "up_buyturret", new Vector2(175, 0)));
+            AddItem(new Button(Content, "up_buyshield", new Vector2(230, 0)));
             ArrangeMenu();
         }
 

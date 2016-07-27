@@ -92,5 +92,19 @@ namespace coolgame
             MediaPlayer.IsRepeating = true;
         }
 
+        public static void PauseMusic()
+        {
+            MediaPlayer.Pause();
+        }
+
+        public static void ResumeMusic()
+        {
+            MediaPlayer.Resume();
+        }
+
+        public static void StopMusic()
+        {
+            MediaPlayer.Stop();
+        }
     }
 }

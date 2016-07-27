@@ -209,6 +209,16 @@ namespace coolgame.Systems
                                                 GameManager.UpgradeLaserSpread();
                                                 break;
                                             }
+                                        case 3:
+                                            {
+                                                GameManager.ActivateTurret();
+                                                break;
+                                            }
+                                        case 4:
+                                            {
+                                                GameManager.ActivateForcefield();
+                                                break;
+                                            }
                                         default:
                                             {
                                                 break;
@@ -248,7 +258,7 @@ namespace coolgame.Systems
                                         //Back to Start
                                         case 3:
                                             {
-                                                GameManager.Restart(Content);
+                                                UIManager.Reset();
                                                 GameManager.State = GameState.StartMenu;
                                                 break;
                                             }
@@ -279,6 +289,7 @@ namespace coolgame.Systems
                                             //Start
                                             case 0:
                                                 {
+                                                    GameManager.Restart(Content);
                                                     GameManager.State = GameState.Game;
                                                     break;
                                                 }

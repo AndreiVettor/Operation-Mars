@@ -145,7 +145,7 @@ namespace coolgame
             set { rotation = value; }
         }
         
-        public bool Alive
+        public virtual bool Alive
         {
             get { return alive; }
             set { alive = value; }

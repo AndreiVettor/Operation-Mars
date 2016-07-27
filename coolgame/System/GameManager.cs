@@ -56,7 +56,28 @@ namespace coolgame
         public static GameState State
         {
             get { return state; }
-            set { state = value; }
+            set
+            {
+                switch (value)
+                {
+                    case GameState.Game:
+                        {
+                            SoundManager.ResumeMusic();
+                            break;
+                        }
+                    case GameState.Paused:
+                        {
+                            SoundManager.PauseMusic();
+                            break;
+                        }
+                    case GameState.StartMenu:
+                        {
+                            SoundManager.StopMusic();
+                            break;
+                        }
+                }
+                state = value;
+            }
         }
 
         private static Ground ground;
@@ -102,21 +123,18 @@ namespace coolgame
 
         public static void ActivateForcefield()
         {
-            if (buildings.ContainsKey("forcefield"))
+            if (buildings.ContainsKey("forcefield") && !buildings["forcefield"].Alive)
                 ((Forcefield)buildings["forcefield"]).Alive = true;
         }
 
-        public static void ActivateTurret(bool left)
+        public static void ActivateTurret()
         {
-            if (left)
-            {
-                if (buildings.ContainsKey("leftturret"))
-                    ((Turret)buildings["leftturret"]).Alive = true;;
-            }
+            if (buildings.ContainsKey("rightturret") && !buildings["rightturret"].Alive)
+                ((Turret)buildings["rightturret"]).Alive = true;
             else
             {
-                if (buildings.ContainsKey("rightturret"))
-                    ((Turret)buildings["rightturret"]).Alive = true;
+                if (buildings.ContainsKey("leftturret") && !buildings["leftturret"].Alive)
+                    ((Turret)buildings["leftturret"]).Alive = true;
             }
         }
 
@@ -199,10 +217,13 @@ namespace coolgame
             if (state == GameState.Paused)
             {
                 state = GameState.Game;
+                SoundManager.ResumeMusic();
+
             }
             else if (state == GameState.Game)
             {
                 state = GameState.Paused;
+                SoundManager.PauseMusic();
             }
             Debug.Log("Toggled Pause");
         }
@@ -286,6 +307,7 @@ namespace coolgame
             ResetBuildings(Content);
             UIManager.Reset();
             spaceCash = 0;
+            SoundManager.PlaySong("music");
         }
 
         public static void Update(float deltaTime)
