@@ -263,7 +263,6 @@ namespace coolgame
         public static void Restart(ContentManager Content)
         {
             ClearEntities();
-            ClearUpgrades();
             ResetBuildings(Content);
             UIManager.Reset();
             spaceCash = 100;
