@@ -18,6 +18,7 @@ namespace coolgame.UI
             AddItem(new Button(Content, Vector2.Zero, "LOAD GAME?"));
             AddItem(new Button(Content, Vector2.Zero, "EXIT GAME"));
             HasBackground = false;
+            ArrangeMenu();
         }
     }
 }

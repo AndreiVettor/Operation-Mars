@@ -18,6 +18,7 @@ namespace coolgame
             AddItem(new Button(Content, Vector2.Zero, "RESTART"));
             AddItem(new Button(Content, Vector2.Zero, "BACK TO START MENU"));
             AddItem(new Button(Content, Vector2.Zero, "EXIT GAME"));
+            ArrangeMenu();
         }
     }
 }

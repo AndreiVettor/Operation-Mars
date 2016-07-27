@@ -23,15 +23,15 @@ namespace coolgame
 
             AddItem(new Button(Content, "up_laserDamage", new Vector2(0,0)));
             AddItem(new Button(Content, "up_laserSpeed", new Vector2(50, 0)));
-            AddItem(new Button(Content, "up_laserSpread", new Vector2(100, 0)));
+            AddItem(new Button(Content, "up_laserSpread", new Vector2(115, 0)));
+            ArrangeMenu();
         }
 
-        public new void ArrangeMenu()
+        public override void ArrangeMenu()
         {
-            for (int i = 1; i < menuButtons.Count; ++i)
+            for (int i = 0; i < menuButtons.Count; ++i)
             {
                 menuButtons[i].Position = new Vector2(position.X + menuButtons[i].Position.X + spacing, position.Y + menuButtons[i].Position.Y + spacing);
-
             }
         }
     }

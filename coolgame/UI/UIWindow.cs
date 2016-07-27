@@ -42,7 +42,6 @@ namespace coolgame
         public void AddItem(Button button)
         {
             menuButtons.Add(button);
-            ArrangeMenu();
         }
 
         public virtual void ArrangeMenu()
