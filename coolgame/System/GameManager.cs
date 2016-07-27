@@ -45,7 +45,7 @@ namespace coolgame
             get { return projectiles; }
         }
 
-        private static int spaceCash = 100;
+        private static int spaceCash = 0;
         public static int SpaceCash
         {
             get { return spaceCash; }
@@ -56,7 +56,28 @@ namespace coolgame
         public static GameState State
         {
             get { return state; }
-            set { state = value; }
+            set
+            {
+                switch (value)
+                {
+                    case GameState.Game:
+                        {
+                            SoundManager.ResumeMusic();
+                            break;
+                        }
+                    case GameState.Paused:
+                        {
+                            SoundManager.PauseMusic();
+                            break;
+                        }
+                    case GameState.StartMenu:
+                        {
+                            SoundManager.StopMusic();
+                            break;
+                        }
+                }
+                state = value;
+            }
         }
 
         private static Ground ground;
@@ -99,6 +120,23 @@ namespace coolgame
         #region methods
 
         #region upgrade_system
+
+        public static void ActivateForcefield()
+        {
+            if (buildings.ContainsKey("forcefield") && !buildings["forcefield"].Alive)
+                ((Forcefield)buildings["forcefield"]).Alive = true;
+        }
+
+        public static void ActivateTurret()
+        {
+            if (buildings.ContainsKey("rightturret") && !buildings["rightturret"].Alive)
+                ((Turret)buildings["rightturret"]).Alive = true;
+            else
+            {
+                if (buildings.ContainsKey("leftturret") && !buildings["leftturret"].Alive)
+                    ((Turret)buildings["leftturret"]).Alive = true;
+            }
+        }
 
         public static void UpgradeLaserPower()
         {
@@ -179,10 +217,13 @@ namespace coolgame
             if (state == GameState.Paused)
             {
                 state = GameState.Game;
+                SoundManager.ResumeMusic();
+
             }
             else if (state == GameState.Game)
             {
                 state = GameState.Paused;
+                SoundManager.PauseMusic();
             }
             Debug.Log("Toggled Pause");
         }
@@ -265,7 +306,8 @@ namespace coolgame
             ClearEntities();
             ResetBuildings(Content);
             UIManager.Reset();
-            spaceCash = 100;
+            spaceCash = 0;
+            SoundManager.PlaySong("music");
         }
 
         public static void Update(float deltaTime)

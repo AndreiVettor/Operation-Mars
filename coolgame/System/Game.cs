@@ -89,7 +89,6 @@ namespace coolgame
             SoundManager.LoadContent(Content);
             SoundManager.PlaySong("music");
 
-
             //Enemies
             EnemyFactory.LoadContent(Content);
             enemySpawner = new EnemySpawner();

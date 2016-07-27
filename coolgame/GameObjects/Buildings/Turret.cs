@@ -40,7 +40,6 @@ namespace coolgame
             }
 
             laserGun = new LaserGun(content, (int)X + 15 * (spriteEffects == SpriteEffects.FlipHorizontally ? 1 : 0), (int)Y + 15);
-            laserGun.AttackPowerLevel = 5;
 
             if (enemyDirection == Enemy.EnemyDirection.ToRight)
                 laserGun.PointAt(0, (int)laserGun.Y + laserGun.Height / 2);

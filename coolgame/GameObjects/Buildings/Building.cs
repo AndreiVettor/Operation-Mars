@@ -9,6 +9,22 @@ namespace coolgame
 {
     public class Building : Entity
     {
+        public override bool Alive
+        {
+            get
+            {
+                return base.Alive;
+            }
+
+            set
+            {
+                base.Alive = value;
+
+                if (value)
+                    healthBar.MaxHealth = healthBar.MaxHealth;
+            }
+        }
+
         public Building(ContentManager content, int groundLevel) : base(content)
         {
             healthBar.Width = 100;
