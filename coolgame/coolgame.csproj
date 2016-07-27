@@ -38,7 +38,6 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GameObjects\Enemies\EnemyType\Illuminati.cs" />
     <Compile Include="GameObjects\Enemies\EnemyType\Murderbot.cs" />
     <Compile Include="GameObjects\Projectiles\ElectrobeamComponent.cs" />
     <Compile Include="GameObjects\Projectiles\Electrobeam.cs" />

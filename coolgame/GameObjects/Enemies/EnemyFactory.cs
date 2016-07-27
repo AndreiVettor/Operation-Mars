@@ -48,10 +48,6 @@ namespace coolgame
                     {
                         return new DemolitionRoverUnit(content);
                     }
-                case "illuminati":
-                    {
-                        return new Illuminati(content);
-                    }
                 case "murderbot":
                     {
                         return new Murderbot(content);
