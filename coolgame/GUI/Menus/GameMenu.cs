@@ -1,12 +1,6 @@
-﻿using coolgame.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace coolgame.GUI.Menus
 {
@@ -16,16 +10,21 @@ namespace coolgame.GUI.Menus
         {
             Width = 250;
             Height = 350;
-            borderPadding = 20;
+            borderPadding = new Vector2(20, 20);
+            textPadding = new Vector2(30, 7);
             Center();
-            AddButton(new GUIButton(Content, textFont, "RESUME",        new Vector2(0, 0)));
-            AddButton(new GUIButton(Content, textFont, "MUTE SOUND",    new Vector2(0, 60)));
-            AddButton(new GUIButton(Content, textFont, "RESTART GAME",  new Vector2(0, 120)));
-            AddButton(new GUIButton(Content, textFont, "BACK TO START", new Vector2(0, 180)));
-            AddButton(new GUIButton(Content, textFont, "EXIT GAME",     new Vector2(0, 240)));
-            NormalizeButtonLength(true, true, 10);
-            BackgroundColor = Color.CornflowerBlue;
-            SecondaryColor = Color.DarkSlateBlue;
+
+            AddButton(new GUIButton(Content, textFont, "RESUME",        new Vector2(0,   0), textPadding));
+            AddButton(new GUIButton(Content, textFont, "MUTE SOUND",    new Vector2(0,  60), textPadding));
+            AddButton(new GUIButton(Content, textFont, "RESTART GAME",  new Vector2(0, 120), textPadding));
+            AddButton(new GUIButton(Content, textFont, "BACK TO START", new Vector2(0, 180), textPadding));
+            AddButton(new GUIButton(Content, textFont, "EXIT GAME",     new Vector2(0, 240), textPadding));
+
+            TweakButtons(true, true, true, 20);
+
+            Alpha = 220;
+            BackgroundColor = CustomColor.DarkBlue;
+            SecondaryColor = CustomColor.LightBlue;
         }
 
         public override void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)

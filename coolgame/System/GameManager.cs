@@ -1,4 +1,4 @@
-﻿using coolgame.UI;
+﻿using coolgame.GUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -140,7 +140,7 @@ namespace coolgame
             if (buildings.ContainsKey("base"))
             {
                 ((Base)buildings["base"]).Gun.AttackPowerLevel++;
-                if(((Base)buildings["base"]).Gun.AttackPowerLevel > 3)
+                if(((Base)buildings["base"]).Gun.AttackPowerLevel > 0)
                 {
                     ((Base)buildings["base"]).Gun.SetTexture("laserGun2");
                 }

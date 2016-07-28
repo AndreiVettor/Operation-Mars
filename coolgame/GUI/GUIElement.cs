@@ -1,13 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace coolgame.UI
+namespace coolgame.GUI
 {
     public abstract class GUIElement
     {
@@ -28,7 +23,14 @@ namespace coolgame.UI
             set
             {
                 rectangle.Location = new Point((int)value.X, (int)value.Y);
-                textPosition = value + new Vector2(textPadding, textPadding);
+                if (textCentered)
+                {
+                    textPosition = new Vector2(Position.X + Width / 2 - font.MeasureString(text).X / 2, Position.Y + textPadding.Y);
+                }
+                else
+                {
+                    textPosition = value + new Vector2(textPadding.X, textPadding.Y);
+                }
             }
         }
         public int X
@@ -60,10 +62,6 @@ namespace coolgame.UI
             get { return backgroundColor; }
             set
             {
-                if(value.A != alpha)
-                {
-                    Debug.Log("Change GUI back color alpha using the Alpha variable " + backgroundColor.A);
-                }
                 backgroundColor = new Color(value, alpha);
             }
         }
@@ -94,20 +92,13 @@ namespace coolgame.UI
         {
             get
             {
-                if(TextAlpha == BackgroundAlpha)
-                {
-                    return alpha;
-                }
-                else
-                {
-                    return 0;
-                }
+                return alpha;
             }
             set
             {
                 alpha = value;
-                TextAlpha = value;
-                BackgroundAlpha = value;
+                textAlpha = value;
+                backgroundAlpha = value;
             }
         }
 
@@ -155,11 +146,18 @@ namespace coolgame.UI
             set { textPosition = value; }
         }
 
-        protected int textPadding;
-        public int TextPadding
+        protected Vector2 textPadding;
+        public Vector2 TextPadding
         {
             get { return textPadding; }
             set { textPadding = value; }
+        }
+
+        protected bool textCentered;
+        public bool TextCentered
+        {
+            get { return textCentered; }
+            set { textCentered = value; }
         }
 
         public bool Disabled;
@@ -227,10 +225,17 @@ namespace coolgame.UI
                 Width = (int)font.MeasureString(text).X;
                 Height = (int)font.MeasureString(text).Y;
             }
-            Width += textPadding * 2;
-            Height += textPadding * 2;
+            Width += (int)textPadding.X * 2;
+            Height += (int)textPadding.Y * 2;
 
-            textPosition = new Vector2(Position.X + textPadding, Position.Y + textPadding);
+            if(textCentered)
+            {
+                textPosition = new Vector2(Position.X + Width/2 - font.MeasureString(text).X/2, Position.Y + textPadding.Y);
+            }
+            else
+            {
+                textPosition = new Vector2(Position.X + textPadding.X, Position.Y + textPadding.Y);
+            }
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

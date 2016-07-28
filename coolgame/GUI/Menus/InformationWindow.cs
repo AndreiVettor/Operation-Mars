@@ -1,12 +1,6 @@
-﻿using coolgame.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace coolgame.GUI.Menus
 {
@@ -14,7 +8,7 @@ namespace coolgame.GUI.Menus
     {
         public InformationWindow(ContentManager Content, string textureName, SpriteFont textFont) : base(Content, textureName)
         {
-            borderPadding = 30;
+            borderPadding = new Vector2(30, 30);
             Center();
             AddButton(new GUIButton(Content, textFont, "X", new Vector2(0, 0)));
             //NormalizeButtonLength(false, false, 0);

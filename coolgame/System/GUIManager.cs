@@ -1,14 +1,9 @@
-﻿using coolgame.GUI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace coolgame.UI
+namespace coolgame.GUI
 {
     public class GUIManager
     {
@@ -129,18 +124,21 @@ namespace coolgame.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //Draw Labels
-            foreach (GUILabel label in labels)
+            if(GameManager.State == GameState.Game)
             {
-                label.Draw(spriteBatch);
-            }
+                //Draw Labels
+                foreach (GUILabel label in labels)
+                {
+                    label.Draw(spriteBatch);
+                }
 
-            scoreLabel.Draw(spriteBatch);
+                scoreLabel.Draw(spriteBatch);
 
-            //Draw Sprites
-            foreach (GUISprite sprite in sprites)
-            {
-                sprite.Draw(spriteBatch);
+                //Draw Sprites
+                foreach (GUISprite sprite in sprites)
+                {
+                    sprite.Draw(spriteBatch);
+                }
             }
 
             //Draw Windows

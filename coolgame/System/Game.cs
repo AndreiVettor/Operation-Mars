@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using coolgame.UI;
+using coolgame.GUI;
 using coolgame.GUI.Menus;
 
 namespace coolgame
@@ -206,13 +206,14 @@ namespace coolgame
 
             GameManager.DrawEntities(spriteBatch);
 
-            Debug.Draw(spriteBatch);
+
 
             spriteBatch.End();
 
             //UI
             UIspriteBatch.Begin();
             guiManager.Draw(UIspriteBatch);
+            Debug.Draw(UIspriteBatch);
             UIspriteBatch.End();
 
             base.Draw(gameTime);

@@ -1,12 +1,6 @@
-﻿using coolgame.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace coolgame.GUI.Menus
 {
@@ -14,9 +8,9 @@ namespace coolgame.GUI.Menus
     {
         public UpgradeMenu(ContentManager Content, SpriteFont textFont) : base(Content)
         {
-            Width = 250;
+            Width = 450;
             Height = 350;
-            borderPadding = 30;
+            borderPadding = new Vector2(30, 30);
             Center();
 
             AddButton(new GUIButton(Content, textFont, "Next Wave", new Vector2(100, 300)));
@@ -26,8 +20,9 @@ namespace coolgame.GUI.Menus
             AddButton(new GUIButton(Content, "up_buyturret", new Vector2(150, 0)));
             AddButton(new GUIButton(Content, "up_buyshield", new Vector2(200, 0)));
 
-            BackgroundColor = Color.CornflowerBlue;
-            SecondaryColor = Color.DarkSlateBlue;
+            Alpha = 220;
+            BackgroundColor = CustomColor.DarkBlue;
+            SecondaryColor = CustomColor.LightBlue;
         }
 
         public override void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)

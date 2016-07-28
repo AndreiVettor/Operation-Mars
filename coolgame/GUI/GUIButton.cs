@@ -1,14 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace coolgame.UI
+namespace coolgame.GUI
 {
     public class GUIButton : GUIElement
     {
@@ -88,6 +83,14 @@ namespace coolgame.UI
             Initialize(textFont, text);
         }
 
+        public GUIButton(ContentManager Content, SpriteFont textFont, string text, Vector2 position, Vector2 textPadding) : base(Content)
+        {
+            BackgroundColor = backgroundColor;
+            Position = position;
+            this.textPadding = textPadding;
+            Initialize(textFont, text);
+        }
+
         public GUIButton(ContentManager Content, string textureName, Vector2 position) : base(Content, textureName)
         {
             Position = position;
@@ -98,7 +101,6 @@ namespace coolgame.UI
         {
             if(textFont != null)
             {
-                TextPadding = 15;
                 font = textFont;
                 SetText(text);
             }

@@ -1,4 +1,4 @@
-﻿using coolgame.UI;
+﻿using coolgame.GUI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

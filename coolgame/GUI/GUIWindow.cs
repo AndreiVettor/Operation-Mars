@@ -3,11 +3,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace coolgame.UI
+namespace coolgame.GUI
 {
     public class GUIWindow : GUIElement
     {
@@ -28,8 +25,7 @@ namespace coolgame.UI
             }
         }
 
-
-        protected int borderPadding = 15;
+        protected Vector2 borderPadding;
 
         public bool ButtonPressed(int id)
         {
@@ -60,7 +56,7 @@ namespace coolgame.UI
         public void AddButton(GUIButton button)
         {
             //Add padding value to button position
-            button.Position = new Vector2(Position.X + button.Position.X + borderPadding, Position.Y + button.Position.Y + borderPadding);
+            button.Position = new Vector2(Position.X + button.Position.X + borderPadding.X, Position.Y + button.Position.Y + borderPadding.Y);
 
             //If button is in the menu
             if (button.Rectangle.Intersects(this.Rectangle))
@@ -81,7 +77,7 @@ namespace coolgame.UI
         public void AddLabel(GUILabel label)
         {
             //Add padding value to label position
-            label.Position = new Vector2(Position.X + label.Position.X + borderPadding, Position.Y + label.Position.Y + borderPadding);
+            label.Position = new Vector2(Position.X + label.Position.X + borderPadding.X, Position.Y + label.Position.Y + borderPadding.Y);
 
             //If label is in the menu
             if (label.Rectangle.Intersects(this.Rectangle))
@@ -107,7 +103,7 @@ namespace coolgame.UI
 
         }
 
-        protected void NormalizeButtonLength(bool centerButtons, bool resizeMenu, int spacing)
+        protected void TweakButtons(bool centerButtons, bool centerText, bool resizeMenu, int spacing)
         {
             int maxWidth = 0;
 
@@ -120,13 +116,17 @@ namespace coolgame.UI
             //Resize Menu
             if (resizeMenu)
             {
-                Width = maxWidth + borderPadding * 2;
-                Height = (buttons[0].Height + spacing) * buttons.Count + borderPadding * 2;
+                Width = maxWidth + (int)borderPadding.X * 2;
+                Height = (buttons[0].Height + spacing) * buttons.Count - spacing + (int)borderPadding.Y * 2;
             }
 
             //Apply Max Width to All Buttons
             foreach (GUIButton button in buttons)
             {
+                if(centerText)
+                {
+                    button.TextCentered = true;
+                }
                 button.Width = maxWidth;
             }
 
@@ -134,8 +134,8 @@ namespace coolgame.UI
             {
                 for (int i = 0; i < buttons.Count; i++)
                 {
-                    buttons[i].Y = Y + borderPadding + i * (spacing + buttons[i].Height);
                     buttons[i].X = X + Width / 2 - buttons[i].Width / 2;
+                    buttons[i].Y = Y + (int)borderPadding.Y + i * (spacing + buttons[i].Height);
                 }
             }
         }

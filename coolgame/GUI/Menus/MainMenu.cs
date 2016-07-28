@@ -1,12 +1,6 @@
-﻿using coolgame.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace coolgame.GUI.Menus
 {
@@ -15,20 +9,28 @@ namespace coolgame.GUI.Menus
         public MainMenu(ContentManager Content, SpriteFont textFont) : base(Content)
         {
             Width = 250;
-            Height = 350;
-            borderPadding = 30;
-            Center();
-            AddButton(new GUIButton(Content, textFont, "START GAME", new Vector2(0, 0)));
-            AddButton(new GUIButton(Content, textFont, "ABOUT THE GAME", new Vector2(0, 60)));
-            AddButton(new GUIButton(Content, textFont, "EXIT TO DESKTOP", new Vector2(0, 240)));
-            NormalizeButtonLength(false, false, 0);
-            BackgroundColor = Color.CornflowerBlue;
-            SecondaryColor = Color.DarkSlateBlue;
+            Height = 200;
+            textPadding = new Vector2(30, 7);
+            borderPadding = new Vector2(20, 20);
+            X = 700;
+            Y = 350;
+
+            AddButton(new GUIButton(Content, textFont, "START GAME", new Vector2(0, 0), textPadding));
+            AddButton(new GUIButton(Content, textFont, "ABOUT THE GAME", new Vector2(0, 60), textPadding));
+            AddButton(new GUIButton(Content, textFont, "EXIT TO DESKTOP", new Vector2(0, 240), textPadding));
+
+            TweakButtons(true, true, false, 20);
+
+            Alpha = 0;
+            BackgroundColor = CustomColor.DarkBlue;
+            SecondaryColor = CustomColor.DarkBlue;
         }
 
         public override void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
         {
             base.Update(game, Content, guiManager, spawner);
+
+
 
             if (ButtonPressed(0))
             {
@@ -43,6 +45,10 @@ namespace coolgame.GUI.Menus
             {
                 game.Exit();
             }
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
         }
     }
 }
