@@ -64,7 +64,7 @@ namespace coolgame
                         }
                     case GameState.Paused:
                         {
-                            SoundManager.PauseMusic();
+                            //SoundManager.PauseMusic();
                             break;
                         }
                     case GameState.StartMenu:
@@ -138,7 +138,13 @@ namespace coolgame
         public static void UpgradeLaserPower()
         {
             if (buildings.ContainsKey("base"))
+            {
                 ((Base)buildings["base"]).Gun.AttackPowerLevel++;
+                if(((Base)buildings["base"]).Gun.AttackPowerLevel > 3)
+                {
+                    ((Base)buildings["base"]).Gun.SetTexture("laserGun2");
+                }
+            }
         }
 
         public static void UpgradeLaserSpeed()

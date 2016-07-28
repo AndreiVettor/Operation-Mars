@@ -219,7 +219,7 @@ namespace coolgame
             }
         }
 
-        protected void SetTexture(string assetName)
+        public void SetTexture(string assetName)
         {
             texture = content.Load<Texture2D>(assetName);
             if (Width > 0)

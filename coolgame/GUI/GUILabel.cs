@@ -59,13 +59,6 @@ namespace coolgame.UI
             {
                 Alpha = 0;
             }
-            Debug.Log(Alpha);
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-            
         }
     }
 }

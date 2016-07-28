@@ -53,7 +53,7 @@ namespace coolgame
 
             if (waveTime >= 10000f)
             {
-                SetWave(wave++, guiManager);
+                SetWave(wave + 1, guiManager);
                 waveTime = 0;
             }
                 

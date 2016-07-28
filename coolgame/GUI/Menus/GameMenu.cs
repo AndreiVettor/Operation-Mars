@@ -16,7 +16,7 @@ namespace coolgame.GUI.Menus
         {
             Width = 250;
             Height = 350;
-            borderPadding = 30;
+            borderPadding = 20;
             Center();
             AddButton(new GUIButton(Content, textFont, "RESUME",        new Vector2(0, 0)));
             AddButton(new GUIButton(Content, textFont, "MUTE SOUND",    new Vector2(0, 60)));

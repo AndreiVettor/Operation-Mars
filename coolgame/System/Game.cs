@@ -79,21 +79,24 @@ namespace coolgame
 
         protected override void Update(GameTime gameTime)
         {
-            deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            GameManager.Update(deltaTime);
-            guiManager.Update(this, deltaTime, Content, guiManager, enemySpawner);
-            Debug.Update(deltaTime);
-            InputManager.Update();
-
-            ReadKeyPresses();
-
-            if (GameManager.State == GameState.Game)
+            if(IsActive) //Game Window in Focus
             {
-                totalGameTime += deltaTime;
-                enemySpawner.Update(totalGameTime, deltaTime, guiManager);
+                deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-                base.Update(gameTime);
+                GameManager.Update(deltaTime);
+                guiManager.Update(this, deltaTime, Content, guiManager, enemySpawner);
+                Debug.Update(deltaTime);
+                InputManager.Update();
+
+                ReadKeyPresses();
+
+                if (GameManager.State == GameState.Game)
+                {
+                    totalGameTime += deltaTime;
+                    enemySpawner.Update(totalGameTime, deltaTime, guiManager);
+
+                    base.Update(gameTime);
+                }
             }
         }
 
