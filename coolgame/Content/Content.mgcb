@@ -307,12 +307,6 @@
 /processorParam:TextureFormat=Color
 /build:murderbot.png
 
-#begin music.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:music.mp3
-
 #begin mwat_shooting.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -582,4 +576,22 @@
 /processor:FontDescriptionProcessor
 /processorParam:TextureFormat=Compressed
 /build:hudFont.spritefont
+
+#begin mainMenu.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:mainMenu.mp3
+
+#begin cosmicMessages.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:cosmicMessages.mp3
+
+#begin kaliope.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:kaliope.mp3
 

@@ -12,8 +12,9 @@ namespace coolgame
     public static class SoundManager
     {
         private static Dictionary<string, SoundEffect> clips = new Dictionary<string, SoundEffect>();
-        private static Dictionary<string, Song> songs = new Dictionary<string, Song>();
+        private static List<Song> songs = new List<Song>();
 
+        private static Song menuMusic;
         public static bool Muted;
 
         private static float soundVolume;
@@ -65,20 +66,32 @@ namespace coolgame
             clips.Add(name, clip);
         }
 
-        public static void AddSong(Song song, string name)
+        public static void AddSong(Song song)
         {
-            songs.Add(name, song);
+            songs.Add(song);
         }
 
         public static void LoadContent(ContentManager Content)
         {
-            AddSong(Content.Load<Song>("music"), "music");
+            AddSong(Content.Load<Song>("kaliope"));
+            AddSong(Content.Load<Song>("cosmicMessages"));
+            menuMusic = Content.Load<Song>("mainMenu");
             AddClip(Content.Load<SoundEffect>("towerlaser"), "enemylaser");
             AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
             AddClip(Content.Load<SoundEffect>("crawlerhit"), "crawlerhit");
             AddClip(Content.Load<SoundEffect>("steelroachhit"), "steelroachhit");
             AddClip(Content.Load<SoundEffect>("steelroachattack"), "steelroachattack");
             AddClip(Content.Load<SoundEffect>("ebloop"), "electrobeam");
+
+            MediaPlayer.MediaStateChanged += ChangeSong;
+        }
+
+        private static void ChangeSong(object sender, EventArgs e)
+        {
+            if(GameManager.State != GameState.StartMenu)
+            {
+                MediaPlayer.Play(songs[GameManager.RNG.Next(0, songs.Count)]);
+            }
         }
 
         public static void PlayClip(string clipName)
@@ -89,10 +102,19 @@ namespace coolgame
             }
         }
 
-        public static void PlaySong(string songName)
+        public static void PlayMenuMusic()
         {
-            MediaPlayer.Play(songs[songName]);
+            MediaPlayer.Stop();
+            MediaPlayer.Play(menuMusic);
+        }
+
+        public static void PlayMusic()
+        {
             MediaPlayer.IsRepeating = true;
+            MediaPlayer.IsShuffled = true;
+
+            MediaPlayer.Stop();
+            MediaPlayer.Play(songs[GameManager.RNG.Next(0, songs.Count)]);
         }
 
         public static void PauseMusic()

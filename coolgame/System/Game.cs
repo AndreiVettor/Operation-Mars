@@ -63,7 +63,7 @@ namespace coolgame
 
             //Sound
             SoundManager.LoadContent(Content);
-            SoundManager.PlaySong("music");
+            SoundManager.PlayMusic();
 
             //Enemies
             EnemyFactory.LoadContent(Content);

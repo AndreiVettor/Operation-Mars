@@ -10,15 +10,16 @@ namespace coolgame.GUI.Menus
         {
             Width = 450;
             Height = 350;
+            textPadding = new Vector2(10, 10);
             borderPadding = new Vector2(30, 30);
             Center();
 
-            AddButton(new GUIButton(Content, textFont, "Next Wave", new Vector2(100, 300)));
+            AddButton(new GUIButton(Content, textFont, "Next Wave", new Vector2(145, 250),textPadding));
             AddButton(new GUIButton(Content, "up_laserDamage", new Vector2(0,0)));
-            AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(50, 0)));
-            AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(100, 0)));
-            AddButton(new GUIButton(Content, "up_buyturret", new Vector2(150, 0)));
-            AddButton(new GUIButton(Content, "up_buyshield", new Vector2(200, 0)));
+            AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(40, 0)));
+            AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(110, 0)));
+            AddButton(new GUIButton(Content, "up_buyturret", new Vector2(160, 0)));
+            AddButton(new GUIButton(Content, "up_buyshield", new Vector2(210, 0)));
 
             Alpha = 220;
             BackgroundColor = CustomColor.DarkBlue;

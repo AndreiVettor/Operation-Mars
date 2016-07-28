@@ -59,7 +59,7 @@ namespace coolgame
                 {
                     case GameState.Game:
                         {
-                            SoundManager.ResumeMusic();
+                            SoundManager.PlayMusic();
                             break;
                         }
                     case GameState.Paused:
@@ -69,7 +69,7 @@ namespace coolgame
                         }
                     case GameState.StartMenu:
                         {
-                            SoundManager.StopMusic();
+                            SoundManager.PlayMenuMusic();
                             break;
                         }
                 }
@@ -309,7 +309,6 @@ namespace coolgame
             ClearEntities();
             ResetBuildings(Content);
             spaceCash = 0;
-            SoundManager.PlaySong("music");
             guiManager.Restart();
             spawner.SetWave(1, guiManager);
         }
