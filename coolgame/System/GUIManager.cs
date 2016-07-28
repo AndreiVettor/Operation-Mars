@@ -124,7 +124,7 @@ namespace coolgame.GUI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(GameManager.State == GameState.Game)
+            if(GameManager.State != GameState.StartMenu)
             {
                 //Draw Labels
                 foreach (GUILabel label in labels)

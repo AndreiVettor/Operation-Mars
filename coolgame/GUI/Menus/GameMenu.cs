@@ -22,7 +22,7 @@ namespace coolgame.GUI.Menus
 
             TweakButtons(true, true, true, 20);
 
-            Alpha = 220;
+            Alpha = 180;
             BackgroundColor = CustomColor.DarkBlue;
             SecondaryColor = CustomColor.LightBlue;
         }

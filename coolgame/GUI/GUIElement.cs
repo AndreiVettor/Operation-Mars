@@ -242,7 +242,7 @@ namespace coolgame.GUI
         {
             if(BackgroundTexture != null)
             {
-                spriteBatch.Draw(BackgroundTexture, rectangle, new Color(BackgroundColor, (int)BackgroundAlpha));
+                spriteBatch.Draw(BackgroundTexture, rectangle, Color.FromNonPremultiplied(backgroundColor.R, backgroundColor.G, backgroundColor.B, (int)backgroundAlpha));
             }
             if(Text != "")
             {
