@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using coolgame.UI;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,32 +28,32 @@ namespace coolgame
         private float waveTime;
         private int wave;
 
-        public EnemySpawner()
+        public EnemySpawner(GUIManager guiManager)
         {
-            Wave = 1;
+            SetWave(1, guiManager);
         }
 
         public int Wave
         {
             get { return wave; }
-            set
+        }
+        public void SetWave(int waveNumber, GUIManager guiManager) 
+        {
+            if (waveNumber >= 1 && waveNumber <= 11)
             {
-                if (value >= 1 && value <= 11)
-                {
-                    wave = value;
-                    Systems.UIManager.DisplayMessage("WAVE " + wave.ToString());
-                }
+                wave = waveNumber;
+                guiManager.DisplayMessage("WAVE " + Wave.ToString());
             }
         }
 
-        public void Update(float totalGameTime, float deltaTime)
+        public void Update(float totalGameTime, float deltaTime, GUIManager guiManager)
         {
             spawnTime += deltaTime;
             waveTime += deltaTime;
 
             if (waveTime >= 10000f)
             {
-                ++Wave;
+                SetWave(wave++, guiManager);
                 waveTime = 0;
             }
                 

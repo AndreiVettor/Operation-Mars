@@ -14,18 +14,45 @@ namespace coolgame.UI
         protected List<GUIButton> buttons;
         protected List<GUILabel> labels;
 
+        private Color secondaryColor;
+        public Color SecondaryColor
+        {
+            get { return secondaryColor; }
+            set
+            {
+                secondaryColor = value;
+                foreach (GUIButton button in buttons)
+                {
+                    button.BackgroundColor = value;
+                }
+            }
+        }
+
+
         protected int borderPadding = 15;
 
         public bool ButtonPressed(int id)
         {
+            if(id > buttons.Count - 1)
+            {
+                Debug.Log("Tried to access invalid button " + id);
+                return false;
+            }
             return buttons[id].Pressed;
         }
 
-        public bool Closing;
-
         public GUIWindow (ContentManager Content) : base (Content) 
         {
-            Closing = false;
+            Initialize();
+        }
+
+        public GUIWindow(ContentManager Content, string textureName) : base(Content, textureName)
+        {
+            Initialize();
+        }
+
+        private new void Initialize()
+        {
             buttons = new List<GUIButton>();
             labels = new List<GUILabel>();
         }
@@ -72,12 +99,45 @@ namespace coolgame.UI
             }
         }
 
-        public void Center()
+        protected void Center()
         {
             Position = new Vector2(
                 Game.GAME_WIDTH / 2 - Width / 2,
                 Game.GAME_HEIGHT / 2 - Height / 2);
 
+        }
+
+        protected void NormalizeButtonLength(bool centerButtons, bool resizeMenu, int spacing)
+        {
+            int maxWidth = 0;
+
+            //Find Max Width
+            foreach (GUIButton button in buttons)
+            {
+                maxWidth = Math.Max(maxWidth, button.Width);
+            }
+
+            //Resize Menu
+            if (resizeMenu)
+            {
+                Width = maxWidth + borderPadding * 2;
+                Height = (buttons[0].Height + spacing) * buttons.Count + borderPadding * 2;
+            }
+
+            //Apply Max Width to All Buttons
+            foreach (GUIButton button in buttons)
+            {
+                button.Width = maxWidth;
+            }
+
+            if (centerButtons)
+            {
+                for (int i = 0; i < buttons.Count; i++)
+                {
+                    buttons[i].Y = Y + borderPadding + i * (spacing + buttons[i].Height);
+                    buttons[i].X = X + Width / 2 - buttons[i].Width / 2;
+                }
+            }
         }
 
         public virtual void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
@@ -88,17 +148,17 @@ namespace coolgame.UI
             }
         }
 
-        public override void Draw(SpriteBatch spriteBatch, SpriteFont textFont)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch, textFont);
+            base.Draw(spriteBatch);
 
             foreach(GUIButton button in buttons)
             {
-                button.Draw(spriteBatch, textFont);
+                button.Draw(spriteBatch);
             }
             foreach (GUILabel label in labels)
             {
-                label.Draw(spriteBatch, textFont);
+                label.Draw(spriteBatch);
             }
         }
     }

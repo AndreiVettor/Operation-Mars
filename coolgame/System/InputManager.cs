@@ -27,11 +27,6 @@ namespace coolgame
             mouseRectangle.Location = new Point(mouseState.X, mouseState.Y);
         }
 
-        public static bool HoversUIElement(UIElement element)
-        {
-            return mouseRectangle.Intersects(element.Rectangle);
-        }
-
         public static bool MouseIntersects(Rectangle r)
         {
             return mouseRectangle.Intersects(r);

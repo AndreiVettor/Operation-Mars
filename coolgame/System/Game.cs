@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Media;
-using coolgame.Systems;
 using coolgame.UI;
 using coolgame.GUI.Menus;
 
@@ -20,11 +17,6 @@ namespace coolgame
 
         GUIManager guiManager;
 
-        UIWindow pauseMenu;
-        UIWindow upgradeMenu;
-        UIWindow startMenu;
-        UIWindow aboutPanel;
-
         float deltaTime, totalGameTime;
 
         EnemySpawner enemySpawner;
@@ -37,9 +29,6 @@ namespace coolgame
 
             GameManager.SetFrameLimiting(this, true);
             GameManager.SetVSync(graphics, false);
-
-            UIManager.SetCrosshairDisplay(this, true);
-
 
             Content.RootDirectory = "Content";
         }
@@ -72,26 +61,13 @@ namespace coolgame
             //GUI
             guiManager = new GUIManager(Content);
 
-
-
-            //UI
-            UIManager.LoadContent(Content);
-            pauseMenu = new PauseMenu(Content);
-            upgradeMenu = new UpgradesMenu(Content, 500, 300);
-            startMenu = new StartMenu(Content);
-            aboutPanel = new InfoPanel(Content, "about");
-            UIManager.AddElement(upgradeMenu);
-            UIManager.AddElement(pauseMenu);
-            UIManager.AddElement(startMenu);
-            UIManager.AddElement(aboutPanel);
-
             //Sound
             SoundManager.LoadContent(Content);
             SoundManager.PlaySong("music");
 
             //Enemies
             EnemyFactory.LoadContent(Content);
-            enemySpawner = new EnemySpawner();
+            enemySpawner = new EnemySpawner(guiManager);
 
             Debug.Log("Content Loaded");
         }
@@ -106,8 +82,7 @@ namespace coolgame
             deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             GameManager.Update(deltaTime);
-            UIManager.Update(this, Content, deltaTime);
-            guiManager.Update(this, Content, guiManager, enemySpawner);
+            guiManager.Update(this, deltaTime, Content, guiManager, enemySpawner);
             Debug.Update(deltaTime);
             InputManager.Update();
 
@@ -116,7 +91,7 @@ namespace coolgame
             if (GameManager.State == GameState.Game)
             {
                 totalGameTime += deltaTime;
-                enemySpawner.Update(totalGameTime, deltaTime);
+                enemySpawner.Update(totalGameTime, deltaTime, guiManager);
 
                 base.Update(gameTime);
             }
@@ -139,9 +114,13 @@ namespace coolgame
                     }
                 }
 
-                if (InputManager.KeyPress(Keys.U) && !UIManager.PauseMenuOpen)
+                if (InputManager.KeyPress(Keys.U))
                 {
-                    UIManager.ToggleUpgradeMenu();
+                    if(GameManager.State == GameState.Game)
+                    {
+                        guiManager.AddWindow(new UpgradeMenu(Content, guiManager.TextFont));
+                        GameManager.State = GameState.Paused;
+                    }
                 }
 
                 if (InputManager.KeyPress(Keys.P))
@@ -170,7 +149,7 @@ namespace coolgame
 
                 if (InputManager.KeyPress(Keys.H))
                 {
-                    UIManager.DisplayMessage("Wave 1: Crawlers are warm and fuzzy");
+                    guiManager.DisplayMessage("Wave 1: Crawlers are warm and fuzzy");
                 }
             }
 
@@ -230,12 +209,7 @@ namespace coolgame
 
             //UI
             UIspriteBatch.Begin();
-
             guiManager.Draw(UIspriteBatch);
-            UIManager.Draw(UIspriteBatch);
-
-
-
             UIspriteBatch.End();
 
             base.Draw(gameTime);

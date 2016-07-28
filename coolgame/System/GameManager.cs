@@ -1,13 +1,9 @@
-﻿using coolgame.Systems;
-using coolgame.UI;
+﻿using coolgame.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace coolgame
 {
@@ -306,11 +302,10 @@ namespace coolgame
         {
             ClearEntities();
             ResetBuildings(Content);
-            UIManager.Reset();
             spaceCash = 0;
             SoundManager.PlaySong("music");
             guiManager.Restart();
-            spawner.Wave = 1;
+            spawner.SetWave(1, guiManager);
         }
 
         public static void Update(float deltaTime)

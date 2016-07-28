@@ -11,6 +11,12 @@ namespace coolgame.UI
 {
     public abstract class GUIElement
     {
+        public enum BackType
+        {
+            Color,
+            Texture
+        }
+
         private Rectangle rectangle;
         public Rectangle Rectangle
         {
@@ -60,6 +66,13 @@ namespace coolgame.UI
                 }
                 backgroundColor = new Color(value, alpha);
             }
+        }
+
+        protected BackType backgroundType;
+        public BackType BackgroundType
+        {
+            get { return backgroundType; }
+            set { backgroundType = value; }
         }
 
         protected Color textColor;
@@ -122,24 +135,38 @@ namespace coolgame.UI
             }
         }
 
+        protected SpriteFont font;
+        public SpriteFont Font
+        {
+            get { return font; }
+            set { font = value; }
+        }
+
         protected string text;
         public string Text
         {
             get { return text; }
         }
 
-        private Vector2 textPosition;
+        protected Vector2 textPosition;
         public Vector2 TextPosition
         {
             get { return textPosition; }
             set { textPosition = value; }
         }
 
-        private int textPadding;
+        protected int textPadding;
         public int TextPadding
         {
             get { return textPadding; }
             set { textPadding = value; }
+        }
+
+        public bool Disabled;
+
+        public GUIElement()
+        {
+            Initialize();
         }
 
         public GUIElement (ContentManager Content)
@@ -150,15 +177,31 @@ namespace coolgame.UI
         public GUIElement(ContentManager Content, string textureName)
         {
             BackgroundTexture = Content.Load<Texture2D>(textureName);
+            BackgroundType = BackType.Texture;
             Width = backgroundTexture.Width;
             Height = backgroundTexture.Height;
+            backgroundColor = Color.White;
             Initialize(Content);
+        }
+
+        public virtual void Initialize()
+        {
+            Alpha = 255; //Full opacity
+            if (textColor == new Color())
+            {
+                TextColor = Color.White;
+            }
+            if (text == null)
+            {
+                text = "";
+            }
         }
 
         public virtual void Initialize(ContentManager Content)
         {
+            Disabled = false;
             Alpha = 255; //Full opacity
-            if (backgroundColor == new Color())
+            if (backgroundColor == new Color() && backgroundTexture == null)
             {
                 BackgroundColor = Color.Black;
             }
@@ -176,13 +219,13 @@ namespace coolgame.UI
             }
         }
 
-        public void SetText(SpriteFont textFont, string text)
+        public void SetText(string text)
         {
             this.text = text;
             if (Width == 0 && Height == 0)
             {
-                Width = (int)textFont.MeasureString(text).X;
-                Height = (int)textFont.MeasureString(text).Y;
+                Width = (int)font.MeasureString(text).X;
+                Height = (int)font.MeasureString(text).Y;
             }
             Width += textPadding * 2;
             Height += textPadding * 2;
@@ -190,12 +233,15 @@ namespace coolgame.UI
             textPosition = new Vector2(Position.X + textPadding, Position.Y + textPadding);
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch, SpriteFont textFont)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(BackgroundTexture, rectangle, new Color(BackgroundColor, BackgroundAlpha));
+            if(BackgroundTexture != null)
+            {
+                spriteBatch.Draw(BackgroundTexture, rectangle, new Color(BackgroundColor, BackgroundAlpha));
+            }
             if(Text != "")
             {
-                spriteBatch.DrawString(textFont, Text, textPosition, Color.FromNonPremultiplied(textColor.R, textColor.G, textColor.B, TextAlpha));
+                spriteBatch.DrawString(font, Text, textPosition, Color.FromNonPremultiplied(textColor.R, textColor.G, textColor.B, TextAlpha));
             }
         }
     }

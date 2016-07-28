@@ -18,46 +18,14 @@ namespace coolgame.GUI.Menus
             Height = 350;
             borderPadding = 30;
             Center();
-            AddButton(new GUIButton(Content, textFont, "RESUME",        new Vector2(0, 0), Color.DarkSlateBlue));
-            AddButton(new GUIButton(Content, textFont, "MUTE SOUND",    new Vector2(0, 60), Color.DarkSlateBlue));
-            AddButton(new GUIButton(Content, textFont, "RESTART GAME",  new Vector2(0, 120), Color.DarkSlateBlue));
-            AddButton(new GUIButton(Content, textFont, "BACK TO START", new Vector2(0, 180), Color.DarkSlateBlue));
-            AddButton(new GUIButton(Content, textFont, "EXIT GAME",     new Vector2(0, 240), Color.DarkSlateBlue));
+            AddButton(new GUIButton(Content, textFont, "RESUME",        new Vector2(0, 0)));
+            AddButton(new GUIButton(Content, textFont, "MUTE SOUND",    new Vector2(0, 60)));
+            AddButton(new GUIButton(Content, textFont, "RESTART GAME",  new Vector2(0, 120)));
+            AddButton(new GUIButton(Content, textFont, "BACK TO START", new Vector2(0, 180)));
+            AddButton(new GUIButton(Content, textFont, "EXIT GAME",     new Vector2(0, 240)));
             NormalizeButtonLength(true, true, 10);
             BackgroundColor = Color.CornflowerBlue;
-        }
-
-        private void NormalizeButtonLength(bool centerButtons, bool resizeMenu, int spacing)
-        {
-            int maxWidth = 0;
-
-            //Find Max Width
-            foreach(GUIButton button in buttons)
-            {
-                maxWidth = Math.Max(maxWidth, button.Width);
-            }
-
-            //Resize Menu
-            if(resizeMenu)
-            {
-                Width = maxWidth + borderPadding * 2;
-                Height = (buttons[0].Height + spacing) * buttons.Count + borderPadding * 2;
-            }
-
-            //Apply Max Width to All Buttons
-            foreach (GUIButton button in buttons)
-            {
-                button.Width = maxWidth;
-            }
-
-            if(centerButtons)
-            {
-                for(int i = 0; i < buttons.Count; i++)
-                {
-                    buttons[i].Y = Y + borderPadding + i * (spacing + buttons[i].Height);
-                    buttons[i].X = X + Width / 2 - buttons[i].Width / 2;
-                }
-            }
+            SecondaryColor = Color.DarkSlateBlue;
         }
 
         public override void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
@@ -66,8 +34,8 @@ namespace coolgame.GUI.Menus
 
             if (ButtonPressed(0))
             {
-                Closing = true;
                 GameManager.State = GameState.Game;
+                Disabled = true;
             }
             else if (ButtonPressed(1))
             {
@@ -77,13 +45,14 @@ namespace coolgame.GUI.Menus
             {
                 GameManager.Restart(Content, guiManager, spawner);
                 GameManager.State = GameState.Game;
-                Closing = true;
+                Disabled = true;
             }
             else if (ButtonPressed(3))
             {
-                Closing = true;
                 GameManager.Restart(Content, guiManager, spawner);
                 GameManager.State = GameState.StartMenu;
+                guiManager.AddWindow(new MainMenu(Content, guiManager.TextFont));
+                Disabled = true;
             }
             else if (ButtonPressed(4))
             {

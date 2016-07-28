@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace coolgame.UI
 {
-    public class GUIButton :GUIElement
+    public class GUIButton : GUIElement
     {
         private Color pressedColor;
         public Color PressedColor
@@ -24,6 +24,27 @@ namespace coolgame.UI
         {
             get { return releasedColor; }
             set { releasedColor = value; }
+        }
+
+        public new Color BackgroundColor
+        {
+            get { return backgroundColor; }
+            set
+            {
+                if(BackgroundType == BackType.Color)
+                {
+                    if (value.A != alpha)
+                    {
+                        Debug.Log("Change GUI back color alpha using the Alpha variable " + backgroundColor.A);
+                    }
+                    backgroundColor = new Color(value, alpha);
+                    pressedColor = new Color(
+                        backgroundColor.R + colorChange,
+                        backgroundColor.G + colorChange,
+                        backgroundColor.B + colorChange);
+                    releasedColor = backgroundColor;
+                }
+            }
         }
 
         private bool pressed;
@@ -54,6 +75,12 @@ namespace coolgame.UI
             Initialize(textFont, text);
         }
 
+        public GUIButton(ContentManager Content, SpriteFont textFont, string text, Vector2 position) : base(Content)
+        {
+            Position = position;
+            Initialize(textFont, text);
+        }
+
         public GUIButton(ContentManager Content, SpriteFont textFont, string text, Vector2 position, Color backgroundColor) : base(Content)
         {
             BackgroundColor = backgroundColor;
@@ -61,15 +88,25 @@ namespace coolgame.UI
             Initialize(textFont, text);
         }
 
+        public GUIButton(ContentManager Content, string textureName, Vector2 position) : base(Content, textureName)
+        {
+            Position = position;
+            Initialize(null, "");
+        }
+
         public void Initialize(SpriteFont textFont, string text)
         {
+            if(textFont != null)
+            {
+                TextPadding = 15;
+                font = textFont;
+                SetText(text);
+            }
             PressedColor = new Color(
                 BackgroundColor.R + colorChange,
                 BackgroundColor.G + colorChange,
                 BackgroundColor.B + colorChange);
             ReleasedColor = BackgroundColor;
-            TextPadding = 15;
-            SetText(textFont, text);
         }
 
         public void Update()
@@ -90,11 +127,11 @@ namespace coolgame.UI
             //Change color on press
             if(held)
             {
-                BackgroundColor = PressedColor;
+                backgroundColor = PressedColor;
             }
             else
             {
-                BackgroundColor = ReleasedColor;
+                backgroundColor = ReleasedColor;
             }
         }
     }

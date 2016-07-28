@@ -44,13 +44,13 @@
     <Compile Include="GUI\GUIButton.cs" />
     <Compile Include="GUI\GUIElement.cs" />
     <Compile Include="GUI\GUILabel.cs" />
-    <Compile Include="GUI\GUIManager.cs" />
+    <Compile Include="System\GUIManager.cs" />
     <Compile Include="GUI\GUISprite.cs" />
     <Compile Include="GUI\GUIWindow.cs" />
     <Compile Include="GUI\Menus\GameMenu.cs" />
-    <Compile Include="UI\InfoPanel.cs" />
-    <Compile Include="UI\PauseMenu.cs" />
-    <Compile Include="UI\Button.cs" />
+    <Compile Include="GUI\Menus\InformationWindow.cs" />
+    <Compile Include="GUI\Menus\MainMenu.cs" />
+    <Compile Include="GUI\Menus\UpgradeMenu.cs" />
     <Compile Include="GameObjects\Buildings\Base.cs" />
     <Compile Include="GameObjects\Buildings\Building.cs" />
     <Compile Include="GameObjects\Enemies\EnemyType\Crawler.cs" />
@@ -68,10 +68,6 @@
     <Compile Include="GameObjects\Enemies\RangedEnemy.cs" />
     <Compile Include="GameObjects\Enemies\EnemyType\ReptilianSaucer.cs" />
     <Compile Include="System\SoundManager.cs" />
-    <Compile Include="System\UIManager.cs" />
-    <Compile Include="UI\StartMenu.cs" />
-    <Compile Include="UI\UIWindow.cs" />
-    <Compile Include="UI\UIElement.cs" />
     <Compile Include="System\Debug.cs" />
     <Compile Include="GameObjects\Enemies\Enemy.cs" />
     <Compile Include="GameObjects\Enemies\EnemyType\Steve.cs" />
@@ -81,14 +77,13 @@
     <Compile Include="System\Game.cs" />
     <Compile Include="System\GameManager.cs" />
     <Compile Include="GameObjects\Ground.cs" />
-    <Compile Include="UI\HealthBar.cs" />
+    <Compile Include="GUI\HealthBar.cs" />
     <Compile Include="System\InputManager.cs" />
     <Compile Include="GameObjects\Buildings\LaserGun.cs" />
     <Compile Include="GameObjects\Projectiles\LaserProjectile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameObjects\Buildings\Tower.cs" />
-    <Compile Include="UI\UpgradesMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
