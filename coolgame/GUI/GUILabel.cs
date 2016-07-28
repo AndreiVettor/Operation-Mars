@@ -25,11 +25,10 @@ namespace coolgame.UI
             Initialize(textFont, text, position);
             Alpha = 0;
             this.lifeTime = lifeTime;
-            if (fadeTime < lifeTime / 2)
+            if (fadeTime > lifeTime / 2)
             {
                 fadeTime = lifeTime / 2;
             }
-            Debug.Log("fade " + fadeTime + " life " + lifeTime);
         }
 
         public void Initialize(SpriteFont textFont, string text, Vector2 position)
@@ -47,13 +46,14 @@ namespace coolgame.UI
             {
                 Disabled = true;
             }
-            if(timer <= fadeTime)
+            else if(timer <= fadeTime)
             {
-                Alpha += (int)(deltaTime / (fadeTime / 255));
+                Alpha += deltaTime / (fadeTime / 255);
             }
+
             else if (timer >= lifeTime - fadeTime)
             {
-                Alpha -= (int)(deltaTime / (fadeTime / 255));
+                Alpha -= deltaTime / (fadeTime / 255);
             }
             if(Alpha < 0)
             {

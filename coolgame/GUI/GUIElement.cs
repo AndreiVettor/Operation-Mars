@@ -89,8 +89,8 @@ namespace coolgame.UI
             }
         }
 
-        protected int alpha; //full opacity
-        public int Alpha
+        protected float alpha; //full opacity
+        public float Alpha
         {
             get
             {
@@ -111,15 +111,15 @@ namespace coolgame.UI
             }
         }
 
-        private int textAlpha;
-        public int TextAlpha
+        private float textAlpha;
+        public float TextAlpha
         {
             get { return textAlpha; }
             set { textAlpha = value; }
         }
 
-        private int backgroundAlpha;
-        public int BackgroundAlpha
+        private float backgroundAlpha;
+        public float BackgroundAlpha
         {
             get { return backgroundAlpha; }
             set { backgroundAlpha = value; }
@@ -237,11 +237,11 @@ namespace coolgame.UI
         {
             if(BackgroundTexture != null)
             {
-                spriteBatch.Draw(BackgroundTexture, rectangle, new Color(BackgroundColor, BackgroundAlpha));
+                spriteBatch.Draw(BackgroundTexture, rectangle, new Color(BackgroundColor, (int)BackgroundAlpha));
             }
             if(Text != "")
             {
-                spriteBatch.DrawString(font, Text, textPosition, Color.FromNonPremultiplied(textColor.R, textColor.G, textColor.B, TextAlpha));
+                spriteBatch.DrawString(font, Text, textPosition, Color.FromNonPremultiplied(textColor.R, textColor.G, textColor.B, (int)TextAlpha));
             }
         }
     }
