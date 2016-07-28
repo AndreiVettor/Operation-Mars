@@ -487,12 +487,6 @@
 /processorParam:TextureFormat=Color
 /build:ufo.png
 
-#begin UIFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:TextureFormat=Compressed
-/build:UIFont.spritefont
-
 #begin mwat.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -582,4 +576,10 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:up_buyturret.png
+
+#begin hudFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:hudFont.spritefont
 

@@ -14,9 +14,10 @@ namespace coolgame.UI
     {
         private List<GUIWindow> windows;
         private List<GUILabel> labels;
+        private List<GUISprite> sprites;
 
         private GUISprite crossHair;
-        private GUISprite spaceCash;
+        private GUILabel scoreLabel;
 
         private SpriteFont textFont;
         public SpriteFont TextFont
@@ -32,6 +33,13 @@ namespace coolgame.UI
             set { messageFont = value; }
         }
 
+        private SpriteFont hudFont;
+        public SpriteFont HUDFont
+        {
+            get { return hudFont; }
+            set { hudFont = value; }
+        }
+
         private Vector2 messagePosition;
         private int messageDuration;
 
@@ -39,10 +47,15 @@ namespace coolgame.UI
         {
             textFont = Content.Load<SpriteFont>("textFont");
             messageFont = Content.Load<SpriteFont>("messageFont");
-            crossHair = new GUISprite(Content, "crosshair", Vector2.Zero);
+            hudFont = Content.Load<SpriteFont>("hudFont");
 
             windows = new List<GUIWindow>();
             labels = new List<GUILabel>();
+            sprites = new List<GUISprite>();
+
+            crossHair = new GUISprite(Content, "crosshair", Vector2.Zero);
+            scoreLabel = new GUILabel(hudFont, GameManager.SpaceCash.ToString(), new Vector2(Game.GAME_WIDTH - 60, 37));
+            sprites.Add(new GUISprite(Content, "spaceCash", new Vector2(Game.GAME_WIDTH - 120, 30)));
 
             messagePosition = new Vector2(Game.GAME_WIDTH/2, 100);
             messageDuration = 5000;
@@ -87,6 +100,22 @@ namespace coolgame.UI
 
         public void Update(Game game, float deltaTime, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
         {
+            scoreLabel.Update(deltaTime);
+            scoreLabel.SetText(GameManager.SpaceCash.ToString());
+
+            if (GameManager.State != GameState.Paused)
+            {
+                for (int i = 0; i < labels.Count; i++)
+                {
+                    if (labels[i].Disabled)
+                    {
+                        labels.Remove(labels[i]);
+                        continue;
+                    }
+                    labels[i].Update(deltaTime);
+                }
+            }
+
             for (int i = 0; i < windows.Count; i++)
             {
                 if (windows[i].Disabled)
@@ -96,33 +125,31 @@ namespace coolgame.UI
                 }
                 windows[i].Update(game, Content, guiManager, spawner);
             }
-
-            for (int i = 0; i < labels.Count; i++)
-            {
-                if (labels[i].Disabled)
-                {
-                    labels.Remove(labels[i]);
-                    continue;
-                }
-                labels[i].Update(deltaTime);
-            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //Draw Windows
-            foreach(GUIWindow window in windows)
-            {
-                window.Draw(spriteBatch);
-            }
-
             //Draw Labels
-            foreach(GUILabel label in labels)
+            foreach (GUILabel label in labels)
             {
                 label.Draw(spriteBatch);
             }
 
-            //Draw Crosshairs
+            scoreLabel.Draw(spriteBatch);
+
+            //Draw Sprites
+            foreach (GUISprite sprite in sprites)
+            {
+                sprite.Draw(spriteBatch);
+            }
+
+            //Draw Windows
+            foreach (GUIWindow window in windows)
+            {
+                window.Draw(spriteBatch);
+            }
+
+            //Draw Crosshair
             spriteBatch.Draw(
                 crossHair.BackgroundTexture,
                 new Vector2(
