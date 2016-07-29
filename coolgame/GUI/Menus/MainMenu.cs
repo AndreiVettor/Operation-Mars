@@ -28,27 +28,27 @@ namespace coolgame.GUI.Menus
 
         public override void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
         {
-            base.Update(game, Content, guiManager, spawner);
-
-
-
-            if (ButtonPressed(0))
+            if(!guiManager.WindowOpen(new InformationWindow(Content, "about", guiManager)))
             {
-                Disabled = true;
-                GameManager.State = GameState.Game;
-            }
-            else if (ButtonPressed(1))
-            {
-                guiManager.AddWindow(new InformationWindow(Content, "about", guiManager));
-            }
-            else if (ButtonPressed(2))
-            {
-                game.Exit();
+                base.Update(game, Content, guiManager, spawner);
+                if (ButtonPressed(0))
+                {
+                    Disabled = true;
+                    GameManager.State = GameState.Game;
+                }
+                else if (ButtonPressed(1))
+                {
+                    guiManager.AddWindow(new InformationWindow(Content, "about", guiManager));
+                }
+                else if (ButtonPressed(2))
+                {
+                    game.Exit();
+                }
             }
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+             base.Draw(spriteBatch);
         }
     }
 }
