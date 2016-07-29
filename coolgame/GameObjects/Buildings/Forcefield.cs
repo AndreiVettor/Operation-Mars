@@ -43,7 +43,7 @@ namespace coolgame
 
         public Forcefield(ContentManager content, int groundLevel) : base(content, groundLevel)
         {
-            SetTexture("force_field");
+            SetTexture("forceField1");
             X = Game.GAME_WIDTH / 2 - Width / 2;
             Y = groundLevel - Height;
 

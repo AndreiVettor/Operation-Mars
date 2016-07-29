@@ -16,10 +16,17 @@ namespace coolgame.GUI.Menus
 
             AddButton(new GUIButton(Content, guiManager.TextFont, "Next Wave", new Vector2(145, 250),textPadding));
             AddButton(new GUIButton(Content, "up_laserDamage", new Vector2(0,0)));
-            AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(40, 0)));
-            AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(110, 0)));
-            AddButton(new GUIButton(Content, "up_buyturret", new Vector2(160, 0)));
-            AddButton(new GUIButton(Content, "up_buyshield", new Vector2(210, 0)));
+            AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(50, 0)));
+            AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(120, 0)));
+
+            AddButton(new GUIButton(Content, "build_turret", new Vector2(180, 0)));
+            AddButton(new GUIButton(Content, "build_forceField", new Vector2(240, 0)));
+
+            AddButton(new GUIButton(Content, "up_turret", new Vector2(300, 0)));
+            AddButton(new GUIButton(Content, "up_forceField", new Vector2(360, 0)));
+
+            AddButton(new GUIButton(Content, "repair_base", new Vector2(420, 0)));
+            AddButton(new GUIButton(Content, "repair_turret", new Vector2(480, 0)));
 
             Alpha = 220;
             BackgroundColor = CustomColor.DarkBlue;
