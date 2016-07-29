@@ -22,7 +22,7 @@ namespace coolgame
 
         public Turret(ContentManager content, int groundLevel, Enemy.EnemyDirection enemyDirection) : base(content, groundLevel)
         {
-            SetTexture("turret");
+            SetTexture("turret1");
 
             Y = groundLevel - Height;
 

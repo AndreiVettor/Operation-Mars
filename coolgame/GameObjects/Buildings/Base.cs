@@ -23,7 +23,7 @@ namespace coolgame
         {
             layerDepth += .02f;
 
-            SetTexture("base");
+            SetTexture("base1");
             X = Game.GAME_WIDTH / 2 - Width / 2 - 50;
             Y = groundLevel - Height;
             healthBar.MaxHealth = 200;
