@@ -52,6 +52,10 @@ namespace coolgame
                     {
                         return new Murderbot(content);
                     }
+                case "emag":
+                    {
+                        return new MotherShip(content);
+                    }
                 default:
                     {
                         Debug.Log("Tried to create an invalid enemy type!");

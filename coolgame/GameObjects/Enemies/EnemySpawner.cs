@@ -21,7 +21,8 @@ namespace coolgame
             { 0, 0, 0, 0, .025f, .03f, .05f, .055f, 0, .06f, 0 }, //mwat
             { 0, 0, 0, 0, 0, 0, .01f, .015f, .025f, .025f, 0 }, //murderbot
             { 0, 0, 0, 0, 0, 0, 0, .02f, 0, .03f, 0}, //dru
-            { 0, 0, 0, 0, 0, 0, 0, 0, .03f, 0, .15f } //saucer
+            { 0, 0, 0, 0, 0, 0, 0, 0, .03f, 0, .15f }, //saucer
+            { .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } // emag mother ship
         };
 
         private float spawnTime;
@@ -37,12 +38,14 @@ namespace coolgame
         {
             get { return wave; }
         }
+
         public void SetWave(int waveNumber, GUIManager guiManager) 
         {
             if (waveNumber >= 1 && waveNumber <= 11)
             {
                 wave = waveNumber;
-                if(GameManager.GameOver == false)
+                waveTime = 0;
+                if (GameManager.GameOver == false)
                 {
                     guiManager.DisplayMessage("WAVE " + Wave.ToString());
                 }
@@ -57,7 +60,6 @@ namespace coolgame
             if (waveTime >= 10000f)
             {
                 SetWave(wave + 1, guiManager);
-                waveTime = 0;
             }
                 
 
@@ -93,6 +95,10 @@ namespace coolgame
                 {
                     SpawnEnemy("murderbot");
                 }
+                if (Roll(spawnTable[7, wave - 1]))
+                {
+                    SpawnEnemy("emag");
+                }
             }
         }
 
@@ -124,7 +130,7 @@ namespace coolgame
                 tempEnemy.Direction = Enemy.EnemyDirection.ToRight;
             }
 
-            if (enemyType != "reptiliansaucer")
+            if (enemyType != "reptiliansaucer" && enemyType != "emag")
                 tempEnemy.Y = GameManager.Ground.Top - tempEnemy.Height;
         }       
     }

@@ -48,6 +48,25 @@ namespace coolgame
             return null;
         }
 
+        public static Turret CollidesWithTurret(Rectangle r)
+        {
+            if (GameManager.Buildings.ContainsKey("leftturret"))
+            {
+                Turret t = (Turret)GameManager.Buildings["leftturret"];
+                if (t.Alive && t.Collides(r))
+                    return t;
+            }
+
+            if (GameManager.Buildings.ContainsKey("rightturret"))
+            {
+                Turret t = (Turret)GameManager.Buildings["rightturret"];
+                if (t.Alive && t.Collides(r))
+                    return t;
+            }
+
+            return null;
+        }
+
         public static Enemy CollidesWithEnemy(Entity e)
         {
             foreach (Enemy enemy in GameManager.Enemies)
