@@ -6,7 +6,7 @@ namespace coolgame.GUI.Menus
 {
     class MainMenu : GUIWindow
     {
-        public MainMenu(ContentManager Content, SpriteFont textFont) : base(Content)
+        public MainMenu(ContentManager Content, GUIManager guiManager) : base(Content)
         {
             Width = 250;
             Height = 200;
@@ -15,9 +15,9 @@ namespace coolgame.GUI.Menus
             X = 700;
             Y = 350;
 
-            AddButton(new GUIButton(Content, textFont, "START GAME", new Vector2(0, 0), textPadding));
-            AddButton(new GUIButton(Content, textFont, "ABOUT THE GAME", new Vector2(0, 60), textPadding));
-            AddButton(new GUIButton(Content, textFont, "EXIT TO DESKTOP", new Vector2(0, 240), textPadding));
+            AddButton(new GUIButton(Content, guiManager.TextFont, "START GAME", new Vector2(0, 0), textPadding));
+            AddButton(new GUIButton(Content, guiManager.TextFont, "ABOUT THE GAME", new Vector2(0, 60), textPadding));
+            AddButton(new GUIButton(Content, guiManager.TextFont, "EXIT TO DESKTOP", new Vector2(0, 240), textPadding));
 
             TweakButtons(true, true, false, 20);
 
@@ -39,7 +39,7 @@ namespace coolgame.GUI.Menus
             }
             else if (ButtonPressed(1))
             {
-                guiManager.AddWindow(new InformationWindow(Content, "about", guiManager.TextFont));
+                guiManager.AddWindow(new InformationWindow(Content, "about", guiManager));
             }
             else if (ButtonPressed(2))
             {

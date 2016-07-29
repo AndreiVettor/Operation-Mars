@@ -40,6 +40,16 @@ namespace coolgame
             //healthBar.Y = collisionBox.Y - 20;
         }
 
+        public override void InflictDamage(int hitpoints)
+        {
+            base.InflictDamage(hitpoints);
+
+            if(!Alive)
+            {
+                GameManager.GameOver = true;
+            }
+        }
+
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);

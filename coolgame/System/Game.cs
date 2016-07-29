@@ -83,7 +83,7 @@ namespace coolgame
             {
                 deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-                GameManager.Update(deltaTime);
+                GameManager.Update(deltaTime, Content, guiManager);
                 guiManager.Update(this, deltaTime, Content, guiManager, enemySpawner);
                 Debug.Update(deltaTime);
                 InputManager.Update();
@@ -102,11 +102,11 @@ namespace coolgame
 
         public void ReadKeyPresses()
         {
-            if (GameManager.State != GameState.StartMenu)
+            if (GameManager.State == GameState.Game || GameManager.State == GameState.Paused)
             {
-                if (InputManager.KeyPress(Keys.Escape) )
+                if (InputManager.KeyPress(Keys.Escape) && !GameManager.GameOver)
                 {
-                    guiManager.AddWindow(new GameMenu(Content, guiManager.TextFont));
+                    guiManager.AddWindow(new GameMenu(Content, guiManager));
                     if (GameManager.State == GameState.Game)
                     {
                         GameManager.State = GameState.Paused;
@@ -119,9 +119,9 @@ namespace coolgame
 
                 if (InputManager.KeyPress(Keys.U))
                 {
-                    if(GameManager.State == GameState.Game)
+                    if(GameManager.State == GameState.Game && !GameManager.GameOver)
                     {
-                        guiManager.AddWindow(new UpgradeMenu(Content, guiManager.TextFont));
+                        guiManager.AddWindow(new UpgradeMenu(Content, guiManager));
                         GameManager.State = GameState.Paused;
                     }
                 }

@@ -17,7 +17,7 @@ namespace coolgame
             EnableAnimation = true;
             healthBar.MaxHealth = 20;
             AnimationSpeed /= 3;
-            movingSpeed = 3.3f;
+            movingSpeed = 5.3f;
             attackSpeed = 1f;
             attackSound = "crawlerhit";
             hitSound = "crawlerhit";

@@ -56,16 +56,16 @@ namespace coolgame.GUI
             messageDuration = 5000;
         }
 
-        public bool WindowOpen(GUIWindow window)
+        public bool WindowOpen(GUIWindow testWindow)
         {
-            if (windows.Contains(window))
+            foreach(GUIWindow window in windows)
             {
-                return true;
+                if(testWindow.GetType() == window.GetType())
+                {
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public void DisplayMessage(string text)

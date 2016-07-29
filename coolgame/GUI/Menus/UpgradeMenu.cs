@@ -6,7 +6,7 @@ namespace coolgame.GUI.Menus
 {
     class UpgradeMenu : GUIWindow
     {
-        public UpgradeMenu(ContentManager Content, SpriteFont textFont) : base(Content)
+        public UpgradeMenu(ContentManager Content, GUIManager guiManager) : base(Content)
         {
             Width = 450;
             Height = 350;
@@ -14,7 +14,7 @@ namespace coolgame.GUI.Menus
             borderPadding = new Vector2(30, 30);
             Center();
 
-            AddButton(new GUIButton(Content, textFont, "Next Wave", new Vector2(145, 250),textPadding));
+            AddButton(new GUIButton(Content, guiManager.TextFont, "Next Wave", new Vector2(145, 250),textPadding));
             AddButton(new GUIButton(Content, "up_laserDamage", new Vector2(0,0)));
             AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(40, 0)));
             AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(110, 0)));

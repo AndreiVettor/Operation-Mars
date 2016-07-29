@@ -1,4 +1,5 @@
 ﻿using coolgame.GUI;
+using coolgame.GUI.Menus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -75,6 +76,13 @@ namespace coolgame
                 }
                 state = value;
             }
+        }
+
+        private static bool gameOver;
+        public static bool GameOver
+        {
+            get { return gameOver; }
+            set { gameOver = value; }
         }
 
         private static Ground ground;
@@ -313,11 +321,20 @@ namespace coolgame
             spawner.SetWave(1, guiManager);
         }
 
-        public static void Update(float deltaTime)
+        public static void Update(float deltaTime, ContentManager Content, GUIManager guiManager)
         {
             if(state == GameState.Game)
             {
                 UpdateEntities(deltaTime);
+            }
+
+            if (GameOver)
+            {
+                if (!guiManager.WindowOpen(new GameOverWindow(Content, guiManager)))
+                {
+                    guiManager.AddWindow(new GameOverWindow(Content, guiManager));
+                    guiManager.DisplayMessage("GAME OVER!", 0);
+                }
             }
         }
 

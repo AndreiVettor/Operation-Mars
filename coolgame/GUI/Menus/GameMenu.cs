@@ -6,7 +6,7 @@ namespace coolgame.GUI.Menus
 {
     class GameMenu : GUIWindow
     {
-        public GameMenu (ContentManager Content, SpriteFont textFont) : base(Content)
+        public GameMenu (ContentManager Content, GUIManager guiManager) : base(Content)
         {
             Width = 250;
             Height = 350;
@@ -14,11 +14,11 @@ namespace coolgame.GUI.Menus
             textPadding = new Vector2(30, 7);
             Center();
 
-            AddButton(new GUIButton(Content, textFont, "RESUME",        new Vector2(0,   0), textPadding));
-            AddButton(new GUIButton(Content, textFont, "MUTE SOUND",    new Vector2(0,  60), textPadding));
-            AddButton(new GUIButton(Content, textFont, "RESTART GAME",  new Vector2(0, 120), textPadding));
-            AddButton(new GUIButton(Content, textFont, "BACK TO START", new Vector2(0, 180), textPadding));
-            AddButton(new GUIButton(Content, textFont, "EXIT GAME",     new Vector2(0, 240), textPadding));
+            AddButton(new GUIButton(Content, guiManager.TextFont, "RESUME",        new Vector2(0,   0), textPadding));
+            AddButton(new GUIButton(Content, guiManager.TextFont, "MUTE SOUND",    new Vector2(0,  60), textPadding));
+            AddButton(new GUIButton(Content, guiManager.TextFont, "RESTART GAME",  new Vector2(0, 120), textPadding));
+            AddButton(new GUIButton(Content, guiManager.TextFont, "BACK TO START", new Vector2(0, 180), textPadding));
+            AddButton(new GUIButton(Content, guiManager.TextFont, "EXIT GAME",     new Vector2(0, 240), textPadding));
 
             TweakButtons(true, true, true, 20);
 
@@ -50,7 +50,7 @@ namespace coolgame.GUI.Menus
             {
                 GameManager.Restart(Content, guiManager, spawner);
                 GameManager.State = GameState.StartMenu;
-                guiManager.AddWindow(new MainMenu(Content, guiManager.TextFont));
+                guiManager.AddWindow(new MainMenu(Content, guiManager));
                 Disabled = true;
             }
             else if (ButtonPressed(4))

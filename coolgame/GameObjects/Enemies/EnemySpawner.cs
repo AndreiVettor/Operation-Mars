@@ -42,7 +42,10 @@ namespace coolgame
             if (waveNumber >= 1 && waveNumber <= 11)
             {
                 wave = waveNumber;
-                guiManager.DisplayMessage("WAVE " + Wave.ToString());
+                if(GameManager.GameOver == false)
+                {
+                    guiManager.DisplayMessage("WAVE " + Wave.ToString());
+                }
             }
         }
 
