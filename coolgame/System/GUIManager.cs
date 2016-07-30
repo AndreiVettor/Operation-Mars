@@ -120,6 +120,7 @@ namespace coolgame.GUI
         public void Restart()
         {
             windows.Clear();
+            labels.Clear();
         }
 
         public void Update(Game game, float deltaTime, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)

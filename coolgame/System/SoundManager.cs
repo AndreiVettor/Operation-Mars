@@ -75,6 +75,11 @@ namespace coolgame
         {
             AddSong(Content.Load<Song>("kaliope"));
             AddSong(Content.Load<Song>("cosmicMessages"));
+            AddSong(Content.Load<Song>("Building-Itself"));
+            AddSong(Content.Load<Song>("Cosmic-Switchboard"));
+            AddSong(Content.Load<Song>("Dystopic-Technology"));
+            AddSong(Content.Load<Song>("Restricted-Zone"));
+            AddSong(Content.Load<Song>("Runaway-Technology"));
             menuMusic = Content.Load<Song>("mainMenu");
             AddClip(Content.Load<SoundEffect>("towerlaser"), "enemylaser");
             AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");

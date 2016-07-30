@@ -539,6 +539,7 @@ namespace coolgame
             spaceCash = 10000;
             guiManager.Restart();
             spawner.SetWave(1, guiManager);
+            SoundManager.PlayMusic();
         }
 
         public static void Update(float deltaTime, ContentManager Content, GUIManager guiManager)

@@ -775,3 +775,33 @@
 /processorParam:TextureFormat=Color
 /build:blackufo.png
 
+#begin Building-Itself.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Building-Itself.mp3
+
+#begin Cosmic-Switchboard.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Cosmic-Switchboard.mp3
+
+#begin Dystopic-Technology.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Dystopic-Technology.mp3
+
+#begin Restricted-Zone.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Restricted-Zone.mp3
+
+#begin Runaway-Technology.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Runaway-Technology.mp3
+
