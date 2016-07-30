@@ -9,6 +9,11 @@ namespace coolgame
 {
     public class Building : Entity
     {
+        public float Damage
+        {
+            get { return (float)(healthBar.MaxHealth - healthBar.Health) / healthBar.MaxHealth; }
+        }
+
         public override bool Alive
         {
             get

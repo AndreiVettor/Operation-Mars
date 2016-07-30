@@ -126,6 +126,193 @@ namespace coolgame
 
         #region upgrade_system
 
+        public static int[,] upgradeCosts = new int[,] {
+            { 20, 50, 120 }, //laser power
+            { 35, 80, 180 }, //laser speed
+            { 45, 100, 225 }, //laser spread
+            { 80, 180, 380 }, //forcefield regen
+            { 50, 120, 260 }, //forcefield health
+            { 65, 155, 335 }, //base health
+            { 40, 95, 200 }, //turret health
+          };
+
+        public static int[] buildCosts = new int[] {
+            100, //forcefield
+            65, //turret
+        };
+
+        public static int lTurretRepairCost
+        {
+            get { return (int)(buildings["leftturret"].Damage * 50); }
+        }
+
+        public static int rTurretRepairCost
+        {
+            get { return (int)(buildings["rightturret"].Damage * 50); }
+        }
+
+        public static int baseRepairCost
+        {
+            get { return (int)(buildings["base"].Damage * 100); }
+        }
+
+        public static int GetUpgradeCost(int id)
+        {
+            switch(id)
+            {
+                case 0:
+                    {
+                        return upgradeCosts[0, ((Base)buildings["base"]).Gun.AttackPowerLevel - 1];
+                    }
+                case 1:
+                    {
+                        return upgradeCosts[1, ((Base)buildings["base"]).Gun.SpeedLevel - 1];
+                    }
+                case 2:
+                    {
+                        return upgradeCosts[2, ((Base)buildings["base"]).Gun.SpreadLevel - 1];
+                    }
+                case 3:
+                    {
+                        return upgradeCosts[3, ((Forcefield)buildings["forcefield"]).RechargeLevel - 1];
+                    }
+                case 4:
+                    {
+                        return upgradeCosts[4, ((Forcefield)buildings["forcefield"]).StrengthLevel - 1];
+                    }
+                case 5:
+                    {
+                        return upgradeCosts[5, ((Base)buildings["base"]).HealthLevel - 1];
+                    }
+                case 6:
+                    {
+                        return upgradeCosts[6, ((Turret)buildings["leftturret"]).HealthLevel - 1];
+                    }
+                case 7:
+                    {
+                        return upgradeCosts[6, ((Turret)buildings["rightturret"]).HealthLevel - 1];
+                    }
+                case 8:
+                    {
+                        return buildCosts[0];
+                    }
+                case 9:
+                    {
+                        return buildCosts[1];
+                    }
+                case 10:
+                    {
+                        return buildCosts[1];
+                    }
+                case 11:
+                    {
+                        return baseRepairCost;
+                    }
+                case 12:
+                    {
+                        return lTurretRepairCost;
+                    }
+                case 13:
+                    {
+                        return rTurretRepairCost;
+                    }
+                default:
+                    return -1337;
+            }
+        }
+
+        public static void ApplyUpgrade(int id)
+        {
+            int cost = GetUpgradeCost(id);
+
+            if (cost > spaceCash)
+                return;
+
+            spaceCash -= cost;
+
+            switch (id)
+            {
+                case 0:
+                    {
+                        UpgradeLaserPower();
+                        UpgradeTurretPower();
+                        break;
+                    }
+                case 1:
+                    {
+                        UpgradeLaserSpeed();
+                        UpgradeTurretSpeed();
+                        break;
+                    }
+                case 2:
+                    {
+                        UpgradeLaserSpread();
+                        UpgradeTurretSpread();
+                        break;
+                    }
+                case 3:
+                    {
+                        UpgradeForcefieldRecharge();
+                        break;
+                    }
+                case 4:
+                    {
+                        UpgradeForcefieldStrength();
+                        break;
+                    }
+                case 5:
+                    {
+                        UpgradeBaseHealth();
+                        break;
+                    }
+                case 6:
+                    {
+                        UpgradeTurretHealth(true);
+                        break;
+                    }
+                case 7:
+                    {
+                        UpgradeTurretHealth(false);
+                        break;
+                    }
+                case 8:
+                    {
+                        ActivateForcefield();
+                        break;
+                    }
+                case 9:
+                    {
+                        ActivateTurret(true);
+                        break;
+                    }
+                case 10:
+                    {
+                        ActivateTurret(false);
+                        break;
+                    }
+                case 11:
+                    {
+                        RepairBuilding("base");
+                        break;
+                    }
+                case 12:
+                    {
+                        RepairBuilding("leftturret");
+                        break;
+                    }
+                case 13:
+                    {
+                        RepairBuilding("rightturret");
+                        break;
+                    }
+                default:
+                    {
+                        Debug.Log("Invalid upgrade ID: " + id.ToString());
+                        break;
+                    }
+            }
+        }
+
         public static void ActivateForcefield()
         {
             if (buildings.ContainsKey("forcefield") && !buildings["forcefield"].Alive)
@@ -325,7 +512,7 @@ namespace coolgame
         {
             ClearEntities();
             ResetBuildings(Content);
-            spaceCash = 0;
+            spaceCash = 10000;
             guiManager.Restart();
             spawner.SetWave(1, guiManager);
         }
