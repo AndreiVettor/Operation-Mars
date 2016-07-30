@@ -17,7 +17,7 @@ namespace coolgame
         //needs tweaking
         private float[,] spawnTable = new float[,]
         {
-            { .1f, .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, //crawler
+            { .075f, .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, //crawler
             { 0, .04f, .095f, 0, 0, .12f, 0, 0, 0, 0, 0 },  //steelroach
             { 0, 0, 0, .2f, .15f, .1f, 0, 0, 0, 0, 0 }, //reptilian
             { 0, 0, 0, 0, .05f, .075f, .1f, .1f, 0, .15f, 0 }, //mwat
