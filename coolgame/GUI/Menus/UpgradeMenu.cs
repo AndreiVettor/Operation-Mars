@@ -78,40 +78,63 @@ namespace coolgame.GUI.Menus
                 Disabled = true;
                 GameManager.State = GameState.Game;
             }
-            if (ButtonPressed(1))
+            else if (ButtonPressed(1))
             {
                 GameManager.UpgradeLaserPower();
                 GameManager.UpgradeTurretPower();
             }
-            if (ButtonPressed(2))
+            else if (ButtonPressed(2))
             {
                 GameManager.UpgradeLaserSpeed();
                 GameManager.UpgradeTurretSpeed();
             }
-            if (ButtonPressed(3))
+            else if (ButtonPressed(3))
             {
                 GameManager.UpgradeLaserSpread();
                 GameManager.UpgradeTurretSpread();
             }
-            if (ButtonPressed(4))
+            else if (ButtonPressed(4))
             {
-                GameManager.ActivateTurret();
+                GameManager.UpgradeTurretHealth(false);
             }
-            if (ButtonPressed(5))
+            else if (ButtonPressed(5))
+            {
+                GameManager.UpgradeBaseHealth();
+            }
+            else if (ButtonPressed(6))
+            {
+                GameManager.UpgradeTurretHealth(true);
+            }
+            else if (ButtonPressed(7))
+            {
+                GameManager.UpgradeForcefieldStrength();
+            }
+            else if (ButtonPressed(8))
+            {
+                GameManager.UpgradeForcefieldRecharge();
+            }
+            else if (ButtonPressed(9))
+            {
+                GameManager.ActivateTurret(false);
+            }
+            else if (ButtonPressed(10))
             {
                 GameManager.ActivateForcefield();
             }
-            if (ButtonPressed(6))
+            else if (ButtonPressed(11))
             {
-                GameManager.UpgradeTurretHealth();
+                GameManager.ActivateTurret(true);
             }
-            if (ButtonPressed(8))
+            else if (ButtonPressed(12))
+            {
+                GameManager.RepairBuilding("leftturret");
+            }
+            else if (ButtonPressed(13))
             {
                 GameManager.RepairBuilding("base");
             }
-            if (ButtonPressed(9))
+            else if (ButtonPressed(14))
             {
-                GameManager.RepairBuilding("leftturret");
                 GameManager.RepairBuilding("rightturret");
             }
         }

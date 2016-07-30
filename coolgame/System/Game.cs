@@ -60,6 +60,7 @@ namespace coolgame
 
             //GUI
             guiManager = new GUIManager(Content);
+            guiManager.AddWindow(new MainMenu(Content, guiManager));
 
             //Sound
             SoundManager.LoadContent(Content);
@@ -70,6 +71,8 @@ namespace coolgame
             enemySpawner = new EnemySpawner(guiManager);
 
             Debug.Log("Content Loaded");
+
+            GameManager.State = GameState.StartMenu;
         }
 
         protected override void UnloadContent()

@@ -129,17 +129,23 @@ namespace coolgame
         public static void ActivateForcefield()
         {
             if (buildings.ContainsKey("forcefield") && !buildings["forcefield"].Alive)
+            {
                 ((Forcefield)buildings["forcefield"]).Alive = true;
+                ((Forcefield)buildings["forcefield"]).Activated = true;
+            } 
         }
 
-        public static void ActivateTurret()
+        public static void ActivateTurret(bool left)
         {
-            if (buildings.ContainsKey("rightturret") && !buildings["rightturret"].Alive)
-                ((Turret)buildings["rightturret"]).Alive = true;
-            else
+            if (left)
             {
                 if (buildings.ContainsKey("leftturret") && !buildings["leftturret"].Alive)
                     ((Turret)buildings["leftturret"]).Alive = true;
+            }
+            else
+            {
+                if (buildings.ContainsKey("rightturret") && !buildings["rightturret"].Alive)
+                    ((Turret)buildings["rightturret"]).Alive = true;
             }
         }
 
@@ -187,12 +193,18 @@ namespace coolgame
                 ((Turret)buildings["rightturret"]).Gun.SpreadLevel++;
         }
 
-        public static void UpgradeTurretHealth()
+        public static void UpgradeTurretHealth(bool left)
         {
-            if (buildings.ContainsKey("leftturret"))
-                ((Turret)buildings["leftturret"]).HealthLevel++;
-            if (buildings.ContainsKey("rightturret"))
-                ((Turret)buildings["rightturret"]).HealthLevel++;
+            if (left)
+            {
+                if (buildings.ContainsKey("leftturret"))
+                    ((Turret)buildings["leftturret"]).HealthLevel++;
+            }
+            else
+            {
+                if (buildings.ContainsKey("rightturret"))
+                    ((Turret)buildings["rightturret"]).HealthLevel++;
+            }
         }
 
         public static void UpgradeForcefieldRecharge()
@@ -205,6 +217,12 @@ namespace coolgame
         {
             if (buildings.ContainsKey("forcefield"))
                 ((Forcefield)buildings["forcefield"]).StrengthLevel++;
+        }
+
+        public static void UpgradeBaseHealth()
+        {
+            if (buildings.ContainsKey("base"))
+                ((Base)buildings["base"]).HealthLevel++;
         }
 
         public static void RepairBuilding(string tag)

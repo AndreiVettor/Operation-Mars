@@ -16,6 +16,8 @@ namespace coolgame
         private int rechargeLevel;
         private int strengthLevel;
 
+        public bool Activated { get; set; }
+
         public int RechargeLevel
         {
             get { return rechargeLevel; }
@@ -38,6 +40,9 @@ namespace coolgame
                 healthBar.MaxHealth = (int)(600 * Math.Pow(1.5f, value - 1));
                 if (value > 1)
                     healthBar.Health = currentHealth;
+
+                if (value == 3)
+                    SetTexture("forcefield2");
             }
         }
 
@@ -45,7 +50,7 @@ namespace coolgame
         {
             SetTexture("forceField1");
             X = Game.GAME_WIDTH / 2 - Width / 2;
-            Y = groundLevel - Height;
+            Y = groundLevel - Height + 5;
 
             healthBar.ColorScheme = HealthBar.HealthBarColoring.Forcefield;
 
