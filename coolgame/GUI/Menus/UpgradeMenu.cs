@@ -19,7 +19,7 @@ namespace coolgame.GUI.Menus
             //Lasers
             AddLabel(new GUILabel(guiManager.TextFont, "Upgrade Lasers", new Vector2(25, 0)));
 
-            AddButton(new GUIButton(Content, "up_laserDamage", new Vector2(0, 30)));
+            AddButton(new GUIButton(Content, "up_laserDamage", new Vector2(0, 30),"way"));
             AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(65, 30)));
             AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(130, 30)));
 

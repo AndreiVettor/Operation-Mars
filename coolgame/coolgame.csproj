@@ -47,6 +47,7 @@
     <Compile Include="GUI\GUIButton.cs" />
     <Compile Include="GUI\GUIElement.cs" />
     <Compile Include="GUI\GUILabel.cs" />
+    <Compile Include="GUI\GUITooltip.cs" />
     <Compile Include="GUI\Menus\GameOverWindow.cs" />
     <Compile Include="System\GUIManager.cs" />
     <Compile Include="GUI\GUISprite.cs" />

@@ -62,6 +62,20 @@ namespace coolgame.GUI
             get { return held; }
             set { held = value; }
         }
+        
+        protected bool hovered;
+        public bool Hovered
+        {
+            get { return hovered; }
+            set { hovered = value; }
+        }
+
+        protected string hoverInformation;
+        public string HoverInformation
+        {
+            get { return hoverInformation; }
+            set { hoverInformation = value; }
+        }
 
         private int colorChange = 30;
 
@@ -85,7 +99,6 @@ namespace coolgame.GUI
 
         public GUIButton(ContentManager Content, SpriteFont textFont, string text, Vector2 position, Vector2 textPadding) : base(Content)
         {
-            BackgroundColor = backgroundColor;
             Position = position;
             this.textPadding = textPadding;
             Initialize(textFont, text);
@@ -97,8 +110,16 @@ namespace coolgame.GUI
             Initialize(null, "");
         }
 
+        public GUIButton(ContentManager Content, string textureName, Vector2 position, string hoverInformation) : base(Content, textureName)
+        {
+            Position = position;
+            Initialize(null, "");
+            this.hoverInformation = hoverInformation;
+        }
+
         public void Initialize(SpriteFont textFont, string text)
         {
+            hoverInformation = "";
             if(textFont != null)
             {
                 font = textFont;
@@ -113,6 +134,15 @@ namespace coolgame.GUI
 
         public void Update()
         {
+            if (InputManager.MouseIntersects(rectangle))
+            {
+                hovered = true;
+            }
+            else
+            {
+                hovered = false;
+            }
+
             //Make Pressed a trigger - Only stays true for an Update cycle
             Pressed = false;
 

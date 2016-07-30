@@ -27,6 +27,13 @@ namespace coolgame.GUI
 
         protected Vector2 borderPadding;
 
+        protected string hoverInformation;
+        public string HoverInformation
+        {
+            get { return hoverInformation; }
+            set { hoverInformation = value; }
+        }
+
         public bool ButtonPressed(int id)
         {
             if(id > buttons.Count - 1)
@@ -142,9 +149,17 @@ namespace coolgame.GUI
 
         public virtual void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
         {
-            foreach(GUIButton button in buttons)
+            foreach (GUIButton button in buttons)
             {
                 button.Update();
+                if(button.Hovered)
+                {
+                    if (button.HoverInformation != "")
+                    {
+                        guiManager.ToolTip.SetText(button.HoverInformation);
+                        guiManager.ToolTip.Visible = true;
+                    }
+                }
             }
         }
 
