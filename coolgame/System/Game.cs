@@ -93,7 +93,7 @@ namespace coolgame
                 if (GameManager.State == GameState.Game)
                 {
                     totalGameTime += deltaTime;
-                    enemySpawner.Update(totalGameTime, deltaTime, guiManager);
+                    enemySpawner.Update(totalGameTime, deltaTime, guiManager, Content);
 
                     base.Update(gameTime);
                 }

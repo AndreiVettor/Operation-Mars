@@ -1,5 +1,6 @@
 ﻿using coolgame.GUI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace coolgame
     public class EnemySpawner
     {
         private const float SPAWN_CYCLE = 1000f / 6;
+        private const float WAVE_DELAY = 2000f;
 
         //needs tweaking
         private float[,] spawnTable = new float[,]
@@ -26,6 +28,7 @@ namespace coolgame
 
         private float spawnTime;
         private float waveTime;
+        private float waveDelayTime, waveDelayTimeFin;
         private int wave;
         private bool waveFinished;
 
@@ -53,7 +56,7 @@ namespace coolgame
             waveFinished = false;
         }
 
-        public void Update(float totalGameTime, float deltaTime, GUIManager guiManager)
+        public void Update(float totalGameTime, float deltaTime, GUIManager guiManager, ContentManager content)
         {
             spawnTime += deltaTime;
             waveTime += deltaTime;
@@ -65,7 +68,9 @@ namespace coolgame
 
             if (!waveFinished)
             {
-                if (spawnTime >= SPAWN_CYCLE)
+                waveDelayTime += deltaTime;
+
+                if (waveDelayTime >= WAVE_DELAY && spawnTime >= SPAWN_CYCLE)
                 {
                     spawnTime = 0;
 
@@ -101,7 +106,15 @@ namespace coolgame
             }
             else if (GameManager.Enemies.Count == 0)
             {
-                SetWave(wave + 1, guiManager);
+                waveDelayTime = 0;
+                waveDelayTimeFin += deltaTime;
+                if (waveDelayTimeFin >= WAVE_DELAY)
+                {
+                    waveDelayTimeFin = 0;
+                    guiManager.AddWindow(new GUI.Menus.UpgradeMenu(content, guiManager));
+                    GameManager.State = GameState.Paused;
+                    SetWave(wave + 1, guiManager);
+                }
             }
         }
 
