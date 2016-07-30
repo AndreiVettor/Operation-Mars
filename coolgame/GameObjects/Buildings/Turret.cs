@@ -39,7 +39,7 @@ namespace coolgame
                 spriteEffects = SpriteEffects.FlipHorizontally;
             }
 
-            laserGun = new LaserGun(content, (int)X + 15 * (spriteEffects == SpriteEffects.FlipHorizontally ? 1 : 0), (int)Y + 15);
+            laserGun = new LaserGun(content, (int)X + 15 * (spriteEffects == SpriteEffects.FlipHorizontally ? 1 : 0), (int)Y + 15, 1);
 
             if (enemyDirection == Enemy.EnemyDirection.ToRight)
                 laserGun.PointAt(0, (int)laserGun.Y + laserGun.Height / 2);

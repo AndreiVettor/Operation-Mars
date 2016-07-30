@@ -48,14 +48,20 @@ namespace coolgame.GUI.Menus
             if (ButtonPressed(1))
             {
                 GameManager.UpgradeLaserPower();
+                GameManager.UpgradeTurretPower(false);
+                GameManager.UpgradeTurretPower(true);
             }
             if (ButtonPressed(2))
             {
                 GameManager.UpgradeLaserSpeed();
+                GameManager.UpgradeTurretSpeed(false);
+                GameManager.UpgradeTurretSpeed(true);
             }
             if (ButtonPressed(3))
             {
                 GameManager.UpgradeLaserSpread();
+                GameManager.UpgradeTurretSpread(false);
+                GameManager.UpgradeTurretPower(true);
             }
             if (ButtonPressed(4))
             {

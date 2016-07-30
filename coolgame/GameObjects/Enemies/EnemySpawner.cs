@@ -31,7 +31,7 @@ namespace coolgame
 
         public EnemySpawner(GUIManager guiManager)
         {
-            SetWave(10, guiManager);
+            SetWave(1, guiManager);
         }
 
         public int Wave

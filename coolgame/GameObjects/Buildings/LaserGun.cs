@@ -34,13 +34,15 @@ namespace coolgame
         private int speedLevel;
         private int spreadLevel;
 
+        private int baseDamage;
+
         public int AttackPowerLevel
         {
             get { return powerLevel; }
             set
             {
                 powerLevel = value;
-                attackPower = powerLevel * 3;
+                attackPower = powerLevel * baseDamage;
             }
         }
 
@@ -65,7 +67,7 @@ namespace coolgame
             }
         }
 
-        public LaserGun(ContentManager content, int x, int y) : base(content)
+        public LaserGun(ContentManager content, int x, int y, int baseDamage) : base(content)
         {
             SetTexture("laserGun1");
             Width = texture.Width;
@@ -84,6 +86,7 @@ namespace coolgame
             recoilAcceleration = -1;
             recoilRecovery = 0.018f;
             lockDistance = 3;
+            this.baseDamage = baseDamage;
 
             //Upgrades
             AttackPowerLevel = 1;
