@@ -60,7 +60,7 @@ namespace coolgame.GUI
         {
             foreach(GUIWindow window in windows)
             {
-                if(testWindow.GetType() == window.GetType())
+                if (testWindow.GetType() == window.GetType())
                 {
                     return true;
                 }
@@ -85,7 +85,7 @@ namespace coolgame.GUI
 
         public void CloseWindow(GUIWindow window)
         {
-            windows.Remove(window);
+            windows.Find(x => x.GetType() == window.GetType()).Disabled = true;
         }
 
         public void Restart()

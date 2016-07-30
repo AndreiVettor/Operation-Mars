@@ -106,14 +106,15 @@ namespace coolgame
             {
                 if (InputManager.KeyPress(Keys.Escape) && !GameManager.GameOver)
                 {
-                    guiManager.AddWindow(new GameMenu(Content, guiManager));
                     if (GameManager.State == GameState.Game)
                     {
+                        guiManager.AddWindow(new GameMenu(Content, guiManager));
                         GameManager.State = GameState.Paused;
                     }
                     else if (GameManager.State == GameState.Paused)
                     {
-                        GameManager.State = GameState.Paused;
+                        guiManager.CloseWindow(new GameMenu(Content, guiManager));
+                        GameManager.State = GameState.Game;
                     }
                 }
 

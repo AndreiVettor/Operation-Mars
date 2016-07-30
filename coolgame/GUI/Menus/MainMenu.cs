@@ -34,6 +34,7 @@ namespace coolgame.GUI.Menus
                 if (ButtonPressed(0))
                 {
                     Disabled = true;
+                    GameManager.Restart(Content, guiManager, spawner);
                     GameManager.State = GameState.Game;
                 }
                 else if (ButtonPressed(1))
