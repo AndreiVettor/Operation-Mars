@@ -43,6 +43,13 @@ namespace coolgame
             {
                 powerLevel = value;
                 attackPower = powerLevel * baseDamage;
+                if (value == 4)
+                {
+                    if (speedLevel + spreadLevel < 4)
+                        SetTexture("laserGun1_green");
+                    else
+                        SetTexture("laserGun2_green");
+                }
             }
         }
 
@@ -53,6 +60,15 @@ namespace coolgame
             {
                 speedLevel = value;
                 cooldown = (int)(200 / Math.Pow(1.5f, value - 1));
+                recoilRecovery = 0.018f * (float)Math.Pow(1.5f, value - 1);
+
+                if (speedLevel + spreadLevel >= 4)
+                {
+                    if (powerLevel < 4)
+                        SetTexture("laserGun2");
+                    else
+                        SetTexture("laserGun2_green");
+                }
             }
         }
 
@@ -64,6 +80,14 @@ namespace coolgame
                 spreadLevel = value;
                 auxiliaryProjectiles = value - 1;
                 maxSpread = (float)Math.PI / 40 * (value - 1);
+
+                if (speedLevel + spreadLevel >= 4)
+                {
+                    if (powerLevel < 4)
+                        SetTexture("laserGun2");
+                    else
+                        SetTexture("laserGun2_green");
+                }
             }
         }
 
@@ -170,26 +194,13 @@ namespace coolgame
             }
 
             //Outer bounds
-            if (Math.Abs(defaultX - X) > 10)
+            if (Math.Abs(defaultX - X) > Math.Abs(10 * Math.Cos(Rotation)))
             {
-                if (defaultX - X > 0)
-                {
-                    X = defaultX - 10;
-                }
-                else {
-                    X = defaultX + 10;
-                }
+                X = defaultX - 10 * Math.Cos(Rotation);
             }
-            if (Math.Abs(defaultY - Y) > 10)
+            if (Math.Abs(defaultY - Y) > Math.Abs(10 * Math.Sin(Rotation)))
             {
-                if (defaultY - Y > 0)
-                {
-                    Y = defaultY - 10;
-                }
-                else
-                {
-                    Y = defaultY + 10;
-                }
+                Y = defaultY - 10 * Math.Sin(Rotation);
             }
 
             base.Update(deltaTime);

@@ -148,10 +148,6 @@ namespace coolgame
             if (buildings.ContainsKey("base"))
             {
                 ((Base)buildings["base"]).Gun.AttackPowerLevel++;
-                if(((Base)buildings["base"]).Gun.AttackPowerLevel > 0)
-                {
-                    ((Base)buildings["base"]).Gun.SetTexture("laserGun2");
-                }
             }
         }
 

@@ -50,7 +50,7 @@ namespace coolgame
                 waveTime = 0;
                 if (GameManager.GameOver == false)
                 {
-                    guiManager.DisplayMessage("WAVE " + Wave.ToString());
+                    guiManager.DisplayMessage("DAY " + Wave.ToString());
                 }
             }
             waveFinished = false;
