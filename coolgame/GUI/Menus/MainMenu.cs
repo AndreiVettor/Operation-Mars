@@ -36,6 +36,7 @@ namespace coolgame.GUI.Menus
                     Disabled = true;
                     GameManager.Restart(Content, guiManager, spawner);
                     GameManager.State = GameState.Game;
+                    SoundManager.PlayMusic();
                 }
                 else if (ButtonPressed(1))
                 {

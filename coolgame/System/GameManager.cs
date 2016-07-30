@@ -60,7 +60,7 @@ namespace coolgame
                 {
                     case GameState.Game:
                         {
-                            SoundManager.PlayMusic();
+                            //SoundManager.PlayMusic();
                             break;
                         }
                     case GameState.Paused:

@@ -8,26 +8,38 @@ namespace coolgame.GUI.Menus
     {
         public UpgradeMenu(ContentManager Content, GUIManager guiManager) : base(Content)
         {
-            Width = 450;
-            Height = 350;
+            Width = 500;
+            Height = 400;
             textPadding = new Vector2(10, 10);
             borderPadding = new Vector2(30, 30);
             Center();
 
             AddButton(new GUIButton(Content, guiManager.TextFont, "Next Wave", new Vector2(145, 250),textPadding));
 
-            AddButton(new GUIButton(Content, "up_laserDamage", new Vector2(0,0)));
+            //Lasers
+            AddLabel(new GUILabel(guiManager.TextFont, "Upgrade Lasers", new Vector2(30, 0)));
+
+            AddButton(new GUIButton(Content, "up_laserDamage", new Vector2(0,30)));
             AddLabel(new GUILabel(guiManager.TextFont, "100 SC", new Vector2(0, 50)));
 
-            AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(50, 0)));
-            AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(120, 0)));
+            AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(65, 30)));
+            AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(130, 30)));
 
+            //Upgrade Buildings
+            AddButton(new GUIButton(Content, "up_turret", new Vector2(300, 0)));
+            AddButton(new GUIButton(Content, "up_base", new Vector2(360, 0)));
+            AddButton(new GUIButton(Content, "up_turret", new Vector2(300, 0)));
+
+            AddButton(new GUIButton(Content, "up_forceField", new Vector2(360, 0)));
+            AddButton(new GUIButton(Content, "up_forceFieldRegen", new Vector2(360, 0)));
+
+            //Build
             AddButton(new GUIButton(Content, "build_turret", new Vector2(180, 0)));
             AddButton(new GUIButton(Content, "build_forceField", new Vector2(240, 0)));
+            AddButton(new GUIButton(Content, "build_turret", new Vector2(180, 0)));
 
-            AddButton(new GUIButton(Content, "up_turret", new Vector2(300, 0)));
-            AddButton(new GUIButton(Content, "up_forceField", new Vector2(360, 0)));
-
+            //Repair
+            AddButton(new GUIButton(Content, "repair_turret", new Vector2(480, 0)));
             AddButton(new GUIButton(Content, "repair_base", new Vector2(420, 0)));
             AddButton(new GUIButton(Content, "repair_turret", new Vector2(480, 0)));
 
