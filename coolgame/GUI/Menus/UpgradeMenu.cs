@@ -61,7 +61,7 @@ namespace coolgame.GUI.Menus
             {
                 GameManager.UpgradeLaserSpread();
                 GameManager.UpgradeTurretSpread(false);
-                GameManager.UpgradeTurretPower(true);
+                GameManager.UpgradeTurretSpread(true);
             }
             if (ButtonPressed(4))
             {
