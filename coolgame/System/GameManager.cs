@@ -129,7 +129,10 @@ namespace coolgame
         public static void ActivateForcefield()
         {
             if (buildings.ContainsKey("forcefield") && !buildings["forcefield"].Alive)
+            {
                 ((Forcefield)buildings["forcefield"]).Alive = true;
+                ((Forcefield)buildings["forcefield"]).Activated = true;
+            } 
         }
 
         public static void ActivateTurret(bool left)

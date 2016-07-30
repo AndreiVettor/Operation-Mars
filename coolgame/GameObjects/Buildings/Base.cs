@@ -34,7 +34,7 @@ namespace coolgame
                     SetTexture("base2");
                     tower.SetTexture("tower2");
                     tower.Y = groundLevel - tower.Height;
-                    X = Game.GAME_WIDTH / 2 - Width / 2 - 100;
+                    X = Game.GAME_WIDTH / 2 - Width / 2 - 50;
                     Y = groundLevel - Height;
                     layerDepth -= .02f;
                     collisionBox.X = Math.Min(collisionBox.X, tower.CollisionBox.X);
@@ -50,7 +50,7 @@ namespace coolgame
             layerDepth += .02f;
 
             SetTexture("base1");
-            X = Game.GAME_WIDTH / 2 - Width / 2 - 100;
+            X = Game.GAME_WIDTH / 2 - Width / 2 - 50;
             Y = groundLevel - Height;
             this.groundLevel = groundLevel;
 

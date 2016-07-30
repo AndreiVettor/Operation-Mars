@@ -95,7 +95,7 @@ namespace coolgame.GUI.Menus
             }
             else if (ButtonPressed(4))
             {
-                GameManager.UpgradeTurretHealth(true);
+                GameManager.UpgradeTurretHealth(false);
             }
             else if (ButtonPressed(5))
             {
@@ -103,7 +103,7 @@ namespace coolgame.GUI.Menus
             }
             else if (ButtonPressed(6))
             {
-                GameManager.UpgradeTurretHealth(false);
+                GameManager.UpgradeTurretHealth(true);
             }
             else if (ButtonPressed(7))
             {
@@ -115,7 +115,7 @@ namespace coolgame.GUI.Menus
             }
             else if (ButtonPressed(9))
             {
-                GameManager.ActivateTurret(true);
+                GameManager.ActivateTurret(false);
             }
             else if (ButtonPressed(10))
             {
@@ -123,7 +123,7 @@ namespace coolgame.GUI.Menus
             }
             else if (ButtonPressed(11))
             {
-                GameManager.ActivateTurret(false);
+                GameManager.ActivateTurret(true);
             }
             else if (ButtonPressed(12))
             {
