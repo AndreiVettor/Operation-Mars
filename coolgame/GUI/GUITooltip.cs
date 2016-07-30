@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace coolgame.GUI
 {
-    class GUITooltip : GUIElement
+    public class GUITooltip : GUIElement
     {
         private int borderSize;
         public int BorderSize
@@ -51,13 +51,9 @@ namespace coolgame.GUI
         public override void SetText(string text)
         {
                 this.text = text;
-                if (Width == 0 && Height == 0)
-                {
-                    Width = (int)font.MeasureString(text).X;
-                    Height = (int)font.MeasureString(text).Y;
-                    Width += (int)textPadding.X * 2 + borderSize * 2;
-                    Height += (int)textPadding.Y * 2 + borderSize * 2;
-                }
+
+                Width = (int)font.MeasureString(text).X + (int)textPadding.X * 2 + borderSize * 2;
+                Height = (int)font.MeasureString(text).Y + (int)textPadding.Y * 2 + borderSize * 2;
 
                 if (textCentered)
                 {

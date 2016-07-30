@@ -99,7 +99,6 @@ namespace coolgame.GUI
 
         public GUIButton(ContentManager Content, SpriteFont textFont, string text, Vector2 position, Vector2 textPadding) : base(Content)
         {
-            BackgroundColor = backgroundColor;
             Position = position;
             this.textPadding = textPadding;
             Initialize(textFont, text);

@@ -12,6 +12,10 @@ namespace coolgame.GUI
         private List<GUILabel> labels;
         private List<GUISprite> sprites;
         private GUITooltip toolTip;
+        public GUITooltip ToolTip
+        {
+            get { return toolTip; }
+        }
 
         private GUISprite crossHair;
         private GUILabel scoreLabel;
@@ -138,14 +142,6 @@ namespace coolgame.GUI
                     continue;
                 }
                 windows[i].Update(game, Content, guiManager, spawner);
-                if(windows[i].ContentsHovered)
-                {
-                    if(windows[i].HoverInformation != "")
-                    {
-                        toolTip.SetText(windows[i].HoverInformation);
-                        toolTip.Visible = true;
-                    }
-                }
             }
         }
 
