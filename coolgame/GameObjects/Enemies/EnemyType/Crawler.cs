@@ -22,6 +22,7 @@ namespace coolgame
             attackSound = "crawlerhit";
             hitSound = "crawlerhit";
             attackPower = 10;
+            spaceCash = 1;
         }
 
         public override void InflictDamage(int hitpoints)

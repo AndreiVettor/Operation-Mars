@@ -18,16 +18,17 @@ namespace coolgame
             EnableAnimation = true;
             AnimationSpeed = 100;
 
-            healthBar.MaxHealth = 80;
+            healthBar.MaxHealth = 75;
             movingSpeed = 9f;
             attackSpeed = 1.5f;
-            attackPower = 10;
+            attackPower = 15;
             burstFire = true;
             burstFireAmmount = 3;
             burstFireSpeed = 10f;
             precision = ((float)GameManager.RNG.NextDouble() * 10f + 10f);
+            spaceCash = 4;
 
-            Range = GameManager.RNG.Next(100, 250);
+            Range = GameManager.RNG.Next(50, 150);
 
             attackSound = "enemylaser";
         }

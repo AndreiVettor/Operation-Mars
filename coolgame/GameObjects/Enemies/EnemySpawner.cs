@@ -16,22 +16,22 @@ namespace coolgame
         private float[,] spawnTable = new float[,]
         {
             { .1f, .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, //crawler
-            { 0, .025f, .05f, 0, 0, .06f, 0, 0, 0, 0, 0 },  //steelroach
-            { 0, 0, 0, .04f, .03f, .03f, 0, 0, 0, 0, 0 }, //reptilian
-            { 0, 0, 0, 0, .025f, .03f, .05f, .055f, 0, .06f, 0 }, //mwat
+            { 0, .04f, .095f, 0, 0, .12f, 0, 0, 0, 0, 0 },  //steelroach
+            { 0, 0, 0, .2f, .15f, .1f, 0, 0, 0, 0, 0 }, //reptilian
+            { 0, 0, 0, 0, .05f, .075f, .05f, .055f, 0, .06f, 0 }, //mwat
             { 0, 0, 0, 0, 0, 0, .01f, .015f, .025f, .025f, 0 }, //murderbot
             { 0, 0, 0, 0, 0, 0, 0, .02f, 0, .03f, 0}, //dru
             { 0, 0, 0, 0, 0, 0, 0, 0, .03f, 0, .15f }, //saucer
-            { .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } // emag mother ship
         };
 
         private float spawnTime;
         private float waveTime;
         private int wave;
+        private bool waveFinished;
 
         public EnemySpawner(GUIManager guiManager)
         {
-            SetWave(1, guiManager);
+            SetWave(7, guiManager);
         }
 
         public int Wave
@@ -39,7 +39,7 @@ namespace coolgame
             get { return wave; }
         }
 
-        public void SetWave(int waveNumber, GUIManager guiManager) 
+        public void SetWave(int waveNumber, GUIManager guiManager)
         {
             if (waveNumber >= 1 && waveNumber <= 11)
             {
@@ -50,6 +50,7 @@ namespace coolgame
                     guiManager.DisplayMessage("WAVE " + Wave.ToString());
                 }
             }
+            waveFinished = false;
         }
 
         public void Update(float totalGameTime, float deltaTime, GUIManager guiManager)
@@ -57,48 +58,50 @@ namespace coolgame
             spawnTime += deltaTime;
             waveTime += deltaTime;
 
-            if (waveTime >= 10000f)
+            if (waveTime >= 40000f)
+            {
+                waveFinished = true;
+            }
+
+            if (!waveFinished)
+            {
+                if (spawnTime >= SPAWN_CYCLE)
+                {
+                    spawnTime = 0;
+
+                    if (Roll(spawnTable[0, wave - 1]))
+                    {
+                        SpawnEnemy("crawler");
+                    }
+                    if (Roll(spawnTable[1, wave - 1]))
+                    {
+                        SpawnEnemy("steelroach");
+                    }
+                    if (Roll(spawnTable[2, wave - 1]))
+                    {
+                        SpawnEnemy("reptilian");
+                    }
+                    if (Roll(spawnTable[6, wave - 1]))
+                    {
+                        SpawnEnemy("reptiliansaucer");
+                    }
+                    if (Roll(spawnTable[5, wave - 1]))
+                    {
+                        SpawnEnemy("demolitionroverunit");
+                    }
+                    if (Roll(spawnTable[3, wave - 1]))
+                    {
+                        SpawnEnemy("mwat");
+                    }
+                    if (Roll(spawnTable[4, wave - 1]))
+                    {
+                        SpawnEnemy("murderbot");
+                    }
+                }
+            }
+            else if (GameManager.Enemies.Count == 0)
             {
                 SetWave(wave + 1, guiManager);
-            }
-                
-
-            if (spawnTime >= SPAWN_CYCLE)
-            {
-                spawnTime = 0;
-
-                if (Roll(spawnTable[0, wave - 1]))
-                {
-                    SpawnEnemy("crawler");
-                }
-                if (Roll(spawnTable[1, wave - 1]))
-                {
-                    SpawnEnemy("steelroach");
-                }
-                if (Roll(spawnTable[2, wave - 1]))
-                {
-                    SpawnEnemy("reptilian");
-                }
-                if (Roll(spawnTable[6, wave - 1]))
-                {
-                    SpawnEnemy("reptiliansaucer");
-                }
-                if (Roll(spawnTable[5, wave - 1]))
-                {
-                    SpawnEnemy("demolitionroverunit");
-                }
-                if (Roll(spawnTable[3, wave - 1]))
-                {
-                    SpawnEnemy("mwat");
-                }
-                if (Roll(spawnTable[4, wave - 1]))
-                {
-                    SpawnEnemy("murderbot");
-                }
-                if (Roll(spawnTable[7, wave - 1]))
-                {
-                    SpawnEnemy("emag");
-                }
             }
         }
 
