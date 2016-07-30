@@ -48,6 +48,18 @@ namespace coolgame
             return null;
         }
 
+        public static Forcefield CollidesWithForcefield(Entity e)
+        {
+            if (GameManager.Buildings.ContainsKey("forcefield"))
+            {
+                Forcefield f = (Forcefield)GameManager.Buildings["forcefield"];
+                if (f.Alive && e.Collides(f))
+                    return f;
+            }
+
+            return null;
+        }
+
         public static Turret CollidesWithTurret(Rectangle r)
         {
             if (GameManager.Buildings.ContainsKey("leftturret"))

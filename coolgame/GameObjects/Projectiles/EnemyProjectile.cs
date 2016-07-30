@@ -23,7 +23,11 @@ namespace coolgame
         {
             base.Update(deltaTime);
 
-            Building target = CollisionManager.CollidesWithBuilding(this);
+            Building target = CollisionManager.CollidesWithForcefield(this);
+
+            if (target == null)
+                target = CollisionManager.CollidesWithBuilding(this);
+
             if (target != null)
             {
                 target.InflictDamage(attackPower);
