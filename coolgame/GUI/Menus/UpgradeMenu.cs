@@ -26,9 +26,9 @@ namespace coolgame.GUI.Menus
             AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(65, 80), "Upgrade Laser Speed"));
             AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(130, 80), "Upgrade Laser Spread"));
 
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(5, 135)));
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(70, 135)));
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(135, 135)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(0) + " SC", new Vector2(5, 135)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(1) + " SC", new Vector2(70, 135)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(2) + " SC", new Vector2(135, 135)));
 
             //Upgrade Buildings
             AddLabel(new GUILabel(guiManager.MediumFont, "Upgrade Buildings", new Vector2(15, 170)));
@@ -39,11 +39,11 @@ namespace coolgame.GUI.Menus
             AddButton(new GUIButton(Content, "up_forceField", new Vector2(40, 275), "Upgrade Force Field Strength"));
             AddButton(new GUIButton(Content, "up_forceFieldRegen", new Vector2(105, 275), "Upgrade Force Field Regeneration"));
 
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(5, 255)));
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(70, 255)));
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(135, 255)));
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(45, 330)));
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(110, 330)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(7) + " SC", new Vector2(5, 255)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(5) + " SC", new Vector2(70, 255)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(6) + " SC", new Vector2(135, 255)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(4) + " SC", new Vector2(45, 330)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(3) + " SC", new Vector2(110, 330)));
 
             //Build
             AddLabel(new GUILabel(guiManager.MediumFont, "Build", new Vector2(330, 50)));
@@ -52,9 +52,9 @@ namespace coolgame.GUI.Menus
             AddButton(new GUIButton(Content, "build_forceField", new Vector2(325, 80), "Build Force Field Generator"));
             AddButton(new GUIButton(Content, "build_turret", new Vector2(390, 80), "Build Right Turret"));
 
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(265, 135)));
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(330, 135)));
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(395, 135)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(9) + " SC", new Vector2(265, 135)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(8) + " SC", new Vector2(330, 135)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(10) + " SC", new Vector2(395, 135)));
 
             //Repair
             AddLabel(new GUILabel(guiManager.MediumFont, "Repair", new Vector2(320, 170)));
@@ -63,9 +63,9 @@ namespace coolgame.GUI.Menus
             AddButton(new GUIButton(Content, "repair_base", new Vector2(320, 200), "Repair Base"));
             AddButton(new GUIButton(Content, "repair_turret", new Vector2(385, 200), "Repair Right Turret"));
 
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(260, 255)));
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(325, 255)));
-            AddLabel(new GUILabel(guiManager.SmallFont, "100 SC", new Vector2(390, 255)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(12) + " SC", new Vector2(260, 255)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(11) + " SC", new Vector2(325, 255)));
+            AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(13) + " SC", new Vector2(390, 255)));
 
             Alpha = 220;
             BackgroundColor = CustomColor.DarkBlue;
@@ -75,6 +75,24 @@ namespace coolgame.GUI.Menus
         public override void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
         {
             base.Update(game, Content, guiManager, spawner);
+
+            labels[2].SetText(GameManager.GetUpgradeCost(0) + " SC");
+            labels[3].SetText(GameManager.GetUpgradeCost(1) + " SC");
+            labels[4].SetText(GameManager.GetUpgradeCost(2) + " SC");
+
+            labels[6].SetText(GameManager.GetUpgradeCost(7) + " SC");
+            labels[7].SetText(GameManager.GetUpgradeCost(5) + " SC");
+            labels[8].SetText(GameManager.GetUpgradeCost(6) + " SC");
+            labels[9].SetText(GameManager.GetUpgradeCost(4) + " SC");
+            labels[10].SetText(GameManager.GetUpgradeCost(3) + " SC");
+
+            labels[12].SetText(GameManager.GetUpgradeCost(9) + " SC");
+            labels[13].SetText(GameManager.GetUpgradeCost(8) + " SC");
+            labels[14].SetText(GameManager.GetUpgradeCost(10) + " SC");
+
+            labels[16].SetText(GameManager.GetUpgradeCost(12) + " SC");
+            labels[17].SetText(GameManager.GetUpgradeCost(11) + " SC");
+            labels[18].SetText(GameManager.GetUpgradeCost(13) + " SC");
 
             if (ButtonPressed(0))
             {
