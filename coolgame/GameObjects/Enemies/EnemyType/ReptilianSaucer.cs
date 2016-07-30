@@ -25,6 +25,7 @@ namespace coolgame
             detectionBox.Height = Game.GAME_HEIGHT - detectionBox.Y;
             detectionBox.Width = Width;
             movingSpeed = 10;
+            attackSpeed = 1;
             attackPower = 100;
             healthBar.MaxHealth = 150;
             attackSound = "enemylaser";

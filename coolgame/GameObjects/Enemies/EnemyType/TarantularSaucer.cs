@@ -25,7 +25,8 @@ namespace coolgame
             detectionBox.Height = Game.GAME_HEIGHT - detectionBox.Y;
             detectionBox.Width = Width;
             attackPower = 100;
-            attackSpeed = 20f;
+            movingSpeed = 15f;
+            attackSpeed = 1.5f;
             healthBar.MaxHealth = 400;
             attackSound = "enemylaser";
             ebriety = GameManager.RNG.Next(0, 200);
