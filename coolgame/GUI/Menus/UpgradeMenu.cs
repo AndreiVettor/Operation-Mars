@@ -26,19 +26,25 @@ namespace coolgame.GUI.Menus
             AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(130, 30)));
 
             //Upgrade Buildings
-            AddButton(new GUIButton(Content, "up_turret", new Vector2(300, 0)));
-            AddButton(new GUIButton(Content, "up_base", new Vector2(360, 0)));
-            AddButton(new GUIButton(Content, "up_turret", new Vector2(300, 0)));
+            AddLabel(new GUILabel(guiManager.TextFont, "Upgrade Buildings", new Vector2(30, 100)));
 
-            AddButton(new GUIButton(Content, "up_forceField", new Vector2(360, 0)));
-            AddButton(new GUIButton(Content, "up_forceFieldRegen", new Vector2(360, 0)));
+            AddButton(new GUIButton(Content, "up_turret", new Vector2(0, 130)));
+            AddButton(new GUIButton(Content, "up_base", new Vector2(65, 130)));
+            AddButton(new GUIButton(Content, "up_turret", new Vector2(130, 130)));
+
+            AddButton(new GUIButton(Content, "up_forceField", new Vector2(80, 200)));
+            AddButton(new GUIButton(Content, "up_forceFieldRegen", new Vector2(140, 200)));
 
             //Build
-            AddButton(new GUIButton(Content, "build_turret", new Vector2(180, 0)));
+            AddLabel(new GUILabel(guiManager.TextFont, "Build", new Vector2(270, 100)));
+
+            AddButton(new GUIButton(Content, "build_turret", new Vector2(250, 0)));
             AddButton(new GUIButton(Content, "build_forceField", new Vector2(240, 0)));
             AddButton(new GUIButton(Content, "build_turret", new Vector2(180, 0)));
 
             //Repair
+            AddLabel(new GUILabel(guiManager.TextFont, "Repair", new Vector2(30, 100)));
+
             AddButton(new GUIButton(Content, "repair_turret", new Vector2(480, 0)));
             AddButton(new GUIButton(Content, "repair_base", new Vector2(420, 0)));
             AddButton(new GUIButton(Content, "repair_turret", new Vector2(480, 0)));

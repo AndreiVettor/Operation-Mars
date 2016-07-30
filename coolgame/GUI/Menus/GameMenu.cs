@@ -33,7 +33,10 @@ namespace coolgame.GUI.Menus
 
             if (ButtonPressed(0))
             {
-                GameManager.State = GameState.Game;
+                if (!guiManager.WindowOpen(typeof(UpgradeMenu)))
+                {
+                    GameManager.State = GameState.Game;
+                }
                 Disabled = true;
             }
             else if (ButtonPressed(1))

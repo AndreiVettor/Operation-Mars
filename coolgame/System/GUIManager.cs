@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace coolgame.GUI
@@ -56,16 +57,17 @@ namespace coolgame.GUI
             messageDuration = 5000;
         }
 
-        public bool WindowOpen(GUIWindow testWindow)
+        public bool WindowOpen(Type windowType)
         {
-            foreach(GUIWindow window in windows)
+            GUIWindow temp = windows.Find(x => x.GetType() == windowType);
+            if (temp != null)
             {
-                if (testWindow.GetType() == window.GetType())
-                {
-                    return true;
-                }
+                return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
         public void DisplayMessage(string text)
@@ -83,9 +85,13 @@ namespace coolgame.GUI
             windows.Add(window);
         }
 
-        public void CloseWindow(GUIWindow window)
+        public void CloseWindow(Type windowType)
         {
-            windows.Find(x => x.GetType() == window.GetType()).Disabled = true;
+            GUIWindow temp = windows.Find(x => x.GetType() == windowType);
+            if(temp != null)
+            {
+                temp.Disabled = true;
+            }
         }
 
         public void Restart()

@@ -325,7 +325,7 @@ namespace coolgame
 
             if (GameOver)
             {
-                if (!guiManager.WindowOpen(new GameOverWindow(Content, guiManager)))
+                if (!guiManager.WindowOpen(typeof(GameOverWindow)))
                 {
                     guiManager.AddWindow(new GameOverWindow(Content, guiManager));
                     guiManager.DisplayMessage("GAME OVER!", 0);

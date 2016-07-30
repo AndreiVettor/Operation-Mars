@@ -28,7 +28,7 @@ namespace coolgame.GUI.Menus
 
         public override void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
         {
-            if(!guiManager.WindowOpen(new InformationWindow(Content, "about", guiManager)))
+            if(!guiManager.WindowOpen(typeof(InformationWindow)))
             {
                 base.Update(game, Content, guiManager, spawner);
                 if (ButtonPressed(0))
