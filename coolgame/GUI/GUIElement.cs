@@ -12,7 +12,7 @@ namespace coolgame.GUI
             Texture
         }
 
-        private Rectangle rectangle;
+        protected Rectangle rectangle;
         public Rectangle Rectangle
         {
             get { return rectangle; }
@@ -159,7 +159,7 @@ namespace coolgame.GUI
             get { return textCentered; }
             set { textCentered = value; }
         }
-
+       
         public bool Disabled;
 
         public GUIElement()
@@ -217,7 +217,7 @@ namespace coolgame.GUI
             }
         }
 
-        public void SetText(string text)
+        public virtual void SetText(string text)
         {
             this.text = text;
             if (Width == 0 && Height == 0)

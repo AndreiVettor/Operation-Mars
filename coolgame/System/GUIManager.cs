@@ -11,6 +11,7 @@ namespace coolgame.GUI
         private List<GUIWindow> windows;
         private List<GUILabel> labels;
         private List<GUISprite> sprites;
+        private GUITooltip toolTip;
 
         private GUISprite crossHair;
         private GUILabel scoreLabel;
@@ -52,6 +53,8 @@ namespace coolgame.GUI
             messageFont = Content.Load<SpriteFont>("messageFont");
             hudFont = Content.Load<SpriteFont>("hudFont");
             upgradeFont = Content.Load<SpriteFont>("upgradeFont");
+
+            toolTip = new GUITooltip(Content, textFont);
 
             windows = new List<GUIWindow>();
             labels = new List<GUILabel>();
@@ -112,6 +115,8 @@ namespace coolgame.GUI
             scoreLabel.Update(deltaTime);
             scoreLabel.SetText(GameManager.SpaceCash.ToString());
 
+            toolTip.Update();
+
             if (GameManager.State != GameState.Paused)
             {
                 for (int i = 0; i < labels.Count; i++)
@@ -133,6 +138,14 @@ namespace coolgame.GUI
                     continue;
                 }
                 windows[i].Update(game, Content, guiManager, spawner);
+                if(windows[i].ContentsHovered)
+                {
+                    if(windows[i].HoverInformation != "")
+                    {
+                        toolTip.SetText(windows[i].HoverInformation);
+                        toolTip.Visible = true;
+                    }
+                }
             }
         }
 
@@ -161,13 +174,18 @@ namespace coolgame.GUI
                 window.Draw(spriteBatch);
             }
 
+            toolTip.Draw(spriteBatch);
+
             //Draw Crosshair
-            spriteBatch.Draw(
-                crossHair.BackgroundTexture,
-                new Vector2(
-                    InputManager.MouseX - crossHair.Width/2,
-                    InputManager.MouseY - crossHair.Height/2),
-                Color.White);
+            if (!toolTip.Visible)
+            {
+                spriteBatch.Draw(
+                    crossHair.BackgroundTexture,
+                        new Vector2(
+                            InputManager.MouseX - crossHair.Width / 2,
+                            InputManager.MouseY - crossHair.Height / 2),
+                        Color.White);
+            }
         }
     }
 }
