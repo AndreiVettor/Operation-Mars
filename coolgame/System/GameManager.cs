@@ -167,46 +167,36 @@ namespace coolgame
                 ((Base)buildings["base"]).Gun.SpreadLevel++;
         }
 
-        public static void UpgradeTurretPower(bool left)
+        public static void UpgradeTurretPower()
         {
-            if (left)
-            {
-                if (buildings.ContainsKey("leftturret"))
-                    ((Turret)buildings["leftturret"]).Gun.AttackPowerLevel++;
-            }
-            else
-            {
-                if (buildings.ContainsKey("rightturret"))
-                    ((Turret)buildings["rightturret"]).Gun.AttackPowerLevel++;
-            }
+            if (buildings.ContainsKey("leftturret"))
+                ((Turret)buildings["leftturret"]).Gun.AttackPowerLevel++;
+            if (buildings.ContainsKey("rightturret"))
+                ((Turret)buildings["rightturret"]).Gun.AttackPowerLevel++;
         }
 
-        public static void UpgradeTurretSpeed(bool left)
+        public static void UpgradeTurretSpeed()
         {
-            if (left)
-            {
-                if (buildings.ContainsKey("leftturret"))
-                    ((Turret)buildings["leftturret"]).Gun.SpeedLevel++;
-            }
-            else
-            {
-                if (buildings.ContainsKey("rightturret"))
-                    ((Turret)buildings["rightturret"]).Gun.SpeedLevel++;
-            }
+            if (buildings.ContainsKey("leftturret"))
+                ((Turret)buildings["leftturret"]).Gun.SpeedLevel++;
+            if (buildings.ContainsKey("rightturret"))
+                ((Turret)buildings["rightturret"]).Gun.SpeedLevel++;
         }
 
-        public static void UpgradeTurretSpread(bool left)
+        public static void UpgradeTurretSpread()
         {
-            if (left)
-            {
-                if (buildings.ContainsKey("leftturret"))
-                    ((Turret)buildings["leftturret"]).Gun.SpreadLevel++;
-            }
-            else
-            {
-                if (buildings.ContainsKey("rightturret"))
-                    ((Turret)buildings["rightturret"]).Gun.SpreadLevel++;
-            }
+            if (buildings.ContainsKey("leftturret"))
+                ((Turret)buildings["leftturret"]).Gun.SpreadLevel++;
+            if (buildings.ContainsKey("rightturret"))
+                ((Turret)buildings["rightturret"]).Gun.SpreadLevel++;
+        }
+
+        public static void UpgradeTurretHealth()
+        {
+            if (buildings.ContainsKey("leftturret"))
+                ((Turret)buildings["leftturret"]).HealthLevel++;
+            if (buildings.ContainsKey("rightturret"))
+                ((Turret)buildings["rightturret"]).HealthLevel++;
         }
 
         public static void UpgradeForcefieldRecharge()
@@ -219,6 +209,11 @@ namespace coolgame
         {
             if (buildings.ContainsKey("forcefield"))
                 ((Forcefield)buildings["forcefield"]).StrengthLevel++;
+        }
+
+        public static void RepairBuilding(string tag)
+        {
+            buildings[tag].Reset();
         }
 
         #endregion

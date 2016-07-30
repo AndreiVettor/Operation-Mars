@@ -60,20 +60,17 @@ namespace coolgame.GUI.Menus
             if (ButtonPressed(1))
             {
                 GameManager.UpgradeLaserPower();
-                GameManager.UpgradeTurretPower(false);
-                GameManager.UpgradeTurretPower(true);
+                GameManager.UpgradeTurretPower();
             }
             if (ButtonPressed(2))
             {
                 GameManager.UpgradeLaserSpeed();
-                GameManager.UpgradeTurretSpeed(false);
-                GameManager.UpgradeTurretSpeed(true);
+                GameManager.UpgradeTurretSpeed();
             }
             if (ButtonPressed(3))
             {
                 GameManager.UpgradeLaserSpread();
-                GameManager.UpgradeTurretSpread(false);
-                GameManager.UpgradeTurretSpread(true);
+                GameManager.UpgradeTurretSpread();
             }
             if (ButtonPressed(4))
             {
@@ -82,6 +79,19 @@ namespace coolgame.GUI.Menus
             if (ButtonPressed(5))
             {
                 GameManager.ActivateForcefield();
+            }
+            if (ButtonPressed(6))
+            {
+                GameManager.UpgradeTurretHealth();
+            }
+            if (ButtonPressed(8))
+            {
+                GameManager.RepairBuilding("base");
+            }
+            if (ButtonPressed(9))
+            {
+                GameManager.RepairBuilding("leftturret");
+                GameManager.RepairBuilding("rightturret");
             }
         }
     }

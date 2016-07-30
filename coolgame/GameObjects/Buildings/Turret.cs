@@ -14,6 +14,24 @@ namespace coolgame
         private Rectangle view;
         private Enemy target;
         private LaserGun laserGun;
+        private int healthLevel;
+        private int groundLevel;
+
+        public int HealthLevel
+        {
+            get { return healthLevel; }
+            set
+            {
+                healthLevel = value;
+                healthBar.MaxHealth = value * 100;
+
+                if (value >= 3)
+                {
+                    SetTexture("turret2");
+                    Y = groundLevel - Height;
+                }
+            }
+        }
 
         public LaserGun Gun
         {
@@ -25,6 +43,7 @@ namespace coolgame
             SetTexture("turret1");
 
             Y = groundLevel - Height;
+            this.groundLevel = groundLevel;
 
             
             if (enemyDirection == Enemy.EnemyDirection.ToLeft)
@@ -44,11 +63,12 @@ namespace coolgame
             if (enemyDirection == Enemy.EnemyDirection.ToRight)
                 laserGun.PointAt(0, (int)laserGun.Y + laserGun.Height / 2);
 
-            healthBar.MaxHealth = 500;
             healthBar.Height /= 2;
             healthBar.Width /= 2;
 
             layerDepth += .01f;
+
+            HealthLevel = 1;
 
             Alive = false;
         }
