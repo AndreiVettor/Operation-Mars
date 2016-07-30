@@ -15,7 +15,10 @@ namespace coolgame.GUI.Menus
             Center();
 
             AddButton(new GUIButton(Content, guiManager.TextFont, "Next Wave", new Vector2(145, 250),textPadding));
+
             AddButton(new GUIButton(Content, "up_laserDamage", new Vector2(0,0)));
+            AddLabel(new GUILabel(guiManager.TextFont, "100 SC", new Vector2(0, 50)));
+
             AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(50, 0)));
             AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(120, 0)));
 

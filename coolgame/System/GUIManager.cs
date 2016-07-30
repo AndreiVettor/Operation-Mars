@@ -49,8 +49,8 @@ namespace coolgame.GUI
             sprites = new List<GUISprite>();
 
             crossHair = new GUISprite(Content, "crosshair", Vector2.Zero);
-            scoreLabel = new GUILabel(hudFont, GameManager.SpaceCash.ToString(), new Vector2(Game.GAME_WIDTH - 60, 37));
-            sprites.Add(new GUISprite(Content, "spaceCash", new Vector2(Game.GAME_WIDTH - 120, 30)));
+            scoreLabel = new GUILabel(hudFont, GameManager.SpaceCash.ToString(), new Vector2(Game.GAME_WIDTH - 80, 37));
+            sprites.Add(new GUISprite(Content, "spaceCash", new Vector2(Game.GAME_WIDTH - 140, 30)));
 
             messagePosition = new Vector2(Game.GAME_WIDTH/2, 100);
             messageDuration = 5000;
