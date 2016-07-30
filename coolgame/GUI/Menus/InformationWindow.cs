@@ -11,7 +11,7 @@ namespace coolgame.GUI.Menus
             borderPadding = new Vector2(0, 0);
             textPadding = new Vector2(18, 10);
             Center();
-            AddButton(new GUIButton(Content, guiManager.TextFont, "x", new Vector2(566, 7),textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "x", new Vector2(566, 7),textPadding));
             TweakButtons(false, true, false, 0);
             SecondaryColor = Color.DarkSlateBlue;
         }

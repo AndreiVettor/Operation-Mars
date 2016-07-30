@@ -14,11 +14,11 @@ namespace coolgame.GUI.Menus
             textPadding = new Vector2(30, 7);
             Center();
 
-            AddButton(new GUIButton(Content, guiManager.TextFont, "RESUME",        new Vector2(0,   0), textPadding));
-            AddButton(new GUIButton(Content, guiManager.TextFont, "MUTE SOUND",    new Vector2(0,  60), textPadding));
-            AddButton(new GUIButton(Content, guiManager.TextFont, "RESTART GAME",  new Vector2(0, 120), textPadding));
-            AddButton(new GUIButton(Content, guiManager.TextFont, "BACK TO START", new Vector2(0, 180), textPadding));
-            AddButton(new GUIButton(Content, guiManager.TextFont, "EXIT GAME",     new Vector2(0, 240), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "RESUME",        new Vector2(0,   0), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "MUTE SOUND",    new Vector2(0,  60), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "RESTART GAME",  new Vector2(0, 120), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "BACK TO START", new Vector2(0, 180), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "EXIT GAME",     new Vector2(0, 240), textPadding));
 
             TweakButtons(true, true, true, 20);
 

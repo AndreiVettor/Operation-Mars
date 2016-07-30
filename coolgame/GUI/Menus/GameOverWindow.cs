@@ -21,14 +21,14 @@ namespace coolgame.GUI.Menus
             textPadding = new Vector2(30, 7);
             Center();
 
-            AddButton(new GUIButton(Content, guiManager.TextFont, "TRY AGAIN", new Vector2(0, 0), textPadding));
-            AddButton(new GUIButton(Content, guiManager.TextFont, "BACK TO MENU", new Vector2(0, 60), textPadding));
-            AddButton(new GUIButton(Content, guiManager.TextFont, "EXIT TO DESKTOP", new Vector2(0, 240), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "TRY AGAIN", new Vector2(0, 0), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "BACK TO MENU", new Vector2(0, 60), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "EXIT TO DESKTOP", new Vector2(0, 240), textPadding));
             AddLabel(new GUILabel(
-                guiManager.MessageFont,
+                guiManager.HugeFont,
                 "GAME OVER",
                 new Vector2(
-                    Game.GAME_WIDTH / 2 - guiManager.MessageFont.MeasureString("GAME OVER").X/2,
+                    Game.GAME_WIDTH / 2 - guiManager.HugeFont.MeasureString("GAME OVER").X/2,
                     Game.GAME_HEIGHT/2 - 100)));
             TweakButtons(true, true, false, spacing);
 

@@ -128,7 +128,7 @@ namespace coolgame
                 {
                     if(GameManager.State == GameState.Game && !GameManager.GameOver)
                     {
-                        guiManager.AddWindow(new UpgradeMenu(Content, guiManager));
+                        guiManager.AddWindow(new UpgradeMenu(Content, guiManager, enemySpawner));
                         GameManager.State = GameState.Paused;
                     }
                 }

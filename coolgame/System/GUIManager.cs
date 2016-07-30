@@ -20,25 +20,32 @@ namespace coolgame.GUI
         private GUISprite crossHair;
         private GUILabel scoreLabel;
 
-        private SpriteFont textFont;
-        public SpriteFont TextFont
+        private SpriteFont mediumFont;
+        public SpriteFont MediumFont
         {
-            get { return textFont; }
-            set { textFont = value; }
+            get { return mediumFont; }
+            set { mediumFont = value; }
         }
 
-        private SpriteFont messageFont;
-        public SpriteFont MessageFont
+        private SpriteFont hugeFont;
+        public SpriteFont HugeFont
         {
-            get { return messageFont; }
-            set { messageFont = value; }
+            get { return hugeFont; }
+            set { hugeFont = value; }
         }
 
-        private SpriteFont upgradeFont;
-        public SpriteFont UpgradeFont
+        private SpriteFont smallFont;
+        public SpriteFont SmallFont
         {
-            get { return upgradeFont; }
-            set { upgradeFont = value; }
+            get { return smallFont; }
+            set { smallFont = value; }
+        }
+
+        private SpriteFont bigFont;
+        public SpriteFont BigFont
+        {
+            get { return bigFont; }
+            set { bigFont = value; }
         }
 
         private SpriteFont hudFont;
@@ -53,12 +60,13 @@ namespace coolgame.GUI
 
         public GUIManager(ContentManager Content)
         {
-            textFont = Content.Load<SpriteFont>("textFont");
-            messageFont = Content.Load<SpriteFont>("messageFont");
+            mediumFont = Content.Load<SpriteFont>("textFont");
+            hugeFont = Content.Load<SpriteFont>("messageFont");
             hudFont = Content.Load<SpriteFont>("hudFont");
-            upgradeFont = Content.Load<SpriteFont>("upgradeFont");
+            smallFont = Content.Load<SpriteFont>("upgradeFont");
+            bigFont = Content.Load<SpriteFont>("bigFont");
 
-            toolTip = new GUITooltip(Content, textFont);
+            toolTip = new GUITooltip(Content, mediumFont);
 
             windows = new List<GUIWindow>();
             labels = new List<GUILabel>();
@@ -87,12 +95,12 @@ namespace coolgame.GUI
 
         public void DisplayMessage(string text)
         {
-            labels.Add(new GUILabel(messageFont, text, new Vector2(messagePosition.X - messageFont.MeasureString(text).X / 2, messagePosition.Y), messageDuration));
+            labels.Add(new GUILabel(hugeFont, text, new Vector2(messagePosition.X - hugeFont.MeasureString(text).X / 2, messagePosition.Y), messageDuration));
         }
 
         public void DisplayMessage(string text, float duration)
         {
-            labels.Add(new GUILabel(messageFont, text, new Vector2(messagePosition.X - messageFont.MeasureString(text).X / 2, messagePosition.Y), duration));
+            labels.Add(new GUILabel(hugeFont, text, new Vector2(messagePosition.X - hugeFont.MeasureString(text).X / 2, messagePosition.Y), duration));
         }
 
         public void AddWindow(GUIWindow window)

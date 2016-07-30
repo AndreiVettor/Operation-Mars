@@ -757,3 +757,9 @@
 /processorParam:TextureFormat=Compressed
 /build:upgradeFont.spritefont
 
+#begin bigFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:bigFont.spritefont
+
