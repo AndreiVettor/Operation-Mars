@@ -70,12 +70,12 @@ namespace coolgame.GUI.Menus
             Alpha = 220;
             BackgroundColor = CustomColor.DarkBlue;
             SecondaryColor = CustomColor.LightBlue;
+
+            UpdateCosts();
         }
 
-        public override void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
+        private void UpdateCosts()
         {
-            base.Update(game, Content, guiManager, spawner);
-
             labels[2].SetText(GameManager.GetUpgradeCost(0) + " SC");
             labels[3].SetText(GameManager.GetUpgradeCost(1) + " SC");
             labels[4].SetText(GameManager.GetUpgradeCost(2) + " SC");
@@ -86,13 +86,47 @@ namespace coolgame.GUI.Menus
             labels[9].SetText(GameManager.GetUpgradeCost(4) + " SC");
             labels[10].SetText(GameManager.GetUpgradeCost(3) + " SC");
 
-            labels[12].SetText(GameManager.GetUpgradeCost(9) + " SC");
+            labels[12].SetText(GameManager.GetUpgradeCost(10) + " SC");
             labels[13].SetText(GameManager.GetUpgradeCost(8) + " SC");
-            labels[14].SetText(GameManager.GetUpgradeCost(10) + " SC");
+            labels[14].SetText(GameManager.GetUpgradeCost(9) + " SC");
 
-            labels[16].SetText(GameManager.GetUpgradeCost(12) + " SC");
+            labels[16].SetText(GameManager.GetUpgradeCost(13) + " SC");
             labels[17].SetText(GameManager.GetUpgradeCost(11) + " SC");
-            labels[18].SetText(GameManager.GetUpgradeCost(13) + " SC");
+            labels[18].SetText(GameManager.GetUpgradeCost(12) + " SC");
+
+            if (labels[2].Text == int.MaxValue.ToString() + " SC")
+                labels[2].SetText("MAXED");
+            if (labels[3].Text == int.MaxValue.ToString() + " SC")
+                labels[3].SetText("MAXED");
+            if (labels[4].Text == int.MaxValue.ToString() + " SC")
+                labels[4].SetText("MAXED");
+            if (labels[6].Text == int.MaxValue.ToString() + " SC")
+                labels[6].SetText("MAXED");
+            if (labels[7].Text == int.MaxValue.ToString() + " SC")
+                labels[7].SetText("MAXED");
+            if (labels[8].Text == int.MaxValue.ToString() + " SC")
+                labels[8].SetText("MAXED");
+            if (labels[9].Text == int.MaxValue.ToString() + " SC")
+                labels[9].SetText("MAXED");
+            if (labels[10].Text == int.MaxValue.ToString() + " SC")
+                labels[10].SetText("MAXED");
+            if (labels[12].Text == int.MaxValue.ToString() + " SC")
+                labels[12].SetText("BUILT");
+            if (labels[13].Text == int.MaxValue.ToString() + " SC")
+                labels[13].SetText("BUILT");
+            if (labels[14].Text == int.MaxValue.ToString() + " SC")
+                labels[14].SetText("BUILT");
+            if (labels[16].Text == "0 SC")
+                labels[16].SetText("REPAIRED");
+            if (labels[17].Text == "0 SC")
+                labels[17].SetText("REPAIRED");
+            if (labels[18].Text == "0 SC")
+                labels[18].SetText("REPAIRED");
+        }
+
+        public override void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
+        {
+            base.Update(game, Content, guiManager, spawner);
 
             if (ButtonPressed(0))
             {
@@ -102,58 +136,72 @@ namespace coolgame.GUI.Menus
             else if (ButtonPressed(1))
             {
                 GameManager.ApplyUpgrade(0);
+                UpdateCosts();
             }
             else if (ButtonPressed(2))
             {
                 GameManager.ApplyUpgrade(1);
+                UpdateCosts();
             }
             else if (ButtonPressed(3))
             {
                 GameManager.ApplyUpgrade(2);
+                UpdateCosts();
             }
             else if (ButtonPressed(4))
             {
                 GameManager.ApplyUpgrade(7);
+                UpdateCosts();
             }
             else if (ButtonPressed(5))
             {
                 GameManager.ApplyUpgrade(5);
+                UpdateCosts();
             }
             else if (ButtonPressed(6))
             {
                 GameManager.ApplyUpgrade(6);
+                UpdateCosts();
             }
             else if (ButtonPressed(7))
             {
                 GameManager.ApplyUpgrade(4);
+                UpdateCosts();
             }
             else if (ButtonPressed(8))
             {
                 GameManager.ApplyUpgrade(3);
+                UpdateCosts();
             }
             else if (ButtonPressed(9))
             {
                 GameManager.ApplyUpgrade(10);
+                UpdateCosts();
             }
             else if (ButtonPressed(10))
             {
                 GameManager.ApplyUpgrade(8);
+                UpdateCosts();
             }
             else if (ButtonPressed(11))
             {
                 GameManager.ApplyUpgrade(9);
+                UpdateCosts();
             }
             else if (ButtonPressed(12))
             {
-                GameManager.ApplyUpgrade(12);
+                GameManager.ApplyUpgrade(13);
+                UpdateCosts();
             }
             else if (ButtonPressed(13))
             {
                 GameManager.ApplyUpgrade(11);
+                UpdateCosts();
             }
             else if (ButtonPressed(14))
             {
-                GameManager.ApplyUpgrade(13);
+                GameManager.ApplyUpgrade(12);
+                UpdateCosts();
             }
         }
     }

@@ -162,47 +162,69 @@ namespace coolgame
             {
                 case 0:
                     {
-                        return upgradeCosts[0, ((Base)buildings["base"]).Gun.AttackPowerLevel - 1];
+                        if (((Base)buildings["base"]).Gun.AttackPowerLevel < 4)
+                            return upgradeCosts[0, ((Base)buildings["base"]).Gun.AttackPowerLevel - 1];
+                        break;
                     }
                 case 1:
                     {
-                        return upgradeCosts[1, ((Base)buildings["base"]).Gun.SpeedLevel - 1];
+                        if (((Base)buildings["base"]).Gun.SpeedLevel < 4)
+                            return upgradeCosts[1, ((Base)buildings["base"]).Gun.SpeedLevel - 1];
+                        break;
                     }
                 case 2:
                     {
-                        return upgradeCosts[2, ((Base)buildings["base"]).Gun.SpreadLevel - 1];
+                        if (((Base)buildings["base"]).Gun.SpreadLevel < 4)
+                            return upgradeCosts[2, ((Base)buildings["base"]).Gun.SpreadLevel - 1];
+                        break;
                     }
                 case 3:
                     {
-                        return upgradeCosts[3, ((Forcefield)buildings["forcefield"]).RechargeLevel - 1];
+                        if (((Forcefield)buildings["forcefield"]).RechargeLevel < 4)
+                            return upgradeCosts[3, ((Forcefield)buildings["forcefield"]).RechargeLevel - 1];
+                        break;
                     }
                 case 4:
                     {
-                        return upgradeCosts[4, ((Forcefield)buildings["forcefield"]).StrengthLevel - 1];
+                        if (((Forcefield)buildings["forcefield"]).StrengthLevel < 4)
+                            return upgradeCosts[4, ((Forcefield)buildings["forcefield"]).StrengthLevel - 1];
+                        break;
                     }
                 case 5:
                     {
-                        return upgradeCosts[5, ((Base)buildings["base"]).HealthLevel - 1];
+                        if (((Base)buildings["base"]).HealthLevel < 4)
+                            return upgradeCosts[5, ((Base)buildings["base"]).HealthLevel - 1];
+                        break;
                     }
                 case 6:
                     {
-                        return upgradeCosts[6, ((Turret)buildings["leftturret"]).HealthLevel - 1];
+                        if (((Turret)buildings["leftturret"]).HealthLevel < 4)
+                            return upgradeCosts[6, ((Turret)buildings["leftturret"]).HealthLevel - 1];
+                        break;
                     }
                 case 7:
                     {
-                        return upgradeCosts[6, ((Turret)buildings["rightturret"]).HealthLevel - 1];
+                        if (((Turret)buildings["rightturret"]).HealthLevel < 4)
+                            return upgradeCosts[6, ((Turret)buildings["rightturret"]).HealthLevel - 1];
+                        break;
                     }
                 case 8:
                     {
-                        return buildCosts[0];
+                        if (!((Forcefield)buildings["forcefield"]).Activated)
+                            return buildCosts[0];
+                        break;
                     }
                 case 9:
                     {
-                        return buildCosts[1];
+                        if (!((Turret)buildings["leftturret"]).Alive)
+                            return buildCosts[1];
+                        break;
                     }
                 case 10:
                     {
-                        return buildCosts[1];
+                        if (!((Turret)buildings["rightturret"]).Alive)
+                            return buildCosts[1];
+                        break;
                     }
                 case 11:
                     {
@@ -217,8 +239,10 @@ namespace coolgame
                         return rTurretRepairCost;
                     }
                 default:
-                    return -1337;
+                    return 0;
             }
+
+            return int.MaxValue;
         }
 
         public static void ApplyUpgrade(int id)
