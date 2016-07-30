@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="GameObjects\Enemies\EnemyType\MotherShip.cs" />
     <Compile Include="GameObjects\Enemies\EnemyType\Murderbot.cs" />
+    <Compile Include="GameObjects\Enemies\EnemyType\TarantularSaucer.cs" />
     <Compile Include="GameObjects\Projectiles\ElectrobeamComponent.cs" />
     <Compile Include="GameObjects\Projectiles\Electrobeam.cs" />
     <Compile Include="GameObjects\Projectiles\MotherShipProjectile.cs" />

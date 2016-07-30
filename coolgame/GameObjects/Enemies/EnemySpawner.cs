@@ -24,6 +24,7 @@ namespace coolgame
             { 0, 0, 0, 0, 0, 0, .04f, .04f, .075f, .075f, 0 }, //murderbot
             { 0, 0, 0, 0, 0, 0, 0, .05f, 0, .075f, 0}, //dru
             { 0, 0, 0, 0, 0, 0, 0, 0, .135f, .1f, .135f }, //saucer
+            { .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } //saucer2
         };
 
         private float spawnTime;
@@ -102,6 +103,10 @@ namespace coolgame
                     {
                         SpawnEnemy("murderbot");
                     }
+                    if (Roll(spawnTable[7, wave - 1]))
+                    {
+                        SpawnEnemy("tarantularsaucer");
+                    }
                 }
             }
             else if (GameManager.Enemies.Count == 0)
@@ -149,7 +154,7 @@ namespace coolgame
                 tempEnemy.Direction = Enemy.EnemyDirection.ToRight;
             }
 
-            if (enemyType != "reptiliansaucer" && enemyType != "emag")
+            if (enemyType != "reptiliansaucer" && enemyType != "emag" && enemyType != "tarantularsaucer")
                 tempEnemy.Y = GameManager.Ground.Top - tempEnemy.Height;
         }       
     }

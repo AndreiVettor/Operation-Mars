@@ -56,6 +56,10 @@ namespace coolgame
                     {
                         return new MotherShip(content);
                     }
+                case "tarantularsaucer":
+                    {
+                        return new TarantularSaucer(content);
+                    }
                 default:
                     {
                         Debug.Log("Tried to create an invalid enemy type!");
