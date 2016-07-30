@@ -29,6 +29,13 @@ namespace coolgame.GUI
             set { messageFont = value; }
         }
 
+        private SpriteFont upgradeFont;
+        public SpriteFont UpgradeFont
+        {
+            get { return upgradeFont; }
+            set { upgradeFont = value; }
+        }
+
         private SpriteFont hudFont;
         public SpriteFont HUDFont
         {
@@ -44,6 +51,7 @@ namespace coolgame.GUI
             textFont = Content.Load<SpriteFont>("textFont");
             messageFont = Content.Load<SpriteFont>("messageFont");
             hudFont = Content.Load<SpriteFont>("hudFont");
+            upgradeFont = Content.Load<SpriteFont>("upgradeFont");
 
             windows = new List<GUIWindow>();
             labels = new List<GUILabel>();

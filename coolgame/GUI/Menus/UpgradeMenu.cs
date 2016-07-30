@@ -10,44 +10,51 @@ namespace coolgame.GUI.Menus
         {
             Width = 500;
             Height = 400;
-            textPadding = new Vector2(10, 10);
+            textPadding = new Vector2(15, 15);
             borderPadding = new Vector2(30, 30);
             Center();
 
-            AddButton(new GUIButton(Content, guiManager.TextFont, "Next Wave", new Vector2(145, 250),textPadding));
+            AddButton(new GUIButton(Content, guiManager.TextFont, "  Next Wave  ", new Vector2(280, 280),textPadding));
 
             //Lasers
-            AddLabel(new GUILabel(guiManager.TextFont, "Upgrade Lasers", new Vector2(30, 0)));
+            AddLabel(new GUILabel(guiManager.TextFont, "Upgrade Lasers", new Vector2(25, 0)));
 
             AddButton(new GUIButton(Content, "up_laserDamage", new Vector2(0,30)));
-            AddLabel(new GUILabel(guiManager.TextFont, "100 SC", new Vector2(0, 50)));
-
             AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(65, 30)));
             AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(130, 30)));
 
+            AddLabel(new GUILabel(guiManager.UpgradeFont, "100 SC", new Vector2(5, 85)));
+            AddLabel(new GUILabel(guiManager.UpgradeFont, "100 SC", new Vector2(70, 85)));
+            AddLabel(new GUILabel(guiManager.UpgradeFont, "100 SC", new Vector2(135, 85)));
+
             //Upgrade Buildings
-            AddLabel(new GUILabel(guiManager.TextFont, "Upgrade Buildings", new Vector2(30, 100)));
+            AddLabel(new GUILabel(guiManager.TextFont, "Upgrade Buildings", new Vector2(15, 120)));
 
-            AddButton(new GUIButton(Content, "up_turret", new Vector2(0, 130)));
-            AddButton(new GUIButton(Content, "up_base", new Vector2(65, 130)));
-            AddButton(new GUIButton(Content, "up_turret", new Vector2(130, 130)));
+            AddButton(new GUIButton(Content, "up_turret", new Vector2(0, 150)));
+            AddButton(new GUIButton(Content, "up_base", new Vector2(65, 150)));
+            AddButton(new GUIButton(Content, "up_turret", new Vector2(130, 150)));
+            AddButton(new GUIButton(Content, "up_forceField", new Vector2(40, 245)));
+            AddButton(new GUIButton(Content, "up_forceFieldRegen", new Vector2(105, 245)));
 
-            AddButton(new GUIButton(Content, "up_forceField", new Vector2(80, 200)));
-            AddButton(new GUIButton(Content, "up_forceFieldRegen", new Vector2(140, 200)));
+            AddLabel(new GUILabel(guiManager.UpgradeFont, "100 SC", new Vector2(5, 205)));
+            AddLabel(new GUILabel(guiManager.UpgradeFont, "100 SC", new Vector2(70, 205)));
+            AddLabel(new GUILabel(guiManager.UpgradeFont, "100 SC", new Vector2(135, 205)));
+            AddLabel(new GUILabel(guiManager.UpgradeFont, "100 SC", new Vector2(45, 300)));
+            AddLabel(new GUILabel(guiManager.UpgradeFont, "100 SC", new Vector2(110, 300)));
 
             //Build
-            AddLabel(new GUILabel(guiManager.TextFont, "Build", new Vector2(270, 100)));
+            AddLabel(new GUILabel(guiManager.TextFont, "Build", new Vector2(330, 0)));
 
-            AddButton(new GUIButton(Content, "build_turret", new Vector2(250, 0)));
-            AddButton(new GUIButton(Content, "build_forceField", new Vector2(240, 0)));
-            AddButton(new GUIButton(Content, "build_turret", new Vector2(180, 0)));
+            AddButton(new GUIButton(Content, "build_turret", new Vector2(260, 30)));
+            AddButton(new GUIButton(Content, "build_forceField", new Vector2(325, 30)));
+            AddButton(new GUIButton(Content, "build_turret", new Vector2(390, 30)));
 
             //Repair
-            AddLabel(new GUILabel(guiManager.TextFont, "Repair", new Vector2(30, 100)));
+            AddLabel(new GUILabel(guiManager.TextFont, "Repair", new Vector2(320, 120)));
 
-            AddButton(new GUIButton(Content, "repair_turret", new Vector2(480, 0)));
-            AddButton(new GUIButton(Content, "repair_base", new Vector2(420, 0)));
-            AddButton(new GUIButton(Content, "repair_turret", new Vector2(480, 0)));
+            AddButton(new GUIButton(Content, "repair_turret", new Vector2(255, 150)));
+            AddButton(new GUIButton(Content, "repair_base", new Vector2(320, 150)));
+            AddButton(new GUIButton(Content, "repair_turret", new Vector2(385, 150)));
 
             Alpha = 220;
             BackgroundColor = CustomColor.DarkBlue;

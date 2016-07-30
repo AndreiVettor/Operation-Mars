@@ -751,3 +751,9 @@
 /processorParam:TextureFormat=Color
 /build:up_forceFieldRegen.png
 
+#begin upgradeFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:upgradeFont.spritefont
+
