@@ -22,7 +22,7 @@ namespace coolgame
             set
             {
                 rechargeLevel = value;
-                rechargeRate = value;
+                rechargeRate = value * 2;
                 rechargePower = (int)(5 * Math.Pow(1.5f, value));
             }
         }
@@ -35,7 +35,7 @@ namespace coolgame
                 strengthLevel = value;
 
                 int currentHealth = healthBar.Health;
-                healthBar.MaxHealth = (int)(400 * Math.Pow(1.5f, value - 1));
+                healthBar.MaxHealth = (int)(600 * Math.Pow(1.5f, value - 1));
                 if (value > 1)
                     healthBar.Health = currentHealth;
             }

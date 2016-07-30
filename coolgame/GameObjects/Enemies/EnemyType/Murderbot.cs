@@ -24,12 +24,14 @@ namespace coolgame
             //Height = 80;
             //EnableAnimation = true;
 
-            healthBar.MaxHealth = 150;
+            healthBar.MaxHealth = 300;
             movingSpeed = 9f;
             attackSpeed = 30f;
             attackPower = 5;
 
-            Range = GameManager.RNG.Next(100, 200);
+            spaceCash = 8;
+
+            Range = GameManager.RNG.Next(50, 150);
 
             //attackSound = "enemylaser";
         }
@@ -166,7 +168,7 @@ namespace coolgame
                     if (forceField)
                     {
                         healthBar.ColorScheme = HealthBar.HealthBarColoring.Forcefield;
-                        healthBar.Health += attackPower;
+                        healthBar.Health += attackPower / 2;
                     }
                     else
                         healthBar.ColorScheme = HealthBar.HealthBarColoring.Normal;

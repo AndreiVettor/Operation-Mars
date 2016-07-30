@@ -16,10 +16,11 @@ namespace coolgame
             Height = 57;
             EnableAnimation = true;
             AnimationSpeed /= 1f;
-            healthBar.MaxHealth = 100;
+            healthBar.MaxHealth = 300;
             movingSpeed = 9f;
-            attackSpeed = 50f;
-            attackPower = 1;
+            attackSpeed = 30f;
+            attackPower = 5;
+            spaceCash = 8;
         }
     }
 }

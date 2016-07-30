@@ -18,10 +18,10 @@ namespace coolgame
             { .1f, .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, //crawler
             { 0, .04f, .095f, 0, 0, .12f, 0, 0, 0, 0, 0 },  //steelroach
             { 0, 0, 0, .2f, .15f, .1f, 0, 0, 0, 0, 0 }, //reptilian
-            { 0, 0, 0, 0, .05f, .075f, .05f, .055f, 0, .06f, 0 }, //mwat
-            { 0, 0, 0, 0, 0, 0, .01f, .015f, .025f, .025f, 0 }, //murderbot
-            { 0, 0, 0, 0, 0, 0, 0, .02f, 0, .03f, 0}, //dru
-            { 0, 0, 0, 0, 0, 0, 0, 0, .03f, 0, .15f }, //saucer
+            { 0, 0, 0, 0, .05f, .075f, .1f, .1f, 0, .15f, 0 }, //mwat
+            { 0, 0, 0, 0, 0, 0, .04f, .04f, .075f, .075f, 0 }, //murderbot
+            { 0, 0, 0, 0, 0, 0, 0, .05f, 0, .075f, 0}, //dru
+            { 0, 0, 0, 0, 0, 0, 0, 0, .135f, .1f, .135f }, //saucer
         };
 
         private float spawnTime;
@@ -31,7 +31,7 @@ namespace coolgame
 
         public EnemySpawner(GUIManager guiManager)
         {
-            SetWave(7, guiManager);
+            SetWave(10, guiManager);
         }
 
         public int Wave
