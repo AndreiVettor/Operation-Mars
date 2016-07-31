@@ -81,35 +81,35 @@ namespace coolgame
                 {
                     spawnTime = 0;
 
-                    if (Roll(spawnTable[0, wave - 1]))
+                    if (Roll(spawnTable[0, wave - 1] / 6))
                     {
                         SpawnEnemy("crawler");
                     }
-                    if (Roll(spawnTable[1, wave - 1]))
+                    if (Roll(spawnTable[1, wave - 1] / 6))
                     {
                         SpawnEnemy("steelroach");
                     }
-                    if (Roll(spawnTable[2, wave - 1]))
+                    if (Roll(spawnTable[2, wave - 1] / 6))
                     {
                         SpawnEnemy("reptilian");
                     }
-                    if (Roll(spawnTable[6, wave - 1]))
+                    if (Roll(spawnTable[6, wave - 1] / 6))
                     {
                         SpawnEnemy("reptiliansaucer");
                     }
-                    if (Roll(spawnTable[5, wave - 1]))
+                    if (Roll(spawnTable[5, wave - 1] / 6))
                     {
                         SpawnEnemy("demolitionroverunit");
                     }
-                    if (Roll(spawnTable[3, wave - 1]))
+                    if (Roll(spawnTable[3, wave - 1] / 6))
                     {
                         SpawnEnemy("mwat");
                     }
-                    if (Roll(spawnTable[4, wave - 1]))
+                    if (Roll(spawnTable[4, wave - 1] / 6))
                     {
                         SpawnEnemy("murderbot");
                     }
-                    if (Roll(spawnTable[7, wave - 1]))
+                    if (Roll(spawnTable[7, wave - 1] / 6))
                     {
                         SpawnEnemy("tarantularsaucer");
                     }
