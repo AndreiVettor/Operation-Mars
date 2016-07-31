@@ -9,7 +9,9 @@ namespace coolgame
 {
     public class PlayerProjectile : LaserProjectile
     {
-        public PlayerProjectile(ContentManager content, double x, double y, float direction, int attackPower, int powerLevel) : base(content, x, y, direction, attackPower)
+        private bool byTurret;
+
+        public PlayerProjectile(ContentManager content, double x, double y, float direction, int attackPower, int powerLevel, bool byTurret) : base(content, x, y, direction, attackPower)
         {
             if (powerLevel > 4)
                 powerLevel = 4;
@@ -22,7 +24,10 @@ namespace coolgame
             Y = y - Height / 2;
             speed = 3;
 
-            GameManager.projectilesShot++;
+            if (!byTurret)
+                GameManager.projectilesShot++;
+
+            this.byTurret = byTurret;
         }
 
         public override void Update(float deltaTime)
@@ -32,7 +37,9 @@ namespace coolgame
             Enemy victim = CollisionManager.CollidesWithEnemy(this);
             if (victim != null)
             {
-                GameManager.landedHits++;
+                if (!byTurret)
+                    GameManager.landedHits++;
+
                 victim.InflictDamage(attackPower);
                 Alive = false;
             }

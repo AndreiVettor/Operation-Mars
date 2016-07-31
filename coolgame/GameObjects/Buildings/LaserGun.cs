@@ -191,7 +191,7 @@ namespace coolgame
                 cooldownTime = 0;
                 double projectileX = X + Width / 2 + Math.Cos(Rotation) * (Width / 4);
                 double projectileY = Y + Height / 2 + Math.Sin(Rotation) * (Width / 4);
-                LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation, attackPower, powerLevel);
+                LaserProjectile p = new PlayerProjectile(content, projectileX, projectileY, Rotation, attackPower, powerLevel, turretParent != null);
 
                 //Recoil
                 //initial offset
@@ -203,7 +203,7 @@ namespace coolgame
 
                 for (int i = 0; i < auxiliaryProjectiles; ++i)
                 {
-                    p = new PlayerProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * maxSpread, attackPower, powerLevel);
+                    p = new PlayerProjectile(content, projectileX, projectileY, Rotation + ((float)random.NextDouble() - .5f) * maxSpread, attackPower, powerLevel, turretParent != null);
                 }
             }
         }
