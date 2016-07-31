@@ -7,6 +7,8 @@ namespace coolgame.GUI.Menus
 {
     class UpgradeMenu : GUIWindow
     {
+        private string bonusText;
+
         public UpgradeMenu(ContentManager Content, GUIManager guiManager, EnemySpawner enemySpawner) : base(Content)
         {
             Width = 500;
@@ -20,11 +22,14 @@ namespace coolgame.GUI.Menus
             if(bonus <= GameManager.accuracyBonus && bonus > 0)
             {
                 GameManager.SpaceCash += bonus;
-                if(bonus == GameManager.accuracyBonus)
+                bonusText = "Your accuracy was " + accuracy.ToString("0.0") + "%, " + bonus + " SC bonus!";
+                if (bonus == GameManager.accuracyBonus)
                 {
                     GameManager.SpaceCash += 10;
+                    bonusText = "       Perfect Accuracy! " + (GameManager.accuracyBonus + 10) + " SC bonus!";
                 }
             }
+
 
             AddButton(new GUIButton(Content, guiManager.MediumFont, "  NEXT WAVE  ", new Vector2(270, 290),textPadding));
             AddLabel(new GUILabel(
@@ -81,7 +86,7 @@ namespace coolgame.GUI.Menus
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(11) + " SC", new Vector2(325, 255)));
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(13) + " SC", new Vector2(390, 255)));
 
-            AddLabel(new GUILabel(guiManager.MediumFont, "Your accuracy was " + accuracy.ToString("0.0") + "%, " + bonus + " SC bonus!", new Vector2(45, 370)));
+            AddLabel(new GUILabel(guiManager.MediumFont, bonusText, new Vector2(45, 365)));
 
             Alpha = 220;
             BackgroundColor = CustomColor.DarkBlue;
