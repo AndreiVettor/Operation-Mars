@@ -61,22 +61,23 @@ namespace coolgame
                 }
 
                 float gameProgress = (wave - 1) / 30f;
+
+                waveFinished = false;
+
+                int totalEnemies = 0;
+
+                for (int i = 0; i < spawnChances.Length; ++i)
+                    totalEnemies += spawnTable[i, waveNumber - 1];
+
+                for (int i = 0; i < spawnChances.Length; ++i)
+                    spawnChances[i] = (float)spawnTable[i, waveNumber - 1] / totalEnemies;
+
+                enemiesToSpawn = totalEnemies;
+                enemiesSpawned = 0;
+
+                for (int i = 0; i < spawned.Length; ++i)
+                    spawned[i] = 0;
             }
-            waveFinished = false;
-
-            int totalEnemies = 0;
-
-            for (int i = 0; i < spawnChances.Length; ++i)
-                totalEnemies += spawnTable[i, waveNumber - 1];
-
-            for (int i = 0; i < spawnChances.Length; ++i)
-                spawnChances[i] = (float)spawnTable[i, waveNumber - 1] / totalEnemies;
-
-            enemiesToSpawn = totalEnemies;
-            enemiesSpawned = 0;
-
-            for (int i = 0; i < spawned.Length; ++i)
-                spawned[i] = 0;
         }
 
         public void Update(float totalGameTime, float deltaTime, GUIManager guiManager, ContentManager content)
