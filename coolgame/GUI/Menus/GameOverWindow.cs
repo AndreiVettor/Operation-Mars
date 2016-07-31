@@ -34,7 +34,7 @@ namespace coolgame.GUI.Menus
 
             AddLabel(new GUILabel(
                 guiManager.MediumFont,
-                "Days Survived: " + enemySpawner.Wave,
+                "Days Survived: " + (enemySpawner.Wave - 1),
                 new Vector2(
                     Game.GAME_WIDTH / 2 - guiManager.MediumFont.MeasureString("Days Survived: " + enemySpawner.Wave).X / 2,
                     Game.GAME_HEIGHT / 2 - 40)));
