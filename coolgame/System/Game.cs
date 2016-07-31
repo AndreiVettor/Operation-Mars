@@ -219,7 +219,7 @@ namespace coolgame
             }
             if (InputManager.KeyPress(Keys.M))
             {
-                SoundManager.ToggleMute();
+                SoundManager.MuteMusic();
                 Debug.Log("Toggled Mute");
             }
 

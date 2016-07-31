@@ -16,9 +16,10 @@ namespace coolgame.GUI.Menus
 
             AddButton(new GUIButton(Content, guiManager.MediumFont, "RESUME",        new Vector2(0,   0), textPadding));
             AddButton(new GUIButton(Content, guiManager.MediumFont, "MUTE SOUND",    new Vector2(0,  60), textPadding));
-            AddButton(new GUIButton(Content, guiManager.MediumFont, "RESTART GAME",  new Vector2(0, 120), textPadding));
-            AddButton(new GUIButton(Content, guiManager.MediumFont, "BACK TO START", new Vector2(0, 180), textPadding));
-            AddButton(new GUIButton(Content, guiManager.MediumFont, "EXIT GAME",     new Vector2(0, 240), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "MUTE MUSIC",    new Vector2(0, 120), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "RESTART GAME",  new Vector2(0, 180), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "BACK TO START", new Vector2(0, 240), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "EXIT GAME",     new Vector2(0, 300), textPadding));
 
             TweakButtons(true, true, true, true, 20);
 
@@ -41,22 +42,26 @@ namespace coolgame.GUI.Menus
             }
             else if (ButtonPressed(1))
             {
-                SoundManager.ToggleMute();
+                SoundManager.MuteSound();
             }
             else if (ButtonPressed(2))
+            {
+                SoundManager.MuteMusic();
+            }
+            else if (ButtonPressed(3))
             {
                 GameManager.Restart(Content, guiManager, spawner);
                 GameManager.State = GameState.Game;
                 Disabled = true;
             }
-            else if (ButtonPressed(3))
+            else if (ButtonPressed(4))
             {
                 GameManager.Restart(Content, guiManager, spawner);
                 GameManager.State = GameState.StartMenu;
                 guiManager.AddWindow(new MainMenu(Content, guiManager));
                 Disabled = true;
             }
-            else if (ButtonPressed(4))
+            else if (ButtonPressed(5))
             {
                 game.Exit();
             }

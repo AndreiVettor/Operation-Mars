@@ -15,7 +15,8 @@ namespace coolgame
         private static List<Song> songs = new List<Song>();
 
         private static Song menuMusic;
-        public static bool Muted;
+        public static bool MusicMuted;
+        public static bool SoundMuted;
 
         private static float soundVolume;
         public static int SoundVolume
@@ -24,7 +25,7 @@ namespace coolgame
             set
             {
                 soundVolume = value/100f;
-                if(!Muted)
+                if(!MusicMuted)
                 {
                     SoundEffect.MasterVolume = soundVolume;
                 }
@@ -38,26 +39,38 @@ namespace coolgame
             set
             {
                 musicVolume = value/100f;
-                if (!Muted)
+                if (!MusicMuted)
                 {
                     MediaPlayer.Volume = musicVolume;
                 }
             }
         }
 
-        public static void ToggleMute()
+        public static void MuteMusic()
         {
-            if (!Muted)
+            if (!MusicMuted)
+            {
+                MediaPlayer.Volume = 0;
+                MusicMuted = true;
+            }
+            else
+            {
+                MediaPlayer.Volume = musicVolume;
+                MusicMuted = false;
+            }
+        }
+
+        public static void MuteSound()
+        {
+            if (!SoundMuted)
             {
                 SoundEffect.MasterVolume = 0;
-                MediaPlayer.Volume = 0;
-                Muted = true;
+                SoundMuted = true;
             }
             else
             {
                 SoundEffect.MasterVolume = soundVolume;
-                MediaPlayer.Volume = musicVolume;
-                Muted = false;
+                SoundMuted = false;
             }
         }
 
@@ -105,7 +118,7 @@ namespace coolgame
 
         public static void PlayClip(string clipName)
         {
-            if(!Muted)
+            if(!SoundMuted)
             {
                 clips[clipName].Play();
             }
