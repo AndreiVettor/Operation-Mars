@@ -40,6 +40,8 @@ namespace coolgame
         private int enemiesSpawned;
         private int enemiesToSpawn;
 
+        private float timeSinceLastSpawn;
+
         public EnemySpawner(GUIManager guiManager)
         {
             SetWave(1, guiManager);
@@ -93,57 +95,82 @@ namespace coolgame
             {
                 waveDelayTime += deltaTime;
 
+                if (waveDelayTime >= WAVE_DELAY)
+                    timeSinceLastSpawn += deltaTime;
+
                 if (waveDelayTime >= WAVE_DELAY && spawnTime >= SPAWN_CYCLE)
                 {
                     spawnTime = 0;
+                    bool spawnedNow = false;
+                    bool forceSpawn = false;
+                    bool triedToSpawn = true;
 
-                    if (Roll(spawnChances[0] * totalSpawnChance[wave - 1] / 6) && spawned[0] < spawnTable[0, wave - 1])
+                    if (timeSinceLastSpawn / 1000 > 1 / totalSpawnChance[wave - 1] * 2f)
+                        forceSpawn = true;
+
+                    if (timeSinceLastSpawn / 1000 < 1 / totalSpawnChance[wave - 1] * 0.33f)
+                        return;
+
+                    while (forceSpawn || triedToSpawn)
                     {
-                        SpawnEnemy("crawler");
-                        spawned[0]++;
-                        enemiesSpawned++;
-                    }
-                    else if (Roll(spawnChances[1] * totalSpawnChance[wave - 1] / 6) && spawned[1] < spawnTable[1, wave - 1])
-                    {
-                        SpawnEnemy("steelroach");
-                        spawned[1]++;
-                        enemiesSpawned++;
-                    }
-                    else if (Roll(spawnChances[2] * totalSpawnChance[wave - 1] / 6) && spawned[2] < spawnTable[2, wave - 1])
-                    {
-                        SpawnEnemy("reptilian");
-                        spawned[2]++;
-                        enemiesSpawned++;
-                    }
-                    else if(Roll(spawnChances[6] * totalSpawnChance[wave - 1] / 6) && spawned[6] < spawnTable[6, wave - 1])
-                    {
-                        SpawnEnemy("reptiliansaucer");
-                        spawned[6]++;
-                        enemiesSpawned++;
-                    }
-                    else if(Roll(spawnChances[5] * totalSpawnChance[wave - 1] / 6) && spawned[5] < spawnTable[5, wave - 1])
-                    {
-                        SpawnEnemy("demolitionroverunit");
-                        spawned[5]++;
-                        enemiesSpawned++;
-                    }
-                    else if(Roll(spawnChances[3] * totalSpawnChance[wave - 1] / 6) && spawned[3] < spawnTable[3, wave - 1])
-                    {
-                        SpawnEnemy("mwat");
-                        spawned[3]++;
-                        enemiesSpawned++;
-                    }
-                    else if(Roll(spawnChances[4] * totalSpawnChance[wave - 1] / 6) && spawned[4] < spawnTable[4, wave - 1])
-                    {
-                        SpawnEnemy("murderbot");
-                        spawned[4]++;
-                        enemiesSpawned++;
-                    }
-                    else if(Roll(spawnChances[7] * totalSpawnChance[wave - 1] / 6) && spawned[7] < spawnTable[7, wave - 1])
-                    {
-                        SpawnEnemy("tarantularsaucer");
-                        spawned[7]++;
-                        enemiesSpawned++;
+                        triedToSpawn = false;
+
+                        if (Roll(spawnChances[0] * totalSpawnChance[wave - 1] / 6) && spawned[0] < spawnTable[0, wave - 1])
+                        {
+                            SpawnEnemy("crawler");
+                            spawned[0]++;
+                            spawnedNow = true;
+                        }
+                        else if (Roll(spawnChances[1] * totalSpawnChance[wave - 1] / 6) && spawned[1] < spawnTable[1, wave - 1])
+                        {
+                            SpawnEnemy("steelroach");
+                            spawned[1]++;
+                            spawnedNow = true;
+                        }
+                        else if (Roll(spawnChances[2] * totalSpawnChance[wave - 1] / 6) && spawned[2] < spawnTable[2, wave - 1])
+                        {
+                            SpawnEnemy("reptilian");
+                            spawned[2]++;
+                            spawnedNow = true;
+                        }
+                        else if (Roll(spawnChances[6] * totalSpawnChance[wave - 1] / 6) && spawned[6] < spawnTable[6, wave - 1])
+                        {
+                            SpawnEnemy("reptiliansaucer");
+                            spawned[6]++;
+                            spawnedNow = true;
+                        }
+                        else if (Roll(spawnChances[5] * totalSpawnChance[wave - 1] / 6) && spawned[5] < spawnTable[5, wave - 1])
+                        {
+                            SpawnEnemy("demolitionroverunit");
+                            spawned[5]++;
+                            spawnedNow = true;
+                        }
+                        else if (Roll(spawnChances[3] * totalSpawnChance[wave - 1] / 6) && spawned[3] < spawnTable[3, wave - 1])
+                        {
+                            SpawnEnemy("mwat");
+                            spawned[3]++;
+                            spawnedNow = true;
+                        }
+                        else if (Roll(spawnChances[4] * totalSpawnChance[wave - 1] / 6) && spawned[4] < spawnTable[4, wave - 1])
+                        {
+                            SpawnEnemy("murderbot");
+                            spawned[4]++;
+                            spawnedNow = true;
+                        }
+                        else if (Roll(spawnChances[7] * totalSpawnChance[wave - 1] / 6) && spawned[7] < spawnTable[7, wave - 1])
+                        {
+                            SpawnEnemy("tarantularsaucer");
+                            spawned[7]++;
+                            spawnedNow = true;
+                        }
+
+                        if (spawnedNow)
+                        {
+                            Debug.Log("Time since last spawn: " + (timeSinceLastSpawn / 1000).ToString());
+                            enemiesSpawned++;
+                            timeSinceLastSpawn = 0;
+                            forceSpawn = false;
+                        }
                     }
                 }
             }
