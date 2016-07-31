@@ -50,6 +50,9 @@ namespace coolgame
             set { spaceCash = value; }
         }
 
+        public static int projectilesShot;
+        public static int landedHits;
+
         private static GameState state = GameState.Game;
         public static GameState State
         {

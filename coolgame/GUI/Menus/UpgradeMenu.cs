@@ -74,6 +74,8 @@ namespace coolgame.GUI.Menus
             SecondaryColor = CustomColor.LightBlue;
 
             UpdateCosts();
+
+            AddLabel(new GUILabel(guiManager.SmallFont, "Accuracy: " + (float)GameManager.landedHits / GameManager.projectilesShot + "%", new Vector2(10, 355)));
         }
 
         private void UpdateCosts()

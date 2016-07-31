@@ -21,6 +21,8 @@ namespace coolgame
             X = x - Width / 2;
             Y = y - Height / 2;
             speed = 3;
+
+            GameManager.projectilesShot++;
         }
 
         public override void Update(float deltaTime)
@@ -30,6 +32,7 @@ namespace coolgame
             Enemy victim = CollisionManager.CollidesWithEnemy(this);
             if (victim != null)
             {
+                GameManager.landedHits++;
                 victim.InflictDamage(attackPower);
                 Alive = false;
             }

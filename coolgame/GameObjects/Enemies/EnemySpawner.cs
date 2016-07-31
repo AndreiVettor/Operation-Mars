@@ -184,7 +184,8 @@ namespace coolgame
                     guiManager.AddWindow(new GUI.Menus.UpgradeMenu(content, guiManager, this));
                     GameManager.State = GameState.Paused;
                     SetWave(wave + 1, guiManager);
-
+                    GameManager.projectilesShot = 0;
+                    GameManager.landedHits = 0;
                     if (((Forcefield)GameManager.Buildings["forcefield"]).Activated)
                         GameManager.Buildings["forcefield"].Alive = true;
                 }
