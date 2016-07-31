@@ -126,9 +126,9 @@ namespace coolgame.GUI
                 SetText(text);
             }
             PressedColor = new Color(
-                BackgroundColor.R + colorChange,
-                BackgroundColor.G + colorChange,
-                BackgroundColor.B + colorChange);
+                BackgroundColor.R - colorChange,
+                BackgroundColor.G - colorChange,
+                BackgroundColor.B - colorChange);
             ReleasedColor = BackgroundColor;
         }
 

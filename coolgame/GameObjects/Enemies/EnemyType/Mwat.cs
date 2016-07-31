@@ -12,14 +12,15 @@ namespace coolgame
     {
         public Mwat(ContentManager Content) : base(Content)
         {
-            SetTexture("mwat_shooting");
-            Width = 46;
-            Height = 75;
+            SetTexture("mwat");
+            Width = 79;
+            Height = 91;
             EnableAnimation = true;
-            AnimationSpeed = 100;
+            AnimationSpeed = 0.02f;
+            spriteFacing = EnemyDirection.ToRight;
 
             healthBar.MaxHealth = 75;
-            movingSpeed = 9f;
+            movingSpeed = 11f;
             attackSpeed = 1.5f;
             attackPower = 15;
             burstFire = true;
