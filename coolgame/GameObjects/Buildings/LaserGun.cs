@@ -36,6 +36,9 @@ namespace coolgame
 
         private int baseDamage;
 
+        private Turret turretParent;
+        private Tower towerParent;
+
         public int AttackPowerLevel
         {
             get { return powerLevel; }
@@ -68,6 +71,11 @@ namespace coolgame
                         SetTexture("laserGun2");
                     else
                         SetTexture("laserGun2_green");
+
+                    if (towerParent != null)
+                        towerParent.FixGunPosition();
+                    else if (turretParent != null)
+                        turretParent.FixGunPosition();
                 }
             }
         }
@@ -87,11 +95,28 @@ namespace coolgame
                         SetTexture("laserGun2");
                     else
                         SetTexture("laserGun2_green");
+
+                    if (towerParent != null)
+                        towerParent.FixGunPosition();
+                    else if (turretParent != null)
+                        turretParent.FixGunPosition();
                 }
             }
         }
 
-        public LaserGun(ContentManager content, int x, int y, int baseDamage) : base(content)
+        public LaserGun(ContentManager content, int x, int y, int baseDamage, Turret parent) : base(content)
+        {
+            Initialize(content, x, y, baseDamage);
+            turretParent = parent;
+        }
+
+        public LaserGun(ContentManager content, int x, int y, int baseDamage, Tower parent) : base(content)
+        {
+            Initialize(content, x, y, baseDamage);
+            towerParent = parent;
+        }
+
+        private void Initialize(ContentManager content, int x, int y, int baseDamage)
         {
             SetTexture("laserGun1");
             Width = texture.Width;
@@ -116,6 +141,31 @@ namespace coolgame
             AttackPowerLevel = 1;
             SpeedLevel = 1;
             SpreadLevel = 1;
+        }
+
+        public int DefaultX
+        {
+            get { return defaultX; }
+            set
+            {
+                defaultX = value;
+                X = value;
+            }
+        }
+
+        public int DefaultY
+        {
+            get { return defaultY; }
+            set
+            {
+                defaultY = value;
+                Y = value;
+            }
+        }
+
+        public string TextureName
+        {
+            get { return texture.Name; }
         }
 
         public void PointAt(int targetX, int targetY)

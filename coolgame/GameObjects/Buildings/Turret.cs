@@ -29,6 +29,19 @@ namespace coolgame
                 {
                     SetTexture("turret2");
                     Y = groundLevel - Height;
+
+                    laserGun.DefaultY = (int)Y + 10;
+
+                    if (spriteEffects == SpriteEffects.None)
+                    {
+                        laserGun.DefaultX = (int)X - 4;
+                    }
+                    else
+                    {
+                        laserGun.DefaultX = (int)X + 14;
+                    }
+
+                    FixGunPosition();
                 }
             }
         }
@@ -58,7 +71,14 @@ namespace coolgame
                 spriteEffects = SpriteEffects.FlipHorizontally;
             }
 
-            laserGun = new LaserGun(content, (int)X + 15 * (spriteEffects == SpriteEffects.FlipHorizontally ? 1 : 0), (int)Y + 15, 1);
+            int gunX;
+            if (spriteEffects == SpriteEffects.FlipHorizontally)
+                gunX = (int)X;
+            else
+                gunX = (int)X + 8;
+            int gunY = (int)Y + 8;
+
+            laserGun = new LaserGun(content, gunX, gunY, 1, this);
 
             if (enemyDirection == Enemy.EnemyDirection.ToRight)
                 laserGun.PointAt(0, (int)laserGun.Y + laserGun.Height / 2);
@@ -71,6 +91,33 @@ namespace coolgame
             HealthLevel = 1;
 
             Alive = false;
+        }
+
+        public void FixGunPosition()
+        {
+            if (Gun.TextureName == "laserGun2")
+            {
+                if (texture.Name == "turret1")
+                {
+                    Gun.DefaultY = (int)Y + 4;
+                    if (spriteEffects == SpriteEffects.None)
+                        Gun.DefaultX = (int)X;
+                    else
+                        Gun.DefaultX = (int)X - 2;
+                }
+                else if (texture.Name == "turret2")
+                {
+                    Gun.DefaultY = (int)Y + 14;
+                    if (spriteEffects == SpriteEffects.None)
+                    {
+                        Gun.DefaultX = (int)X - 12;
+                    }
+                    else
+                    {
+                        Gun.DefaultX = (int)X + 6;
+                    }
+                }
+            }
         }
 
         public override void Update(float deltaTime)

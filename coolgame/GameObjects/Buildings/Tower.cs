@@ -20,10 +20,36 @@ namespace coolgame
             Height = texture.Height;
             X = basePosition + 200;
             Y = groundLevel - Height;
-            laserGun = new LaserGun(content, (int)X + 15, (int)Y + 15, 3);
+            laserGun = new LaserGun(content, (int)X + 15, (int)Y + 15, 3, this);
             layerDepth = LayerManager.GetLayerDepth(Layer.Buildings);
 
             layerDepth += .01f;
+        }
+
+        public void FixGunPosition()
+        {
+            if (texture.Name == "tower1")
+            {
+                if (spriteEffects == SpriteEffects.None)
+                {
+                    //Gun.DefaultX = (int)X;
+                }
+                else
+                {
+
+                }
+            }
+            else if (texture.Name == "tower2")
+            {
+                if (spriteEffects == SpriteEffects.None)
+                {
+
+                }
+                else
+                {
+
+                }
+            }
         }
 
         public override void Update(float deltaTime)
