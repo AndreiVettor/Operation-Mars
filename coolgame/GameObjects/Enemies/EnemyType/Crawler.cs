@@ -13,7 +13,7 @@ namespace coolgame
         {
             SetTexture("crawler");
             Width = 64;
-            Height = 64;
+            Height = 39;
             EnableAnimation = true;
 
             AnimationSpeed /= 3;
