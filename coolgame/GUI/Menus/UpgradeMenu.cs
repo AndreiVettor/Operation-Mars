@@ -17,7 +17,9 @@ namespace coolgame.GUI.Menus
             AddButton(new GUIButton(Content, guiManager.MediumFont, "  NEXT WAVE  ", new Vector2(270, 290),textPadding));
             AddLabel(new GUILabel(
                 guiManager.BigFont, "Day " + enemySpawner.Wave + " survived",
-                new Vector2(0, 0)));
+                new Vector2(
+                    Width/2 - guiManager.BigFont.MeasureString("Day " + enemySpawner.Wave + " survived").X / 2 - 20, 
+                    0)));
 
             //Lasers
             AddLabel(new GUILabel(guiManager.MediumFont, "Upgrade Lasers", new Vector2(25, 50)));

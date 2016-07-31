@@ -17,7 +17,7 @@ namespace coolgame.GUI.Menus
 
             AddButton(new GUIButton(Content, guiManager.MediumFont, "START GAME", new Vector2(0, 0), textPadding));
             AddButton(new GUIButton(Content, guiManager.MediumFont, "ABOUT THE GAME", new Vector2(0, 60), textPadding));
-            AddButton(new GUIButton(Content, guiManager.MediumFont, "EXIT TO DESKTOP", new Vector2(0, 240), textPadding));
+            AddButton(new GUIButton(Content, guiManager.MediumFont, "EXIT TO DESKTOP", new Vector2(0, 120), textPadding));
 
             TweakButtons(true, true, false,true, 30);
 
