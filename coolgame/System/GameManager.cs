@@ -181,13 +181,23 @@ namespace coolgame
                 case 3:
                     {
                         if (((Forcefield)buildings["forcefield"]).RechargeLevel < 4)
-                            return upgradeCosts[3, ((Forcefield)buildings["forcefield"]).RechargeLevel - 1];
+                        {
+                            if (((Forcefield)buildings["forcefield"]).Activated)
+                                return upgradeCosts[3, ((Forcefield)buildings["forcefield"]).RechargeLevel - 1];
+                            else
+                                return int.MaxValue - 1;
+                        }
                         break;
                     }
                 case 4:
                     {
                         if (((Forcefield)buildings["forcefield"]).StrengthLevel < 4)
-                            return upgradeCosts[4, ((Forcefield)buildings["forcefield"]).StrengthLevel - 1];
+                        {
+                            if (((Forcefield)buildings["forcefield"]).Activated)
+                                return upgradeCosts[3, ((Forcefield)buildings["forcefield"]).StrengthLevel - 1];
+                            else
+                                return int.MaxValue - 1;
+                        }
                         break;
                     }
                 case 5:
@@ -199,13 +209,23 @@ namespace coolgame
                 case 6:
                     {
                         if (((Turret)buildings["leftturret"]).HealthLevel < 4)
-                            return upgradeCosts[6, ((Turret)buildings["leftturret"]).HealthLevel - 1];
+                        {
+                            if (buildings["leftturret"].Alive)
+                                return upgradeCosts[6, ((Turret)buildings["leftturret"]).HealthLevel - 1];
+                            else
+                                return int.MaxValue - 1;
+                        }
                         break;
                     }
                 case 7:
                     {
                         if (((Turret)buildings["rightturret"]).HealthLevel < 4)
-                            return upgradeCosts[6, ((Turret)buildings["rightturret"]).HealthLevel - 1];
+                        {
+                            if (buildings["rightturret"].Alive)
+                                return upgradeCosts[6, ((Turret)buildings["rightturret"]).HealthLevel - 1];
+                            else
+                                return int.MaxValue - 1;
+                        }
                         break;
                     }
                 case 8:
@@ -538,7 +558,7 @@ namespace coolgame
             ResetBuildings(Content);
             spaceCash = 10000;
             guiManager.Restart();
-            spawner.SetWave(1, guiManager);
+            spawner.SetWave(10, guiManager);
             SoundManager.PlayMusic();
         }
 

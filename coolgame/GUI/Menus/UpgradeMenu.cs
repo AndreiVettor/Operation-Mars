@@ -122,6 +122,14 @@ namespace coolgame.GUI.Menus
                 labels[17].SetText("REPAIRED");
             if (labels[18].Text == "0 SC")
                 labels[18].SetText("REPAIRED");
+            if (labels[6].Text == (int.MaxValue - 1).ToString() + " SC")
+                labels[6].SetText("N/A");
+            if (labels[8].Text == (int.MaxValue - 1).ToString() + " SC")
+                labels[8].SetText("N/A");
+            if (labels[9].Text == (int.MaxValue - 1).ToString() + " SC")
+                labels[9].SetText("N/A");
+            if (labels[10].Text == (int.MaxValue - 1).ToString() + " SC")
+                labels[10].SetText("N/A");
         }
 
         public override void Update(Game game, ContentManager Content, GUIManager guiManager, EnemySpawner spawner)
