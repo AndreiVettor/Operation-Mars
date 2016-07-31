@@ -45,7 +45,7 @@ namespace coolgame
 
         public override void InflictDamage(int hitpoints)
         {
-            if(!GameManager.GodMode)
+            if(!GameManager.godMode)
             {
                 base.InflictDamage(hitpoints);
             }

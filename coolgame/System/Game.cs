@@ -124,7 +124,7 @@ namespace coolgame
                     }
                 }
 
-                if (InputManager.KeyPress(Keys.U))
+                if (InputManager.KeyPress(Keys.U) && GameManager.godMode)
                 {
                     if(GameManager.State == GameState.Game && !GameManager.GameOver)
                     {
@@ -141,15 +141,15 @@ namespace coolgame
 
                 if (InputManager.KeyPress(Keys.D))
                 {
-                    if (GameManager.GodMode)
+                    if (GameManager.godMode)
                     {
-                        GameManager.GodMode = false;
+                        GameManager.godMode = false;
                     }
                     else
                     {
-                        GameManager.GodMode = true;
+                        GameManager.godMode = true;
                     }
-                    Debug.Log("God Mode", GameManager.GodMode);
+                    Debug.Log("God Mode", GameManager.godMode);
                 }
 
                 if (InputManager.KeyPress(Keys.R))

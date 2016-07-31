@@ -118,10 +118,14 @@ namespace coolgame.GUI.Menus
                 labels[14].SetText("BUILT");
             if (labels[16].Text == "0 SC")
                 labels[16].SetText("REPAIRED");
+            if (labels[16].Text == int.MaxValue.ToString() + " SC")
+                labels[16].SetText("N/A");
             if (labels[17].Text == "0 SC")
                 labels[17].SetText("REPAIRED");
             if (labels[18].Text == "0 SC")
                 labels[18].SetText("REPAIRED");
+            if (labels[18].Text == int.MaxValue.ToString() + " SC")
+                labels[18].SetText("N/A");
             if (labels[6].Text == (int.MaxValue - 1).ToString() + " SC")
                 labels[6].SetText("N/A");
             if (labels[8].Text == (int.MaxValue - 1).ToString() + " SC")

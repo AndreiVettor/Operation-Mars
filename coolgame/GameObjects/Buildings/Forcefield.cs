@@ -36,10 +36,7 @@ namespace coolgame
             {
                 strengthLevel = value;
 
-                int currentHealth = healthBar.Health;
                 healthBar.MaxHealth = (int)(600 * Math.Pow(1.5f, value - 1));
-                if (value > 1)
-                    healthBar.Health = currentHealth;
 
                 if (value == 3)
                     SetTexture("forcefield2");

@@ -106,12 +106,7 @@ namespace coolgame
             set { startBackground = value; }
         }
 
-        private static bool godMode;
-        public static bool GodMode
-        {
-            get { return godMode; }
-            set { godMode = value; }
-        }
+        public static bool godMode = true;
 
         private static bool frameLimiting;
         public static bool FrameLimiting
@@ -252,11 +247,15 @@ namespace coolgame
                     }
                 case 12:
                     {
-                        return lTurretRepairCost;
+                        if (buildings["leftturret"].Alive)
+                            return lTurretRepairCost;
+                        break;
                     }
                 case 13:
                     {
-                        return rTurretRepairCost;
+                        if (buildings["rightturret"].Alive)
+                            return rTurretRepairCost;
+                        break;
                     }
                 default:
                     return 0;
@@ -267,7 +266,12 @@ namespace coolgame
 
         public static void ApplyUpgrade(int id)
         {
-            int cost = GetUpgradeCost(id);
+            int cost;
+
+            if (godMode)
+                cost = 0;
+            else
+                cost = GetUpgradeCost(id);
 
             if (cost > spaceCash)
                 return;
