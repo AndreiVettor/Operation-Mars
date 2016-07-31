@@ -30,7 +30,7 @@ namespace coolgame.GUI.Menus
                 new Vector2(
                     Game.GAME_WIDTH / 2 - guiManager.HugeFont.MeasureString("GAME OVER").X/2,
                     Game.GAME_HEIGHT/2 - 100)));
-            TweakButtons(true, true, false, spacing);
+            TweakButtons(true, true, false,true, spacing);
 
             int totalHeight = 0;
             foreach(GUIButton button in buttons)

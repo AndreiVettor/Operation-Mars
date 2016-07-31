@@ -9,10 +9,10 @@ namespace coolgame.GUI.Menus
         public InformationWindow(ContentManager Content, string textureName, GUIManager guiManager) : base(Content, textureName)
         {
             borderPadding = new Vector2(0, 0);
-            textPadding = new Vector2(18, 10);
+            textPadding = new Vector2(13, 5);
             Center();
-            AddButton(new GUIButton(Content, guiManager.MediumFont, "x", new Vector2(566, 7),textPadding));
-            TweakButtons(false, true, false, 0);
+            AddButton(new GUIButton(Content, guiManager.SmallFont, "Close", new Vector2(Width/2 - 30, Height - 55),textPadding));
+            TweakButtons(false, true, false, true,0);
             SecondaryColor = Color.DarkSlateBlue;
         }
 

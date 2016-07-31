@@ -20,7 +20,7 @@ namespace coolgame.GUI.Menus
             AddButton(new GUIButton(Content, guiManager.MediumFont, "BACK TO START", new Vector2(0, 180), textPadding));
             AddButton(new GUIButton(Content, guiManager.MediumFont, "EXIT GAME",     new Vector2(0, 240), textPadding));
 
-            TweakButtons(true, true, true, 20);
+            TweakButtons(true, true, true, true, 20);
 
             Alpha = 180;
             BackgroundColor = CustomColor.DarkBlue;

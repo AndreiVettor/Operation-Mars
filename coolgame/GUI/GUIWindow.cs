@@ -110,7 +110,7 @@ namespace coolgame.GUI
 
         }
 
-        protected void TweakButtons(bool centerButtons, bool centerText, bool resizeMenu, int spacing)
+        protected void TweakButtons(bool centerButtons, bool centerText, bool resizeMenu,bool resizeButtons, int spacing)
         {
             int maxWidth = 0;
 
@@ -134,7 +134,10 @@ namespace coolgame.GUI
                 {
                     button.TextCentered = true;
                 }
-                button.Width = maxWidth;
+                if(resizeButtons)
+                {
+                    button.Width = maxWidth;
+                }
             }
 
             if (centerButtons)

@@ -13,13 +13,13 @@ namespace coolgame.GUI.Menus
             textPadding = new Vector2(30, 7);
             borderPadding = new Vector2(20, 20);
             X = 700;
-            Y = 350;
+            Y = 400;
 
             AddButton(new GUIButton(Content, guiManager.MediumFont, "START GAME", new Vector2(0, 0), textPadding));
             AddButton(new GUIButton(Content, guiManager.MediumFont, "ABOUT THE GAME", new Vector2(0, 60), textPadding));
             AddButton(new GUIButton(Content, guiManager.MediumFont, "EXIT TO DESKTOP", new Vector2(0, 240), textPadding));
 
-            TweakButtons(true, true, false, 20);
+            TweakButtons(true, true, false,true, 30);
 
             Alpha = 0;
             BackgroundColor = CustomColor.DarkBlue;
