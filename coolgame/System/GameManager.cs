@@ -561,7 +561,7 @@ namespace coolgame
             SoundManager.PlayMusic();
         }
 
-        public static void Update(float deltaTime, ContentManager Content, GUIManager guiManager)
+        public static void Update(float deltaTime, ContentManager Content, GUIManager guiManager, EnemySpawner enemySpawner)
         {
             if (resumingGame)
             {
@@ -582,7 +582,7 @@ namespace coolgame
             {
                 if (!guiManager.WindowOpen(typeof(GameOverWindow)))
                 {
-                    guiManager.AddWindow(new GameOverWindow(Content, guiManager));
+                    guiManager.AddWindow(new GameOverWindow(Content, guiManager, enemySpawner));
                     guiManager.DisplayMessage("GAME OVER!", 0);
                 }
             }

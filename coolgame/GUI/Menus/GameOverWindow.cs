@@ -11,7 +11,7 @@ namespace coolgame.GUI.Menus
 {
     class GameOverWindow : GUIWindow
     {
-        public GameOverWindow(ContentManager Content, GUIManager guiManager) : base(Content)
+        public GameOverWindow(ContentManager Content, GUIManager guiManager, EnemySpawner enemySpawner) : base(Content)
         {
             Width = Game.GAME_WIDTH;
             Height = Game.GAME_HEIGHT;
@@ -31,6 +31,14 @@ namespace coolgame.GUI.Menus
                     Game.GAME_WIDTH / 2 - guiManager.HugeFont.MeasureString("GAME OVER").X/2,
                     Game.GAME_HEIGHT/2 - 100)));
             TweakButtons(true, true, false,true, spacing);
+
+            AddLabel(new GUILabel(
+                guiManager.MediumFont,
+                "Days Survived: " + enemySpawner.Wave,
+                new Vector2(
+                    Game.GAME_WIDTH / 2 - guiManager.MediumFont.MeasureString("Days Survived: " + enemySpawner.Wave).X / 2,
+                    Game.GAME_HEIGHT / 2 - 40)));
+            TweakButtons(true, true, false, true, spacing);
 
             int totalHeight = 0;
             foreach(GUIButton button in buttons)
