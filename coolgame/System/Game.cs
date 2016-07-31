@@ -133,12 +133,6 @@ namespace coolgame
                     }
                 }
 
-                if (InputManager.KeyPress(Keys.P))
-                {
-                    GameManager.TogglePause();
-                    Debug.Log("Toggled Game Pause");
-                }
-
                 if (InputManager.KeyPress(Keys.D))
                 {
                     GameManager.godMode++;

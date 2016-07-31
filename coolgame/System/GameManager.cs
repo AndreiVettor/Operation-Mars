@@ -55,6 +55,9 @@ namespace coolgame
         public static int projectilesShot;
         public static int landedHits;
 
+        private static float resumeGameDelay;
+        private static bool resumingGame = false;
+
         private static GameState state = GameState.Game;
         public static GameState State
         {
@@ -65,21 +68,24 @@ namespace coolgame
                 {
                     case GameState.Game:
                         {
-                            //SoundManager.PlayMusic();
+                            resumeGameDelay = 0;
+                            resumingGame = true;
                             break;
                         }
                     case GameState.Paused:
                         {
-                            //SoundManager.PauseMusic();
+                            state = value;
+                            resumingGame = false;
                             break;
                         }
                     case GameState.StartMenu:
                         {
                             SoundManager.PlayMenuMusic();
+                            state = value;
+                            resumingGame = false;
                             break;
                         }
                 }
-                state = value;
             }
         }
 
@@ -472,22 +478,6 @@ namespace coolgame
 
         #endregion
 
-        public static void TogglePause()
-        {
-            if (state == GameState.Paused)
-            {
-                state = GameState.Game;
-                SoundManager.ResumeMusic();
-
-            }
-            else if (state == GameState.Game)
-            {
-                state = GameState.Paused;
-                SoundManager.PauseMusic();
-            }
-            Debug.Log("Toggled Pause");
-        }
-
         public static void SetFrameLimiting(Game game, bool value)
         {
             frameLimiting = value;
@@ -573,6 +563,16 @@ namespace coolgame
 
         public static void Update(float deltaTime, ContentManager Content, GUIManager guiManager)
         {
+            if (resumingGame)
+            {
+                resumeGameDelay += deltaTime;
+                if (resumeGameDelay >= 100)
+                {
+                    resumeGameDelay = 0;
+                    state = GameState.Game;
+                }
+            }
+
             if(state == GameState.Game)
             {
                 UpdateEntities(deltaTime);
