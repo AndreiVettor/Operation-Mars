@@ -19,6 +19,8 @@ namespace coolgame
     {
         #region variables
 
+        public static int accuracyBonus = 15;
+
         private static Random random = new Random();
         public static Random RNG
         {

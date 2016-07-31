@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace coolgame.GUI.Menus
 {
@@ -9,10 +10,17 @@ namespace coolgame.GUI.Menus
         public UpgradeMenu(ContentManager Content, GUIManager guiManager, EnemySpawner enemySpawner) : base(Content)
         {
             Width = 500;
-            Height = 410;
+            Height = 430;
             textPadding = new Vector2(15, 15);
             borderPadding = new Vector2(30, 30);
             Center();
+
+            float accuracy = (float)GameManager.landedHits / GameManager.projectilesShot * 100;
+            int bonus = Math.Max(0, (int)accuracy - (100 - GameManager.accuracyBonus));
+            if(bonus < GameManager.accuracyBonus && bonus > 0)
+            {
+                GameManager.SpaceCash += bonus;
+            }
 
             AddButton(new GUIButton(Content, guiManager.MediumFont, "  NEXT WAVE  ", new Vector2(270, 290),textPadding));
             AddLabel(new GUILabel(
@@ -69,13 +77,13 @@ namespace coolgame.GUI.Menus
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(11) + " SC", new Vector2(325, 255)));
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(13) + " SC", new Vector2(390, 255)));
 
+            AddLabel(new GUILabel(guiManager.MediumFont, "Your accuracy was " + accuracy.ToString("0.0") + "%, " + bonus + " SC bonus!", new Vector2(45, 370)));
+
             Alpha = 220;
             BackgroundColor = CustomColor.DarkBlue;
             SecondaryColor = CustomColor.LightBlue;
 
             UpdateCosts();
-
-            AddLabel(new GUILabel(guiManager.SmallFont, "Accuracy: " + (float)GameManager.landedHits / GameManager.projectilesShot + "%", new Vector2(10, 355)));
         }
 
         private void UpdateCosts()
