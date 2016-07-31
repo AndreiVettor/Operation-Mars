@@ -166,7 +166,7 @@ namespace coolgame
 
                         if (spawnedNow)
                         {
-                            Debug.Log("Time since last spawn: " + (timeSinceLastSpawn / 1000).ToString());
+                            //Debug.Log("Time since last spawn: " + (timeSinceLastSpawn / 1000).ToString());
                             enemiesSpawned++;
                             timeSinceLastSpawn = 0;
                             forceSpawn = false;
