@@ -50,7 +50,7 @@ namespace coolgame
         {
             SetTexture("forceField1");
             X = Game.GAME_WIDTH / 2 - Width / 2;
-            Y = groundLevel - Height + 5;
+            Y = groundLevel - Height;
 
             healthBar.ColorScheme = HealthBar.HealthBarColoring.Forcefield;
 
