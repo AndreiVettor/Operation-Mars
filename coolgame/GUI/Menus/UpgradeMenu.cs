@@ -20,6 +20,10 @@ namespace coolgame.GUI.Menus
             if(bonus <= GameManager.accuracyBonus && bonus > 0)
             {
                 GameManager.SpaceCash += bonus;
+                if(bonus == GameManager.accuracyBonus)
+                {
+                    GameManager.SpaceCash += 10;
+                }
             }
 
             AddButton(new GUIButton(Content, guiManager.MediumFont, "  NEXT WAVE  ", new Vector2(270, 290),textPadding));
