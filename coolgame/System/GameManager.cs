@@ -106,7 +106,7 @@ namespace coolgame
             set { startBackground = value; }
         }
 
-        public static bool godMode = true;
+        public static int godMode = 0;
 
         private static bool frameLimiting;
         public static bool FrameLimiting
@@ -268,7 +268,7 @@ namespace coolgame
         {
             int cost;
 
-            if (godMode)
+            if (godMode > 0)
                 cost = 0;
             else
                 cost = GetUpgradeCost(id);

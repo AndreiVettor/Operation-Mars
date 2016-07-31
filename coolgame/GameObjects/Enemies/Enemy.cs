@@ -48,12 +48,15 @@ namespace coolgame
 
         public override void InflictDamage(int hitpoints)
         {
-            base.InflictDamage(hitpoints);
+            if (GameManager.godMode == 3)
+                base.InflictDamage(int.MaxValue);
+            else
+                base.InflictDamage(hitpoints);
+
             if (healthBar.Health <= 0)
             {
                 GameManager.SpaceCash += spaceCash;
             }
-
         }
     }
 }

@@ -26,6 +26,8 @@ namespace coolgame
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = GAME_WIDTH;
             graphics.PreferredBackBufferHeight = GAME_HEIGHT;
+            graphics.ToggleFullScreen();
+            //Window.IsBorderless = true;
 
             GameManager.SetFrameLimiting(this, true);
             GameManager.SetVSync(graphics, false);
@@ -124,7 +126,7 @@ namespace coolgame
                     }
                 }
 
-                if (InputManager.KeyPress(Keys.U) && GameManager.godMode)
+                if (InputManager.KeyPress(Keys.U) && GameManager.godMode > 0)
                 {
                     if(GameManager.State == GameState.Game && !GameManager.GameOver)
                     {
@@ -141,15 +143,45 @@ namespace coolgame
 
                 if (InputManager.KeyPress(Keys.D))
                 {
-                    if (GameManager.godMode)
+                    GameManager.godMode++;
+                    if (GameManager.godMode == 4)
+                        GameManager.godMode = 0;
+
+                    switch (GameManager.godMode)
                     {
-                        GameManager.godMode = false;
+                        case 0:
+                            {
+                                Debug.Log("Normal mode");
+                                break;
+                            }
+                        case 1:
+                            {
+                                Debug.Log("Demigod mode");
+                                break;
+                            }
+                        case 2:
+                            {
+                                Debug.Log("God mode");
+                                break;
+                            }
+                        case 3:
+                            {
+                                Debug.Log("Chuck Norris mode");
+                                break;
+                            }
                     }
-                    else
-                    {
-                        GameManager.godMode = true;
-                    }
-                    Debug.Log("God Mode", GameManager.godMode);
+                }
+
+                if (InputManager.KeyPress(Keys.Right) && GameManager.godMode > 0)
+                {
+                    enemySpawner.SetWave(enemySpawner.Wave + 1, guiManager);
+                    Debug.Log("Wave set to " + enemySpawner.Wave.ToString());
+                }
+
+                if (InputManager.KeyPress(Keys.Left) && GameManager.godMode > 0)
+                {
+                    enemySpawner.SetWave(enemySpawner.Wave - 1, guiManager);
+                    Debug.Log("Wave set to " + enemySpawner.Wave.ToString());
                 }
 
                 if (InputManager.KeyPress(Keys.R))
