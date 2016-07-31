@@ -103,43 +103,43 @@ namespace coolgame
                         spawned[0]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[1] * totalSpawnChance[wave - 1] / 6) && spawned[1] < spawnTable[1, wave - 1])
+                    else if (Roll(spawnChances[1] * totalSpawnChance[wave - 1] / 6) && spawned[1] < spawnTable[1, wave - 1])
                     {
                         SpawnEnemy("steelroach");
                         spawned[1]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[2] * totalSpawnChance[wave - 1] / 6) && spawned[2] < spawnTable[2, wave - 1])
+                    else if (Roll(spawnChances[2] * totalSpawnChance[wave - 1] / 6) && spawned[2] < spawnTable[2, wave - 1])
                     {
                         SpawnEnemy("reptilian");
                         spawned[2]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[6] * totalSpawnChance[wave - 1] / 6) && spawned[6] < spawnTable[6, wave - 1])
+                    else if(Roll(spawnChances[6] * totalSpawnChance[wave - 1] / 6) && spawned[6] < spawnTable[6, wave - 1])
                     {
                         SpawnEnemy("reptiliansaucer");
                         spawned[6]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[5] * totalSpawnChance[wave - 1] / 6) && spawned[5] < spawnTable[5, wave - 1])
+                    else if(Roll(spawnChances[5] * totalSpawnChance[wave - 1] / 6) && spawned[5] < spawnTable[5, wave - 1])
                     {
                         SpawnEnemy("demolitionroverunit");
                         spawned[5]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[3] * totalSpawnChance[wave - 1] / 6) && spawned[3] < spawnTable[3, wave - 1])
+                    else if(Roll(spawnChances[3] * totalSpawnChance[wave - 1] / 6) && spawned[3] < spawnTable[3, wave - 1])
                     {
                         SpawnEnemy("mwat");
                         spawned[3]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[4] * totalSpawnChance[wave - 1] / 6) && spawned[4] < spawnTable[4, wave - 1])
+                    else if(Roll(spawnChances[4] * totalSpawnChance[wave - 1] / 6) && spawned[4] < spawnTable[4, wave - 1])
                     {
                         SpawnEnemy("murderbot");
                         spawned[4]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[7] * totalSpawnChance[wave - 1] / 6) && spawned[7] < spawnTable[7, wave - 1])
+                    else if(Roll(spawnChances[7] * totalSpawnChance[wave - 1] / 6) && spawned[7] < spawnTable[7, wave - 1])
                     {
                         SpawnEnemy("tarantularsaucer");
                         spawned[7]++;
