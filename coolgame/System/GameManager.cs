@@ -133,7 +133,7 @@ namespace coolgame
 
         public static int[] buildCosts = new int[] {
             100, //forcefield
-            65, //turret
+            45, //turret
         };
 
         public static int lTurretRepairCost
