@@ -108,7 +108,7 @@ namespace coolgame
                     if (timeSinceLastSpawn / 1000 > 1 / totalSpawnChance[wave - 1] * 2f)
                         forceSpawn = true;
 
-                    if (timeSinceLastSpawn / 1000 < 1 / totalSpawnChance[wave - 1] * 0.33f)
+                    if (timeSinceLastSpawn / 1000 < 1 / totalSpawnChance[wave - 1] * 0.5f)
                         return;
 
                     while (forceSpawn || triedToSpawn)
