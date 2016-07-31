@@ -32,8 +32,21 @@ namespace coolgame.GUI
             set { borderColor = value; }
         }
 
+        private List<string> textLines;
+
+        private int lineHeight;
+
+        private int lineSpacing;
+        public int LineSpacing
+        {
+            get { return lineSpacing; }
+            set { lineSpacing = value; }
+        }
+
         public GUITooltip (ContentManager Content, SpriteFont textFont) : base(Content)
         {
+            textLines = new List<string>();
+            lineSpacing = 5;
             font = textFont;
             TextCentered = true;
             borderSize = 2;
@@ -48,21 +61,26 @@ namespace coolgame.GUI
             BackgroundAlpha = 200;
         }
 
-        public override void SetText(string text)
+        public void SetText(string text, int lines)
         {
-                this.text = text;
+            for ( int i = 0; i < textLines.Count; i++)
+            {
+                textLines.Add(text.Substring(i, text.IndexOf('*')));
+            }
+            this.text = text;
+                
+            Width = (int)font.MeasureString(text).X + (int)textPadding.X * 2 + borderSize * 2;
+            Height = (int)font.MeasureString(text).Y*lines + (int)textPadding.Y * 2 + borderSize * 2;
+            lineHeight = (int)font.MeasureString(text).Y;
 
-                Width = (int)font.MeasureString(text).X + (int)textPadding.X * 2 + borderSize * 2;
-                Height = (int)font.MeasureString(text).Y + (int)textPadding.Y * 2 + borderSize * 2;
-
-                if (textCentered)
-                {
-                    textPosition = new Vector2(Position.X + Width / 2 - font.MeasureString(text).X / 2, Position.Y + textPadding.Y + borderSize);
-                }
-                else
-                {
-                    textPosition = new Vector2(Position.X + textPadding.X + borderSize, Position.Y + textPadding.Y + borderSize);
-                }
+            if (textCentered)
+            {
+                textPosition = new Vector2(Position.X + Width / 2 - font.MeasureString(text).X / 2, Position.Y + textPadding.Y + borderSize);
+            }
+            else
+            {
+                textPosition = new Vector2(Position.X + textPadding.X + borderSize, Position.Y + textPadding.Y + borderSize);
+            }
         }
 
         public void Update()
@@ -91,7 +109,10 @@ namespace coolgame.GUI
                             rectangle.Height - borderSize*2),
                         Color.FromNonPremultiplied(backgroundColor.R, backgroundColor.G, backgroundColor.B, (int)BackgroundAlpha));
                 }
-                spriteBatch.DrawString(font, Text, textPosition, Color.FromNonPremultiplied(textColor.R, textColor.G, textColor.B, (int)TextAlpha));
+                for(int i = 0; i < textLines.Count; i++) 
+                {
+                    spriteBatch.DrawString(font, textLines[i], textPosition + new Vector2(0, i*(lineHeight + lineSpacing)), Color.FromNonPremultiplied(textColor.R, textColor.G, textColor.B, (int)TextAlpha));
+                }
             }
         }
     }
