@@ -26,8 +26,6 @@ namespace coolgame
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = GAME_WIDTH;
             graphics.PreferredBackBufferHeight = GAME_HEIGHT;
-            graphics.ToggleFullScreen();
-            //Window.IsBorderless = true;
 
             GameManager.SetFrameLimiting(this, true);
             GameManager.SetVSync(graphics, false);
