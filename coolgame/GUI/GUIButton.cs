@@ -77,6 +77,14 @@ namespace coolgame.GUI
             set { hoverInformation = value; }
         }
 
+        protected int hoverLines;
+        public int HoverLines
+        {
+            get { return hoverLines; }
+            set { hoverLines = value; }
+        }
+
+
         private int colorChange = 30;
 
         public GUIButton(ContentManager Content, SpriteFont textFont, string text) : base(Content)
@@ -110,11 +118,12 @@ namespace coolgame.GUI
             Initialize(null, "");
         }
 
-        public GUIButton(ContentManager Content, string textureName, Vector2 position, string hoverInformation) : base(Content, textureName)
+        public GUIButton(ContentManager Content, string textureName, Vector2 position, string hoverInformation, int hoverLines) : base(Content, textureName)
         {
             Position = position;
             Initialize(null, "");
             this.hoverInformation = hoverInformation;
+            this.hoverLines = hoverLines;
         }
 
         public void Initialize(SpriteFont textFont, string text)

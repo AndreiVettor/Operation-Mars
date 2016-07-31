@@ -43,10 +43,17 @@ namespace coolgame.GUI
             set { lineSpacing = value; }
         }
 
+        private int currentIndex;
+        private int lastIndex;
+        private string nextString;
+
         public GUITooltip (ContentManager Content, SpriteFont textFont) : base(Content)
         {
+            currentIndex = 0;
+            nextString = "";
             textLines = new List<string>();
             lineSpacing = 5;
+
             font = textFont;
             TextCentered = true;
             borderSize = 2;
@@ -61,21 +68,30 @@ namespace coolgame.GUI
             BackgroundAlpha = 200;
         }
 
-        public void SetText(string text, int lines)
+        public void SetText(string text, int lineNumber)
         {
-            for ( int i = 0; i < textLines.Count; i++)
+            textLines.Clear();
+            currentIndex = 0;
+            nextString = text.Substring(currentIndex, text.Length);
+            for ( int i = 0; i < lineNumber; i++)
             {
-                textLines.Add(text.Substring(i, text.IndexOf('*')));
+                lastIndex = currentIndex;
+                currentIndex = nextString.IndexOf("*");
+                if(currentIndex != text.Length - 1)
+                {
+                    nextString = text.Substring(currentIndex, text.Length - 1 - currentIndex);
+                }
+                textLines.Add(text.Substring(lastIndex, currentIndex));
             }
             this.text = text;
                 
-            Width = (int)font.MeasureString(text).X + (int)textPadding.X * 2 + borderSize * 2;
-            Height = (int)font.MeasureString(text).Y*lines + (int)textPadding.Y * 2 + borderSize * 2;
+            Width = (int)font.MeasureString(textLines[0]).X + (int)textPadding.X * 2 + borderSize * 2;
+            Height = (int)font.MeasureString(text).Y * lineNumber + (int)textPadding.Y * 2 + borderSize * 2;
             lineHeight = (int)font.MeasureString(text).Y;
 
             if (textCentered)
             {
-                textPosition = new Vector2(Position.X + Width / 2 - font.MeasureString(text).X / 2, Position.Y + textPadding.Y + borderSize);
+                textPosition = new Vector2(Position.X + Width / 2 - font.MeasureString(textLines[0]).X / 2, Position.Y + textPadding.Y + borderSize);
             }
             else
             {

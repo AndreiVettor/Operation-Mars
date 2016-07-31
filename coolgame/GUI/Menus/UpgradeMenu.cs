@@ -24,9 +24,9 @@ namespace coolgame.GUI.Menus
             //Lasers
             AddLabel(new GUILabel(guiManager.MediumFont, "Upgrade Lasers", new Vector2(25, 50)));
 
-            AddButton(new GUIButton(Content, "up_laserDamage", new Vector2(0, 80),"Upgrade Laser Damage"));
-            AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(65, 80), "Upgrade Laser Speed"));
-            AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(130, 80), "Upgrade Laser Spread"));
+            AddButton(new GUIButton(Content, "up_laserDamage", new Vector2(0, 80),"Upgrade Laser Damage*",1));
+            AddButton(new GUIButton(Content, "up_laserSpeed", new Vector2(65, 80), "Upgrade Laser Speed*", 1));
+            AddButton(new GUIButton(Content, "up_laserSpread", new Vector2(130, 80), "Upgrade Laser Spread*!May reduce your accuracy!*", 2));
 
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(0) + " SC", new Vector2(5, 135)));
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(1) + " SC", new Vector2(70, 135)));
@@ -35,11 +35,11 @@ namespace coolgame.GUI.Menus
             //Upgrade Buildings
             AddLabel(new GUILabel(guiManager.MediumFont, "Upgrade Buildings", new Vector2(15, 170)));
 
-            AddButton(new GUIButton(Content, "up_turret", new Vector2(0, 200), "Upgrade Left Turret Health"));
-            AddButton(new GUIButton(Content, "up_base", new Vector2(65, 200), "Upgrade Base Health"));
-            AddButton(new GUIButton(Content, "up_turret", new Vector2(130, 200), "Upgrade Right Turret Health"));
-            AddButton(new GUIButton(Content, "up_forceField", new Vector2(40, 275), "Upgrade Force Field Strength"));
-            AddButton(new GUIButton(Content, "up_forceFieldRegen", new Vector2(105, 275), "Upgrade Force Field Regeneration"));
+            AddButton(new GUIButton(Content, "up_turret", new Vector2(0, 200), "Upgrade Left Turret Health*", 1));
+            AddButton(new GUIButton(Content, "up_base", new Vector2(65, 200), "Upgrade Base Health*", 1));
+            AddButton(new GUIButton(Content, "up_turret", new Vector2(130, 200), "Upgrade Right Turret Health*", 1));
+            AddButton(new GUIButton(Content, "up_forceField", new Vector2(40, 275), "Upgrade Force Field Strength*", 1));
+            AddButton(new GUIButton(Content, "up_forceFieldRegen", new Vector2(105, 275), "Upgrade Force Field Regeneration*", 1));
 
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(7) + " SC", new Vector2(5, 255)));
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(5) + " SC", new Vector2(70, 255)));
@@ -50,9 +50,9 @@ namespace coolgame.GUI.Menus
             //Build
             AddLabel(new GUILabel(guiManager.MediumFont, "Build", new Vector2(330, 50)));
 
-            AddButton(new GUIButton(Content, "build_turret", new Vector2(260, 80), "Build Left Turret"));
-            AddButton(new GUIButton(Content, "build_forceField", new Vector2(325, 80), "Build Force Field Generator"));
-            AddButton(new GUIButton(Content, "build_turret", new Vector2(390, 80), "Build Right Turret"));
+            AddButton(new GUIButton(Content, "build_turret", new Vector2(260, 80), "Build Left Turret*", 1));
+            AddButton(new GUIButton(Content, "build_forceField", new Vector2(325, 80), "Build Force Field Generator*", 1));
+            AddButton(new GUIButton(Content, "build_turret", new Vector2(390, 80), "Build Right Turret*", 1));
 
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(9) + " SC", new Vector2(265, 135)));
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(8) + " SC", new Vector2(330, 135)));
@@ -61,9 +61,9 @@ namespace coolgame.GUI.Menus
             //Repair
             AddLabel(new GUILabel(guiManager.MediumFont, "Repair", new Vector2(320, 170)));
 
-            AddButton(new GUIButton(Content, "repair_turret", new Vector2(255, 200), "Repair Left Turret"));
-            AddButton(new GUIButton(Content, "repair_base", new Vector2(320, 200), "Repair Base"));
-            AddButton(new GUIButton(Content, "repair_turret", new Vector2(385, 200), "Repair Right Turret"));
+            AddButton(new GUIButton(Content, "repair_turret", new Vector2(255, 200), "Repair Left Turret*", 1));
+            AddButton(new GUIButton(Content, "repair_base", new Vector2(320, 200), "Repair Base*", 1));
+            AddButton(new GUIButton(Content, "repair_turret", new Vector2(385, 200), "Repair Right Turret*", 1));
 
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(12) + " SC", new Vector2(260, 255)));
             AddLabel(new GUILabel(guiManager.SmallFont, GameManager.GetUpgradeCost(11) + " SC", new Vector2(325, 255)));

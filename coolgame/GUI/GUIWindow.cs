@@ -159,7 +159,7 @@ namespace coolgame.GUI
                 {
                     if (button.HoverInformation != "")
                     {
-                        guiManager.ToolTip.SetText(button.HoverInformation);
+                        guiManager.ToolTip.SetText(button.HoverInformation,button.HoverLines);
                         guiManager.ToolTip.Visible = true;
                     }
                 }
