@@ -12,20 +12,7 @@ namespace coolgame
     public class EnemySpawner
     {
         private const float SPAWN_CYCLE = 1000f / 6;
-        private const float WAVE_DELAY = 2000f;
-
-        //needs tweaking
-        //private float[,] spawnTable = new float[,]
-        //{
-        //    { .055f,.065f,.065f,.075f,.045f,    0,   0,    0,     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .2f, 0 }, //crawler
-        //    {     0,    0,.010f,.015f,.030f,.085f, .1f,    0,     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .2f, 0 },  //steelroach
-        //    {     0,    0,    0,    0,    0, .07f, .1f, .13f,     0, .125f, .125f, .125f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .175f, .2f, 0 }, //reptilian
-        //    {     0,    0,    0,    0,    0,    0,   0,    0, .075f, .075f, 0, .075f, .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .15f, .175f, .2f, 0 }, //mwat
-        //    {     0,    0,    0,    0,    0,    0,   0,    0,     0, 0, .035f, .04f, 0, .05f, .07f, .1f, .1f, 0, .1f, .11f, .12f, 0, 0, 0, .13f, .14f, .145f, .15f, .155f, 0 }, //murderbot
-        //    {     0,    0,    0,    0,    0,    0,   0,    0,     0, 0, 0, 0, .065f, .075f, .085f, 0, .1f, 0, 0, 0, .115f, .14f, 0, 0, 0, .145f, .15f, .16f, .175f, 0}, //dru
-        //    {     0,    0,    0,    0,    0,    0,   0,    0,     0, 0, 0, 0, 0, 0, 0, 0, 0, .1f, .1f, .115f, .115f, .13f, .13f, .135f, .135f, .14f, .145f, .15f, .16f, 0 }, //saucer
-        //    {     0,    0,    0,    0,    0,    0,   0,    0,     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .025f, .035f, .045f, .055f, .065f, .075f, .085f, .1f } //saucer2
-        //};
+        private const float WAVE_DELAY = 0;
 
         private int[,] spawnTable = new int[,]
         {
@@ -42,7 +29,8 @@ namespace coolgame
         private float[] spawnChances = new float[8];
         private int[] spawned = new int[8];
 
-        private float totalSpawnChance = 0.33f / 6;
+        private float[] totalSpawnChance = new float[]
+        { 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f};
 
         private float spawnTime;
         private float waveDelayTime, waveDelayTimeFin;
@@ -108,49 +96,49 @@ namespace coolgame
                 {
                     spawnTime = 0;
 
-                    if (Roll(spawnChances[0] * totalSpawnChance) && spawned[0] < spawnTable[0, wave - 1])
+                    if (Roll(spawnChances[0] * totalSpawnChance[wave - 1] / 6) && spawned[0] < spawnTable[0, wave - 1])
                     {
                         SpawnEnemy("crawler");
                         spawned[0]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[1] * totalSpawnChance) && spawned[1] < spawnTable[1, wave - 1])
+                    if (Roll(spawnChances[1] * totalSpawnChance[wave - 1] / 6) && spawned[1] < spawnTable[1, wave - 1])
                     {
                         SpawnEnemy("steelroach");
                         spawned[1]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[2] * totalSpawnChance) && spawned[2] < spawnTable[2, wave - 1])
+                    if (Roll(spawnChances[2] * totalSpawnChance[wave - 1] / 6) && spawned[2] < spawnTable[2, wave - 1])
                     {
                         SpawnEnemy("reptilian");
                         spawned[2]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[6] * totalSpawnChance) && spawned[6] < spawnTable[6, wave - 1])
+                    if (Roll(spawnChances[6] * totalSpawnChance[wave - 1] / 6) && spawned[6] < spawnTable[6, wave - 1])
                     {
                         SpawnEnemy("reptiliansaucer");
                         spawned[6]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[5] * totalSpawnChance) && spawned[5] < spawnTable[5, wave - 1])
+                    if (Roll(spawnChances[5] * totalSpawnChance[wave - 1] / 6) && spawned[5] < spawnTable[5, wave - 1])
                     {
                         SpawnEnemy("demolitionroverunit");
                         spawned[5]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[3] * totalSpawnChance) && spawned[3] < spawnTable[3, wave - 1])
+                    if (Roll(spawnChances[3] * totalSpawnChance[wave - 1] / 6) && spawned[3] < spawnTable[3, wave - 1])
                     {
                         SpawnEnemy("mwat");
                         spawned[3]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[4] * totalSpawnChance) && spawned[4] < spawnTable[4, wave - 1])
+                    if (Roll(spawnChances[4] * totalSpawnChance[wave - 1] / 6) && spawned[4] < spawnTable[4, wave - 1])
                     {
                         SpawnEnemy("murderbot");
                         spawned[4]++;
                         enemiesSpawned++;
                     }
-                    if (Roll(spawnChances[7] * totalSpawnChance) && spawned[7] < spawnTable[7, wave - 1])
+                    if (Roll(spawnChances[7] * totalSpawnChance[wave - 1] / 6) && spawned[7] < spawnTable[7, wave - 1])
                     {
                         SpawnEnemy("tarantularsaucer");
                         spawned[7]++;
