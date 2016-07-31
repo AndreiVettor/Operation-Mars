@@ -15,14 +15,16 @@ namespace coolgame
             Width = 64;
             Height = 64;
             EnableAnimation = true;
-            healthBar.MaxHealth = 20;
+
             AnimationSpeed /= 3;
-            movingSpeed = 5.3f;
-            attackSpeed = 1f;
             attackSound = "crawlerhit";
             hitSound = "crawlerhit";
-            attackPower = 10;
             spaceCash = 1;
+
+            healthBar.MaxHealth = 18;
+            movingSpeed = 6f;
+            attackPower = 8;
+            attackSpeed = 1f;
         }
 
         public override void InflictDamage(int hitpoints)
