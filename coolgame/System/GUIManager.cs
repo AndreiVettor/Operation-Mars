@@ -143,13 +143,9 @@ namespace coolgame.GUI
                 }
             }
 
-            for (int i = 0; i < windows.Count; i++)
+            windows.RemoveAll(x => x.Disabled == true);
+            for (int i = windows.Count - 1; i >= 0; i--)
             {
-                if (windows[i].Disabled)
-                {
-                    windows.Remove(windows[i]);
-                    continue;
-                }
                 windows[i].Update(game, Content, guiManager, spawner);
             }
         }
