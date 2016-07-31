@@ -805,3 +805,15 @@
 /processorParam:Quality=Best
 /build:Runaway-Technology.mp3
 
+#begin button1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:button1.wav
+
+#begin button2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:button2.wav
+

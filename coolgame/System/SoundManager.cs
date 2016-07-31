@@ -81,6 +81,10 @@ namespace coolgame
             AddSong(Content.Load<Song>("Restricted-Zone"));
             AddSong(Content.Load<Song>("Runaway-Technology"));
             menuMusic = Content.Load<Song>("mainMenu");
+
+            AddClip(Content.Load<SoundEffect>("button1"), "button1");
+            AddClip(Content.Load<SoundEffect>("button2"), "button2");
+
             AddClip(Content.Load<SoundEffect>("towerlaser"), "enemylaser");
             AddClip(Content.Load<SoundEffect>("towerlaser2"), "laser");
             AddClip(Content.Load<SoundEffect>("crawlerhit"), "crawlerhit");

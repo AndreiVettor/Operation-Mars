@@ -148,6 +148,7 @@ namespace coolgame.GUI
 
             if (InputManager.MouseIntersects(Rectangle) && InputManager.LeftClick) {
                 Pressed = true;
+                SoundManager.PlayClip("button2");
             }
 
             //Determine if held
