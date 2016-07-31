@@ -153,7 +153,7 @@ namespace coolgame
 
         public static int baseRepairCost
         {
-            get { return (int)(buildings["base"].Damage * 100); }
+            get { return (int)(buildings["base"].Damage * 40); }
         }
 
         public static int GetUpgradeCost(int id)
@@ -556,9 +556,9 @@ namespace coolgame
         {
             ClearEntities();
             ResetBuildings(Content);
-            spaceCash = 10000;
+            spaceCash = 0;
             guiManager.Restart();
-            spawner.SetWave(10, guiManager);
+            spawner.SetWave(1, guiManager);
             SoundManager.PlayMusic();
         }
 

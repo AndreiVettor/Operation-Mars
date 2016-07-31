@@ -14,17 +14,19 @@ namespace coolgame
         private const float SPAWN_CYCLE = 1000f / 6;
         private const float WAVE_DELAY = 2000f;
 
+        private float waveLength;
+
         //needs tweaking
         private float[,] spawnTable = new float[,]
         {
-            { .075f, .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, //crawler
-            { 0, .04f, .095f, 0, 0, .12f, 0, 0, 0, 0, 0 },  //steelroach
-            { 0, 0, 0, .2f, .15f, .1f, 0, 0, 0, 0, 0 }, //reptilian
-            { 0, 0, 0, 0, .05f, .075f, .1f, .1f, 0, .15f, 0 }, //mwat
-            { 0, 0, 0, 0, 0, 0, .04f, .04f, .075f, .075f, 0 }, //murderbot
-            { 0, 0, 0, 0, 0, 0, 0, .05f, 0, .075f, 0}, //dru
-            { 0, 0, 0, 0, 0, 0, 0, 0, .135f, .1f, .135f }, //saucer
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } //saucer2
+            { .075f, .1f, .1f, .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .2f, 0 }, //crawler
+            { 0, 0, .035f, .045f, .085f, .085f, .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .2f, 0 },  //steelroach
+            { 0, 0, 0, 0, 0, .07f, .1f, .13f, 0, .125f, .125f, .125f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .175f, .2f, 0 }, //reptilian
+            { 0, 0, 0, 0, 0, 0, 0, 0, .075f, .075f, 0, .075f, .1f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .15f, .175f, .2f, 0 }, //mwat
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .035f, .04f, 0, .05f, .07f, .1f, .1f, 0, .1f, .11f, .12f, 0, 0, 0, .13f, .14f, .145f, .15f, .155f, 0 }, //murderbot
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .065f, .075f, .085f, 0, .1f, 0, 0, 0, .115f, .14f, 0, 0, 0, .145f, .15f, .16f, .175f, 0}, //dru
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .1f, .1f, .115f, .115f, .13f, .13f, .135f, .135f, .14f, .145f, .15f, .16f, 0 }, //saucer
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, .025f, .035f, .045f, .055f, .065f, .075f, .085f, .1f } //saucer2
         };
 
         private float spawnTime;
@@ -45,7 +47,7 @@ namespace coolgame
 
         public void SetWave(int waveNumber, GUIManager guiManager)
         {
-            if (waveNumber >= 1 && waveNumber <= 11)
+            if (waveNumber >= 1 && waveNumber <= 30)
             {
                 wave = waveNumber;
                 waveTime = 0;
@@ -53,6 +55,10 @@ namespace coolgame
                 {
                     guiManager.DisplayMessage("DAY " + Wave.ToString());
                 }
+
+                float gameProgress = (wave - 1) / 30f;
+
+                waveLength = 25000 * (1 - gameProgress) + 45000 * gameProgress;
             }
             waveFinished = false;
         }
@@ -62,7 +68,7 @@ namespace coolgame
             spawnTime += deltaTime;
             waveTime += deltaTime;
 
-            if (waveTime >= 40000f)
+            if (waveTime >= waveLength)
             {
                 waveFinished = true;
             }

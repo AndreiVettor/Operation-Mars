@@ -9,7 +9,7 @@ namespace coolgame
     public class Game : Microsoft.Xna.Framework.Game
     {
         public const int GAME_WIDTH = 1200;
-        public const int GAME_HEIGHT = 600;
+        public const int GAME_HEIGHT = 675;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
