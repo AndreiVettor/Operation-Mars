@@ -8,13 +8,13 @@ using Microsoft.Xna.Framework.Content;
 namespace coolgame
 {
     public class EnemyProjectile : LaserProjectile
-    {
-        public EnemyProjectile(ContentManager content, double x, double y, float direction, int attackPower) : base(content, x, y, direction, attackPower)
+    {   
+        public EnemyProjectile(ContentManager content, double x, double y, float direction, int attackPower, string assetName) : base(content, x, y, direction, attackPower)
         {
-            SetTexture("mwatlaser");
+            SetTexture(assetName);
             Width = texture.Width;
             Height = texture.Height;
-            speed = 3f;
+            speed = 2f;
             X = x - Width / 2;
             Y = y - Height / 2;
         }

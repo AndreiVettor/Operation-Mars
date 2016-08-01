@@ -18,6 +18,7 @@ namespace coolgame
         protected int burstFireAmmount;
         protected float burstFireSpeed;
         private int currentBurstProjectile;
+        protected string laserAssetName;
 
         protected int Range
         {
@@ -132,7 +133,7 @@ namespace coolgame
                         projectileX = X + Width;
                         //projectileDirection = 0;
                     }
-                    EnemyProjectile p = new EnemyProjectile(content, projectileX, Y + Height / 2, projectileDirection, attackPower);
+                    EnemyProjectile p = new EnemyProjectile(content, projectileX, Y + Height / 2, projectileDirection, attackPower, laserAssetName);
                     attackCooldown = 0;
                     if (attackSound != null)
                         SoundManager.PlayClip(attackSound);

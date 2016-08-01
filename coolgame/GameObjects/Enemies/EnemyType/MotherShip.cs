@@ -74,7 +74,7 @@ namespace coolgame
                     double projectileX = X + Width / 2;
                     double projectileY = Y + Height;
                     float projectileDirection = (float)Math.PI / 2;
-                    MotherShipProjectile p = new MotherShipProjectile(content, projectileX, projectileY, projectileDirection, attackPower);
+                    EnemyProjectile p = new EnemyProjectile(content, projectileX, projectileY, projectileDirection, attackPower, "ufoprojectile");
                     attackCooldown = 0;
                     if (attackSound != null)
                         SoundManager.PlayClip(attackSound);

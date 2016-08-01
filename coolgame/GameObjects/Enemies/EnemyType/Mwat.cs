@@ -36,6 +36,7 @@ namespace coolgame
 
             attackSound = "enemylaser";
             hitSound = "mwathit";
+            laserAssetName = "mwatlaser";
         }
     }
 }
