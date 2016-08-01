@@ -106,11 +106,11 @@ namespace coolgame
                     X -= movingSpeed / 100 * deltaTime;
                 else if (Direction == EnemyDirection.ToRight)
                     X += movingSpeed / 100 * deltaTime;
-                EnableAnimation = true;
+                MosCraciun(false);
             }
             else
             {
-                EnableAnimation = false;
+                MosCraciun(true);
                 if ((attackCooldown >= 1000f / attackSpeed) || 
                     (burstFire && (currentBurstProjectile < burstFireAmmount)) && (attackCooldown >= 1000f / burstFireSpeed))
                 {
@@ -140,6 +140,8 @@ namespace coolgame
                 }
             }
         }
+
+        protected abstract void MosCraciun(bool idle);
 
         public override void Draw(SpriteBatch spriteBatch)
         {

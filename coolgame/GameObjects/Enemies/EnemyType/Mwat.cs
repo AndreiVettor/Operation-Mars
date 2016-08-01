@@ -38,5 +38,25 @@ namespace coolgame
             hitSound = "mwathit";
             laserAssetName = "mwatlaser";
         }
+
+        protected override void MosCraciun(bool idle)
+        {
+            if (idle)
+            {
+                AnimationSpeed = 0;
+                EnableAnimation = false;
+                SetTexture("mwat_idle");
+                Width = 67;
+                Height = 92;
+            }
+            else
+            {
+                AnimationSpeed = 0.03f;
+                EnableAnimation = true;
+                SetTexture("mwat");
+                Width = 79;
+                Height = 91;
+            }
+        }
     }
 }
