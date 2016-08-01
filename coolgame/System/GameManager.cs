@@ -149,17 +149,17 @@ namespace coolgame
 
         public static int lTurretRepairCost
         {
-            get { return (int)(buildings["leftturret"].Damage * 50); }
+            get { return (int)(buildings["leftturret"].Damage * 500); }
         }
 
         public static int rTurretRepairCost
         {
-            get { return (int)(buildings["rightturret"].Damage * 50); }
+            get { return (int)(buildings["rightturret"].Damage * 500); }
         }
 
         public static int baseRepairCost
         {
-            get { return (int)(buildings["base"].Damage * 40); }
+            get { return (int)(buildings["base"].Damage * 400); }
         }
 
         public static int GetUpgradeCost(int id)
