@@ -37,8 +37,7 @@ namespace coolgame
         {
             base.Initialize();
 
-            SoundManager.SoundVolume = 8;
-            SoundManager.MusicVolume = 2;
+            SoundManager.MusicVolume = 100;
         }
 
         protected override void LoadContent()
