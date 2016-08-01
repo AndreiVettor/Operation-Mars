@@ -135,98 +135,82 @@ namespace coolgame
 
                 if (InputManager.KeyPress(Keys.D))
                 {
-                    GameManager.godMode++;
-                    if (GameManager.godMode == 4)
-                        GameManager.godMode = 0;
+                    //GameManager.godMode++;
+                    //if (GameManager.godMode == 4)
+                    //    GameManager.godMode = 0;
 
-                    switch (GameManager.godMode)
-                    {
-                        case 0:
-                            {
-                                Debug.Log("Normal mode");
-                                break;
-                            }
-                        case 1:
-                            {
-                                Debug.Log("Demigod mode");
-                                break;
-                            }
-                        case 2:
-                            {
-                                Debug.Log("God mode");
-                                break;
-                            }
-                        case 3:
-                            {
-                                Debug.Log("Chuck Norris mode");
-                                break;
-                            }
-                    }
+                    //switch (GameManager.godMode)
+                    //{
+                    //    case 0:
+                    //        {
+                    //            Debug.Log("Normal mode");
+                    //            break;
+                    //        }
+                    //    case 1:
+                    //        {
+                    //            Debug.Log("Demigod mode");
+                    //            break;
+                    //        }
+                    //    case 2:
+                    //        {
+                    //            Debug.Log("God mode");
+                    //            break;
+                    //        }
+                    //    case 3:
+                    //        {
+                    //            Debug.Log("Chuck Norris mode");
+                    //            break;
+                    //        }
+                    //}
                 }
 
-                if (InputManager.KeyPress(Keys.Right) && GameManager.godMode > 0)
-                {
-                    enemySpawner.SetWave(enemySpawner.Wave + 1, guiManager);
-                    Debug.Log("Wave set to " + enemySpawner.Wave.ToString());
-                }
+                //if (InputManager.KeyPress(Keys.Right) && GameManager.godMode > 0)
+                //{
+                //    enemySpawner.SetWave(enemySpawner.Wave + 1, guiManager);
+                //    Debug.Log("Wave set to " + enemySpawner.Wave.ToString());
+                //}
 
-                if (InputManager.KeyPress(Keys.Left) && GameManager.godMode > 0)
-                {
-                    enemySpawner.SetWave(enemySpawner.Wave - 1, guiManager);
-                    Debug.Log("Wave set to " + enemySpawner.Wave.ToString());
-                }
-
-                if (InputManager.KeyPress(Keys.R))
-                {
-                    GameManager.State = GameState.StartMenu;
-                }
-
-                if (InputManager.KeyPress(Keys.H))
-                {
-                    guiManager.DisplayMessage("Wave 1: Crawlers are warm and fuzzy");
-                }
+                //if (InputManager.KeyPress(Keys.Left) && GameManager.godMode > 0)
+                //{
+                //    enemySpawner.SetWave(enemySpawner.Wave - 1, guiManager);
+                //    Debug.Log("Wave set to " + enemySpawner.Wave.ToString());
+                //}
             }
 
+            //if (InputManager.KeyPress(Keys.C))
+            //{
+            //    if(GameManager.FrameLimiting)
+            //    {
+            //        GameManager.SetFrameLimiting(this, false);
+            //    }
+            //    else
+            //    {
+            //        GameManager.SetFrameLimiting(this, true);
+            //    }
+            //    Debug.Log("Frame Limiting", GameManager.FrameLimiting);
+            //}
 
-            if (InputManager.KeyPress(Keys.T))
-            {
-                GameManager.State = GameState.Game;
-            }
+            //if (InputManager.KeyPress(Keys.F))
+            //{
+            //    Debug.ToggleFPS();
+            //    Debug.Log("Toggled FPS");
+            //}
+            //if (InputManager.KeyPress(Keys.M))
+            //{
+            //    SoundManager.MuteMusic();
+            //    Debug.Log("Toggled Mute");
+            //}
 
-            if (InputManager.KeyPress(Keys.C))
-            {
-                if(GameManager.FrameLimiting)
-                {
-                    GameManager.SetFrameLimiting(this, false);
-                }
-                else
-                {
-                    GameManager.SetFrameLimiting(this, true);
-                }
-                Debug.Log("Frame Limiting", GameManager.FrameLimiting);
-            }
-
-            if (InputManager.KeyPress(Keys.F))
-            {
-                Debug.ToggleFPS();
-                Debug.Log("Toggled FPS");
-            }
-            if (InputManager.KeyPress(Keys.M))
-            {
-                SoundManager.MuteMusic();
-                Debug.Log("Toggled Mute");
-            }
-
-            if (InputManager.KeyPress(Keys.B))
-            {
-                Debug.ToggleRectangles();
-                Debug.Log("Toggled Collision Boxes");
-            }
-            if (InputManager.KeyPress(Keys.L))
-            {
-                Debug.ToggleDebugLog();
-                Debug.Log("Toggled Debug Log");
-            }
+            //if (InputManager.KeyPress(Keys.B))
+            //{
+            //    Debug.ToggleRectangles();
+            //    Debug.Log("Toggled Collision Boxes");
+            //}
+            //if (InputManager.KeyPress(Keys.L))
+            //{
+            //    Debug.ToggleDebugLog();
+            //    Debug.Log("Toggled Debug Log");
+            //}
         }
 
         protected override void Draw(GameTime gameTime)
