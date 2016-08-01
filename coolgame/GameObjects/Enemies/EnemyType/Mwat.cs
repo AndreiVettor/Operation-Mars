@@ -46,8 +46,9 @@ namespace coolgame
                 AnimationSpeed = 0;
                 EnableAnimation = false;
                 SetTexture("mwat_idle");
-                Width = 67;
-                Height = 92;
+                //Width = 67;
+                //Height = 92;
+                Y = GameManager.Ground.Top - Height;
             }
             else
             {
@@ -56,6 +57,7 @@ namespace coolgame
                 SetTexture("mwat");
                 Width = 79;
                 Height = 91;
+                Y = GameManager.Ground.Top - Height;
             }
         }
     }
