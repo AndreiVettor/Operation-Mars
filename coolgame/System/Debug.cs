@@ -29,8 +29,8 @@ namespace coolgame
 
         private static float layerDepth = LayerManager.GetLayerDepth(Layer.Debugging);
 
-        public static bool debugMessages = true;
-        public static bool debugFPS = true;
+        public static bool debugMessages = false;
+        public static bool debugFPS = false;
         public static bool debugRectangles = false;
 
         private static Texture2D debugTexture;
@@ -152,7 +152,7 @@ namespace coolgame
                 DrawText(spriteBatch, fpsText, new Vector2(10, 30));
             }
 
-            DrawText(spriteBatch, VERSION, new Vector2(10, 10));
+            //DrawText(spriteBatch, VERSION, new Vector2(10, 10));
 
             if (debugMessages)
             {
