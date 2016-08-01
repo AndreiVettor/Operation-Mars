@@ -20,7 +20,7 @@ namespace coolgame.GUI.Menus
             float accuracy = (float)GameManager.landedHits / GameManager.projectilesShot * 100;
             if(GameManager.projectilesShot != 0)
             {
-                int bonus = (int)(Math.Max(0, (accuracy - (100 - GameManager.accuracyBonus))))*10;
+                int bonus = (int)(Math.Max(0, (accuracy*10 - (100 - GameManager.accuracyBonus))));
                 bonusText = "Your accuracy was " + accuracy.ToString("0.0") + "%, " + bonus + " SC bonus!";
                 if (bonus <= GameManager.accuracyBonus*10 && bonus > 0)
                 {
