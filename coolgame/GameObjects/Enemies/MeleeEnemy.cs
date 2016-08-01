@@ -39,12 +39,5 @@ namespace coolgame
                 }
             }
         }
-
-        public override void InflictDamage(int hitpoints)
-        {
-            base.InflictDamage(hitpoints);
-            if (hitSound != null)
-                SoundManager.PlayClip(hitSound);
-        }
     }
 }

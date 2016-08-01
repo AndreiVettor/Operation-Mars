@@ -35,6 +35,7 @@ namespace coolgame
             Range = GameManager.RNG.Next(50, 150);
 
             attackSound = "enemylaser";
+            hitSound = "mwathit";
         }
     }
 }

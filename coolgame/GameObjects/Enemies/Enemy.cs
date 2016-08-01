@@ -57,6 +57,9 @@ namespace coolgame
             {
                 GameManager.SpaceCash += spaceCash;
             }
+
+            if (hitSound != null)
+                SoundManager.PlayClip(hitSound);
         }
     }
 }
