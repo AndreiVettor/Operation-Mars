@@ -16,7 +16,7 @@ namespace coolgame
             Width = 79;
             Height = 91;
             EnableAnimation = true;
-            AnimationSpeed = 0.02f;
+            AnimationSpeed = 0.03f;
             spriteFacing = EnemyDirection.ToRight;
 
             healthBar.MaxHealth = 1000;

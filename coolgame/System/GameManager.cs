@@ -136,14 +136,14 @@ namespace coolgame
             { 950, 1900, 5400 }, //laser power
             { 850, 1700, 4800 }, //laser speed
             { 950, 1900, 5400 }, //laser spread
-            { 800, 1800, 4000 }, //forcefield regen
-            { 700, 1400, 3500 }, //forcefield health
+            {1400, 2800, 5600 }, //forcefield regen
+            {1200, 2400, 4800 }, //forcefield health
             { 700, 1400, 3500 }, //base health
             { 400, 1000, 2000 }, //turret health
           };
 
         public static int[] buildCosts = new int[] {
-            1400, //forcefield
+            1600, //forcefield
             650, //turret
         };
 

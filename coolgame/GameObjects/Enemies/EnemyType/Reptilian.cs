@@ -20,7 +20,7 @@ namespace coolgame
             attackSound = "reptilianattack";
             hitSound = "reptilianattack";
 
-            healthBar.MaxHealth = 350;
+            healthBar.MaxHealth = 400;
             movingSpeed = 15f;
             attackSpeed = 2f;
             attackPower = 100;
