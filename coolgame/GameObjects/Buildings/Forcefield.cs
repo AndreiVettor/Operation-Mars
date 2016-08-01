@@ -24,7 +24,7 @@ namespace coolgame
             set
             {
                 rechargeLevel = value;
-                rechargeRate = value * 20;
+                rechargeRate = value * 2;
                 rechargePower = (int)(5 * Math.Pow(1.5f, value*10));
             }
         }
