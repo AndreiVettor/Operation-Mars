@@ -133,18 +133,18 @@ namespace coolgame
         #region upgrade_system
 
         public static int[,] upgradeCosts = new int[,] {
-            { 90, 180, 540 }, //laser power
-            { 80, 160, 480 }, //laser speed
-            { 90, 180, 540 }, //laser spread
-            { 80, 180, 400 }, //forcefield regen
-            { 70, 140, 350 }, //forcefield health
-            { 70, 140, 350 }, //base health
-            { 40, 100, 200 }, //turret health
+            { 900, 1800, 5400 }, //laser power
+            { 800, 1600, 4800 }, //laser speed
+            { 900, 1800, 5400 }, //laser spread
+            { 800, 1800, 4000 }, //forcefield regen
+            { 700, 1400, 3500 }, //forcefield health
+            { 700, 1400, 3500 }, //base health
+            { 400, 1000, 2000 }, //turret health
           };
 
         public static int[] buildCosts = new int[] {
-            130, //forcefield
-            65, //turret
+            1300, //forcefield
+            650, //turret
         };
 
         public static int lTurretRepairCost

@@ -29,7 +29,7 @@ namespace coolgame
             attackSpeed = 30f;
             attackPower = 50;
 
-            spaceCash = 8;
+            spaceCash = 80;
 
             Range = GameManager.RNG.Next(50, 150);
 

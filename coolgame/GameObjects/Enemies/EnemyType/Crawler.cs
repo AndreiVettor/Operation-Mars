@@ -26,7 +26,7 @@ namespace coolgame
             attackPower = 80;
             attackSpeed = 1f;
 
-            spaceCash = 1;
+            spaceCash = 15;
         }
 
         public override void InflictDamage(int hitpoints)
