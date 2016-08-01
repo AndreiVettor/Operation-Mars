@@ -19,10 +19,10 @@ namespace coolgame.GUI.Menus
 
             float accuracy = (float)GameManager.landedHits / GameManager.projectilesShot * 100;
             int bonus = Math.Max(0, (int)accuracy - (100 - GameManager.accuracyBonus));
-            if(bonus <= GameManager.accuracyBonus && bonus > 0)
+            bonusText = "Your accuracy was " + accuracy.ToString("0.0") + "%, " + bonus + " SC bonus!";
+            if (bonus <= GameManager.accuracyBonus && bonus > 0)
             {
                 GameManager.SpaceCash += bonus;
-                bonusText = "Your accuracy was " + accuracy.ToString("0.0") + "%, " + bonus + " SC bonus!";
                 if (bonus == GameManager.accuracyBonus)
                 {
                     GameManager.SpaceCash += 10;
