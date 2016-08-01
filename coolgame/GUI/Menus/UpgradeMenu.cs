@@ -25,7 +25,7 @@ namespace coolgame.GUI.Menus
                 if (bonus <= GameManager.accuracyBonus*10 && bonus > 0)
                 {
                     GameManager.SpaceCash += bonus;
-                    if (bonus == GameManager.accuracyBonus)
+                    if (bonus == GameManager.accuracyBonus*10)
                     {
                         GameManager.SpaceCash += 100;
                         bonusText = "       Perfect Accuracy! " + (bonus + 100) + " SC bonus!";
