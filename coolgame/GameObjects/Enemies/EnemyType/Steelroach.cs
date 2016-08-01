@@ -15,14 +15,14 @@ namespace coolgame
             Width = 98;
             Height = 53;
             EnableAnimation = true;
-
-            healthBar.MaxHealth = 50;
-            movingSpeed = 6f;
-            attackSpeed = 1f;
-            attackPower = 15;
-
             hitSound = "steelroachhit";
             attackSound = "steelroachattack";
+
+
+            healthBar.MaxHealth = 50;
+            movingSpeed = 5f;
+            attackSpeed = 1f;
+            attackPower = 15;
 
             spaceCash = 2;
         }

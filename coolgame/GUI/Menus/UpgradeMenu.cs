@@ -18,17 +18,25 @@ namespace coolgame.GUI.Menus
             Center();
 
             float accuracy = (float)GameManager.landedHits / GameManager.projectilesShot * 100;
-            int bonus = Math.Max(0, (int)accuracy - (100 - GameManager.accuracyBonus));
-            bonusText = "Your accuracy was " + accuracy.ToString("0.0") + "%, " + bonus + " SC bonus!";
-            if (bonus <= GameManager.accuracyBonus && bonus > 0)
+            if(GameManager.projectilesShot != 0)
             {
-                GameManager.SpaceCash += bonus;
-                if (bonus == GameManager.accuracyBonus)
+                int bonus = Math.Max(0, (int)accuracy - (100 - GameManager.accuracyBonus));
+                bonusText = "Your accuracy was " + accuracy.ToString("0.0") + "%, " + bonus + " SC bonus!";
+                if (bonus <= GameManager.accuracyBonus && bonus > 0)
                 {
-                    GameManager.SpaceCash += 10;
-                    bonusText = "       Perfect Accuracy! " + (GameManager.accuracyBonus + 10) + " SC bonus!";
+                    GameManager.SpaceCash += bonus;
+                    if (bonus == GameManager.accuracyBonus)
+                    {
+                        GameManager.SpaceCash += 10;
+                        bonusText = "       Perfect Accuracy! " + (GameManager.accuracyBonus + 10) + " SC bonus!";
+                    }
                 }
             }
+            else
+            {
+                bonusText = "No shots fired. 0 SC bonus.";
+            }
+
 
 
             AddButton(new GUIButton(Content, guiManager.MediumFont, "  NEXT WAVE  ", new Vector2(270, 290),textPadding));
