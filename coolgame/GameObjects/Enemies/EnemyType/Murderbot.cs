@@ -24,7 +24,7 @@ namespace coolgame
             //Height = 80;
             //EnableAnimation = true;
 
-            healthBar.MaxHealth = 3000;
+            healthBar.MaxHealth = 2500;
             movingSpeed = 9f;
             attackSpeed = 30f;
             attackPower = 25;
@@ -172,6 +172,11 @@ namespace coolgame
                     }
                     else
                         healthBar.ColorScheme = HealthBar.HealthBarColoring.Normal;
+
+                    if(healthBar.Health > healthBar.MaxHealth + healthBar.MaxHealth/2)
+                    {
+                        healthBar.Health = healthBar.MaxHealth + healthBar.MaxHealth / 2;
+                    }
 
                     attackCooldown = 0;
                 }
