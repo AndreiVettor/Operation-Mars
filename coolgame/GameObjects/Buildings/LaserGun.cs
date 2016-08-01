@@ -46,6 +46,7 @@ namespace coolgame
             {
                 powerLevel = value;
                 attackPower = powerLevel * baseDamage;
+                attackPower = (int)Math.Ceiling((baseDamage * Math.Pow(1.6f, powerLevel - 1)));
                 if (value == 4)
                 {
                     if (speedLevel + spreadLevel < 4)
@@ -62,8 +63,8 @@ namespace coolgame
             set
             {
                 speedLevel = value;
-                cooldown = (int)(200 / Math.Pow(1.5f, value - 1));
-                recoilRecovery = 0.018f * (float)Math.Pow(1.5f, value - 1);
+                cooldown = (int)(200 / Math.Pow(1.35f, value - 1));
+                recoilRecovery = 0.018f * (float)Math.Pow(1.35f, value - 1);
 
                 if (speedLevel + spreadLevel >= 4)
                 {
