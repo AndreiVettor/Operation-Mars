@@ -23,11 +23,12 @@ namespace coolgame
             { 0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  2, 4, 6, 8,10, 20,22,24,26,30, 10,10,10,10,10}, //Murderbot
             { 0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  2, 4, 6,12,16, 16,18,20,22,24}, //DRU
             { 0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  1, 5,11,15,17, 21,23,27,30,25, 17,11, 3, 0, 0}, //Saucer
-            { 0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  1, 7,25,30,35}  //BlackSaucer
+            { 0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  1, 7,25,30,35}, //BlackSaucer
+            { 0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0, 1}  //Mother ship
         };
 
-        private float[] spawnChances = new float[8];
-        private int[] spawned = new int[8];
+        private float[] spawnChances = new float[9];
+        private int[] spawned = new int[9];
 
         private float[] totalSpawnChance = new float[]
         { 0.98f, 0.89f, 0.99f, 0.95f, 1.15f,
