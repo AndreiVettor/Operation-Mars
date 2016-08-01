@@ -19,7 +19,7 @@ namespace coolgame
             AnimationSpeed = 0.02f;
             spriteFacing = EnemyDirection.ToRight;
 
-            healthBar.MaxHealth = 750;
+            healthBar.MaxHealth = 900;
             movingSpeed = 11f;
             attackSpeed = 1.5f;
             attackPower = 150;
