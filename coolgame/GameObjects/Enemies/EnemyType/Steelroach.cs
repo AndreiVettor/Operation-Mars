@@ -24,7 +24,7 @@ namespace coolgame
             attackSpeed = 1f;
             attackPower = 15;
 
-            spaceCash = 2;
+            spaceCash = 3;
         }
     }
 }
