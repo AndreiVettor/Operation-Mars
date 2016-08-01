@@ -31,7 +31,7 @@ namespace coolgame
 
         private float[] totalSpawnChance = new float[]
         { 0.97f, 0.88f, 0.98f, 0.95f, 1.15f,
-            1.15f, 1.15f, 1.25f, 1.25f, 1.35f,
+            1.15f, 1.25f, 1.35f, 1.35f, 1.55f,
             0.85f, 0.85f, 0.85f, 0.85f, 0.95f,
             0.85f, 0.85f, 0.85f, 0.85f, 0.95f,
             0.85f, 0.85f, 0.85f, 0.85f, 0.95f,
