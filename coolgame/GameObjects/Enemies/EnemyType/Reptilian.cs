@@ -17,8 +17,8 @@ namespace coolgame
             EnableAnimation = true;
 
             AnimationSpeed *= (15f / 9);
-            attackSound = "steelroachattack";
-            hitSound = "steelroachattack";
+            attackSound = "reptilianattack";
+            hitSound = "reptilianattack";
 
             healthBar.MaxHealth = 350;
             movingSpeed = 15f;

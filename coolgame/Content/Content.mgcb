@@ -361,12 +361,6 @@
 /processorParam:TextureFormat=Color
 /build:steelroach2.png
 
-#begin steelroachattack.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:steelroachattack.wav
-
 #begin steelroachhit.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -804,4 +798,16 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:button2.wav
+
+#begin reptilianattack.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:reptilianattack.wav
+
+#begin steelroachattack.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:steelroachattack.wav
 

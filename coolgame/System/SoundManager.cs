@@ -103,6 +103,7 @@ namespace coolgame
             AddClip(Content.Load<SoundEffect>("crawlerhit"), "crawlerhit");
             AddClip(Content.Load<SoundEffect>("steelroachhit"), "steelroachhit");
             AddClip(Content.Load<SoundEffect>("steelroachattack"), "steelroachattack");
+            AddClip(Content.Load<SoundEffect>("reptilianattack"), "reptilianattack");
             AddClip(Content.Load<SoundEffect>("ebloop"), "electrobeam");
 
             MediaPlayer.MediaStateChanged += ChangeSong;
