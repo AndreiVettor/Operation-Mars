@@ -30,7 +30,7 @@ namespace coolgame
             attackSpeed = 1;
             attackPower = 700;
 
-            spaceCash = 60;
+            spaceCash = 80;
 
             attackSound = "enemylaser";
             ebriety = GameManager.RNG.Next(0, 200);

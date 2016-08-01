@@ -26,11 +26,11 @@ namespace coolgame
             detectionBox.Width = Width;
 
             attackPower = 10;
-            movingSpeed = 35;
+            movingSpeed = 30;
             attackSpeed = 1.5f;
-            healthBar.MaxHealth = 4000;
+            healthBar.MaxHealth = 2000;
 
-            spaceCash = 60;
+            spaceCash = 100;
 
             attackSound = "enemylaser";
             ebriety = GameManager.RNG.Next(0, 200);
