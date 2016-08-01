@@ -25,7 +25,7 @@ namespace coolgame
             {
                 rechargeLevel = value;
                 rechargeRate = value * 2;
-                rechargePower = (int)(5 * Math.Pow(1.5f, value*10));
+                rechargePower = (int)(3 * Math.Pow(1.5f, value*10));
             }
         }
 
@@ -36,7 +36,7 @@ namespace coolgame
             {
                 strengthLevel = value;
 
-                healthBar.MaxHealth = (int)(4000 * Math.Pow(1.5f, value - 1));
+                healthBar.MaxHealth = (int)(3000 * Math.Pow(1.5f, value - 1));
 
                 if (value == 3)
                     SetTexture("forcefield2");
