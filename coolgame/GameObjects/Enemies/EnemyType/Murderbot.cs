@@ -27,7 +27,7 @@ namespace coolgame
             healthBar.MaxHealth = 3000;
             movingSpeed = 9f;
             attackSpeed = 30f;
-            attackPower = 10;
+            attackPower = 5;
 
             spaceCash = 80;
 
