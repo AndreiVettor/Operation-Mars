@@ -22,7 +22,7 @@ namespace coolgame.GUI.Menus
             {
                 int bonus = Math.Max(0, (int)accuracy - (100 - GameManager.accuracyBonus))*10;
                 bonusText = "Your accuracy was " + accuracy.ToString("0.0") + "%, " + bonus + " SC bonus!";
-                if (bonus <= GameManager.accuracyBonus && bonus > 0)
+                if (bonus <= GameManager.accuracyBonus*10 && bonus > 0)
                 {
                     GameManager.SpaceCash += bonus;
                     if (bonus == GameManager.accuracyBonus)
