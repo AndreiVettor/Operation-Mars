@@ -36,6 +36,8 @@ namespace coolgame
             ebriety = GameManager.RNG.Next(0, 200);
             altitudeVariationModifier = (float)GameManager.RNG.NextDouble() / 2 + .5f;
 
+            hitSound = "metalrobothit";
+
         }
 
         public override double X

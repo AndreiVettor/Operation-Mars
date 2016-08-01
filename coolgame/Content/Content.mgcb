@@ -817,3 +817,9 @@
 /processorParam:Quality=Best
 /build:mwathit.wav
 
+#begin metalrobothit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:metalrobothit.wav
+

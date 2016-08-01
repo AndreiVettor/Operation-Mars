@@ -30,6 +30,8 @@ namespace coolgame
             attackPower = 10;
             healthBar.MaxHealth = 10000;
 
+            hitSound = "metalrobothit";
+
         }
 
         public override double X

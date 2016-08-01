@@ -24,6 +24,8 @@ namespace coolgame
             attackPower = 50;
 
             spaceCash = 80;
+
+            hitSound = "metalrobothit";
         }
     }
 }
