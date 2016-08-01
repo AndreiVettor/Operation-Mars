@@ -168,7 +168,7 @@ namespace coolgame
                             spawned[7]++;
                             spawnedNow = true;
                         }
-                        else if (wave == 30 && (enemiesToSpawn - enemiesSpawned == 1))
+                        else if (wave == 30 && (enemiesToSpawn - enemiesSpawned == 0))
                         {
                             SpawnEnemy("emag");
                             spawnedNow = true;
