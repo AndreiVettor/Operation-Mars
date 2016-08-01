@@ -26,9 +26,9 @@ namespace coolgame
             detectionBox.Width = Width;
 
             healthBar.MaxHealth = 1500;
-            movingSpeed = 25;
+            movingSpeed = 20;
             attackSpeed = 1;
-            attackPower = 1000;
+            attackPower = 800;
 
             spaceCash = 60;
 
