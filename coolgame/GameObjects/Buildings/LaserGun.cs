@@ -35,6 +35,7 @@ namespace coolgame
         private int spreadLevel;
 
         private int baseDamage;
+        private int originalBaseDamage;
 
         private Turret turretParent;
         private Tower towerParent;
@@ -90,6 +91,11 @@ namespace coolgame
                 auxiliaryProjectiles = value - 1;
                 maxSpread = (float)Math.PI / 40 * (value - 1);
 
+                if (value == 4)
+                    auxiliaryProjectiles = 4;
+
+                baseDamage = (int)Math.Ceiling(originalBaseDamage / Math.Pow(1.25f, value - 1));
+
                 if (speedLevel + spreadLevel >= 4)
                 {
                     if (powerLevel < 4)
@@ -137,6 +143,7 @@ namespace coolgame
             recoilRecovery = 0.018f;
             lockDistance = 3;
             this.baseDamage = baseDamage;
+            originalBaseDamage = baseDamage;
 
             //Upgrades
             AttackPowerLevel = 1;
