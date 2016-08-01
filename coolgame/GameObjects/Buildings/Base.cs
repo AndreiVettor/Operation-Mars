@@ -27,7 +27,7 @@ namespace coolgame
             set
             {
                 healthLevel = value;
-                healthBar.MaxHealth = value * 2000;
+                healthBar.MaxHealth = value * 4000;
 
                 if (value == 3)
                 {
