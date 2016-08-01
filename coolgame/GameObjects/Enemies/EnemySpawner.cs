@@ -34,8 +34,8 @@ namespace coolgame
             1.15f, 1.15f, 1.15f, 1.15f, 1.35f,
             1.55f, 1.80f, 1.80f, 1.90f, 1.92f,
             1.50f, 1.55f, 1.60f, 1.65f, 1.80f,
-            1.55f, 1.70f, 1.70f, 1.80f, 1.85f,
-            1.55f, 1.70f, 1.70f, 1.80f, 1.85f};
+            1.50f, 1.55f, 1.60f, 1.65f, 1.80f,
+            1.50f, 1.55f, 1.60f, 1.65f, 1.80f};
 
         private float spawnTime;
         private float waveDelayTime, waveDelayTimeFin;
