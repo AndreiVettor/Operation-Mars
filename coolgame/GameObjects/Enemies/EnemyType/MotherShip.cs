@@ -17,7 +17,7 @@ namespace coolgame
         public MotherShip(ContentManager Content) : base(Content)
         {
             SetTexture("mothership");
-            Y = 0;
+            Y = 50;
             detectionBox = new Rectangle();
             detectionBox.Y = (int)Y;
             detectionBox.Height = Game.GAME_HEIGHT - detectionBox.Y;
@@ -28,7 +28,7 @@ namespace coolgame
 
             movingSpeed = 20;
             attackPower = 10;
-            healthBar.MaxHealth = 10000;
+            healthBar.MaxHealth = 1000000;
 
             hitSound = "metalrobothit";
 
