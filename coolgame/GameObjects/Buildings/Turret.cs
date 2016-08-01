@@ -23,7 +23,7 @@ namespace coolgame
             set
             {
                 healthLevel = value;
-                healthBar.MaxHealth = value * 100;
+                healthBar.MaxHealth = value * 1000;
 
                 if (value >= 3)
                 {
@@ -78,7 +78,7 @@ namespace coolgame
                 gunX = (int)X + 8;
             int gunY = (int)Y + 8;
 
-            laserGun = new LaserGun(content, gunX, gunY, 1, this);
+            laserGun = new LaserGun(content, gunX, gunY, 10, this);
 
             if (enemyDirection == Enemy.EnemyDirection.ToRight)
                 laserGun.PointAt(0, (int)laserGun.Y + laserGun.Height / 2);

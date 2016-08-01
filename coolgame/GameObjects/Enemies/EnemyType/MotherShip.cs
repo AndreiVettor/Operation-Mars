@@ -22,11 +22,14 @@ namespace coolgame
             detectionBox.Y = (int)Y;
             detectionBox.Height = Game.GAME_HEIGHT - detectionBox.Y;
             detectionBox.Width = Width;
-            movingSpeed = 20;
-            attackPower = 1;
-            healthBar.MaxHealth = 1000;
+
             //attackSound = "enemylaser";
             altitudeVariationModifier = (float)GameManager.RNG.NextDouble() / 2 + .5f;
+
+            movingSpeed = 20;
+            attackPower = 10;
+            healthBar.MaxHealth = 10000;
+
         }
 
         public override double X

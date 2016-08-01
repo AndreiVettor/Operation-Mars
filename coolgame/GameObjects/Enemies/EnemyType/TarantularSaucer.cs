@@ -24,14 +24,18 @@ namespace coolgame
             detectionBox.Y = (int)Y;
             detectionBox.Height = Game.GAME_HEIGHT - detectionBox.Y;
             detectionBox.Width = Width;
-            attackPower = 1;
+
+            attackPower = 10;
             movingSpeed = 15f;
             attackSpeed = 1.5f;
-            healthBar.MaxHealth = 400;
+            healthBar.MaxHealth = 4000;
+
+            spaceCash = 6;
+
             attackSound = "enemylaser";
             ebriety = GameManager.RNG.Next(0, 200);
             altitudeVariationModifier = (float)GameManager.RNG.NextDouble() / 2 + .5f;
-            spaceCash = 6;
+
         }
 
         public override double X

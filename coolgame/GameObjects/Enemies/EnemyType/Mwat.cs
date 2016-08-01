@@ -19,16 +19,19 @@ namespace coolgame
             AnimationSpeed = 0.02f;
             spriteFacing = EnemyDirection.ToRight;
 
-            healthBar.MaxHealth = 75;
+            healthBar.MaxHealth = 750;
             movingSpeed = 11f;
             attackSpeed = 1.5f;
-            attackPower = 15;
+            attackPower = 150;
+
+            spaceCash = 4;
+            
+
+
             burstFire = true;
             burstFireAmmount = 3;
             burstFireSpeed = 10f;
             precision = ((float)GameManager.RNG.NextDouble() * 10f + 10f);
-            spaceCash = 4;
-
             Range = GameManager.RNG.Next(50, 150);
 
             attackSound = "enemylaser";

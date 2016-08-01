@@ -21,9 +21,9 @@ namespace coolgame
             hitSound = "crawlerhit";
 
 
-            healthBar.MaxHealth = 18;
+            healthBar.MaxHealth = 180;
             movingSpeed = 6f;
-            attackPower = 8;
+            attackPower = 80;
             attackSpeed = 1f;
 
             spaceCash = 1;

@@ -19,10 +19,10 @@ namespace coolgame
             attackSound = "steelroachattack";
 
 
-            healthBar.MaxHealth = 50;
+            healthBar.MaxHealth = 500;
             movingSpeed = 5f;
             attackSpeed = 1f;
-            attackPower = 15;
+            attackPower = 150;
 
             spaceCash = 3;
         }
