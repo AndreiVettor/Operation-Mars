@@ -191,7 +191,14 @@ namespace coolgame
                 if (waveDelayTimeFin >= WAVE_DELAY)
                 {
                     waveDelayTimeFin = 0;
-                    guiManager.AddWindow(new GUI.Menus.UpgradeMenu(content, guiManager, this));
+                    if (wave < 30)
+                        guiManager.AddWindow(new GUI.Menus.UpgradeMenu(content, guiManager, this));
+                    else
+                    {
+                        guiManager.AddWindow(new GUI.Menus.GameOverWindow(content, guiManager, this));
+                        GameManager.GameOver = false;
+                    }
+
                     GameManager.State = GameState.Paused;
                     SetWave(wave + 1, guiManager);
                     GameManager.projectilesShot = 0;
