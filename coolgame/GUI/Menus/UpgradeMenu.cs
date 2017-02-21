@@ -131,10 +131,16 @@ namespace coolgame.GUI.Menus
                 labels[4].SetText("MAXED");
             if (labels[6].Text == int.MaxValue.ToString() + " SC")
                 labels[6].SetText("MAXED");
+            if (labels[6].Text == (int.MaxValue - 2).ToString() + " SC")
+                labels[6].SetText("DAMAGED");
             if (labels[7].Text == int.MaxValue.ToString() + " SC")
                 labels[7].SetText("MAXED");
+            if (labels[7].Text == (int.MaxValue - 2).ToString() + " SC")
+                labels[7].SetText("DAMAGED");
             if (labels[8].Text == int.MaxValue.ToString() + " SC")
                 labels[8].SetText("MAXED");
+            if (labels[8].Text == (int.MaxValue - 2).ToString() + " SC")
+                labels[8].SetText("DAMAGED");
             if (labels[9].Text == int.MaxValue.ToString() + " SC")
                 labels[9].SetText("MAXED");
             if (labels[10].Text == int.MaxValue.ToString() + " SC")

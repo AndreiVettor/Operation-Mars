@@ -209,7 +209,12 @@ namespace coolgame
                 case 5:
                     {
                         if (((Base)buildings["base"]).HealthLevel < 4)
-                            return upgradeCosts[5, ((Base)buildings["base"]).HealthLevel - 1];
+                        {
+                            if (buildings["base"].Damage == 0)
+                                return upgradeCosts[5, ((Base)buildings["base"]).HealthLevel - 1];
+                            else
+                                return int.MaxValue - 2;
+                        }
                         break;
                     }
                 case 6:
@@ -217,7 +222,12 @@ namespace coolgame
                         if (((Turret)buildings["leftturret"]).HealthLevel < 4)
                         {
                             if (buildings["leftturret"].Alive)
-                                return upgradeCosts[6, ((Turret)buildings["leftturret"]).HealthLevel - 1];
+                            {
+                                if (buildings["leftturret"].Damage == 0)
+                                    return upgradeCosts[6, ((Turret)buildings["leftturret"]).HealthLevel - 1];
+                                else
+                                    return int.MaxValue - 2;
+                            }
                             else
                                 return int.MaxValue - 1;
                         }
@@ -228,7 +238,12 @@ namespace coolgame
                         if (((Turret)buildings["rightturret"]).HealthLevel < 4)
                         {
                             if (buildings["rightturret"].Alive)
-                                return upgradeCosts[6, ((Turret)buildings["rightturret"]).HealthLevel - 1];
+                            {
+                                if (buildings["rightturret"].Damage == 0)
+                                    return upgradeCosts[6, ((Turret)buildings["rightturret"]).HealthLevel - 1];
+                                else
+                                    return int.MaxValue - 2;
+                            }
                             else
                                 return int.MaxValue - 1;
                         }
