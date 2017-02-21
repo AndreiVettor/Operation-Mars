@@ -117,7 +117,7 @@ namespace coolgame
             set { startBackground = value; }
         }
 
-        public static int godMode = 0;
+        public static int godMode = 1;
 
         private static bool frameLimiting;
         public static bool FrameLimiting

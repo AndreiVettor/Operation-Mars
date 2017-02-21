@@ -164,17 +164,17 @@ namespace coolgame
                     //}
                 }
 
-                //if (InputManager.KeyPress(Keys.Right) && GameManager.godMode > 0)
-                //{
-                //    enemySpawner.SetWave(enemySpawner.Wave + 1, guiManager);
-                //    Debug.Log("Wave set to " + enemySpawner.Wave.ToString());
-                //}
+                if (InputManager.KeyPress(Keys.Right) && GameManager.godMode > 0)
+                {
+                    enemySpawner.SetWave(enemySpawner.Wave + 1, guiManager);
+                    Debug.Log("Wave set to " + enemySpawner.Wave.ToString());
+                }
 
-                //if (InputManager.KeyPress(Keys.Left) && GameManager.godMode > 0)
-                //{
-                //    enemySpawner.SetWave(enemySpawner.Wave - 1, guiManager);
-                //    Debug.Log("Wave set to " + enemySpawner.Wave.ToString());
-                //}
+                if (InputManager.KeyPress(Keys.Left) && GameManager.godMode > 0)
+                {
+                    enemySpawner.SetWave(enemySpawner.Wave - 1, guiManager);
+                    Debug.Log("Wave set to " + enemySpawner.Wave.ToString());
+                }
             }
 
             //if (InputManager.KeyPress(Keys.C))
