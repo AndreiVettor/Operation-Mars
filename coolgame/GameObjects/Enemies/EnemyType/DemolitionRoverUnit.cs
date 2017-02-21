@@ -18,10 +18,10 @@ namespace coolgame
             AnimationSpeed /= 1f;
 
 
-            healthBar.MaxHealth = 3000;
+            healthBar.MaxHealth = 9000;
             movingSpeed = 9f;
             attackSpeed = 30f;
-            attackPower = 50;
+            attackPower = 150;
 
             spaceCash = 80;
 

@@ -25,8 +25,8 @@ namespace coolgame
             detectionBox.Height = Game.GAME_HEIGHT - detectionBox.Y;
             detectionBox.Width = Width;
 
-            attackPower = 10;
-            movingSpeed = 30;
+            attackPower = 30;
+            movingSpeed = 50;
             attackSpeed = 1.5f;
             healthBar.MaxHealth = 2000;
 
