@@ -76,6 +76,9 @@ namespace coolgame
                 for (int i = 0; i < spawnChances.Length; ++i)
                     totalEnemies += spawnTable[i, waveNumber - 1];
 
+                if (wave == 30)
+                    ++totalEnemies;
+
                 for (int i = 0; i < spawnChances.Length; ++i)
                     spawnChances[i] = (float)spawnTable[i, waveNumber - 1] / totalEnemies;
 
@@ -168,7 +171,7 @@ namespace coolgame
                             spawned[7]++;
                             spawnedNow = true;
                         }
-                        else if (wave == 30 && (enemiesToSpawn - enemiesSpawned == 0))
+                        else if (wave == 30 && (enemiesToSpawn - enemiesSpawned == 1))
                         {
                             SpawnEnemy("emag");
                             spawnedNow = true;
