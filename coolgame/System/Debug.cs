@@ -11,7 +11,7 @@ namespace coolgame
 {
     static class Debug
     {
-        const string VERSION = "Operation Mars BETA 1.0. Do not distribute.";
+        const string VERSION = "Version 1.1";
 
         private static float frameCount = 0;
         private static float timer = 0;
@@ -152,7 +152,8 @@ namespace coolgame
                 DrawText(spriteBatch, fpsText, new Vector2(10, 30));
             }
 
-            //DrawText(spriteBatch, VERSION, new Vector2(10, 10));
+            if (GameManager.State == GameState.StartMenu)
+                DrawText(spriteBatch, VERSION, new Vector2(10, 10));
 
             if (debugMessages)
             {
