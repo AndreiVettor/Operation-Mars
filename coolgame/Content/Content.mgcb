@@ -112,6 +112,7 @@
 #begin gameFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:gameFont.spritefont
 
@@ -256,6 +257,7 @@
 #begin messageFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:messageFont.spritefont
 
@@ -322,6 +324,7 @@
 #begin SpriteFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:SpriteFont.spritefont
 
@@ -466,12 +469,14 @@
 #begin textFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:textFont.spritefont
 
 #begin hudFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:hudFont.spritefont
 
@@ -724,12 +729,14 @@
 #begin upgradeFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:upgradeFont.spritefont
 
 #begin bigFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:bigFont.spritefont
 
@@ -774,18 +781,6 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Runaway-Technology.mp3
-
-#begin button1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:button1.wav
-
-#begin button2.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:button2.wav
 
 #begin reptilianattack.wav
 /importer:WavImporter
@@ -858,4 +853,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:emagprojectile.png
+
+#begin button2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:button2.wav
+
+#begin button1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:button1.wav
 
